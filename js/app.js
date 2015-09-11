@@ -7,7 +7,7 @@ var Enemy = function() {
 
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
-    this.sprite = 'images/enemy-bug.png';
+    this.sprite = 'images/characters/deathCaster.gif';
 };
 
 // Update the enemy's position, required method for game
@@ -27,12 +27,48 @@ Enemy.prototype.render = function() {
 // This class requires an update(), render() and
 // a handleInput() method.
 var Player = function() {
-    this.sprite = 'images/char-boy.png';
+    this.sprite = 'images/characters/monk.gif';
+    this.x = 250;
+    this.y = 250;
 }
 Player.prototype.update = function(){
 
 };
-
+Player.prototype.render = function() {
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    
+}
+Player.prototype.handleInput = function(key) { 
+      console.log(key);
+      this.render();
+    switch(key) {
+        case 'left':
+            this.x = this.x - 50;
+            if (this.x < -2) {
+                this.x = -2;
+            }
+            break;
+        case 'up':
+            this.y = this.y - 50;
+            if (this.y < -35){
+                this.y = -35;
+            }
+            break;
+        case 'right':
+            this.x = this.x + 50;
+            if (this.x > 404) {
+                this.x = 404;
+            }
+           break;
+        case 'down':
+            this.y = this.y + 50;
+            if (this.y > 380) {
+                this.y = 380;
+            }
+        default:
+            break;
+    }
+}
 
 
 // Now instantiate your objects.

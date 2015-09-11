@@ -25,7 +25,7 @@ var Engine = (function(global) {
         ctx = canvas.getContext('2d'),
         lastTime;
 
-    canvas.width = 500;
+    canvas.width = 700;
     canvas.height = 500;
     doc.body.appendChild(canvas);
 
@@ -108,19 +108,19 @@ var Engine = (function(global) {
          * for that particular row of the game level.
          */
         var rowImages = [
-                'images/grass-tile50.png',
-                'images/grass-tile50.png',
-                'images/grass-tile50.png',
-                'images/grass-tile50.png',
-                'images/grass-tile50.png',  
-                'images/grass-tile50.png',  
-                'images/grass-tile50.png',          
-                'images/grass-tile50.png',  
-                'images/grass-tile50.png',  
-                'images/grass-tile50.png',    
+                'images/terrain/grass-tile50.png',
+                'images/terrain/grass-tile50.png',
+                'images/terrain/grass-tile50.png',
+                'images/terrain/grass-tile50.png',
+                'images/terrain/grass-tile50.png',
+                'images/terrain/grass-tile50.png',
+                'images/terrain/grass-tile50.png',
+                'images/terrain/grass-tile50.png',
+                'images/terrain/grass-tile50.png',
+                'images/terrain/grass-tile50.png',
             ],
             numRows = 10,
-            numCols = 10,
+            numCols = 14,
             row, col;
 
         /* Loop through the number of rows and columns we've defined above
@@ -172,13 +172,10 @@ var Engine = (function(global) {
      * all of these images are properly loaded our game will start.
      */
     Resources.load([
-        'images/grass-tile50.png',
-        'images/grass-tile75.png',
-        'images/stone-block.png',
-        'images/water-block.png',
-        'images/grass-block.png',
-        'images/enemy-bug.png',
-        'images/char-boy.png'
+        'images/terrain/grass-tile50.png',
+        'images/terrain/grass-tile75.png',
+        // 'images/characters/deathCaster.gif',
+        'images/characters/monk.gif'
     ]);
     Resources.onReady(init);
 
