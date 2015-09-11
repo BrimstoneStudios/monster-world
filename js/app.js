@@ -27,9 +27,11 @@ Enemy.prototype.render = function() {
 // This class requires an update(), render() and
 // a handleInput() method.
 var Player = function() {
+  
   this.sprite = 'images/characters/monk.gif';
-  this.x = 250;
-  this.y = 250;
+  this.x = 10;
+  this.y = 10;
+  
 }
 Player.prototype.update = function(){
   
@@ -38,32 +40,34 @@ Player.prototype.render = function() {
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
   
 }
+
+
 Player.prototype.handleInput = function(key) {
   console.log(key);
   this.render();
   switch(key) {
     case 'left':
     this.x = this.x - 50;
-    if (this.x < -2) {
-      this.x = -2;
+    if (this.x < 10) {
+      this.x = 10;
     }
     break;
     case 'up':
     this.y = this.y - 50;
-    if (this.y < 0){
-      this.y = 0;
+    if (this.y < 10){
+      this.y = 10;
     }
     break;
     case 'right':
     this.x = this.x + 50;
-    if (this.x > 658) {
-      this.x = 658;
+    if (this.x > 660) {
+      this.x = 660;
     }
     break;
     case 'down':
     this.y = this.y + 50;
-    if (this.y > 460) {
-      this.y = 460;
+    if (this.y > 450) {
+      this.y = 450;
     }
     default:
     break;
