@@ -25,8 +25,8 @@ var Engine = (function(global) {
         ctx = canvas.getContext('2d'),
         lastTime;
 
-    canvas.width = 1010;
-    canvas.height = 1010;
+    canvas.width = 500;
+    canvas.height = 500;
     doc.body.appendChild(canvas);
 
     /* This function serves as the kickoff point for the game loop itself
@@ -173,6 +173,7 @@ var Engine = (function(global) {
      */
     Resources.load([
         'images/grass-tile50.png',
+        'images/grass-tile75.png',
         'images/stone-block.png',
         'images/water-block.png',
         'images/grass-block.png',
