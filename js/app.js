@@ -28,8 +28,8 @@ Enemy.prototype.render = function() {
 // a handleInput() method.
 var Player = function() {
     this.sprite = 'images/characters/monk.gif';
-    this.x = 250;
-    this.y = 250;
+    this.x = 10;
+    this.y = 10;
 }
 Player.prototype.update = function(){
 
@@ -38,32 +38,34 @@ Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     
 }
+
+
 Player.prototype.handleInput = function(key) { 
       console.log(key);
       this.render();
     switch(key) {
         case 'left':
             this.x = this.x - 50;
-            if (this.x < -2) {
-                this.x = -2;
+            if (this.x < 10) {
+                this.x = 10;
             }
             break;
         case 'up':
             this.y = this.y - 50;
-            if (this.y < -35){
-                this.y = -35;
+            if (this.y < 10){
+                this.y = 10;
             }
             break;
         case 'right':
             this.x = this.x + 50;
-            if (this.x > 404) {
-                this.x = 404;
+            if (this.x > 660) {
+                this.x = 660;
             }
            break;
         case 'down':
             this.y = this.y + 50;
-            if (this.y > 380) {
-                this.y = 380;
+            if (this.y > 450) {
+                this.y = 450;
             }
         default:
             break;
