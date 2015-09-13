@@ -125,7 +125,7 @@ var Engine = (function(global) {
         //       * We're using our Resources helpers to refer to our images
         //       * so that we get the benefits of caching these images, since
         //       * we're using them over and over.
-        //       */    
+        //       */
         ctx.drawImage(Resources.get(allLevels[selectedLevel].tiles[row]), col * 50, row * 50);
       };
     };
@@ -162,6 +162,7 @@ var Engine = (function(global) {
   * all of these images are properly loaded our game will start.
   */
   Resources.load([
+    'images/terrain/dirt-tile50.png',
     'images/terrain/grass-tile50.png',
     'images/terrain/grass-tile75.png',
     // 'images/characters/deathCaster.gif',

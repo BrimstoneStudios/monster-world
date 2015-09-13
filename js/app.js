@@ -1,5 +1,6 @@
 var app = angular.module('MonsterWorld', [])
 
+var selectedLevel = 0;
 var Level = function(){
 };
 
@@ -47,6 +48,8 @@ Player.prototype.handleInput = function(key) {
     this.x = this.x - 50;
     if (this.x < 10) {
       this.x = 10;
+      //Changes the level to the startScreen once player reach far left of screen
+      selectedLevel = 0;
     }
     break;
     case 'up':
@@ -59,6 +62,9 @@ Player.prototype.handleInput = function(key) {
     this.x = this.x + 50;
     if (this.x > 660) {
       this.x = 660;
+      
+      //Changes the level to the firstLevel once player reachs far right of screen
+      selectedLevel = 1;
     }
     break;
     case 'down':
@@ -75,9 +81,21 @@ Player.prototype.handleInput = function(key) {
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-var selectedLevel = 0;
 var startScreen = new Level();
 startScreen.tiles = [
+  'images/terrain/dirt-tile50.png',
+  'images/terrain/dirt-tile50.png',
+  'images/terrain/grass-tile50.png',
+  'images/terrain/grass-tile50.png',
+  'images/terrain/dirt-tile50.png',
+  'images/terrain/dirt-tile50.png',
+  'images/terrain/dirt-tile50.png',
+  'images/terrain/grass-tile50.png',
+  'images/terrain/grass-tile50.png',
+  'images/terrain/grass-tile50.png'
+];
+var firstLevel = new Level()
+firstLevel.tiles = [
   'images/terrain/grass-tile50.png',
   'images/terrain/grass-tile50.png',
   'images/terrain/grass-tile50.png',
@@ -89,7 +107,7 @@ startScreen.tiles = [
   'images/terrain/grass-tile50.png',
   'images/terrain/grass-tile50.png'
 ];
-var allLevels = [startScreen];
+var allLevels = [startScreen, firstLevel];
 var allEnemies = [];
 var player = new Player();
 
