@@ -1,7 +1,7 @@
 /* Engine.js
 * This file provides the game loop functionality (update entities and render),
 * draws the initial game board on the screen, and then calls the update and
-* render methods on your player and enemy objects (defined in your app.js).
+* render methods on your player and NPC objects (defined in your app.js).
 *
 * A game engine works by drawing the entire game screen over and over, kind of
 * like a flipbook you may have created as a kid. When your player moves across
@@ -84,15 +84,15 @@ var Engine = (function(global) {
   }
   
   /* This is called by the update function  and loops through all of the
-  * objects within your allEnemies array as defined in app.js and calls
+  * objects within your allNPC array as defined in app.js and calls
   * their update() methods. It will then call the update function for your
   * player object. These update methods should focus purely on updating
   * the data/properties related to  the object. Do your drawing in your
   * render methods.
   */
   function updateEntities(dt) {
-    allEnemies.forEach(function(enemy) {
-      enemy.update(dt);
+    allNPC.forEach(function(npc) {
+      NPC.update(dt);
     });
     player.update();
   }
@@ -124,7 +124,7 @@ var Engine = (function(global) {
         //       * so that we get the benefits of caching these images, since
         //       * we're using them over and over.
         //       */
-        ctx.drawImage(Resources.get(allLevels[selectedLevel].tiles[row][col]), col * 50, row * 50);
+        ctx.drawImage(Resources.get(allLevels[Levels.selectedLevel].tiles[row][col]), col * 50, row * 50);
       };
     };
     
@@ -134,14 +134,14 @@ var Engine = (function(global) {
   
   /* This function is called by the render function and is called on each game
   * tick. It's purpose is to then call the render functions you have defined
-  * on your enemy and player entities within app.js
+  * on your NPC and player entities within app.js
   */
   function renderEntities() {
-    /* Loop through all of the objects within the allEnemies array and call
+    /* Loop through all of the objects within the allNPC array and call
     * the render function you have defined.
     */
-    allEnemies.forEach(function(enemy) {
-      enemy.render();
+    allNPC.forEach(function(npc) {
+      npc.render();
     });
     
     player.render();
