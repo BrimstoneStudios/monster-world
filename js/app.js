@@ -94,6 +94,7 @@ startScreen.tiles = [
   'images/terrain/grass-tile50.png',
   'images/terrain/grass-tile50.png'
 ];
+
 var firstLevel = new Level()
 firstLevel.tiles = [
   'images/terrain/grass-tile50.png',
@@ -113,7 +114,7 @@ var player = new Player();
 
 
 // This listens for key presses and sends the keys to your
-// Player.handleInput() method. You don't need to modify this.
+// Player.handleInput() method. 
 document.addEventListener('keyup', function(e) {
   var allowedKeys = {
     37: 'left',
