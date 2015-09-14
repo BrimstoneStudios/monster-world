@@ -1,5 +1,6 @@
 var app = angular.module('MonsterWorld', [])
 
+
 var selectedLevel = 0;
 var Level = function(){
 };
@@ -83,16 +84,16 @@ Player.prototype.handleInput = function(key) {
 // Place the player object in a variable called player
 var startScreen = new Level();
 startScreen.tiles = [
-  'images/terrain/dirt-tile50.png',
-  'images/terrain/dirt-tile50.png',
-  'images/terrain/grass-tile50.png',
-  'images/terrain/grass-tile50.png',
-  'images/terrain/dirt-tile50.png',
-  'images/terrain/dirt-tile50.png',
-  'images/terrain/dirt-tile50.png',
-  'images/terrain/grass-tile50.png',
-  'images/terrain/grass-tile50.png',
-  'images/terrain/grass-tile50.png'
+  ['images/terrain/dirt-tile50.png', 'images/terrain/grass-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png'],
+  ['images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png'],
+  ['images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png'],
+  ['images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png'],
+  ['images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png'],
+  ['images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png'],
+  ['images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png'],
+  ['images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png'],
+  ['images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png'],
+  ['images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png', 'images/terrain/dirt-tile50.png'],
 ];
 
 var firstLevel = new Level()
