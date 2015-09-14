@@ -1,10 +1,12 @@
 var app = angular.module('MonsterWorld', [])
 
 var selectedLevel = 0;
+
 var Level = function(){
+  this.tiles = [];
 };
 
-Level.prototype.tiles =   [];
+// Level.prototype.tiles =   [];
 
 // Enemies our player must avoid
 var Enemy = function() {
@@ -85,6 +87,7 @@ var startScreen = new Level();
 
 var Di = 'images/terrain/dirt-tile50.png';//dirt tile 50x50
 var Gr = 'images/terrain/grass-tile50.png'//grass tile 50x50
+
 startScreen.tiles = [
   [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
   [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
