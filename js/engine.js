@@ -1,13 +1,7 @@
 /* Engine.js
 * This file provides the game loop functionality (update entities and render),
 * draws the initial game board on the screen, and then calls the update and
-* render methods on your player and enemy objects (defined in your app.js).
-*
-* A game engine works by drawing the entire game screen over and over, kind of
-* like a flipbook you may have created as a kid. When your player moves across
-* the screen, it may look like just that image/character is moving or being
-* drawn but that is not the case. What's really happening is the entire "scene"
-* is being drawn over and over, presenting the illusion of animation.
+* render methods on your player and NPC objects (defined in your app.js).
 *
 * This engine is available globally via the Engine variable and it also makes
 * the canvas' context (ctx) object globally available to make writing app.js
@@ -34,10 +28,7 @@ var Engine = (function(global) {
   */
   function main() {
     /* Get our time delta information which is required if your game
-    * requires smooth animation. Because everyone's computer processes
-    * instructions at different speeds we need a constant value that
-    * would be the same for everyone (regardless of how fast their
-    * computer is) - hurray time!
+    * requires smooth animation. 
     */
     var now = Date.now(),
     dt = (now - lastTime) / 1000.0;
@@ -70,13 +61,7 @@ var Engine = (function(global) {
   }
   
   /* This function is called by main (our game loop) and itself calls all
-  * of the functions which may need to update entity's data. Based on how
-  * you implement your collision detection (when two entities occupy the
-  * same space, for instance when your character should die), you may find
-  * the need to add an additional function call here. For now, we've left
-  * it commented out - you may or may not want to implement this
-  * functionality this way (you could just implement collision detection
-  * on the entities themselves within your app.js file).
+  * of the functions which may need to update entity's data. 
   */
   function update(dt) {
     updateEntities(dt);
@@ -84,24 +69,19 @@ var Engine = (function(global) {
   }
   
   /* This is called by the update function  and loops through all of the
-  * objects within your allEnemies array as defined in app.js and calls
+  * objects within your allNPC array as defined in app.js and calls
   * their update() methods. It will then call the update function for your
-  * player object. These update methods should focus purely on updating
-  * the data/properties related to  the object. Do your drawing in your
-  * render methods.
+  * player object. 
   */
   function updateEntities(dt) {
-    allEnemies.forEach(function(enemy) {
-      enemy.update(dt);
+    allNPC.forEach(function(npc) {
+      NPC.update(dt);
     });
     player.update();
   }
   
   /* This function initially draws the "game level", it will then call
-  * the renderEntities function. Remember, this function is called every
-  * game tick (or loop of the game engine) because that's how games work -
-  * they are flipbooks creating the illusion of animation but in reality
-  * they are just drawing the entire screen over and over.
+  * the renderEntities function.
   */
   
   function render() {
@@ -124,7 +104,7 @@ var Engine = (function(global) {
         //       * so that we get the benefits of caching these images, since
         //       * we're using them over and over.
         //       */
-        ctx.drawImage(Resources.get(allLevels[selectedLevel].tiles[row][col]), col * 50, row * 50);
+        ctx.drawImage(Resources.get(allLevels[Levels.selectedLevel].tiles[row][col]), col * 50, row * 50);
       };
     };
     
@@ -134,30 +114,26 @@ var Engine = (function(global) {
   
   /* This function is called by the render function and is called on each game
   * tick. It's purpose is to then call the render functions you have defined
-  * on your enemy and player entities within app.js
+  * on your NPC and player entities within app.js
   */
   function renderEntities() {
-    /* Loop through all of the objects within the allEnemies array and call
+    /* Loop through all of the objects within the allNPC array and call
     * the render function you have defined.
     */
-    allEnemies.forEach(function(enemy) {
-      enemy.render();
+    allNPC.forEach(function(npc) {
+      npc.render();
     });
     
     player.render();
   }
   
-  /* This function does nothing but it could have been a good place to
-  * handle game reset states - maybe a new game menu or a game over screen
-  * those sorts of things. It's only called once by the init() method.
+  /* Function to create game over screen 
   */
   function reset() {
     // noop
   }
   
-  /* Go ahead and load all of the images we know we're going to need to
-  * draw our game level. Then set init as the callback method, so that when
-  * all of these images are properly loaded our game will start.
+/* Loads images to cache
   */
   Resources.load([
     'images/terrain/dirt-tile50.png',
