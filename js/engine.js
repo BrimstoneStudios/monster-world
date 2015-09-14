@@ -105,12 +105,10 @@ var Engine = (function(global) {
   */
   
   function render() {
-    //   /* This array holds the relative URL to the image used
-    //   * for that particular row of the game level.
-    //   */
+    
     var numRows = 10,
     numCols = 14,
-    row, col;
+    row,col;
     
     //   /* Loop through the number of rows and columns we've defined above
     //   * and, using the rowImages array, draw the correct image for that
@@ -126,7 +124,7 @@ var Engine = (function(global) {
         //       * so that we get the benefits of caching these images, since
         //       * we're using them over and over.
         //       */
-        ctx.drawImage(Resources.get(allLevels[selectedLevel].tiles[row]), col * 50, row * 50);
+        ctx.drawImage(Resources.get(allLevels[selectedLevel].tiles[row][col]), col * 50, row * 50);
       };
     };
     
