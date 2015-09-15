@@ -28,7 +28,7 @@ var Engine = (function(global) {
   */
   function main() {
     /* Get our time delta information which is required if your game
-    * requires smooth animation. 
+    * requires smooth animation.
     */
     var now = Date.now(),
     dt = (now - lastTime) / 1000.0;
@@ -61,7 +61,7 @@ var Engine = (function(global) {
   }
   
   /* This function is called by main (our game loop) and itself calls all
-  * of the functions which may need to update entity's data. 
+  * of the functions which may need to update entity's data.
   */
   function update(dt) {
     updateEntities(dt);
@@ -71,7 +71,7 @@ var Engine = (function(global) {
   /* This is called by the update function  and loops through all of the
   * objects within your allNPC array as defined in app.js and calls
   * their update() methods. It will then call the update function for your
-  * player object. 
+  * player object.
   */
   function updateEntities(dt) {
     allNPC.forEach(function(npc) {
@@ -127,19 +127,21 @@ var Engine = (function(global) {
     player.render();
   }
   
-  /* Function to create game over screen 
+  /* Function to create game over screen
   */
   function reset() {
     // noop
   }
   
-/* Loads images to cache
+  /* Loads images to cache
   */
   Resources.load([
     'images/terrain/dirt-tile50.png',
     'images/terrain/grass-tile50.png',
     'images/terrain/grass-tile75.png',
-    // 'images/characters/deathCaster.gif',
+    'images/terrain/white-tile50.png',
+    'images/terrain/blue-tile50.png',
+    'images/characters/deathCaster.gif',
     'images/characters/monk.gif'
   ]);
   Resources.onReady(init);

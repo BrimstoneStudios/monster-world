@@ -3,8 +3,9 @@
 // ------ LEVEL -------
 // var selectedLevel = 0;
 
-var Di = 'images/terrain/dirt-tile50.png';//dirt tile 50x50
-var Gr = 'images/terrain/grass-tile50.png'//grass tile 50x50
+var Di = 'images/terrain/dirt-tile50.png'; // dirt tile 50x50
+var Gr = 'images/terrain/grass-tile50.png' // grass tile 50x50
+var Wh = 'images/terrain/white-tile50.png' // white tile 50x50
 
 var Levels = {};
 
@@ -23,12 +24,13 @@ var Character = function() {
   
 };
 
-
+var dC = 'images/characters/deathCaster.gif';
+var mK = 'images/characters/monk.gif';
 // ------ NPCs -------
 // Enemies our player must avoid
 var NPC = function() {
   // Variables applied to each of our instances go here
-  this.sprite = 'images/characters/deathCaster.gif';
+  this.sprite = dC;
 };
 // Update the NPC's position, required method for game
 // Parameter: dt, a time delta between ticks
@@ -43,9 +45,16 @@ NPC.prototype.render = function() {
 
 // ------ PLAYER -------
 var Player = function() {
-  this.sprite = 'images/characters/monk.gif';
-  this.x = 10;
-  this.y = 10;
+  this.sprite = dC;
+  
+  if(allLevels[Levels.selectedLevel].levelName === 'charSelectLevel'){
+    this.x= 250;
+    this.y = 200;
+  }
+  else{
+    this.x = 10;
+    this.y = 10;
+  }
 }
 
 Player.prototype.update = function(){
@@ -57,37 +66,56 @@ Player.prototype.render = function() {
 
 Player.prototype.handleInput = function(key) {
   this.render();
-  switch(key) {
-    case 'left':
-    this.x = this.x - 50;
-    if (this.x < 10) {
-      this.x = 10;
-      //Changes the level to the startScreen once player reach far left of screen
-      Levels.selectedLevel = 0;
+  if(allLevels[Levels.selectedLevel].levelName === 'charSelectLevel'){
+    
+    switch(key) {
+      case 'left':
+      this.x = this.x - 150;
+      if (this.x < 250) {
+        this.x = 250;
+      }
+      break;
+      case 'right':
+      this.x = this.x + 150;
+      if (this.x > 400) {
+        this.x = 400;
+      }
+      break;
+    };
+  }
+  else{
+    switch(key) {
+      case 'left':
+      this.x = this.x - 50;
+      if (this.x < 10) {
+        this.x = 10;
+        //Changes the level to the startScreen once player reach far left of screen
+        Levels.selectedLevel = 0;
+      }
+      break;
+      case 'up':
+      this.y = this.y - 50;
+      if (this.y < 10){
+        this.y = 10;
+      }
+      break;
+      case 'right':
+      this.x = this.x + 50;
+      if (this.x > 660) {
+        this.x = 660;
+        
+        //Changes the level to the firstLevel once player reachs far right of screen
+        Levels.selectedLevel = 1;
+      }
+      break;
+      case 'down':
+      this.y = this.y + 50;
+      if (this.y > 450) {
+        this.y = 450;
+      }
+      default:
+      break;
     }
-    break;
-    case 'up':
-    this.y = this.y - 50;
-    if (this.y < 10){
-      this.y = 10;
-    }
-    break;
-    case 'right':
-    this.x = this.x + 50;
-    if (this.x > 660) {
-      this.x = 660;
-      
-      //Changes the level to the firstLevel once player reachs far right of screen
-      Levels.selectedLevel = 1;
-    }
-    break;
-    case 'down':
-    this.y = this.y + 50;
-    if (this.y > 450) {
-      this.y = 450;
-    }
-    default:
-    break;
   }
 }
 
@@ -96,7 +124,7 @@ Player.prototype.handleInput = function(key) {
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 var startScreen = new Levels.level();
-
+startScreen.levelName = 'startScreen';
 startScreen.tiles = [
   
   [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
@@ -112,23 +140,24 @@ startScreen.tiles = [
 ];
 
 
-var charSelLevel = new Level();
-charSelLevel.tiles = [
-  [Di, Di, Di, Gr, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di],
-  [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-  [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-  [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-  [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-  [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-  [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-  [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-  [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-  [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di]
+var charSelectLevel = new Levels.level();
+charSelectLevel.levelName = 'charSelectLevel';
+charSelectLevel.tiles = [
+  [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
+  [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
+  [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
+  [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
+  [Wh, Wh, Wh, Wh, Wh, dC, Wh, Wh, mK, Wh, Wh, Wh, Wh, Wh],
+  [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
+  [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
+  [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
+  [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
+  [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
 ];
 
 var firstLevel = new Levels.level()
 firstLevel.tiles = [
-  [Di, Di, Di, Gr, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di],
+  [Di, Di, Di, Gr, Gr, Gr, Di, Di, Di, Di, Di, Di, Di, Di],
   [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
   [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
   [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
@@ -139,7 +168,7 @@ firstLevel.tiles = [
   [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
   [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di]
 ];
-var allLevels = [startScreen, firstLevel];
+var allLevels = [ startScreen, firstLevel];
 var allNPC = [];
 var player = new Player();
 
