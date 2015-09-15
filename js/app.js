@@ -60,10 +60,15 @@ Player.prototype.handleInput = function(key) {
   switch(key) {
     case 'left':
     this.x = this.x - 50;
-    if (this.x < 10) {
+    if (Levels.selectedLevel ===1 && this.x < 10) {
       this.x = 10;
       //Changes the level to the startScreen once player reach far left of screen
       Levels.selectedLevel = 0;
+      this.x = 655;
+
+    }
+    else if (this.x <10) {
+      this.x=10;
     }
     break;
     case 'up':
@@ -74,12 +79,15 @@ Player.prototype.handleInput = function(key) {
     break;
     case 'right':
     this.x = this.x + 50;
-    if (this.x > 660) {
+    if (Levels.selectedLevel === 0 && this.x > 660) {
       this.x = 660;
-      
-      //Changes the level to the firstLevel once player reachs far right of screen
+      //Changes the level to the firstLevel once player reaches far right of screen
       Levels.selectedLevel = 1;
+      this.x = 10;
     }
+    else if (this.x >660) {
+      this.x = 660;
+    };
     break;
     case 'down':
     this.y = this.y + 50;
@@ -96,9 +104,7 @@ Player.prototype.handleInput = function(key) {
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 var startScreen = new Levels.level();
-
 startScreen.tiles = [
-
   [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
   [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
   [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
@@ -124,7 +130,21 @@ firstLevel.tiles = [
   [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
   [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di]
 ];
-var allLevels = [startScreen, firstLevel];
+var secondLevel = new Levels.level()
+secondLevel.tiles = [
+  [Di, Di, Di, Gr, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di],
+  [Di, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
+  [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
+  [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
+  [Gr, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
+  [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
+  [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
+  [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
+  [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
+  [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di]
+];
+
+var allLevels = [startScreen, firstLevel, secondLevel];
 var allNPC = [];
 var player = new Player();
 
