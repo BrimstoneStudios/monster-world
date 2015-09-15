@@ -57,46 +57,52 @@ Player.prototype.render = function() {
 
 Player.prototype.handleInput = function(key) {
   this.render();
-  switch(key) {
-    case 'left':
-    this.x = this.x - 50;
-    if (Levels.selectedLevel ===1 && this.x < 10) {
-      this.x = 10;
-      //Changes the level to the startScreen once player reach far left of screen
-      Levels.selectedLevel = 0;
-      this.x = 655;
 
+
+    switch(key) {
+      case 'left':
+      this.x = this.x - 50;
+      if (Levels.selectedLevel ===1 && this.x < 10) {
+        this.x = 10;
+        //Changes the level to the startScreen once player reach far left of screen
+        Levels.selectedLevel = 0;
+        this.x = 655;
+
+      }
+      else if (this.x <10) {
+        this.x=10;
+      }
+      break;
+      case 'up':
+      this.y = this.y - 50;
+      if (this.y < 10){
+        this.y = 10;
+      }
+      break;
+      case 'right':
+      this.x = this.x + 50;
+      if (Levels.selectedLevel === 0 && this.x > 660) {
+        this.x = 660;
+        //Changes the level to the firstLevel once player reaches far right of screen
+        Levels.selectedLevel = 1;
+        this.x = 10;
+      }
+      else if (this.x >660) {
+        this.x = 660;
+      };
+      break;
+      case 'down':
+      this.y = this.y + 50;
+      if (this.y > 450) {
+        this.y = 450;
+      }
+      default:
+      break;
     }
-    else if (this.x <10) {
-      this.x=10;
-    }
-    break;
-    case 'up':
-    this.y = this.y - 50;
-    if (this.y < 10){
-      this.y = 10;
-    }
-    break;
-    case 'right':
-    this.x = this.x + 50;
-    if (Levels.selectedLevel === 0 && this.x > 660) {
-      this.x = 660;
-      //Changes the level to the firstLevel once player reaches far right of screen
-      Levels.selectedLevel = 1;
-      this.x = 10;
-    }
-    else if (this.x >660) {
-      this.x = 660;
-    };
-    break;
-    case 'down':
-    this.y = this.y + 50;
-    if (this.y > 450) {
-      this.y = 450;
-    }
-    default:
-    break;
-  }
+
+  
+
+
 }
 
 
