@@ -123,8 +123,13 @@ var Engine = (function(global) {
     allNPC.forEach(function(npc) {
       npc.render();
     });
-    
-    player.render();
+    if (state.selectedLevel === 0) {
+      start.render();
+    }
+    else {
+      player.render();
+    };
+
   }
   
   /* Function to create game over screen
@@ -136,6 +141,7 @@ var Engine = (function(global) {
   /* Loads images to cache
   */
   Resources.load([
+    'images/terrain/start-screen.png',
     'images/terrain/dirt-tile50.png',
     'images/terrain/grass-tile50.png',
     'images/terrain/grass-tile75.png',

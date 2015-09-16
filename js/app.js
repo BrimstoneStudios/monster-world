@@ -5,6 +5,22 @@ var state = {};
 // ------ LEVEL -------
 state.selectedLevel = 0;
 
+// Start class
+var Start = function(){
+  this.sprite = 'images/terrain/start-screen.png';
+};
+Start.prototype.render = function(){
+  ctx.drawImage(Resources.get(this.sprite), 0, 0);
+};
+Start.prototype.handleInput = function(key){
+  switch(key){
+    case 'enter':
+      console.log('test');
+      state.selectedLevel += 1 ;
+    break;
+  };
+};
+
 var Di = 'images/terrain/dirt-tile50.png'; // dirt tile 50x50
 var Gr = 'images/terrain/grass-tile50.png' // grass tile 50x50
 var Wh = 'images/terrain/white-tile50.png' // white tile 50x50
@@ -63,8 +79,8 @@ Player.prototype.render = function() {
 
 Player.prototype.handleInput = function(key) {
   this.render();
+
   if(allLevels[state.selectedLevel].levelName === 'charSelectLevel'){
-    
     switch(key) {
       case 'left':
       this.x = this.x - 150;
@@ -125,6 +141,11 @@ Player.prototype.handleInput = function(key) {
 }
 
 
+// Global functions
+var updateLevel = function(){
+  currentLevel = allLevels[state.selectedLevel];
+};
+
 
 
 // Now instantiate your objects.
@@ -132,22 +153,24 @@ Player.prototype.handleInput = function(key) {
 // Place the player object in a variable called player
 var startScreen = {};
 startScreen.levelName = 'startScreen';
+startScreen.charRender = 0;
 startScreen.tiles = [
-  [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-  [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-  [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-  [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-  [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-  [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-  [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-  [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-  [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-  [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di]
+  [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
+  [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
+  [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
+  [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
+  [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
+  [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
+  [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
+  [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
+  [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
+  [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
 ];
   
   
 var charSelectLevel = {};
 charSelectLevel.levelName = 'charSelectLevel';
+startScreen.charRender = 0;
 charSelectLevel.tiles = [
   [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
   [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
@@ -163,6 +186,7 @@ charSelectLevel.tiles = [
 
 var battleLevel = {};
 battleLevel.levelName = 'battleLevel';
+startScreen.charRender = 1;
 battleLevel.tiles = [
   [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
   [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
@@ -177,6 +201,8 @@ battleLevel.tiles = [
 ];
 
 var firstLevel = {};
+firstLevel.levelName = 'firstLevel';
+startScreen.charRender = 0;
 firstLevel.tiles = [
   [Di, Di, Di, Gr, Gr, Gr, Di, Di, Di, Di, Di, Di, Di, Di],
   [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
@@ -191,6 +217,8 @@ firstLevel.tiles = [
 ];
 
 var secondLevel = {};
+secondLevel.secondName = 'secondLevel';
+startScreen.charRender = 1;
 secondLevel.tiles = [
   [Di, Di, Di, Gr, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di],
   [Di, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
@@ -205,19 +233,28 @@ secondLevel.tiles = [
 ];
 
 var allLevels = [startScreen, firstLevel, secondLevel];
+var currentLevel = allLevels[state.selectedLevel];
 var allNPC = [];
+
+var start = new Start();
 var player = new Player();
   
   
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method.
+
 document.addEventListener('keyup', function(e) {
   var allowedKeys = {
+    13: 'enter',
     37: 'left',
     38: 'up',
     39: 'right',
     40: 'down'
   };
-  
-  player.handleInput(allowedKeys[e.keyCode]);
+  if (state.selectedLevel === 0) {
+    start.handleInput(allowedKeys[e.keyCode]);
+  }  
+  else {
+    player.handleInput(allowedKeys[e.keyCode]); 
+  }
 });
