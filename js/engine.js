@@ -104,7 +104,7 @@ var Engine = (function(global) {
         //       * so that we get the benefits of caching these images, since
         //       * we're using them over and over.
         //       */
-        ctx.drawImage(Resources.get(allLevels[state.selectedLevel].tiles[row][col]), col * 50, row * 50);
+        ctx.drawImage(Resources.get(allLevels[state.currentLevel].tiles[row][col]), col * 50, row * 50);
       };
     };
     
@@ -123,7 +123,7 @@ var Engine = (function(global) {
     allNPC.forEach(function(npc) {
       npc.render();
     });
-    if (state.selectedLevel === 0) {
+    if (state.currentLevel === 'startScreen') {
       start.render();
     }
     else {
