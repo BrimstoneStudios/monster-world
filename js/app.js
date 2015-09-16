@@ -3,7 +3,23 @@ var state = {};
 
 
 // ------ LEVEL -------
-state.selectedLevel = 0;
+state.currentLevel = 'startScreen';
+
+// Start class
+var Start = function(){
+  this.sprite = 'images/terrain/start-screen.png';
+};
+Start.prototype.render = function(){
+  ctx.drawImage(Resources.get(this.sprite), 0, 0);
+};
+Start.prototype.handleInput = function(key){
+  switch(key){
+    case 'enter':
+      console.log('test');
+      state.currentLevel = 'firstLevel' ;
+    break;
+  };
+};
 
 var Di = 'images/terrain/dirt-tile50.png'; // dirt tile 50x50
 var Gr = 'images/terrain/grass-tile50.png' // grass tile 50x50
@@ -44,7 +60,7 @@ NPC.prototype.render = function() {
 var Player = function() {
   this.sprite = dC;
   
-  if(allLevels[state.selectedLevel].levelName === 'charSelectLevel'){
+  if(allLevels[state.currentLevel].levelName === 'charSelectLevel'){
     this.x= 250;
     this.y = 200;
   }
@@ -62,9 +78,11 @@ Player.prototype.render = function() {
 }
 
 Player.prototype.handleInput = function(key) {
+  currentLevel = allLevels[state.currentLevel];
+  console.log(currentLevel);
   this.render();
-  if(allLevels[state.selectedLevel].levelName === 'charSelectLevel'){
-    
+
+  if(allLevels[state.currentLevel].levelName === 'charSelectLevel'){
     switch(key) {
       case 'left':
       this.x = this.x - 150;
@@ -84,10 +102,10 @@ Player.prototype.handleInput = function(key) {
     switch(key) {
       case 'left':
       this.x = this.x - 50;
-      if (state.selectedLevel ===1 && this.x < 10) {
+      if (state.currentLevel ==='secondLevel' && this.x < 10) {
         this.x = 10;
         //Changes the level to the startScreen once player reach far left of screen
-        state.selectedLevel = 0;
+        state.currentLevel = 'firstLevel';
         this.x = 655;
         
       }
@@ -103,10 +121,10 @@ Player.prototype.handleInput = function(key) {
       break;
       case 'right':
       this.x = this.x + 50;
-      if (state.selectedLevel === 0 && this.x > 660) {
+      if (state.currentLevel === 'firstLevel' && this.x > 660) {
         this.x = 660;
         //Changes the level to the firstLevel once player reaches far right of screen
-        state.selectedLevel = 1;
+        state.currentLevel = 'secondLevel';
         this.x = 10;
       }
       else if (this.x >660) {
@@ -125,29 +143,21 @@ Player.prototype.handleInput = function(key) {
 }
 
 
+// Global functions
+var updateLevel = function(){
+  currentLevel = allLevels[state.currentLevel];
+};
+
 
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-var startScreen = {};
-startScreen.levelName = 'startScreen';
-startScreen.tiles = [
-  [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-  [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-  [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-  [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-  [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-  [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-  [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-  [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-  [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-  [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di]
-];
-  
+
   
 var charSelectLevel = {};
 charSelectLevel.levelName = 'charSelectLevel';
+charSelectLevel.charRender = 0;
 charSelectLevel.tiles = [
   [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
   [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
@@ -163,6 +173,7 @@ charSelectLevel.tiles = [
 
 var battleLevel = {};
 battleLevel.levelName = 'battleLevel';
+battleLevel.charRender = 0;
 battleLevel.tiles = [
   [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
   [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
@@ -176,48 +187,114 @@ battleLevel.tiles = [
   [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
 ];
 
-var firstLevel = {};
-firstLevel.tiles = [
-  [Di, Di, Di, Gr, Gr, Gr, Di, Di, Di, Di, Di, Di, Di, Di],
-  [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-  [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-  [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-  [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-  [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-  [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-  [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-  [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-  [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di]
-];
 
-var secondLevel = {};
-secondLevel.tiles = [
-  [Di, Di, Di, Gr, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di],
-  [Di, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-  [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-  [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-  [Gr, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-  [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-  [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-  [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-  [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-  [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di]
-];
 
-var allLevels = [startScreen, firstLevel, secondLevel];
+var allLevels = {
+  startScreen:{
+    levelName : 'startScreen',
+    charRender : 0,
+    tiles : [
+      [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
+      [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
+      [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
+      [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
+      [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
+      [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
+      [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
+      [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
+      [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
+      [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
+    ]
+  },
+  charSelectLevel: {
+    levelName : 'charSelectLevel',
+    charRender : 0,
+    tiles : [
+      [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
+      [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
+      [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
+      [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
+      [Wh, Wh, Wh, Wh, Wh, dC, Wh, Wh, mK, Wh, Wh, Wh, Wh, Wh],
+      [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
+      [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
+      [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
+      [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
+      [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
+    ]
+  },
+  battleLevel: {
+    levelName :  'battleLevel',
+    charRender :  0,
+    tiles :  [
+      [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
+      [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
+      [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
+      [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
+      [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
+      [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
+      [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
+      [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
+      [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
+      [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
+    ],
+  }, 
+  firstLevel:{
+    levelName : 'firstLevel',
+    charRender : 1,
+    tiles : [
+      [Di, Di, Di, Gr, Gr, Gr, Di, Di, Di, Di, Di, Di, Di, Di],
+      [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
+      [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
+      [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
+      [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
+      [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
+      [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
+      [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
+      [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
+      [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di]
+    ],
+  }, 
+  secondLevel:{
+    secondName : 'secondLevel',
+    charRender : 1,
+    tiles : [
+      [Di, Di, Di, Gr, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di],
+      [Di, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
+      [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
+      [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
+      [Gr, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
+      [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
+      [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
+      [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
+      [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
+      [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di]
+    ],
+  }
+};
+
+
+// var currentLevel = allLevels[state.currentLevel];
 var allNPC = [];
+
+var start = new Start();
 var player = new Player();
   
   
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method.
+
 document.addEventListener('keyup', function(e) {
   var allowedKeys = {
+    13: 'enter',
     37: 'left',
     38: 'up',
     39: 'right',
     40: 'down'
   };
-  
-  player.handleInput(allowedKeys[e.keyCode]);
+  if (state.currentLevel === 'startScreen') {
+    start.handleInput(allowedKeys[e.keyCode]);
+  }  
+  else {
+    player.handleInput(allowedKeys[e.keyCode]); 
+  }
 });
