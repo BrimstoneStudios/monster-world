@@ -144,17 +144,14 @@ var Engine = (function(global) {
     'images/terrain/grass-tile50.png',
     'images/terrain/grass-tile75.png',
     'images/terrain/white-tile50.png',
-    'images/characters/deathCaster.gif',
-    'images/characters/monk.gif',
+    'images/terrain/deathCaster-wb.png',
+    'images/terrain/monk-wb.png',
     'images/terrain/drag1-wb.jpg',
     'images/terrain/hydra1-wb.jpg',
     'images/terrain/wormy1-wb.jpg',
-    'images/characters/selector.png',
+    'images/characters/deathCaster.gif',
     'images/characters/monk.gif',
-    'images/characters/deathCaster-notTrans.png',
-    'images/characters/monk.gif',
-    'images/characters/monk-notTrans.png'
-    
+    'images/characters/selector.png'
   ]);
   Resources.onReady(init);
   
