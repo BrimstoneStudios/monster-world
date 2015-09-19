@@ -129,9 +129,15 @@ Player.prototype.handleInput = function(key) {
       }
       
       break;
+      
+      
+      case 'enter':
+      state.currentLevel = 'firstLevel';
+      this.x = 10;
+      this.y = 10;
+      break;
     }
   }
-  
   else{
     switch(key) {
       case 'left':
