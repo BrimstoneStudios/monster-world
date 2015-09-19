@@ -50,6 +50,9 @@ Player.prototype.update = function(){
     
     this.sprite = 'images/terrain/start-screen.png';
   }
+  else if(state.currentLevel === 'charSelectLevel' || state.currentLevel === 'monsterSelectLevel'){
+    this.sprite = 'images/characters/selector.png';
+  }
   else {
     this.sprite = sprite;
   }
@@ -67,7 +70,6 @@ Player.prototype.handleInput = function(key) {
     switch(key){
       case 'enter':
       state.currentLevel = 'charSelectLevel' ;
-      sprite = 'images/characters/selector.png';
       this.x = 250;
       this.y = 200;
       default:
@@ -94,22 +96,25 @@ Player.prototype.handleInput = function(key) {
       break;
       
       case 'enter':
-      state.currentLevel = 'firstLevel';
+      state.currentLevel = 'monsterSelectLevel';
+      
       if(this.x === 400){
         sprite = 'images/characters/monk.gif';
       }
       
       else{
         sprite = 'images/characters/deathCaster.gif';
-        
       }
-      this.x = 10;
-      this.y = 10;
+      
+      this.x = 200;
+      this.y = 200;
       break;
     };
   }
   
   else{
+    console.log(this.x);
+    console.log(this.y);
     switch(key) {
       case 'left':
       this.x = this.x - 50;
