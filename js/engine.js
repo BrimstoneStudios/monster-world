@@ -6,6 +6,10 @@
 * This engine is available globally via the Engine variable and it also makes
 * the canvas' context (ctx) object globally available to make writing app.js
 * a little simpler to work with.
+
+* Adapted from the Udacity frontend-nanodegree-arcade-game 
+* https://github.com/udacity/frontend-nanodegree-arcade-game
+
 */
 
 var Engine = (function(global) {

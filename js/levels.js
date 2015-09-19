@@ -99,7 +99,7 @@ var allLevels = {
       [Di, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
       [Di, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
       [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-      [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
+      [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Datai, Di, Di, Di, Di],
       [Gr, Gr, Gr, Gr, Gr, Gr, Gr, Gr, Gr, Gr, Gr, Gr, Gr, Gr],
       [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
       [Di, Di, Di, Gr, Di, Di, Di, Di, Gr, Di, Di, Di, Di, Di],

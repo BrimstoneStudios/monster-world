@@ -6,14 +6,11 @@ var itemInventory = [];
 // ------ State Variable -------
 // Set the initial level
 state.currentLevel = 'startScreen';
+
+// Where we will store our level and location when entering a battle/menu so we can return after
 state.prevLevel;
 state.locX;
 state.locY;
-
-// Save level and current position for when we switch to the menu level, to be saved later when opening menu
-state.preMenuLevel;
-state.preMenuLocX;
-state.preMenuLocY;
 
 // 0 = not currently displaying a monster stat, 1 = currently displaying a monster stat
 state.monsterStatCurrent= 0;
@@ -233,8 +230,11 @@ NPC.prototype.render = function() {
 
 
 // ------ PLAYER -------
+// Do we need this state.sprite?
 state.sprite;
+
 var Player = function() {
+  // Initial location for the start screen, the whole start screen image is the player sprite, takes up the whole screen
   this.x = 0;
   this.y = 0;
 };
@@ -256,10 +256,12 @@ Player.prototype.update = function(){
   }
 };
 
+// Renders the character on the screen based on it's sprite, x and  y location
 Player.prototype.render = function() {
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 }
 
+// Handles the player input, called on every key press
 Player.prototype.handleInput = function(key) {
   this.render();
   
@@ -427,7 +429,6 @@ Player.prototype.handleInput = function(key) {
       state.prevLevel = state.currentLevel;
       state.locX = this.x;
       state.locY = this.y;
-      console.log(state.locX, state.locY)
       state.currentLevel = 'mainMenu';
       this.x = 180;
       this.y = 157;
@@ -484,7 +485,7 @@ Player.prototype.handleInput = function(key) {
 
 // Global functions
 // Now instantiate your objects.
-// Place all enemy objects in an array called allEnemies
+// Place all NPC objects in an array called allNPC
 // Place the player object in a variable called player
 
 var allNPC = [];
