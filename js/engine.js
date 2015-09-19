@@ -124,8 +124,13 @@ var Engine = (function(global) {
       npc.render();
     });
     
-    //First update the features of the player which change with level and then render
-    player.update();
+    if (state.currentLevel === 'mainMenu'){
+      menu.renderMain();
+      
+    }
+    else if (state.currentLevel === 'monsterInventory'){
+      menu.renderMonsterInv();
+    }
     player.render();
     
   }
@@ -139,6 +144,8 @@ var Engine = (function(global) {
   /* Loads images to cache
   */
   Resources.load([
+
+    // Terrain
     'images/terrain/start-screen.png',
     'images/terrain/dirt-tile50.png',
     'images/terrain/grass-tile50.png',
@@ -149,8 +156,12 @@ var Engine = (function(global) {
     'images/terrain/drag1-wb.jpg',
     'images/terrain/hydra1-wb.jpg',
     'images/terrain/wormy1-wb.jpg',
+
+    // Characters
     'images/characters/deathCaster.gif',
     'images/characters/monk.gif',
+    'images/characters/selector.png',
+    'images/characters/menuSelector.png',
     
     //Monsters
     'images/monsters/hydra1.png',
@@ -163,7 +174,7 @@ var Engine = (function(global) {
     'images/monsters/wormy2.gif',
     'images/monsters/wormy3.gif',
     
-    'images/characters/selector.png'
+    
   ]);
   Resources.onReady(init);
   
