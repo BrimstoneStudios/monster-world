@@ -40,7 +40,7 @@ var Drag1 = function(){
 };
 Drag1.prototype = Object.create(DragFam.prototype);
 Drag1.prototype.constructor = Drag1;
-
+Drag1.prototype.sprite = 'images/monsters/drag1.gif'
 
 // ---
 
@@ -64,6 +64,7 @@ var Hydra1 = function(){
 };
 Hydra1.prototype = Object.create(HydraFam.prototype);
 Hydra1.prototype.constructor = Hydra1;
+Hydra1.prototype.sprite = 'images/monsters/hydra1.png';
 
 // ---
 
@@ -87,6 +88,7 @@ var Wormy1 = function(){
 };
 Wormy1.prototype = Object.create(WormyFam.prototype);
 Wormy1.prototype.constructor = Wormy1;
+Wormy1.prototype.sprite = 'images/monsters/wormy1.gif'
 
 // ------ NPCs -------
 // Other characters in the game, can be friendly or hostile
