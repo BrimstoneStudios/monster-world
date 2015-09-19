@@ -12,8 +12,8 @@ var Monster = function (){
 };
 
 Monster.prototype.update = function(){
-  
 };
+
 Monster.prototype.render = function() {
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
@@ -56,7 +56,7 @@ var FireType = function(){
 FireType.prototype = Object.create(Monster.prototype);
 FireType.prototype.constructor = FireType;
 
-// Drag family - subclass of FireType
+// Dragon family - subclass of FireType
 var DragFam = function(){
   FireType.call(this);
 };
@@ -69,8 +69,15 @@ var Drag1 = function(){
 };
 Drag1.prototype = Object.create(DragFam.prototype);
 Drag1.prototype.constructor = Drag1;
+<<<<<<< HEAD
 Drag1.prototype.sprite = 'images/monsters/drag1.gif'
 
+||||||| merged common ancestors
+
+
+=======
+
+>>>>>>> dd5ea145356cfec89b144ef3619bc4852914e6ef
 // ---
 
 // Water type - subclass of Monster
@@ -140,12 +147,12 @@ NPC.prototype.render = function() {
 
 
 // ------ PLAYER -------
+state.sprite;
 var Player = function() {
   this.x = 0;
   this.y = 0;
 };
 
-var sprite;
 
 Player.prototype.update = function(){
   // Update the sprite based on the level
@@ -153,8 +160,11 @@ Player.prototype.update = function(){
     
     this.sprite = 'images/terrain/start-screen.png';
   }
+  else if(state.currentLevel === 'charSelectLevel' || state.currentLevel === 'monsterSelectLevel'){
+    this.sprite = 'images/characters/selector.png';
+  }
   else {
-    this.sprite = sprite;
+    this.sprite = state.sprite;
   }
 };
 
@@ -170,7 +180,6 @@ Player.prototype.handleInput = function(key) {
     switch(key){
       case 'enter':
       state.currentLevel = 'charSelectLevel' ;
-      sprite = 'images/characters/selector.png';
       this.x = 250;
       this.y = 200;
       default:
@@ -197,21 +206,62 @@ Player.prototype.handleInput = function(key) {
       break;
       
       case 'enter':
-      state.currentLevel = 'firstLevel';
+      state.currentLevel = 'monsterSelectLevel';
+      
       if(this.x === 400){
-        sprite = 'images/characters/monk.gif';
+        state.sprite = 'images/characters/monk.gif';
       }
       
       else{
-        sprite = 'images/characters/deathCaster.gif';
-        
+        state.sprite = 'images/characters/deathCaster.gif';
       }
-      this.x = 10;
-      this.y = 10;
+      
+      this.x = 200;
+      this.y = 200;
       break;
     };
   }
   
+  else if(state.currentLevel === 'monsterSelectLevel'){
+    switch(key) {
+      case 'left':
+      this.x = this.x - 100;
+      
+      if (this.x < 200) {
+        this.x = 200;
+      }
+      break;
+      
+      case 'right':
+      this.x = this.x + 100;
+      if (this.x > 400) {
+        this.x = 400;
+      }
+      
+      break;
+      
+      
+      case 'enter':
+      if(this.x === 200){
+        var drag1 = new Drag1();
+        monsterInventory.push(drag1);
+      }
+      
+      else if(this.x === 300){
+        var hydra1 = new Hydra1();
+        monsterInventory.push(hydra1);
+      }
+      else{
+        var wormy1 = new Wormy1();
+        monsterInventory.push(wormy1);
+      }
+      console.log(monsterInventory);
+      state.currentLevel = 'firstLevel';
+      this.x = 10;
+      this.y = 10;
+      break;
+    }
+  }
   else{
     switch(key) {
       case 'left':
