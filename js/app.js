@@ -12,8 +12,8 @@ var Monster = function (){
 };
 
 Monster.prototype.update = function(){
-  
 };
+
 Monster.prototype.render = function() {
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
@@ -27,7 +27,7 @@ var FireType = function(){
 FireType.prototype = Object.create(Monster.prototype);
 FireType.prototype.constructor = FireType;
 
-// Drag family - subclass of FireType
+// Dragon family - subclass of FireType
 var DragFam = function(){
   FireType.call(this);
 };
