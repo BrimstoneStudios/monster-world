@@ -5,6 +5,9 @@ var jshint = require('gulp-jshint');
 var watch = require('gulp-watch');
 var autoprefixer = require('gulp-autoprefixer');
 
+// gulp-babel
+// vinyl-source-stream
+
 //Setup gulp task, you can name it anything
 //We call it styles
 gulp.task('styles', function() {

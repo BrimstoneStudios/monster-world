@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/francislanglois/monster-world#readme",
   "devDependencies": {
+    "babel": "^5.8.23",
     "gulp": "^3.9.0",
     "gulp-autoprefixer": "^3.0.1",
     "gulp-concat": "^2.6.0",
