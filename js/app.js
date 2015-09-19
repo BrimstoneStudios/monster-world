@@ -108,12 +108,12 @@ NPC.prototype.render = function() {
 
 
 // ------ PLAYER -------
+state.sprite;
 var Player = function() {
   this.x = 0;
   this.y = 0;
 };
 
-var sprite;
 
 Player.prototype.update = function(){
   // Update the sprite based on the level
@@ -125,7 +125,7 @@ Player.prototype.update = function(){
     this.sprite = 'images/characters/selector.png';
   }
   else {
-    this.sprite = sprite;
+    this.sprite = state.sprite;
   }
 };
 
@@ -170,11 +170,11 @@ Player.prototype.handleInput = function(key) {
       state.currentLevel = 'monsterSelectLevel';
       
       if(this.x === 400){
-        sprite = 'images/characters/monk.gif';
+        state.sprite = 'images/characters/monk.gif';
       }
       
       else{
-        sprite = 'images/characters/deathCaster.gif';
+        state.sprite = 'images/characters/deathCaster.gif';
       }
       
       this.x = 200;
