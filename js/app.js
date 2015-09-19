@@ -69,7 +69,7 @@ Player.prototype.handleInput = function(key) {
       break;
     };
   }
-  else if(allLevels[state.currentLevel].levelName === 'charSelectLevel'){
+  else if(state.currentLevel === 'charSelectLevel'){
     switch(key) {
       case 'left':
       this.x = this.x - 150;
