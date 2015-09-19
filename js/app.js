@@ -6,11 +6,11 @@ state.currentLevel = 'startScreen';
 
 // ------ MONSTERS -------
 var Monster = function (){
-
+  
 };
 
 Monster.prototype.update = function(){
-
+  
 };
 Monster.prototype.render = function() {
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
@@ -42,6 +42,8 @@ var Player = function() {
   this.y = 0;
 };
 
+var sprite;
+
 Player.prototype.update = function(){
   // Update the sprite based on the level
   if (state.currentLevel === 'startScreen') {
@@ -49,7 +51,7 @@ Player.prototype.update = function(){
     this.sprite = 'images/terrain/start-screen.png';
   }
   else {
-    this.sprite = 'images/characters/deathCaster.gif';
+    this.sprite = sprite;
   }
 };
 
@@ -65,6 +67,7 @@ Player.prototype.handleInput = function(key) {
     switch(key){
       case 'enter':
       state.currentLevel = 'charSelectLevel' ;
+      sprite = 'images/characters/selector.png';
       this.x = 250;
       this.y = 200;
       default:
@@ -92,6 +95,14 @@ Player.prototype.handleInput = function(key) {
       
       case 'enter':
       state.currentLevel = 'firstLevel';
+      if(this.x === 400){
+        sprite = 'images/characters/monk.gif';
+      }
+      
+      else{
+        sprite = 'images/characters/deathCaster.gif';
+        
+      }
       this.x = 10;
       this.y = 10;
       break;
