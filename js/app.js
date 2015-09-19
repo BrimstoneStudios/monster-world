@@ -8,7 +8,6 @@ state.currentLevel = 'startScreen';
 
 // ------ MONSTERS -------
 var Monster = function (){
-  
 };
 
 Monster.prototype.update = function(){
