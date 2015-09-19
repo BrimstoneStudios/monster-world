@@ -32,18 +32,11 @@ NPC.prototype.render = function() {
 
 // ------ PLAYER -------
 var Player = function() {
-}
+  this.x = 0;
+  this.y = 0;
+};
 
 Player.prototype.update = function(){
-  if(state.currentLevel === 'charSelectLevel'){
-    this.x = 250;
-    this.y = 200;
-  }
-  
-  else{
-    this.x = 10;
-    this.y = 10;
-  }
   // Update the sprite based on the level
   if (state.currentLevel === 'startScreen') {
     
@@ -51,11 +44,13 @@ Player.prototype.update = function(){
   }
   else {
     this.sprite = 'images/characters/deathCaster.gif';
-  };
+  }
 };
 
 Player.prototype.render = function() {
+  // console.log(this.x);
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+  // console.log(this.x);
 }
 
 Player.prototype.handleInput = function(key) {
@@ -66,6 +61,9 @@ Player.prototype.handleInput = function(key) {
     switch(key){
       case 'enter':
       state.currentLevel = 'charSelectLevel' ;
+      this.x = 250;
+      this.y = 200;
+      default:
       break;
     };
   }
@@ -78,7 +76,6 @@ Player.prototype.handleInput = function(key) {
       if (this.x < 250) {
         this.x = 250;
       }
-      
       break;
       
       case 'right':
@@ -90,7 +87,9 @@ Player.prototype.handleInput = function(key) {
       break;
       
       case 'enter':
-      state.currentLevel = 'firstLevel' ;
+      state.currentLevel = 'firstLevel';
+      this.x = 10;
+      this.y = 10;
       break;
     };
   }
@@ -111,6 +110,7 @@ Player.prototype.handleInput = function(key) {
       }
       
       break;
+      
       case 'up':
       this.y = this.y - 50;
       if (this.y < 10){
