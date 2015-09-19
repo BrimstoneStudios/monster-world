@@ -3,6 +3,10 @@
  * image files so that they can be used within your game. It also includes
  * a simple "caching" layer so it will reuse cached images if you attempt
  * to load the same image multiple times.
+
+ * Code for resources.js from the Udacity frontend-nanodegree-arcade-game 
+ * https://github.com/udacity/frontend-nanodegree-arcade-game
+
  */
 (function() {
     var resourceCache = {};

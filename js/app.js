@@ -6,14 +6,17 @@ var itemInventory = [];
 // ------ State Variable -------
 // Set the initial level
 state.currentLevel = 'startScreen';
+
+// Where we will store our level and location when entering a battle/menu so we can return after
 state.prevLevel;
 state.locX;
 state.locY;
 
-// Save level and current position for when we switch to the menu level, to be saved later when opening menu
-state.preMenuLevel;
-state.preMenuLocX;
-state.preMenuLocY;
+// 0 = not currently displaying a monster stat, 1 = currently displaying a monster stat
+state.monsterStatCurrent= 0;
+// When a monster stat is going to be shown, save the ID here
+state.monsterStatID;
+
 
 // ------ MENU -------
 var Menu = function(){
@@ -36,6 +39,27 @@ Menu.prototype.renderMonsterInv = function(){
   };
   
 };
+
+
+// Monster Stats display
+Menu.prototype.renderMonsterStat = function(monster) {
+  ctx.font="25px Arial";
+  ctx.fillText("Level:", 450, 65);
+  ctx.fillText(monsterInventory[monster].level, 620, 65);
+  ctx.fillText("HP:", 450, 105);
+  ctx.fillText(monsterInventory[monster].hp, 620, 105);
+  ctx.fillText("Attack:", 450, 145);
+  ctx.fillText(monsterInventory[monster].attack, 620, 145);
+  ctx.fillText("Defense:", 450, 185);
+  ctx.fillText(monsterInventory[monster].defense, 620, 185);
+  ctx.fillText("Sp Attack:", 450, 225);
+  ctx.fillText(monsterInventory[monster].spAttack, 620, 225);
+  ctx.fillText("Sp Defense:", 450, 265);
+  ctx.fillText(monsterInventory[monster].spDefense, 620, 265);
+  ctx.fillText("Speed:", 450, 305);
+  ctx.fillText(monsterInventory[monster].speed, 620, 305);
+};
+
 // ------ BATTLE -------
 var battleEvent = function(){
   state.prevLevel = state.currentLevel;
@@ -46,6 +70,7 @@ var battleEvent = function(){
     state.currentLevel = 'battleLevel';
   };
 };
+
 
 
 // ------ MONSTERS -------
@@ -205,8 +230,11 @@ NPC.prototype.render = function() {
 
 
 // ------ PLAYER -------
+// Do we need this state.sprite?
 state.sprite;
+
 var Player = function() {
+  // Initial location for the start screen, the whole start screen image is the player sprite, takes up the whole screen
   this.x = 0;
   this.y = 0;
 };
@@ -228,10 +256,12 @@ Player.prototype.update = function(){
   }
 };
 
+// Renders the character on the screen based on it's sprite, x and  y location
 Player.prototype.render = function() {
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 }
 
+// Handles the player input, called on every key press
 Player.prototype.handleInput = function(key) {
   this.render();
   
@@ -283,7 +313,6 @@ Player.prototype.handleInput = function(key) {
     switch(key) {
       case 'left':
       this.x = this.x - 100;
-      
       if (this.x < 200) {
         this.x = 200;
       }
@@ -294,7 +323,6 @@ Player.prototype.handleInput = function(key) {
       if (this.x > 400) {
         this.x = 400;
       }
-      
       break;
       
       
@@ -323,51 +351,65 @@ Player.prototype.handleInput = function(key) {
   // Controls for the main menu
   else if (state.currentLevel === 'mainMenu'){
     switch(key){
-      case 'shift' :
-      state.currentLevel = state.preMenuLevel;
-      this.x = state.preMenuLocX;
-      this.y = state.preMenuLocY;
-      case 'up' :
-      this.y = this.y -90;
-      if (this.y < 140){
-        this.y=157;
-      }
-      break;
-      case 'down' :
-      this.y = this.y + 90;
-      if (this.y >250) {
-        this.y = 247;
-      }
-      break;
-      case 'space' :
-      if (this.y === 247){
-        state.currentLevel = 'monsterInventory';
-        this.x = 15;
-        this.y = 42;
-      }
-      break;
+      case 'shift':
+        state.currentLevel = state.prevLevel;
+        this.x = state.locX;
+        this.y = state.locY;
+        break;
+      case 'up':
+        this.y = this.y -90;
+        if (this.y < 140){
+          this.y=157;
+        } 
+        break;
+      case 'down':
+        this.y = this.y + 90;
+        if (this.y >250) {
+          this.y = 247;
+        }
+        break;
+      case 'space': 
+        if (this.y === 247){
+          state.currentLevel = 'monsterInventory';
+          this.x = 15;
+          this.y = 42;
+        }
+        break;
     }
   }
   
   // Controls for the monster inventory
   else if (state.currentLevel === 'monsterInventory'){
     switch(key){
-      case 'shift' :
-      state.currentLevel = state.preMenuLevel;
-      this.x = state.preMenuLocX;
-      this.y = state.preMenuLocY;
+      case 'shift':
+        state.currentLevel = state.prevLevel;
+        this.x = state.locX;
+        this.y = state.locY;
+        break;
+
       case 'up' :
-      this.y = this.y -90;
-      if (this.y < 140){
-        this.y=157;
-      }
-      break;
-      case 'down' :
-      this.y = this.y + 90;
-      if (this.y >250) {
-        this.y = 247;
-      }
-      break;
+        this.y = this.y -90;
+        if (this.y < 42){
+          this.y=42;
+        } 
+        break;
+      case 'down':
+        this.y = this.y + 90;
+        if (this.y > ((monsterInventory.length-1) *90)+42) {
+          this.y = ((monsterInventory.length-1) *90)+42;
+        }
+        break;
+      case 'space':
+        if (this.y === 42){
+          state.monsterStatID = 0; 
+          if (state.monsterStatCurrent === 0) {
+            state.monsterStatCurrent = 1;
+          }
+          else {
+            state.monsterStatCurrent = 0;
+          };
+        }
+        break;
     }
   }
   // Controls for the battle system
@@ -377,15 +419,16 @@ Player.prototype.handleInput = function(key) {
       state.currentLevel = state.prevLevel;
       this.x = state.locX;
       this.y = state.locY;
+      break;
     }
   }
   // Controls for all the world levels
   else{
     switch(key) {
       case 'shift':
-      state.preMenuLevel = state.currentLevel;
-      state.preMenuLocX = this.x;
-      state.preMenuLocY = this.y;
+      state.prevLevel = state.currentLevel;
+      state.locX = this.x;
+      state.locY = this.y;
       state.currentLevel = 'mainMenu';
       this.x = 180;
       this.y = 157;
@@ -442,7 +485,7 @@ Player.prototype.handleInput = function(key) {
 
 // Global functions
 // Now instantiate your objects.
-// Place all enemy objects in an array called allEnemies
+// Place all NPC objects in an array called allNPC
 // Place the player object in a variable called player
 
 var allNPC = [];
