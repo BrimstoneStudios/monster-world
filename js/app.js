@@ -69,15 +69,8 @@ var Drag1 = function(){
 };
 Drag1.prototype = Object.create(DragFam.prototype);
 Drag1.prototype.constructor = Drag1;
-<<<<<<< HEAD
 Drag1.prototype.sprite = 'images/monsters/drag1.gif'
 
-||||||| merged common ancestors
-
-
-=======
-
->>>>>>> dd5ea145356cfec89b144ef3619bc4852914e6ef
 // ---
 
 // Water type - subclass of Monster
