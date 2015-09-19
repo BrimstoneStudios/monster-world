@@ -1,19 +1,14 @@
 // State variable object
 var state = {};
 
-
 // ------ LEVEL -------
 state.currentLevel = 'startScreen';
 
-
 // ------ MONSTERS -------
-
-
 
 // ------ CHARACTERS -------
 var Character = function() {
 };
-
 
 // ------ NPCs -------
 // Enemies our player must avoid
@@ -23,11 +18,12 @@ var NPC = function() {
   this.x= 20;
   this.y = 20;
 };
+
 // Update the NPC's position, required method for game
 // Parameter: dt, a time delta between ticks
 NPC.prototype.update = function(dt) {
-  
 };
+
 // Draw the NPC on the screen
 NPC.prototype.render = function() {
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
@@ -131,15 +127,10 @@ Player.prototype.handleInput = function(key) {
       break;
     }
   } //End of else
-  
-  
 }
 
 
 // Global functions
-
-
-
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
