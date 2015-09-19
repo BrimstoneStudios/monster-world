@@ -5,20 +5,6 @@ var state = {};
 // ------ LEVEL -------
 state.currentLevel = 'startScreen';
 
-// Start class
-var Start = function(){
-  this.sprite = 'images/terrain/start-screen.png';
-};
-Start.prototype.render = function(){
-  ctx.drawImage(Resources.get(this.sprite), 0, 0);
-};
-Start.prototype.handleInput = function(key){
-  switch(key){
-    case 'enter':
-      state.currentLevel = 'firstLevel' ;
-    break;
-  };
-};
 
 
 
@@ -53,8 +39,6 @@ NPC.prototype.render = function() {
 
 // ------ PLAYER -------
 var Player = function() {
-  this.sprite = dC;
-  
   if(allLevels[state.currentLevel].levelName === 'charSelectLevel'){
     this.x= 250;
     this.y = 200;
@@ -66,6 +50,14 @@ var Player = function() {
 }
 
 Player.prototype.update = function(){
+  // Update the sprite based on the level
+  if (state.currentLevel === 'startScreen') {
+
+    this.sprite = 'images/terrain/start-screen.png';
+  }
+  else {
+    this.sprite = 'images/characters/deathCaster.gif';
+  };
 };
 
 Player.prototype.render = function() {
@@ -76,7 +68,14 @@ Player.prototype.handleInput = function(key) {
   currentLevel = allLevels[state.currentLevel];
   this.render();
 
-  if(allLevels[state.currentLevel].levelName === 'charSelectLevel'){
+  if (state.currentLevel === 'startScreen') {
+    switch(key){
+      case 'enter':
+        state.currentLevel = 'firstLevel' ;
+      break;
+    };
+  }
+  else if(allLevels[state.currentLevel].levelName === 'charSelectLevel'){
     switch(key) {
       case 'left':
       this.x = this.x - 150;
@@ -133,14 +132,14 @@ Player.prototype.handleInput = function(key) {
       default:
       break;
     }
-  }
+  } //End of else
+
+
 }
 
 
 // Global functions
-// var updateLevel = function(){
-//   currentLevel = allLevels[state.currentLevel];
-// };
+
 
 
 
@@ -149,8 +148,6 @@ Player.prototype.handleInput = function(key) {
 // Place the player object in a variable called player
 
 var allNPC = [];
-
-var start = new Start();
 var player = new Player();
   
   
@@ -165,10 +162,5 @@ document.addEventListener('keyup', function(e) {
     39: 'right',
     40: 'down'
   };
-  if (state.currentLevel === 'startScreen') {
-    start.handleInput(allowedKeys[e.keyCode]);
-  }  
-  else {
     player.handleInput(allowedKeys[e.keyCode]); 
-  }
 });
