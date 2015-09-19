@@ -15,13 +15,24 @@ state.preMenuLocY;
 // ------ MENU -------
 var Menu = function(){
 
-}
+};
 
+// Main menu 
 Menu.prototype.renderMain = function() {
-ctx.font="50px Arial";
-ctx.fillText("Items",280,200);
-ctx.fillText("Monsters",245,290);
-}
+  ctx.font="50px Arial";
+  ctx.fillText("Items",280,200);
+  ctx.fillText("Monsters",245,290);
+};
+
+// Monster Inventory Menu 
+Menu.prototype.renderMonsterInv = function(){
+  ctx.font="50px Arial";
+  for (var i = 0, j = 0; i < monsterInventory.length; i++, j = j+50){
+    ctx.fillText(monsterInventory[i].name, 65, 85+j);
+  };
+
+};
+
 
 // ------ MONSTERS -------
 // Monster class determines the initial stats of the monster based on the level and the multiplier
@@ -79,6 +90,7 @@ var Drag1 = function(lvl){
 Drag1.prototype = Object.create(DragFam.prototype);
 Drag1.prototype.constructor = Drag1;
 Drag1.prototype.sprite = 'images/monsters/drag1.gif';
+Drag1.prototype.name = 'Drag1';
 Drag1.prototype.hpMult = 5;
 Drag1.prototype.attackMult = 3;
 Drag1.prototype.defenseMult = 1;
@@ -112,6 +124,7 @@ var Hydra1 = function(lvl){
 Hydra1.prototype = Object.create(HydraFam.prototype);
 Hydra1.prototype.constructor = Hydra1;
 Hydra1.prototype.sprite = 'images/monsters/hydra1.png';
+Hydra1.prototype.name = 'Hydra1';
 Hydra1.prototype.hpMult = 7;
 Hydra1.prototype.attackMult = 1;
 Hydra1.prototype.defenseMult = 2;
@@ -146,6 +159,7 @@ var Wormy1 = function(lvl){
 Wormy1.prototype = Object.create(WormyFam.prototype);
 Wormy1.prototype.constructor = Wormy1;
 Wormy1.prototype.sprite = 'images/monsters/wormy1.gif';
+Wormy1.prototype.name = 'Wormy1';
 Wormy1.prototype.hpMult = 6;
 Wormy1.prototype.attackMult = 1;
 Wormy1.prototype.defenseMult = 2;
@@ -290,6 +304,8 @@ Player.prototype.handleInput = function(key) {
         break;
     }
   }
+
+  // Controls for the main menu
   else if (state.currentLevel === 'mainMenu'){
     switch(key){
       case 'shift' :
@@ -311,10 +327,35 @@ Player.prototype.handleInput = function(key) {
       case 'space' : 
         if (this.y === 247){
           state.currentLevel = 'monsterInventory';
+          this.x = 15;
+          this.y = 42;
         }
         break;
     }
   }
+  
+  // Controls for the monster inventory 
+  else if (state.currentLevel === 'monsterInventory'){
+    switch(key){
+      case 'shift' :
+        state.currentLevel = state.preMenuLevel;
+        this.x = state.preMenuLocX;
+        this.y = state.preMenuLocY;
+      case 'up' :
+        this.y = this.y -90;
+        if (this.y < 140){
+          this.y=157;
+        } 
+        break;
+      case 'down' :
+        this.y = this.y + 90;
+        if (this.y >250) {
+          this.y = 247;
+        }
+        break;
+    }
+  }
+
   // Controls for all the world levels
   else{
     switch(key) {
