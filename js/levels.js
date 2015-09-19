@@ -14,7 +14,6 @@ var mK = 'images/characters/monk.gif';
 var allLevels = {
   startScreen:{
     levelName : 'startScreen',
-    charRender : 0,
     tiles : [
       [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
       [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
@@ -30,7 +29,6 @@ var allLevels = {
   },
   charSelectLevel: {
     levelName : 'charSelectLevel',
-    charRender : 0,
     tiles : [
       [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
       [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
@@ -46,7 +44,6 @@ var allLevels = {
   },
   monsterSelectLevel: {
     levelName : 'monsterSelectLevel',
-    charRender : 0,
     tiles : [
       [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
       [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
@@ -62,7 +59,6 @@ var allLevels = {
   },
   battleLevel: {
     levelName :  'battleLevel',
-    charRender :  0,
     tiles :  [
       [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
       [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
@@ -78,7 +74,6 @@ var allLevels = {
   },
   firstLevel:{
     levelName : 'firstLevel',
-    charRender : 1,
     tiles : [
       [Di, Di, Di, Gr, Gr, Gr, Di, Di, Di, Di, Di, Di, Di, Di],
       [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
@@ -94,7 +89,6 @@ var allLevels = {
   },
   secondLevel:{
     secondName : 'secondLevel',
-    charRender : 1,
     tiles : [
       [Di, Di, Di, Gr, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di],
       [Di, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
