@@ -59,7 +59,7 @@ Player.prototype.render = function() {
 }
 
 Player.prototype.handleInput = function(key) {
-  currentLevel = allLevels[state.currentLevel];
+  
   this.render();
   
   if (state.currentLevel === 'startScreen') {
@@ -74,15 +74,23 @@ Player.prototype.handleInput = function(key) {
     switch(key) {
       case 'left':
       this.x = this.x - 150;
+      
       if (this.x < 250) {
         this.x = 250;
       }
+      
       break;
+      
       case 'right':
       this.x = this.x + 150;
       if (this.x > 400) {
         this.x = 400;
       }
+      
+      break;
+      
+      case 'enter':
+      state.currentLevel = 'firstLevel' ;
       break;
     };
   }
