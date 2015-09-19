@@ -31,15 +31,14 @@ var Character = function() {
   
 };
 
-var dC = 'images/characters/deathCaster.gif';
-var mK = 'images/characters/monk.gif';
-
 
 // ------ NPCs -------
 // Enemies our player must avoid
 var NPC = function() {
   // Variables applied to each of our instances go here
-  this.sprite = dC;
+  this.sprite = mK;
+  this.x= 20;
+  this.y = 20;
 };
 // Update the NPC's position, required method for game
 // Parameter: dt, a time delta between ticks
@@ -139,9 +138,9 @@ Player.prototype.handleInput = function(key) {
 
 
 // Global functions
-var updateLevel = function(){
-  currentLevel = allLevels[state.currentLevel];
-};
+// var updateLevel = function(){
+//   currentLevel = allLevels[state.currentLevel];
+// };
 
 
 
