@@ -123,11 +123,11 @@ var Engine = (function(global) {
     allNPC.forEach(function(npc) {
       npc.render();
     });
-
-      //First update the features of the player which change with level and then render
-      player.update();
-      player.render();
-
+    
+    //First update the features of the player which change with level and then render
+    player.update();
+    player.render();
+    
   }
   
   /* Function to create game over screen
@@ -146,7 +146,10 @@ var Engine = (function(global) {
     'images/terrain/white-tile50.png',
     'images/terrain/blue-tile50.png',
     'images/characters/deathCaster.gif',
-    'images/characters/monk.gif'
+    'images/characters/deathCaster-notTrans.png',
+    'images/characters/monk.gif',
+    'images/characters/monk-notTrans.png'
+    
   ]);
   Resources.onReady(init);
   
