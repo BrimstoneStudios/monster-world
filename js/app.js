@@ -24,6 +24,34 @@ Monster.prototype.render = function() {
 var FireType = function(){
   Monster.call(this);
 };
+
+//var fireAttack = function(){
+ // console.log("I'M fire attacking!", this.name);
+//}
+
+// function getMonster(){
+//   var monster = {};
+//   monster.fireAttack = fireAttack.bind(monster);
+//   return monster;
+// }
+
+// var monster = getMonster();
+// monster.fireAAttack();
+
+// function megaMonster(){
+//   var proto = getMonster();
+//   proto.megaAttack = function(){
+//     console.log(this.damage + "RARRR!!!!");
+//   }
+//   return proto;
+// }
+
+class FireType extends Monster {
+  constructor(){
+    
+  }
+}
+//monster.fireAttack = fireAttack.bind(monster);
 FireType.prototype = Object.create(Monster.prototype);
 FireType.prototype.constructor = FireType;
 
