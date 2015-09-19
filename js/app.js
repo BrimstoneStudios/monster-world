@@ -6,6 +6,9 @@ var itemInventory = [];
 // ------ State Variable -------
 // Set the initial level
 state.currentLevel = 'startScreen';
+state.prevLevel;
+state.locX;
+state.locY;
 
 // Save level and current position for when we switch to the menu level, to be saved later when opening menu
 state.preMenuLevel;
@@ -32,6 +35,16 @@ Menu.prototype.renderMonsterInv = function(){
     ctx.fillText(monsterInventory[i].name, 155, 85+j);
   };
   
+};
+// ------ BATTLE -------
+var battleEvent = function(){
+  state.prevLevel = state.currentLevel;
+  state.locX = player.x;
+  state.locY = player.y;
+  var randomNum = Math.random() * 100;
+  if(randomNum <= 10){
+    state.currentLevel = 'battleLevel';
+  };
 };
 
 
@@ -357,7 +370,15 @@ Player.prototype.handleInput = function(key) {
       break;
     }
   }
-  
+  // Controls for the battle system
+  else if(state.currentLevel === 'battleLevel'){
+    switch(key){
+      case 'space':
+      state.currentLevel = state.prevLevel;
+      this.x = state.locX;
+      this.y = state.locY;
+    }
+  }
   // Controls for all the world levels
   else{
     switch(key) {
@@ -372,6 +393,7 @@ Player.prototype.handleInput = function(key) {
       
       case 'left':
       this.x = this.x - 50;
+      battleEvent();
       if (state.currentLevel ==='secondLevel' && this.x < 10) {
         this.x = 10;
         //Changes the level to the startScreen once player reach far left of screen
@@ -385,6 +407,7 @@ Player.prototype.handleInput = function(key) {
       
       case 'up':
       this.y = this.y - 50;
+      battleEvent();
       if (this.y < 10){
         this.y = 10;
       }
@@ -392,6 +415,7 @@ Player.prototype.handleInput = function(key) {
       
       case 'right':
       this.x = this.x + 50;
+      battleEvent();
       if (state.currentLevel === 'firstLevel' && this.x > 660) {
         this.x = 660;
         //Changes the level to the firstLevel once player reaches far right of screen
@@ -405,6 +429,7 @@ Player.prototype.handleInput = function(key) {
       
       case 'down':
       this.y = this.y + 50;
+      battleEvent();
       if (this.y > 450) {
         this.y = 450;
       }
