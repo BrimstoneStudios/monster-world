@@ -1,5 +1,7 @@
-// State variable object
+// Global variable objects
 var state = {};
+var monsterInventory = [];
+var itemInventory = [];
 
 // ------ LEVEL -------
 state.currentLevel = 'startScreen';
@@ -15,6 +17,8 @@ Monster.prototype.update = function(){
 Monster.prototype.render = function() {
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
+
+var FireType = function(){};
 
 // ------ NPCs -------
 // Other characters in the game, can be friendly or hostile

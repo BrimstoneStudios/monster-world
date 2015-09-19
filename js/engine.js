@@ -154,6 +154,16 @@ var Engine = (function(global) {
     'images/characters/deathCaster-notTrans.png',
     'images/characters/monk.gif',
     'images/characters/monk-notTrans.png'
+    //Monsters
+    'images/monsters/hydra1.png',
+    'images/monsters/hydra2.png',
+    'images/monsters/hydra3.png',
+    'images/monsters/drag1.gif',
+    'images/monsters/drag2.gif',
+    'images/monsters/drag3.gif',
+    'images/monsters/wormy1.gif',
+    'images/monsters/wormy2.gif',
+    'images/monsters/wormy3.gif',
 
   ]);
   Resources.onReady(init);
