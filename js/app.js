@@ -46,11 +46,12 @@ var FireType = function(){
 //   return proto;
 // }
 
-class FireType extends Monster {
-  constructor(){
-    
-  }
-}
+// ES6
+// class FireType extends Monster {
+//   constructor(){
+
+//   }
+// }
 //monster.fireAttack = fireAttack.bind(monster);
 FireType.prototype = Object.create(Monster.prototype);
 FireType.prototype.constructor = FireType;
