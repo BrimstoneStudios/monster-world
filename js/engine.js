@@ -123,12 +123,10 @@ var Engine = (function(global) {
     allNPC.forEach(function(npc) {
       npc.render();
     });
-    if (state.currentLevel === 'startScreen') {
-      start.render();
-    }
-    else {
+
+      //First update the features of the player which change with level and then render
+      player.update();
       player.render();
-    };
 
   }
   
