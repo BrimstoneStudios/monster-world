@@ -135,6 +135,7 @@ var Engine = (function(global) {
       }
     }
     player.render();
+    // console.log(state.locX, state.locY);
     
   }
   
