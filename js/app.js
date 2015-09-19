@@ -31,8 +31,16 @@ FireType.prototype.constructor = FireType;
 var DragFam = function(){
   FireType.call(this);
 };
-DragFam.prototype = Object.create(Monster.prototype);
+DragFam.prototype = Object.create(FireType.prototype);
 DragFam.prototype.constructor = DragFam;
+
+// Drag1 monster - subclass of DragFam
+var Drag1 = function(){
+  DragFam.call(this);
+};
+Drag1.prototype = Object.create(DragFam.prototype);
+Drag1.prototype.constructor = Drag1;
+
 
 // ---
 
@@ -43,12 +51,19 @@ var WaterType = function(){
 WaterType.prototype = Object.create(Monster.prototype);
 WaterType.prototype.constructor = WaterType;
 
-// Hydra family - subclass of FireType
+// Hydra family - subclass of WaterType
 var HydraFam = function(){
   WaterType.call(this);
 };
 HydraFam.prototype = Object.create(Monster.prototype);
 HydraFam.prototype.constructor = HydraFam;
+
+// Hydra1 monster - subclass of HydraFam
+var Hydra1 = function(){
+  HydraFam.call(this);
+};
+Hydra1.prototype = Object.create(HydraFam.prototype);
+Hydra1.prototype.constructor = Hydra1;
 
 // ---
 
@@ -59,12 +74,19 @@ var GrassType = function(){
 GrassType.prototype = Object.create(Monster.prototype);
 GrassType.prototype.constructor = GrassType;
 
-// Wormy family - subclass of FireType
+// Wormy family - subclass of GrassType
 var WormyFam = function(){
   GrassType.call(this);
 };
-WormyFam.prototype = Object.create(Monster.prototype);
+WormyFam.prototype = Object.create(GrassType.prototype);
 WormyFam.prototype.constructor = WormyFam;
+
+// Wormy1 monster - subclass of WormyFam
+var Wormy1 = function(){
+  WormyFam.call(this);
+};
+Wormy1.prototype = Object.create(WormyFam.prototype);
+Wormy1.prototype.constructor = Wormy1;
 
 // ------ NPCs -------
 // Other characters in the game, can be friendly or hostile
