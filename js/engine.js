@@ -130,6 +130,9 @@ var Engine = (function(global) {
     }
     else if (state.currentLevel === 'monsterInventory'){
       menu.renderMonsterInv();
+      if (state.monsterStatCurrent === 1) {
+        menu.renderMonsterStat(state.monsterStatID);
+      }
     }
     player.render();
     

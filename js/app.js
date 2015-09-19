@@ -12,6 +12,11 @@ state.preMenuLevel;
 state.preMenuLocX;
 state.preMenuLocY;
 
+// 0 = not currently displaying a monster stat, 1 = currently displaying a monster stat
+state.monsterStatCurrent= 0;
+// When a monster stat is going to be shown, save the ID here
+state.monsterStatID;
+
 // ------ MENU -------
 var Menu = function(){
 
@@ -32,6 +37,25 @@ Menu.prototype.renderMonsterInv = function(){
     ctx.fillText(monsterInventory[i].name, 155, 85+j);
   };
 
+};
+
+// Monster Stats display
+Menu.prototype.renderMonsterStat = function(monster) {
+  ctx.font="25px Arial";
+  ctx.fillText("Level:", 450, 65);
+  ctx.fillText(monsterInventory[monster].level, 620, 65);
+  ctx.fillText("HP:", 450, 105);
+  ctx.fillText(monsterInventory[monster].hp, 620, 105);
+  ctx.fillText("Attack:", 450, 145);
+  ctx.fillText(monsterInventory[monster].attack, 620, 145);
+  ctx.fillText("Defense:", 450, 185);
+  ctx.fillText(monsterInventory[monster].defense, 620, 185);
+  ctx.fillText("Sp Attack:", 450, 225);
+  ctx.fillText(monsterInventory[monster].spAttack, 620, 225);
+  ctx.fillText("Sp Defense:", 450, 265);
+  ctx.fillText(monsterInventory[monster].spDefense, 620, 265);
+  ctx.fillText("Speed:", 450, 305);
+  ctx.fillText(monsterInventory[monster].speed, 620, 305);
 };
 
 
@@ -309,23 +333,23 @@ Player.prototype.handleInput = function(key) {
   // Controls for the main menu
   else if (state.currentLevel === 'mainMenu'){
     switch(key){
-      case 'shift' :
+      case 'shift':
         state.currentLevel = state.preMenuLevel;
         this.x = state.preMenuLocX;
         this.y = state.preMenuLocY;
-      case 'up' :
+      case 'up':
         this.y = this.y -90;
         if (this.y < 140){
           this.y=157;
         } 
         break;
-      case 'down' :
+      case 'down':
         this.y = this.y + 90;
         if (this.y >250) {
           this.y = 247;
         }
         break;
-      case 'space' : 
+      case 'space': 
         if (this.y === 247){
           state.currentLevel = 'monsterInventory';
           this.x = 15;
@@ -338,22 +362,34 @@ Player.prototype.handleInput = function(key) {
   // Controls for the monster inventory 
   else if (state.currentLevel === 'monsterInventory'){
     switch(key){
-      case 'shift' :
+      case 'shift':
         state.currentLevel = state.preMenuLevel;
         this.x = state.preMenuLocX;
         this.y = state.preMenuLocY;
       case 'up' :
         this.y = this.y -90;
-        if (this.y < 140){
-          this.y=157;
+        if (this.y < 42){
+          this.y=42;
         } 
         break;
-      case 'down' :
+      case 'down':
         this.y = this.y + 90;
-        if (this.y >250) {
-          this.y = 247;
+        if (this.y > ((monsterInventory.length-1) *90)+42) {
+          this.y = ((monsterInventory.length-1) *90)+42;
         }
         break;
+      case 'space':
+        if (this.y === 42){
+          state.monsterStatID = 0; 
+          if (state.monsterStatCurrent === 0) {
+            state.monsterStatCurrent = 1;
+          }
+          else {
+            state.monsterStatCurrent = 0;
+          };
+
+          // menu.renderMonsterStat(0);
+        }
     }
   }
 
