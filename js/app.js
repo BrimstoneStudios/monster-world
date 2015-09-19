@@ -25,36 +25,10 @@ var FireType = function(){
   Monster.call(this);
 };
 
-//var fireAttack = function(){
- // console.log("I'M fire attacking!", this.name);
-//}
-
-// function getMonster(){
-//   var monster = {};
-//   monster.fireAttack = fireAttack.bind(monster);
-//   return monster;
-// }
-
-// var monster = getMonster();
-// monster.fireAAttack();
-
-// function megaMonster(){
-//   var proto = getMonster();
-//   proto.megaAttack = function(){
-//     console.log(this.damage + "RARRR!!!!");
-//   }
-//   return proto;
-// }
-
-// ES6
-// class FireType extends Monster {
-//   constructor(){
-
-//   }
-// }
-//monster.fireAttack = fireAttack.bind(monster);
 FireType.prototype = Object.create(Monster.prototype);
 FireType.prototype.constructor = FireType;
+FireType.prototype.type = 'fire';
+FireType.prototype.weaknesss ='water';
 
 // Dragon family - subclass of FireType
 var DragFam = function(){
@@ -64,8 +38,9 @@ DragFam.prototype = Object.create(FireType.prototype);
 DragFam.prototype.constructor = DragFam;
 
 // Drag1 monster - subclass of DragFam
-var Drag1 = function(){
+var Drag1 = function(lvl){
   DragFam.call(this);
+  this.level = lvl;
 };
 Drag1.prototype = Object.create(DragFam.prototype);
 Drag1.prototype.constructor = Drag1;
@@ -79,6 +54,8 @@ var WaterType = function(){
 };
 WaterType.prototype = Object.create(Monster.prototype);
 WaterType.prototype.constructor = WaterType;
+WaterType.prototype.type = 'water';
+WaterType.prototype.weaknesss = 'grass';
 
 // Hydra family - subclass of WaterType
 var HydraFam = function(){
@@ -88,8 +65,9 @@ HydraFam.prototype = Object.create(Monster.prototype);
 HydraFam.prototype.constructor = HydraFam;
 
 // Hydra1 monster - subclass of HydraFam
-var Hydra1 = function(){
+var Hydra1 = function(lvl){
   HydraFam.call(this);
+  this.level = lvl;
 };
 Hydra1.prototype = Object.create(HydraFam.prototype);
 Hydra1.prototype.constructor = Hydra1;
@@ -103,6 +81,8 @@ var GrassType = function(){
 };
 GrassType.prototype = Object.create(Monster.prototype);
 GrassType.prototype.constructor = GrassType;
+GrassType.prototype.type = 'grass';
+GrassType.prototype.weaknesss = 'fire';
 
 // Wormy family - subclass of GrassType
 var WormyFam = function(){
@@ -112,8 +92,9 @@ WormyFam.prototype = Object.create(GrassType.prototype);
 WormyFam.prototype.constructor = WormyFam;
 
 // Wormy1 monster - subclass of WormyFam
-var Wormy1 = function(){
+var Wormy1 = function(lvl){
   WormyFam.call(this);
+  this.level = lvl;
 };
 Wormy1.prototype = Object.create(WormyFam.prototype);
 Wormy1.prototype.constructor = Wormy1;
@@ -236,16 +217,16 @@ Player.prototype.handleInput = function(key) {
       
       case 'enter':
       if(this.x === 200){
-        var drag1 = new Drag1();
+        var drag1 = new Drag1(1);
         monsterInventory.push(drag1);
       }
       
       else if(this.x === 300){
-        var hydra1 = new Hydra1();
+        var hydra1 = new Hydra1(1);
         monsterInventory.push(hydra1);
       }
       else{
-        var wormy1 = new Wormy1();
+        var wormy1 = new Wormy1(1);
         monsterInventory.push(wormy1);
       }
       console.log(monsterInventory);
