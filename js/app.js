@@ -7,6 +7,8 @@ var itemInventory = [];
 state.currentLevel = 'startScreen';
 
 // ------ MONSTERS -------
+// Monster class determines the initial stats of the monster based on the level and the multiplier
+// Multipliers defined later on individual monsters.
 var Monster = function (lvl){
   this.level = lvl;
   this.hp = this.level * this.hpMult;
@@ -24,7 +26,7 @@ Monster.prototype.render = function() {
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-// Level up method for every monster to update stats based on current level
+// Level up method to update stats based on current level
 Monster.prototype.levelUp = function(){
   this.hp = this.level * this.hpMult;
   this.attack = this.level * this.attackMult;
@@ -190,7 +192,7 @@ Player.prototype.handleInput = function(key) {
   
   if (state.currentLevel === 'startScreen') {
     switch(key){
-      case 'enter':
+      case 'space':
       state.currentLevel = 'charSelectLevel' ;
       this.x = 250;
       this.y = 200;
@@ -217,7 +219,7 @@ Player.prototype.handleInput = function(key) {
       
       break;
       
-      case 'enter':
+      case 'space':
       state.currentLevel = 'monsterSelectLevel';
       
       if(this.x === 400){
@@ -253,7 +255,7 @@ Player.prototype.handleInput = function(key) {
       break;
       
       
-      case 'enter':
+      case 'space':
       if(this.x === 200){
         var drag1 = new Drag1(1);
         monsterInventory.push(drag1);
@@ -338,7 +340,8 @@ var player = new Player();
 
 document.addEventListener('keyup', function(e) {
   var allowedKeys = {
-    13: 'enter',
+    16: 'shift',
+    32: 'space',
     37: 'left',
     38: 'up',
     39: 'right',
