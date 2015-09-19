@@ -28,7 +28,8 @@ Menu.prototype.renderMain = function() {
 Menu.prototype.renderMonsterInv = function(){
   ctx.font="50px Arial";
   for (var i = 0, j = 0; i < monsterInventory.length; i++, j = j+50){
-    ctx.fillText(monsterInventory[i].name, 65, 85+j);
+    ctx.drawImage(Resources.get(monsterInventory[i].sprite), 85, 50+j);
+    ctx.fillText(monsterInventory[i].name, 155, 85+j);
   };
 
 };
@@ -333,7 +334,7 @@ Player.prototype.handleInput = function(key) {
         break;
     }
   }
-  
+
   // Controls for the monster inventory 
   else if (state.currentLevel === 'monsterInventory'){
     switch(key){
