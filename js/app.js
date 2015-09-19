@@ -32,17 +32,18 @@ NPC.prototype.render = function() {
 
 // ------ PLAYER -------
 var Player = function() {
-  if(allLevels[state.currentLevel].levelName === 'charSelectLevel'){
-    this.x= 250;
+}
+
+Player.prototype.update = function(){
+  if(state.currentLevel === 'charSelectLevel'){
+    this.x = 250;
     this.y = 200;
   }
+  
   else{
     this.x = 10;
     this.y = 10;
   }
-}
-
-Player.prototype.update = function(){
   // Update the sprite based on the level
   if (state.currentLevel === 'startScreen') {
     
@@ -61,14 +62,14 @@ Player.prototype.handleInput = function(key) {
   currentLevel = allLevels[state.currentLevel];
   this.render();
   
-  
   if (state.currentLevel === 'startScreen') {
     switch(key){
       case 'enter':
-      state.currentLevel = 'firstLevel' ;
+      state.currentLevel = 'charSelectLevel' ;
       break;
     };
   }
+  
   else if(state.currentLevel === 'charSelectLevel'){
     switch(key) {
       case 'left':
@@ -85,6 +86,7 @@ Player.prototype.handleInput = function(key) {
       break;
     };
   }
+  
   else{
     switch(key) {
       case 'left':
@@ -94,18 +96,21 @@ Player.prototype.handleInput = function(key) {
         //Changes the level to the startScreen once player reach far left of screen
         state.currentLevel = 'firstLevel';
         this.x = 655;
-        
       }
+      
       else if (this.x <10) {
         this.x=10;
       }
+      
       break;
       case 'up':
       this.y = this.y - 50;
       if (this.y < 10){
         this.y = 10;
       }
+      
       break;
+      
       case 'right':
       this.x = this.x + 50;
       if (state.currentLevel === 'firstLevel' && this.x > 660) {
@@ -114,31 +119,31 @@ Player.prototype.handleInput = function(key) {
         state.currentLevel = 'secondLevel';
         this.x = 10;
       }
+      
       else if (this.x >660) {
         this.x = 660;
       };
+      
       break;
       case 'down':
       this.y = this.y + 50;
       if (this.y > 450) {
         this.y = 450;
       }
+      
       default:
       break;
     }
   } //End of else
 }
 
-
 // Global functions
-
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 
 var allNPC = [];
 var player = new Player();
-
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method.
