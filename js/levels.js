@@ -1,13 +1,16 @@
-// Data for all levels 
+// Data for all levels
 
 var Di = 'images/terrain/dirt-tile50.png'; // dirt tile 50x50
 var Gr = 'images/terrain/grass-tile50.png' // grass tile 50x50
 var Wh = 'images/terrain/white-tile50.png' // white tile 50x50
 var dC = 'images/characters/deathCaster.gif';
+var dT = 'images/characters/deathCaster-notTrans.png';
 var mK = 'images/characters/monk.gif';
 var s1 = 'images/terrain/drag1-wb.jpg';
 var s2 = 'images/terrain/hydra1-wb.jpg';
 var s3 = 'images/terrain/wormy-wb.jpg';
+var mT = 'images/characters/monk-notTrans.png';
+
 var allLevels = {
   startScreen:{
     levelName : 'startScreen',
@@ -33,7 +36,7 @@ var allLevels = {
       [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
       [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
       [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
-      [Wh, Wh, Wh, Wh, Wh, dC, Wh, Wh, mK, Wh, Wh, Wh, Wh, Wh],
+      [Wh, Wh, Wh, Wh, Wh, dT, Wh, Wh, mT, Wh, Wh, Wh, Wh, Wh],
       [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
       [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
       [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
@@ -72,7 +75,7 @@ var allLevels = {
       [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
       [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
     ],
-  }, 
+  },
   firstLevel:{
     levelName : 'firstLevel',
     charRender : 1,
@@ -88,7 +91,7 @@ var allLevels = {
       [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
       [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di]
     ],
-  }, 
+  },
   secondLevel:{
     secondName : 'secondLevel',
     charRender : 1,
