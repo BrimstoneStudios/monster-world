@@ -1,0 +1,741 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"player",
+				"playerScore"
+			],
+			[
+				"borde",
+				"border"
+			],
+			[
+				"ar",
+				"artistButton"
+			],
+			[
+				"singer",
+				"singer-songwriter"
+			],
+			[
+				"ng",
+				"ng-click	AngularJS"
+			],
+			[
+				"sin",
+				"singer-songwriter"
+			],
+			[
+				"margi",
+				"margin-top"
+			],
+			[
+				"margin",
+				"margin-bottom"
+			],
+			[
+				"Helvetica",
+				"HelveticaNeueBold"
+			],
+			[
+				"Hel",
+				"HelveticaNeue"
+			],
+			[
+				"inlin",
+				"inline-block"
+			],
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"paddi",
+				"padding"
+			],
+			[
+				"paddin",
+				"padding"
+			],
+			[
+				"in",
+				"include"
+			],
+			[
+				"border",
+				"border-right"
+			],
+			[
+				"new",
+				"new-breakpoint"
+			],
+			[
+				"portfo",
+				"portfolioQuery"
+			],
+			[
+				"po",
+				"portfolioQuery"
+			],
+			[
+				"port",
+				"portfolioArgs"
+			],
+			[
+				"padding",
+				"padding-top"
+			],
+			[
+				"bo",
+				"border-top"
+			],
+			[
+				"g",
+				"geolocation"
+			],
+			[
+				"get",
+				"getGeo"
+			],
+			[
+				"search",
+				"searchQuery"
+			],
+			[
+				"arti",
+				"artistName"
+			],
+			[
+				"art",
+				"artImage"
+			],
+			[
+				"piece",
+				"pieceContainer"
+			],
+			[
+				"display",
+				"displayArt"
+			],
+			[
+				"apiCl",
+				"apiCall2"
+			],
+			[
+				"wa",
+				"weatherWidget"
+			],
+			[
+				"weather",
+				"weatherWidget"
+			],
+			[
+				"first",
+				"firstName"
+			],
+			[
+				"modal",
+				"modal-container"
+			],
+			[
+				"show",
+				"showModal"
+			],
+			[
+				"back",
+				"background"
+			],
+			[
+				"bac",
+				"background"
+			],
+			[
+				"backgroun",
+				"background"
+			],
+			[
+				"say",
+				"sayGoodbye"
+			],
+			[
+				"font-",
+				"font-size"
+			],
+			[
+				"text",
+				"text-decoration"
+			],
+			[
+				"res",
+				"resizable"
+			],
+			[
+				"background",
+				"background-image"
+			],
+			[
+				"text-",
+				"text-transform"
+			],
+			[
+				"gh",
+				"glyphicon-unchecked"
+			],
+			[
+				"prev",
+				"preventDefault"
+			],
+			[
+				"item",
+				"itemArray"
+			],
+			[
+				"te",
+				"text-align"
+			],
+			[
+				"mar",
+				"margin"
+			],
+			[
+				"max",
+				"maxOfThree"
+			],
+			[
+				"wh",
+				"whatsForDinner"
+			],
+			[
+				"li",
+				"list	list-style-type"
+			],
+			[
+				"pad",
+				"padding-left"
+			],
+			[
+				"bor",
+				"border-style"
+			],
+			[
+				"border-bo",
+				"border-bottom"
+			],
+			[
+				"marg",
+				"margin-top"
+			],
+			[
+				"padd",
+				"padding"
+			],
+			[
+				"tex",
+				"text-align-last"
+			],
+			[
+				"border-",
+				"border-radius"
+			],
+			[
+				"fo",
+				"font-weight"
+			],
+			[
+				"fotn",
+				"font-weight"
+			],
+			[
+				"text-a",
+				"text-align-last"
+			],
+			[
+				"ba",
+				"background-image"
+			],
+			[
+				"max-",
+				"max-width"
+			],
+			[
+				"pa",
+				"padding-left"
+			],
+			[
+				"fon",
+				"font-size"
+			],
+			[
+				"le",
+				"letter-spacing"
+			],
+			[
+				"z",
+				"z-index"
+			],
+			[
+				"pos",
+				"position"
+			],
+			[
+				"fl",
+				"float"
+			],
+			[
+				"border-top-",
+				"border-top-color"
+			],
+			[
+				"border-top",
+				"border-top-style"
+			],
+			[
+				"border-s",
+				"border-style"
+			],
+			[
+				"b",
+				"background"
+			],
+			[
+				"cur",
+				"cursor"
+			],
+			[
+				"colo",
+				"color"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 307.0,
+		"last_filter": "Snippet: ",
+		"selected_items":
+		[
+			[
+				"Snippet: ",
+				"Snippet: awesome"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"set html",
+				"Set Syntax: HTML"
+			],
+			[
+				"pack",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 575.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = 'eb2297e1a458f27d836c04bb0cbaf282' + 'd0e7a3098092775ccb37ca9d6b2e4b7d'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/adamkendal1/Google Drive/Websites/brimstone/monster-world/js/resources.js",
+		"/Users/adamkendal1/Google Drive/Websites/underground-sound/app/scripts/main.js",
+		"/Users/adamkendal1/Google Drive/Websites/underground-sound/app/styles/main.scss",
+		"/Users/adamkendal1/Google Drive/Websites/underground-sound/app/scripts/directives/suggestion.html",
+		"/Users/adamkendal1/Google Drive/Websites/underground-sound/app/scripts/controllers/MainController.js",
+		"/Users/adamkendal1/Google Drive/Websites/underground-sound/app/scripts/directives/footer.html",
+		"/Users/adamkendal1/Google Drive/Websites/underground-sound/dist/index.html",
+		"/Users/adamkendal1/Google Drive/Websites/underground-sound/.tmp/styles/main.css",
+		"/Users/adamkendal1/Google Drive/Websites/underground-sound/app/styles/main.css",
+		"/Users/adamkendal1/Google Drive/Websites/underground-sound/bower_components/bootstrap-sass/assets/stylesheets/bootstrap/_jumbotron.scss",
+		"/Users/adamkendal1/Google Drive/Websites/underground-sound/bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss",
+		"/Users/adamkendal1/Google Drive/Websites/underground-sound/app/scripts/directives/footer.js",
+		"/Users/adamkendal1/Google Drive/Websites/underground-sound/app/scripts/soundcloud.js",
+		"/Users/adamkendal1/Google Drive/Websites/underground-sound/gulpfile.babel.js",
+		"/Users/adamkendal1/Google Drive/Websites/underground-sound/app/scripts/services/echonestArtist.js",
+		"/Users/adamkendal1/Google Drive/Websites/adamkendal-wp/wp-content/themes/ak-portfolio-theme/sass/_jumbotron.scss",
+		"/Users/adamkendal1/Google Drive/Websites/adamkendal-wp/wp-content/themes/ak-portfolio-theme/sass/_about.scss",
+		"/Users/adamkendal1/Google Drive/Websites/adamkendal-wp/wp-content/themes/ak-portfolio-theme/sass/_portfolio.scss",
+		"/Users/adamkendal1/Google Drive/Websites/adamkendal-wp/wp-content/themes/ak-portfolio-theme/about.php",
+		"/Users/adamkendal1/Google Drive/Websites/adamkendal-wp/wp-content/themes/ak-portfolio-theme/portfolio.php",
+		"/Users/adamkendal1/Google Drive/Websites/adamkendal-wp/wp-content/themes/ak-portfolio-theme/header.php",
+		"/Users/adamkendal1/Google Drive/Websites/adamkendal-wp/wp-content/themes/ak-portfolio-theme/jumbotron.php",
+		"/Users/adamkendal1/Google Drive/Websites/adamkendal-wp/wp-content/themes/ak-portfolio-theme/functions.php",
+		"/Users/adamkendal1/Google Drive/Websites/adamkendal-wp/wp-content/themes/ak-portfolio-theme/sass/_navigation.scss",
+		"/Users/adamkendal1/Google Drive/Websites/adamkendal-wp/wp-content/themes/ak-portfolio-theme/footer.php",
+		"/Users/adamkendal1/Google Drive/Websites/adamkendal-wp/wp-content/themes/ak-portfolio-theme/style.css",
+		"/Users/adamkendal1/Google Drive/Websites/adamkendal-wp/wp-content/themes/ak-portfolio-theme/sass/_HelveticaNeueCondensedBold.scss",
+		"/Users/adamkendal1/Google Drive/Websites/adamkendal-wp/wp-content/themes/ak-portfolio-theme/sass/style.scss",
+		"/Users/adamkendal1/Google Drive/Websites/adamkendal-wp/wp-content/themes/ak-portfolio-theme/sass/_HelveticaNeueCondensedBold",
+		"/Users/adamkendal1/Google Drive/Websites/adamkendal-wp/wp-content/themes/ak-portfolio-theme/sass/_HelveticaNeueBold.scss",
+		"/Users/adamkendal1/Google Drive/Websites/adamkendal-wp/wp-content/themes/ak-portfolio-theme/notes.md",
+		"/Users/adamkendal1/Google Drive/Websites/adamkendal-wp/wp-content/themes/ak-portfolio-theme/images/golden-rec-black-sqd.svg",
+		"/Users/adamkendal1/Google Drive/Websites/adamkendal-wp/wp-content/themes/ak-portfolio-theme/sass/_HelveticaNeue.scss",
+		"/Users/adamkendal1/Google Drive/Websites/adamkendal-wp/wp-content/themes/ak-portfolio-theme/sass/_HelveticaNeueThin.scss",
+		"/Users/adamkendal1/Google Drive/Websites/adamkendal-wp/wp-content/themes/ak-portfolio-theme/sass/_HelveticaNeueLight.scss",
+		"/Users/adamkendal1/Google Drive/Websites/adamkendal-wp/wp-content/themes/ak-portfolio-theme/test.html",
+		"/Users/adamkendal1/Google Drive/Websites/adamkendal-wp/wp-content/themes/ak-portfolio-theme/sass/_typography.scss",
+		"/Users/adamkendal1/Google Drive/Websites/adamkendal-wp/wp-content/themes/ak-portfolio-theme/sass/_footer.scss",
+		"/Users/adamkendal1/Google Drive/Websites/adamkendal-wp/wp-content/themes/ak-portfolio-theme/home.php",
+		"/Users/adamkendal1/Google Drive/Websites/adamkendal-wp/wp-content/themes/ak-portfolio-theme/single.php",
+		"/Users/adamkendal1/Google Drive/Websites/adamkendal-wp/wp-content/themes/ak-portfolio-theme/js/scripts.js",
+		"/Users/adamkendal1/Google Drive/Websites/adamkendal-wp/wp-content/themes/ak-portfolio-theme/sass/neat/_about.php",
+		"/Users/adamkendal1/Google Drive/Websites/adamkendal-wp/wp-content/themes/ak-portfolio-theme/sass/_home.scss",
+		"/Users/adamkendal1/Google Drive/Websites/adamkendal-wp/wp-content/themes/ak-portfolio-theme/author.php",
+		"/Users/adamkendal1/Google Drive/Websites/adamkendalwebsite -old/AdamKendalPortfolio/index.html",
+		"/Users/adamkendal1/Google Drive/Websites/adamkendal-wp/wp-content/themes/ak-portfolio-theme/golden-rec.svg",
+		"/Users/adamkendal1/Google Drive/Websites/adamkendal-wp/wp-content/themes/ak-portfolio-theme/single-portfolio.php",
+		"/Users/adamkendal1/Google Drive/Websites/adamkendal-wp/wp-content/themes/ak-portfolio-theme/page.php",
+		"/Users/adamkendal1/Google Drive/Websites/adamkendal-wp/wp-content/themes/ak-portfolio-theme/index.php",
+		"/Users/adamkendal1/Google Drive/Websites/adamkendal-wp/wp-content/themes/ak-portfolio-theme/sass/_comments.scss",
+		"/Users/adamkendal1/Google Drive/Websites/zero-four/wp-content/themes/theme-hackeryou/footer.php",
+		"/Users/adamkendal1/Google Drive/Websites/zero-four/wp-content/themes/theme-hackeryou/functions.php",
+		"/Users/adamkendal1/Google Drive/Websites/zero-four/wp-content/themes/theme-hackeryou/index.php",
+		"/Users/adamkendal1/Google Drive/Websites/zero-four/wp-content/themes/theme-hackeryou/js/scripts.js",
+		"/Users/adamkendal1/Google Drive/Websites/zero-four/wp-content/themes/theme-hackeryou/js/plugins.js",
+		"/Users/adamkendal1/Google Drive/Websites/zero-four/wp-content/themes/theme-hackeryou/header.php",
+		"/Users/adamkendal1/Google Drive/Websites/zero-four/wp-content/themes/theme-hackeryou/style.css",
+		"/Users/adamkendal1/Google Drive/Websites/zero-four/wp-config-sample.php",
+		"/Users/adamkendal1/Google Drive/Websites/wordpress-test/wp-content/themes/theme-hackeryou/sidebar.php",
+		"/Users/adamkendal1/Google Drive/Websites/wordpress-test/wp-content/themes/theme-hackeryou/search.php",
+		"/Users/adamkendal1/Google Drive/Websites/wordpress-test/wp-content/themes/theme-hackeryou/page.php",
+		"/Users/adamkendal1/Google Drive/Websites/wordpress-test/wp-content/themes/theme-hackeryou/index.php",
+		"/Users/adamkendal1/Dropbox/nanodegree/command_line.txt",
+		"/Users/adamkendal1/Dropbox/Websites/HackerYou/Week4/Project4-TuberIndividual/js/gulpfile.js",
+		"/Users/adamkendal1/Dropbox/Websites/HackerYou/Week6/ttcApp/css/style.css",
+		"/Users/adamkendal1/Dropbox/Websites/HackerYou/Week6/ttcApp/css/_setup.scss",
+		"/Users/adamkendal1/Dropbox/Websites/HackerYou/Week6/ttcApp/css/setup.css",
+		"/Users/adamkendal1/Dropbox/Websites/HackerYou/Week4/Project4-TuberIndividual/css/style.scss",
+		"/Users/adamkendal1/Dropbox/Websites/HackerYou/Week4/Project4-TuberIndividual/css/style.css",
+		"/Users/adamkendal1/Dropbox/Websites/HackerYou/Week6/ttcApp/README.md",
+		"/Users/adamkendal1/Dropbox/Websites/HackerYou/Week6/ttcApp/jquery.geolocation.js",
+		"/Users/adamkendal1/Dropbox/Websites/HackerYou/Week6/ttcApp/test.html",
+		"/Users/adamkendal1/Dropbox/Websites/HackerYou/Week5/Project5-OnThePulse/js/scripts.js",
+		"/Users/adamkendal1/Dropbox/Websites/HackerYou/Week5/Project5-OnThePulse/index.html",
+		"/Users/adamkendal1/Dropbox/Websites/HackerYou/Week6/ttcApp/css/style.scss",
+		"/Users/adamkendal1/Dropbox/Websites/HackerYou/Week4/Project4-TuberIndividual/CNAME.file",
+		"/Users/adamkendal1/Dropbox/Websites/HackerYou/Week5/Project5/composer.lock",
+		"/Users/adamkendal1/Dropbox/Websites/HackerYou/Week5/Project5/composer.json",
+		"/Users/adamkendal1/Dropbox/Websites/HackerYou/Week5/modal.html",
+		"/Users/adamkendal1/Dropbox/Websites/HackerYou/Week5/modal.css",
+		"/Users/adamkendal1/Dropbox/Websites/HackerYou/Week5/modal.js",
+		"/Users/adamkendal1/Dropbox/Websites/HackerYou/Week5/ajax.html",
+		"/Users/adamkendal1/Dropbox/Websites/HackerYou/Week5/ajax-practice.html",
+		"/Users/adamkendal1/Dropbox/Websites/HackerYou/Week5/debugging.html",
+		"/Users/adamkendal1/Dropbox/Websites/HackerYou/Week5/gallery-start/index.html",
+		"/Users/adamkendal1/Dropbox/Websites/HackerYou/Week5/namespace.html",
+		"/Users/adamkendal1/Dropbox/Websites/HackerYou/Week5/scope.html",
+		"/Users/adamkendal1/Dropbox/Websites/HackerYou/Week5/debugging.js",
+		"/Users/adamkendal1/Dropbox/Websites/HackerYou/Week5/debugging-practice.html",
+		"/Users/adamkendal1/Dropbox/Websites/HackerYou/Week4/Project4-TuberIndividual/images/paper-texture.jpg",
+		"/Users/adamkendal1/Dropbox/Websites/HackerYou/Week4/Project4-TuberIndividual/js/jquery.ui.touch-punch.min.js",
+		"/Users/adamkendal1/Dropbox/Websites/HackerYou/Week4/try-jquery.html",
+		"/Users/adamkendal1/Dropbox/Websites/HackerYou/Week4/to-do-app.html",
+		"/Users/adamkendal1/Dropbox/Websites/HackerYou/Week4/to-do.js",
+		"/Users/adamkendal1/Dropbox/Websites/HackerYou/Week4/jquery-events.html",
+		"/Users/adamkendal1/Dropbox/Websites/HackerYou/Week4/jquery-docs.html",
+		"/Users/adamkendal1/Dropbox/Websites/HackerYou/Week4/arrays.html",
+		"/Users/adamkendal1/Dropbox/Websites/HackerYou/Week4/this.html",
+		"/Users/adamkendal1/Dropbox/Websites/Templates/jquery-ui-1.11.4.custom/index.html",
+		"/Users/adamkendal1/Dropbox/Websites/HackerYou/Week4/arrays-orig.html",
+		"/Users/adamkendal1/Dropbox/Websites/HackerYou/Week4/objects.html",
+		"/Users/adamkendal1/Dropbox/Websites/HackerYou/Week4/jQueryPractice/js/flickity.pkgd.min.js",
+		"/Users/adamkendal1/Dropbox/Websites/HackerYou/Week4/jQueryPractice/css/flickity.css",
+		"/Users/adamkendal1/Dropbox/Websites/HackerYou/Week4/jquerytest.html",
+		"/Users/adamkendal1/Dropbox/Websites/HackerYou/Week4/control-flow.html",
+		"/Users/adamkendal1/Dropbox/Websites/HackerYou/Week4/functions.html",
+		"/Users/adamkendal1/Dropbox/Websites/HackerYou/Week4/functions2.html",
+		"/Users/adamkendal1/Dropbox/Websites/HackerYou/Week2/checked_nav.html",
+		"/Users/adamkendal1/Dropbox/Websites/HackerYou/Week3/Project3-Contractor/css/flickity.css",
+		"/Users/adamkendal1/Dropbox/Websites/HackerYou/Week3/Project3-Contractor/css/bootstrap-grid.css",
+		"/Users/adamkendal1/Dropbox/Websites/HackerYou/Week3/Project3-Contractor/js/flickity.pkgd.min.js",
+		"/Users/adamkendal1/Dropbox/Websites/HackerYou/Week3/Project3-Contractor/assets/truck.svg",
+		"/Users/adamkendal1/Dropbox/Websites/HackerYou/Week3/Project3-Contractor/assets/tools.svg",
+		"/Users/adamkendal1/Dropbox/Websites/HackerYou/Week3/Project3-Contractor/css/style.css",
+		"/Users/adamkendal1/Dropbox/Websites/HackerYou/Week3/Project3-Contractor/assets/truck3.svg",
+		"/Users/adamkendal1/Dropbox/Websites/HackerYou/Week3/Project3-Contractor/assets/truck2.svg",
+		"/Users/adamkendal1/Dropbox/Websites/MapleCrate/css/bootstrap.css",
+		"/Users/adamkendal1/Dropbox/Websites/HackerYou/Week3/Project3-Contractor/documentation/fonts.md",
+		"/Users/adamkendal1/Dropbox/Websites/HackerYou/Week3/Project3-Contractor/untitled.html",
+		"/Users/adamkendal1/Dropbox/Websites/HackerYou/Week3/Project3-Contractor/css/bootstrap-grid-min.css",
+		"/Users/adamkendal1/Dropbox/Websites/HackerYou/Week2/Project2-Restaurant/index.html",
+		"/Users/adamkendal1/Dropbox/Websites/HackerYou/Week3/Project3-Contractor/assets/underline.png",
+		"/Users/adamkendal1/Dropbox/Websites/HackerYou/Week3/Project3-Contractor/assets/signature.png",
+		"/Users/adamkendal1/Dropbox/Websites/HackerYou/Week2/Project2-Restaurant/menu.html",
+		"/Users/adamkendal1/Dropbox/Websites/HackerYou/Week2/Project2-Restaurant/events.html",
+		"/Users/adamkendal1/Dropbox/Websites/HackerYou/Week2/list_gallery_codealong/list_gallery_starter/normalize.css",
+		"/Users/adamkendal1/Dropbox/Websites/HackerYou/Week2/list_gallery_codealong/list_gallery_starter/index.html",
+		"/Users/adamkendal1/Dropbox/Websites/HackerYou/Week2/list_gallery_codealong/list_gallery_starter/images/hero.jpeg"
+	],
+	"find":
+	{
+		"height": 23.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"playerLi",
+			"backgr",
+			"backgri",
+			"url:",
+			"url",
+			"songs",
+			".tmp",
+			".css",
+			"url",
+			"-1",
+			"header-nav li a",
+			"50",
+			"leaf.png",
+			"webkit",
+			"height",
+			"add_theme_support( 'post-thumbnails' ); ",
+			"1000",
+			"''",
+			"0",
+			"1000",
+			"2000",
+			"Rectangle-",
+			".sliding-middle-out",
+			"color: black;",
+			"color:black",
+			"color:black;",
+			"255",
+			"245",
+			"150",
+			"230",
+			"233",
+			"255",
+			"[250,250,250]",
+			"[255,240,240]",
+			"$xs",
+			"navigation ",
+			"hello",
+			"header",
+			"tags:",
+			"clearfix",
+			"printLocation",
+			"white",
+			"hair",
+			"hand",
+			"Hand",
+			"accessories",
+			"joanne",
+			"lee",
+			"laura",
+			"joanne",
+			"jo",
+			"lee",
+			"laura",
+			"lee",
+			"joanne",
+			"jessicat",
+			"jo",
+			"jessicat",
+			"anya",
+			"adam",
+			"christopher",
+			"adam",
+			"christopher",
+			"ivy",
+			"adam",
+			"james",
+			"part",
+			"christopher",
+			"Christopher",
+			"christopher",
+			"nose",
+			"accessory",
+			"hand",
+			"hat",
+			"accessorys",
+			"hand",
+			"nose",
+			"eye",
+			"hat",
+			"kristen",
+			"Kristen",
+			"kristen",
+			"Kristen",
+			"kristen",
+			"Kristen",
+			"kristen",
+			"mouth",
+			"eye",
+			"christopher",
+			"kristen",
+			"jpg",
+			"png",
+			"background",
+			"no-repeat",
+			"no",
+			"	background-size: contain;",
+			"item",
+			"background",
+			"no-repeat",
+			"no",
+			"repeat",
+			"Drew",
+			"drew",
+			"Drew",
+			"drew",
+			"Drew",
+			"drew",
+			"Drew",
+			"drew",
+			"kristen",
+			"item",
+			"slider",
+			"menu-contai",
+			"social-buttons",
+			"message-input",
+			"#nav-check",
+			"#nav-checl",
+			"navigation",
+			"about",
+			"sub-header",
+			"color: $lightgrey;\n		font-size: 14px;",
+			"#FBB121",
+			"adadad",
+			"visible",
+			".visible-md-*",
+			"visible-md-*",
+			"image",
+			"hidden-xs"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "app.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 170.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
