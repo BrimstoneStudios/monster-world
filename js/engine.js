@@ -151,8 +151,7 @@ var Engine = (function(global) {
     'images/terrain/wormy1-wb.jpg',
     'images/characters/deathCaster.gif',
     'images/characters/monk.gif',
-    'images/characters/monk-notTrans.png'
-
+    
     //Monsters
     'images/monsters/hydra1.png',
     'images/monsters/hydra2.png',
