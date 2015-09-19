@@ -146,10 +146,15 @@ var Engine = (function(global) {
     'images/terrain/white-tile50.png',
     'images/terrain/blue-tile50.png',
     'images/characters/deathCaster.gif',
+    'images/characters/monk.gif',
+    'images/terrain/drag1-wb.jpg',
+    'images/terrain/hydra1-wb.jpg',
+    'images/terrain/wormy1-wb.jpg',
+    'images/characters/monk.gif'
     'images/characters/deathCaster-notTrans.png',
     'images/characters/monk.gif',
     'images/characters/monk-notTrans.png'
-    
+
   ]);
   Resources.onReady(init);
   

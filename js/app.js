@@ -5,13 +5,19 @@ var state = {};
 state.currentLevel = 'startScreen';
 
 // ------ MONSTERS -------
+var Monster = function (){
 
-// ------ CHARACTERS -------
-var Character = function() {
+};
+
+Monster.prototype.update = function(){
+
+};
+Monster.prototype.render = function() {
+  ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
 // ------ NPCs -------
-// Enemies our player must avoid
+// Other characters in the game, can be friendly or hostile
 var NPC = function() {
   // Variables applied to each of our instances go here
   this.sprite = mK;
@@ -48,9 +54,7 @@ Player.prototype.update = function(){
 };
 
 Player.prototype.render = function() {
-  // console.log(this.x);
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-  // console.log(this.x);
 }
 
 Player.prototype.handleInput = function(key) {
