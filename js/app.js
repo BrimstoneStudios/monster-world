@@ -112,9 +112,27 @@ Player.prototype.handleInput = function(key) {
     };
   }
   
+  else if(state.currentLevel === 'monsterSelectLevel'){
+    switch(key) {
+      case 'left':
+      this.x = this.x - 100;
+      
+      if (this.x < 200) {
+        this.x = 200;
+      }
+      break;
+      
+      case 'right':
+      this.x = this.x + 100;
+      if (this.x > 500) {
+        this.x = 500;
+      }
+      
+      break;
+    }
+  }
+  
   else{
-    console.log(this.x);
-    console.log(this.y);
     switch(key) {
       case 'left':
       this.x = this.x - 50;
