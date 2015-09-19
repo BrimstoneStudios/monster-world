@@ -41,7 +41,6 @@ var Drag1 = function(){
 Drag1.prototype = Object.create(DragFam.prototype);
 Drag1.prototype.constructor = Drag1;
 
-
 // ---
 
 // Water type - subclass of Monster
@@ -196,14 +195,28 @@ Player.prototype.handleInput = function(key) {
       
       case 'right':
       this.x = this.x + 100;
-      if (this.x > 500) {
-        this.x = 500;
+      if (this.x > 400) {
+        this.x = 400;
       }
       
       break;
       
       
       case 'enter':
+      if(this.x === 200){
+        var drag1 = new Drag1();
+        monsterInventory.push(drag1);
+      }
+      
+      else if(this.x === 300){
+        var hydra1 = new Hydra1();
+        monsterInventory.push(hydra1);
+      }
+      else{
+        var wormy1 = new Wormy1();
+        monsterInventory.push(wormy1);
+      }
+      console.log(monsterInventory);
       state.currentLevel = 'firstLevel';
       this.x = 10;
       this.y = 10;
