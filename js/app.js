@@ -3,7 +3,7 @@ var state = {};
 var monsterInventory = [];
 var itemInventory = [];
 
-// ------ LEVEL -------
+// ------ State Variable -------
 // Set the initial level
 state.currentLevel = 'startScreen';
 
@@ -53,7 +53,7 @@ Monster.prototype.levelUp = function(){
   this.speed = this.level * this.speedMult;
 };
 
-
+// ----------------------------
 
 // Fire type - subclass of Monster
 var FireType = function(lvl){
@@ -87,9 +87,7 @@ Drag1.prototype.spDefenseMult = 1;
 Drag1.prototype.speedMult = 3;
 
 
-
-// ---
-
+// ----------------------------
 
 // Water type - subclass of Monster
 var WaterType = function(lvl){
@@ -122,7 +120,7 @@ Hydra1.prototype.spDefenseMult = 3;
 Hydra1.prototype.speedMult = 1;
 
 
-// ---
+// ----------------------------
 
 
 // Grass type - subclass of Monster
@@ -184,7 +182,6 @@ var Player = function() {
   this.y = 0;
 };
 
-
 Player.prototype.update = function(){
   // Update the sprite based on the level
   if (state.currentLevel === 'startScreen') {
@@ -207,9 +204,8 @@ Player.prototype.render = function() {
 }
 
 Player.prototype.handleInput = function(key) {
-  
   this.render();
-  
+
   // Controls for the start screen 
   if (state.currentLevel === 'startScreen') {
     switch(key){
@@ -227,7 +223,6 @@ Player.prototype.handleInput = function(key) {
     switch(key) {
       case 'left':
         this.x = this.x - 150;
-        
         if (this.x < 250) {
           this.x = 250;
         }
@@ -238,20 +233,16 @@ Player.prototype.handleInput = function(key) {
         if (this.x > 400) {
           this.x = 400;
         }
-        
         break;
       
       case 'space':
         state.currentLevel = 'monsterSelectLevel';
-        
         if(this.x === 400){
           state.sprite = 'images/characters/monk.gif';
         }
-        
         else{
           state.sprite = 'images/characters/deathCaster.gif';
         }
-        
         this.x = 200;
         this.y = 200;
         break;
@@ -324,7 +315,7 @@ Player.prototype.handleInput = function(key) {
         break;
     }
   }
-  // Controls for all the other levels (world levels)
+  // Controls for all the world levels
   else{
     switch(key) {
       case 'shift':
