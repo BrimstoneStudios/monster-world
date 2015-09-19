@@ -18,7 +18,53 @@ Monster.prototype.render = function() {
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-var FireType = function(){};
+// ---
+
+// Fire type - subclass of Monster
+var FireType = function(){
+  Monster.call(this);
+};
+FireType.prototype = Object.create(Monster.prototype);
+FireType.prototype.constructor = FireType;
+
+// Drag family - subclass of FireType
+var DragFam = function(){
+  FireType.call(this);
+};
+DragFam.prototype = Object.create(Monster.prototype);
+DragFam.prototype.constructor = DragFam;
+
+// ---
+
+// Water type - subclass of Monster
+var WaterType = function(){
+  Monster.call(this);
+};
+WaterType.prototype = Object.create(Monster.prototype);
+WaterType.prototype.constructor = WaterType;
+
+// Hydra family - subclass of FireType
+var HydraFam = function(){
+  WaterType.call(this);
+};
+HydraFam.prototype = Object.create(Monster.prototype);
+HydraFam.prototype.constructor = HydraFam;
+
+// ---
+
+// Grass type - subclass of Monster
+var GrassType = function(){
+  Monster.call(this);
+};
+GrassType.prototype = Object.create(Monster.prototype);
+GrassType.prototype.constructor = GrassType;
+
+// Wormy family - subclass of FireType
+var WormyFam = function(){
+  GrassType.call(this);
+};
+WormyFam.prototype = Object.create(Monster.prototype);
+WormyFam.prototype.constructor = WormyFam;
 
 // ------ NPCs -------
 // Other characters in the game, can be friendly or hostile
