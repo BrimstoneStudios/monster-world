@@ -1,4 +1,4 @@
-// State variable object 
+// State variable object
 var state = {};
 
 
@@ -15,7 +15,7 @@ Start.prototype.render = function(){
 Start.prototype.handleInput = function(key){
   switch(key){
     case 'enter':
-      state.currentLevel = 'firstLevel' ;
+    state.currentLevel = 'charSelectLevel';
     break;
   };
 };
@@ -28,7 +28,6 @@ Start.prototype.handleInput = function(key){
 
 // ------ CHARACTERS -------
 var Character = function() {
-  
 };
 
 var dC = 'images/characters/deathCaster.gif';
@@ -76,7 +75,7 @@ Player.prototype.render = function() {
 Player.prototype.handleInput = function(key) {
   currentLevel = allLevels[state.currentLevel];
   this.render();
-
+  
   if(allLevels[state.currentLevel].levelName === 'charSelectLevel'){
     switch(key) {
       case 'left':
@@ -153,8 +152,8 @@ var allNPC = [];
 
 var start = new Start();
 var player = new Player();
-  
-  
+
+
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method.
 
@@ -168,8 +167,8 @@ document.addEventListener('keyup', function(e) {
   };
   if (state.currentLevel === 'startScreen') {
     start.handleInput(allowedKeys[e.keyCode]);
-  }  
+  }
   else {
-    player.handleInput(allowedKeys[e.keyCode]); 
+    player.handleInput(allowedKeys[e.keyCode]);
   }
 });
