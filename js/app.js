@@ -88,8 +88,8 @@ var Monster = function (lvl){
 Monster.prototype.update = function(){
 };
 
-Monster.prototype.render = function() {
-  ctx.drawImage(Resources.get(this.sprite), 150, 350);
+Monster.prototype.render = function(x, y) {
+  ctx.drawImage(Resources.get(this.sprite), x, y);
 };
 
 // Level up method to update stats based on current level
@@ -135,8 +135,6 @@ Drag1.prototype.defenseMult = 1;
 Drag1.prototype.spAttackMult = 2;
 Drag1.prototype.spDefenseMult = 1;
 Drag1.prototype.speedMult = 3;
-
-
 
 // ----------------------------
 
