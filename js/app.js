@@ -2,6 +2,8 @@
 var state = {};
 var monsterInventory = [];
 var itemInventory = [];
+var firstLevelMonsters = [];
+
 
 // ------ State Variable -------
 // Set the initial level
@@ -17,6 +19,7 @@ state.monsterStatCurrent= 0;
 // When a monster stat is going to be shown, save the ID here
 state.monsterStatID;
 
+state.enemyToBattle;
 
 // ------ MENU -------
 var Menu = function(){
@@ -37,9 +40,7 @@ Menu.prototype.renderMonsterInv = function(){
     ctx.drawImage(Resources.get(monsterInventory[i].sprite), 85, 50+j);
     ctx.fillText(monsterInventory[i].name, 155, 85+j);
   };
-  
 };
-
 
 // Monster Stats display
 Menu.prototype.renderMonsterStat = function(monster) {
@@ -66,10 +67,15 @@ var battleEvent = function(){
   state.locX = player.x;
   state.locY = player.y;
   var randomNum = Math.random() * 100;
-  if(randomNum <= 10){
+  if(randomNum <= 5){
     state.currentLevel = 'battleLevel';
+    state.enemyToBattle = enemyBattle();
   };
 };
+
+var enemyBattle = function(){
+  return firstLevelMonsters[Math.floor(firstLevelMonsters.length * Math.random())];
+}
 
 // ------ MONSTERS -------
 
@@ -488,6 +494,13 @@ Player.prototype.handleInput = function(key) {
 var allNPC = [];
 var player = new Player();
 var menu = new Menu();
+var drag = new Drag1(1);
+var hydra = new Hydra1(1);
+var wormy = new Wormy1(1);
+
+firstLevelMonsters.push(drag);
+firstLevelMonsters.push(hydra);
+firstLevelMonsters.push(wormy);
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method.

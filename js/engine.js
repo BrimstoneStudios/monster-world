@@ -140,11 +140,10 @@ var Engine = (function(global) {
     }
     else if (state.currentLevel === 'battleLevel'){
       monsterInventory[0].render(150, 350);
+      state.enemyToBattle.render(350, 150);
     }
     
     player.render();
-    
-    
   }
   
   /* Function to create game over screen
