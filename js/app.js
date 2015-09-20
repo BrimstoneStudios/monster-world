@@ -89,7 +89,7 @@ Monster.prototype.update = function(){
 };
 
 Monster.prototype.render = function() {
-  ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+  ctx.drawImage(Resources.get(this.sprite), 150, 350);
 };
 
 // Level up method to update stats based on current level
@@ -135,9 +135,7 @@ Drag1.prototype.defenseMult = 1;
 Drag1.prototype.spAttackMult = 2;
 Drag1.prototype.spDefenseMult = 1;
 Drag1.prototype.speedMult = 3;
-Drag1.prototype.render = function(){
-  ctx.drawImage(Resources.get(this.sprite), 150, 350);
-};
+
 
 
 // ----------------------------
@@ -172,9 +170,7 @@ Hydra1.prototype.defenseMult = 2;
 Hydra1.prototype.spAttackMult = 1;
 Hydra1.prototype.spDefenseMult = 3;
 Hydra1.prototype.speedMult = 1;
-Hydra1.prototype.render = function(){
-  ctx.drawImage(Resources.get(this.sprite), 150, 350);
-};
+
 
 
 
@@ -211,9 +207,6 @@ Wormy1.prototype.defenseMult = 2;
 Wormy1.prototype.spAttackMult = 2;
 Wormy1.prototype.spDefenseMult = 2;
 Wormy1.prototype.speedMult = 2;
-Wormy1.prototype.render = function(){
-  ctx.drawImage(Resources.get(this.sprite), 150, 350);
-};
 
 
 // ------ NPCs -------
