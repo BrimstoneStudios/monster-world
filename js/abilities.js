@@ -23,7 +23,7 @@ var abilities = {
 		category:'physical',
 		power: 40,
 		accuracy: 1,
-		effect:'bleed'
+		effect:'',
 	},
 	bite: {
 		name: 'Bite',
@@ -31,6 +31,14 @@ var abilities = {
 		category:'physical',
 		power: 45,
 		accuracy: 0.9,
-		effect:'poison'
+		effect:'',
+	},
+	fireBreath:{
+		name: 'Fire Breath',
+		type: 'fire',
+		category: 'special',
+		power: 45,
+		accuracy: 1,
+		effect:'Chance of burn',
 	}
 };
