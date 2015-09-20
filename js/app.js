@@ -67,10 +67,9 @@ var battleEvent = function(){
   state.locX = player.x;
   state.locY = player.y;
   var randomNum = Math.random() * 100;
-  if(randomNum <= 10){
+  if(randomNum <= 5){
     state.currentLevel = 'battleLevel';
     state.enemyToBattle = enemyBattle();
-    
   };
 };
 
