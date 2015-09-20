@@ -141,7 +141,10 @@ var Engine = (function(global) {
     else if (state.currentLevel === 'battleLevel'){
       monsterInventory[0].render(150, 350);
     }
+    
+    
     player.render();
+    
     
   }
   
