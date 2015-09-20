@@ -18,12 +18,12 @@
 
 var abilities = {
 	scratch: {
-		name: 'Scratch'
+		name: 'Scratch',
 		type: 'normal',
 		category:'physical',
 		power: 40,
 		accuracy: 1,
-		effect:,
+		effect:'bleed'
 	},
 	bite: {
 		name: 'Bite',
@@ -31,17 +31,6 @@ var abilities = {
 		category:'physical',
 		power: 45,
 		accuracy: 0.9,
-		effect:,
-	},
+		effect:'poison'
+	}
 };
-
-
-
-
-
-
-
-
-
-
-

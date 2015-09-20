@@ -71,8 +71,6 @@ var battleEvent = function(){
   };
 };
 
-
-
 // ------ MONSTERS -------
 
 // Monster class determines the initial stats of the monster based on the level and the multiplier
@@ -137,6 +135,9 @@ Drag1.prototype.defenseMult = 1;
 Drag1.prototype.spAttackMult = 2;
 Drag1.prototype.spDefenseMult = 1;
 Drag1.prototype.speedMult = 3;
+Drag1.prototype.render = function(){
+  ctx.drawImage(Resources.get(monsterInventory[0].sprite), 150, 350);
+};
 
 
 // ----------------------------
@@ -171,6 +172,10 @@ Hydra1.prototype.defenseMult = 2;
 Hydra1.prototype.spAttackMult = 1;
 Hydra1.prototype.spDefenseMult = 3;
 Hydra1.prototype.speedMult = 1;
+Hydra1.prototype.render = function(){
+  ctx.drawImage(Resources.get(monsterInventory[0].sprite), 150, 350);
+};
+
 
 
 // ----------------------------
@@ -206,7 +211,9 @@ Wormy1.prototype.defenseMult = 2;
 Wormy1.prototype.spAttackMult = 2;
 Wormy1.prototype.spDefenseMult = 2;
 Wormy1.prototype.speedMult = 2;
-
+Wormy1.prototype.render = function(){
+  ctx.drawImage(Resources.get(monsterInventory[0].sprite), 150, 350);
+};
 
 
 // ------ NPCs -------
@@ -340,7 +347,6 @@ Player.prototype.handleInput = function(key) {
         var wormy1 = new Wormy1(1);
         monsterInventory.push(wormy1);
       }
-      console.log(monsterInventory);
       state.currentLevel = 'firstLevel';
       this.x = 10;
       this.y = 10;
@@ -352,29 +358,29 @@ Player.prototype.handleInput = function(key) {
   else if (state.currentLevel === 'mainMenu'){
     switch(key){
       case 'shift':
-        state.currentLevel = state.prevLevel;
-        this.x = state.locX;
-        this.y = state.locY;
-        break;
+      state.currentLevel = state.prevLevel;
+      this.x = state.locX;
+      this.y = state.locY;
+      break;
       case 'up':
-        this.y = this.y -90;
-        if (this.y < 140){
-          this.y=157;
-        } 
-        break;
+      this.y = this.y -90;
+      if (this.y < 140){
+        this.y=157;
+      }
+      break;
       case 'down':
-        this.y = this.y + 90;
-        if (this.y >250) {
-          this.y = 247;
-        }
-        break;
-      case 'space': 
-        if (this.y === 247){
-          state.currentLevel = 'monsterInventory';
-          this.x = 15;
-          this.y = 42;
-        }
-        break;
+      this.y = this.y + 90;
+      if (this.y >250) {
+        this.y = 247;
+      }
+      break;
+      case 'space':
+      if (this.y === 247){
+        state.currentLevel = 'monsterInventory';
+        this.x = 15;
+        this.y = 42;
+      }
+      break;
     }
   }
   
@@ -382,34 +388,34 @@ Player.prototype.handleInput = function(key) {
   else if (state.currentLevel === 'monsterInventory'){
     switch(key){
       case 'shift':
-        state.currentLevel = state.prevLevel;
-        this.x = state.locX;
-        this.y = state.locY;
-        break;
-
+      state.currentLevel = state.prevLevel;
+      this.x = state.locX;
+      this.y = state.locY;
+      break;
+      
       case 'up' :
-        this.y = this.y -90;
-        if (this.y < 42){
-          this.y=42;
-        } 
-        break;
+      this.y = this.y -90;
+      if (this.y < 42){
+        this.y=42;
+      }
+      break;
       case 'down':
-        this.y = this.y + 90;
-        if (this.y > ((monsterInventory.length-1) *90)+42) {
-          this.y = ((monsterInventory.length-1) *90)+42;
-        }
-        break;
+      this.y = this.y + 90;
+      if (this.y > ((monsterInventory.length-1) *90)+42) {
+        this.y = ((monsterInventory.length-1) *90)+42;
+      }
+      break;
       case 'space':
-        if (this.y === 42){
-          state.monsterStatID = 0; 
-          if (state.monsterStatCurrent === 0) {
-            state.monsterStatCurrent = 1;
-          }
-          else {
-            state.monsterStatCurrent = 0;
-          };
+      if (this.y === 42){
+        state.monsterStatID = 0;
+        if (state.monsterStatCurrent === 0) {
+          state.monsterStatCurrent = 1;
         }
-        break;
+        else {
+          state.monsterStatCurrent = 0;
+        };
+      }
+      break;
     }
   }
   // Controls for the battle system

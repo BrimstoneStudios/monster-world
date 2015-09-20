@@ -7,7 +7,7 @@
 * the canvas' context (ctx) object globally available to make writing app.js
 * a little simpler to work with.
 
-* Adapted from the Udacity frontend-nanodegree-arcade-game 
+* Adapted from the Udacity frontend-nanodegree-arcade-game
 * https://github.com/udacity/frontend-nanodegree-arcade-game
 
 */
@@ -138,8 +138,12 @@ var Engine = (function(global) {
         menu.renderMonsterStat(state.monsterStatID);
       }
     }
-    player.render();
-    // console.log(state.locX, state.locY);
+    else if (state.currentLevel === 'battleLevel'){
+      monsterInventory[0].render();
+    }
+    else{
+      player.render();
+    }
     
   }
   
@@ -152,7 +156,7 @@ var Engine = (function(global) {
   /* Loads images to cache
   */
   Resources.load([
-
+    
     // Terrain
     'images/terrain/start-screen.png',
     'images/terrain/dirt-tile50.png',
@@ -164,7 +168,7 @@ var Engine = (function(global) {
     'images/terrain/drag1-wb.jpg',
     'images/terrain/hydra1-wb.jpg',
     'images/terrain/wormy1-wb.jpg',
-
+    
     // Characters
     'images/characters/deathCaster.gif',
     'images/characters/monk.gif',
@@ -180,9 +184,7 @@ var Engine = (function(global) {
     'images/monsters/drag3.gif',
     'images/monsters/wormy1.gif',
     'images/monsters/wormy2.gif',
-    'images/monsters/wormy3.gif',
-    
-    
+    'images/monsters/wormy3.gif'
   ]);
   Resources.onReady(init);
   
