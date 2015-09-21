@@ -32,6 +32,14 @@ var abilities = {
 		power: 45,
 		accuracy: 0.9,
 		effect:'',
+		func: function() {
+			// Still needs random modifier, effectiveness modifier, accuracy modifier 
+			var damage = ((this.power*state.playerBattleMonster.attack)/state.enemyToBattle.defense);
+			state.enemyToBattle.currentHp = state.enemyToBattle.currentHp - damage;
+			console.log(damage);
+			console.log(state.enemyToBattle.currentHp);
+			console.log(damage - state.enemyToBattle.currentHp);
+		}
 	},
 	growl: {
 		name: 'Growl',
