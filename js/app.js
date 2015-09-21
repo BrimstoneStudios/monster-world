@@ -2,7 +2,6 @@
 var state = {};
 var monsterInventory = [];
 var itemInventory = [];
-var firstLevelMonsters = [];
 
 
 // ------ State Variable -------
@@ -74,8 +73,16 @@ var battleEvent = function(){
 };
 
 var enemyBattle = function(){
-  return firstLevelMonsters[Math.floor(firstLevelMonsters.length * Math.random())];
+  if(state.prevLevel === 'firstLevel'){
+    monstersAvailable = [Drag1, Hydra1, Wormy1];
+    var level = Math.floor(Math.random()*3) + 1;
+    var randomMonster = Math.floor(Math.random() * monstersAvailable.length);
+    var newMonster = monstersAvailable[randomMonster];
+    var enemyMonster = new newMonster(level);
+    return enemyMonster;
+  }
 }
+
 
 // ------ MONSTERS -------
 
@@ -498,13 +505,6 @@ Player.prototype.handleInput = function(key) {
 var allNPC = [];
 var player = new Player();
 var menu = new Menu();
-var drag = new Drag1(1);
-var hydra = new Hydra1(1);
-var wormy = new Wormy1(1);
-
-firstLevelMonsters.push(drag);
-firstLevelMonsters.push(hydra);
-firstLevelMonsters.push(wormy);
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method.
