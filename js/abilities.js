@@ -33,12 +33,36 @@ var abilities = {
 		accuracy: 0.9,
 		effect:'',
 	},
+	growl: {
+		name: 'Growl',
+		type: 'normal',
+		category:'status',
+		power:NaN,
+		accuracy:1,
+		effect:'Decrease opponent attack damage',
+	},
 	fireBreath:{
 		name: 'Fire Breath',
 		type: 'fire',
 		category: 'special',
 		power: 45,
-		accuracy: 1,
+		accuracy: .9,
 		effect:'Chance of burn',
-	}
+	},
+	razorLeaf: {
+		name: 'Razor Leaf',
+		type: 'grass',
+		category:'special',
+		power:50,
+		accuracy:.9,
+		effect:'',
+},
+	waterBlast: {
+		name: 'Water Blast',
+		type: 'water',
+		category:'special',
+		power:50,
+		accuracy:.9,
+		effect:'',
+	},
 };
