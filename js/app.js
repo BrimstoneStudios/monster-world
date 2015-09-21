@@ -83,7 +83,6 @@ var enemyBattle = function(){
   }
 }
 
-
 // ------ MONSTERS -------
 
 // Monster class determines the initial stats of the monster based on the level and the multiplier
@@ -124,7 +123,7 @@ Monster.prototype.renderBtlMonStats = function(player){
     ctx.fillText(this.level, 650, 260);
     ctx.fillText("HP:", 350, 300);
     ctx.fillText(this.currentHp, 450, 300);
-    ctx.fillText("/", 475, 300)
+    ctx.fillText("/", 495, 300)
     ctx.fillText(this.hp, 510, 300);
   }
   else{
@@ -133,7 +132,7 @@ Monster.prototype.renderBtlMonStats = function(player){
     ctx.fillText(this.level, 350, 60);
     ctx.fillText("HP:", 50, 100);
     ctx.fillText(this.currentHp, 150, 100);
-    ctx.fillText("/", 175, 100)
+    ctx.fillText("/", 195, 100)
     ctx.fillText(this.hp, 210, 100);
   }
 };
