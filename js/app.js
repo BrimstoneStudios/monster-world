@@ -67,7 +67,7 @@ var battleEvent = function(){
   state.locX = player.x;
   state.locY = player.y;
   var randomNum = Math.random() * 100;
-  if(randomNum <= 5){
+  if(randomNum <= 95){
     state.currentLevel = 'battleLevel';
     state.enemyToBattle = enemyBattle();
   };
@@ -84,6 +84,7 @@ var enemyBattle = function(){
 var Monster = function (lvl){
   this.level = lvl;
   this.hp = this.level * this.hpMult;
+  this.currentHp = this.hp;
   this.attack = this.level * this.attackMult;
   this.defense = this.level * this.defenseMult;
   this.spAttack = this.level * this.spAttackMult;
@@ -106,6 +107,28 @@ Monster.prototype.levelUp = function(){
   this.spAttack = this.level * this.spAttackMult;
   this.spDefense = this.level * this.spDefenseMult;
   this.speed = this.level * this.speedMult;
+};
+
+Monster.prototype.renderBtlMonStats = function(player){
+  ctx.font="35px Arial";
+  if(player === "player"){
+    ctx.fillText(this.name, 350, 260);
+    ctx.fillText("Lv", 610, 260);
+    ctx.fillText(this.level, 650, 260);
+    ctx.fillText("HP:", 350, 300);
+    ctx.fillText(this.currentHp, 450, 300);
+    ctx.fillText("/", 475, 300)
+    ctx.fillText(this.hp, 510, 300);
+  }
+  else{
+    ctx.fillText(this.name, 50, 60);
+    ctx.fillText("Lv", 310, 60);
+    ctx.fillText(this.level, 350, 60);
+    ctx.fillText("HP:", 50, 100);
+    ctx.fillText(this.currentHp, 150, 100);
+    ctx.fillText("/", 175, 100)
+    ctx.fillText(this.hp, 210, 100);
+  }
 };
 
 // ----------------------------
