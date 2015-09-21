@@ -17,7 +17,7 @@ state.monsterStatCurrent= 0;
 
 // When a monster stat is going to be shown, save the ID here
 state.monsterStatID;
-
+state.run;
 state.playerBattleMonster;
 state.enemyToBattle;
 
@@ -111,6 +111,24 @@ var enemyBattle = function(){
     return enemyMonster;
   }
 }
+
+//function to run from battle when run is selected in the menu
+var runFromBattle = function(){
+  // if(state.run === true){
+  var randomNum = Math.floor(Math.random()*2); //produces either 0 or 1
+  
+  if (randomNum === 1){
+    state.currentLevel = state.prevLevel;
+    player.x = state.locX;
+    player.y = state.locY;
+  }
+  
+  else{
+    player.x = 300;
+    player.y = 350;
+  }
+};
+
 
 // ---------------------- MONSTERS -----------------------
 
@@ -294,8 +312,8 @@ Player.prototype.update = function(){
   else {
     this.sprite = state.sprite;
   };
-
-  // Remove player from the screen 
+  
+  // Remove player from the screen
   if (state.wildIntroText === 1) {
     this.x = -100;
     this.y = -100;
@@ -462,46 +480,52 @@ Player.prototype.handleInput = function(key) {
     if (state.wildIntroText === 1) {
       switch(key){
         case 'space':
-          state.wildIntroText = 0;
-          state.battleMenuMain = 1;
-          this.x = 300;
-          this.y = 350;
-          break;
+        state.wildIntroText = 0;
+        state.battleMenuMain = 1;
+        this.x = 300;
+        this.y = 350;
+        break;
       };
     }
     else if (state.battleMenuMain === 1){
       switch(key){
         case 'left':
-          this.x = this.x - 230;
-          if (this.x < 300){
-            this.x = 300;
-          }
-          break;
+        this.x = this.x - 230;
+        if (this.x < 300){
+          this.x = 300;
+        }
+        break;
         case 'up':
-          this.y = this.y - 70;
-          if (this.y < 350) {
-            this.y = 350;
-          }
-          break;
+        this.y = this.y - 70;
+        if (this.y < 350) {
+          this.y = 350;
+        }
+        break;
         case 'right':
-          this.x = this.x + 230;
-          if (this.x >530) {
-            this.x = 530;
-          }
-          break;
+        this.x = this.x + 230;
+        if (this.x >530) {
+          this.x = 530;
+        }
+        break;
         case 'down':
-          this.y = this.y + 70;
-          if (this.y >420) {
-            this.y = 420;
-          }
-          break;
+        this.y = this.y + 70;
+        if (this.y >420) {
+          this.y = 420;
+        }
+        break;
         case 'space':
-          if (this.x === 300 && this.y === 350){
-            state.battleMenuMain = 0;
-            state.battleMenuFight = 1;
-          }
-          break;
-
+        if (this.x === 300 && this.y === 350){
+          state.battleMenuMain = 0;
+          state.battleMenuFight = 1;
+        }
+        else if (this.x === 530 && this.y === 420){
+          runFromBattle();
+        }
+        else{
+          runFromBattle();
+        }
+        break;
+        
       }
     }
     else {
