@@ -95,6 +95,11 @@ Menu.prototype.renderFailedRunAwayText = function(){
   ctx.fillText("Escape failed. FIGHT!", 350, 385);
 }
 
+Menu.prototype.renderSuccessRunAwayText = function(){
+  ctx.font="30px Arial";
+  ctx.fillText("You ran away!? You wimp...", 250, 385)
+}
+
 // ---------------- BATTLE ----------------
 
 var battleEvent = function(){
@@ -131,9 +136,9 @@ var runFromBattle = function(){
   state.battleMenuMain = 0;
   
   if (randomNum === 1){
-    state.currentLevel = state.prevLevel;
-    player.x = state.locX;
-    player.y = state.locY;
+    player.x = 200;
+    player.y = 350;
+    state.battleRunAway = 1;
   }
   
   else{
@@ -553,6 +558,15 @@ Player.prototype.handleInput = function(key) {
         state.battleMenuMain = 1;
         state.battleFailedRunAway = 0;
         break;
+      }
+    }
+    else if (state.battleRunAway === 1){
+      switch(key){
+        case 'space':
+        state.battleRunAway = 0;
+        state.currentLevel = state.prevLevel;
+        player.x = state.locX;
+        player.y = state.locY;
       }
     }
     
