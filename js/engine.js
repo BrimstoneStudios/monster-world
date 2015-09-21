@@ -141,6 +141,12 @@ var Engine = (function(global) {
     else if (state.currentLevel === 'battleLevel'){
       monsterInventory[0].render(50, 200);
       state.enemyToBattle.render(550, 40);
+      if(state.wildIntroText === 1){
+        menu.renderWildIntroText();
+      }
+      else if (state.battleMenuMain === 1) {
+        menu.renderBattleMenuMain();
+      }
     }
     
     player.render();

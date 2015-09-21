@@ -41,6 +41,14 @@ var abilities = {
 		accuracy:1,
 		effect:'Decrease opponent attack damage',
 	},
+	stare: {
+		name: 'Stare',
+		type: 'normal',
+		category:'status',
+		power:NaN,
+		accuracy:1,
+		effect:'Decrease opponent defense',
+	},
 	fireBreath:{
 		name: 'Fire Breath',
 		type: 'fire',

@@ -14,14 +14,24 @@ state.prevLevel;
 state.locX;
 state.locY;
 
-// 0 = not currently displaying a monster stat, 1 = currently displaying a monster stat
+// 0 = not currently displaying , 1 = currently displaying
 state.monsterStatCurrent= 0;
+
 // When a monster stat is going to be shown, save the ID here
 state.monsterStatID;
 
 state.enemyToBattle;
 
-// ------ MENU -------
+// Battle menu states, 1 = currently displaying
+state.wildIntroText = 0;
+state.battleMenuMain = 0;
+state.battleMenuFight = 0;
+state.battleMenuBag = 0;
+state.battleMenuMonsters = 0;
+
+
+
+// ---------------- MENU ----------------
 var Menu = function(){
   
 };
@@ -61,13 +71,33 @@ Menu.prototype.renderMonsterStat = function(monster) {
   ctx.fillText(monsterInventory[monster].speed, 620, 305);
 };
 
-// ------ BATTLE -------
+Menu.prototype.renderWildIntroText = function(){
+  var wildName = state.enemyToBattle.name;
+  ctx.font="40px Arial";
+  ctx.fillText('A wild ' + wildName + ' has appeared!', 50, 405);
+};
+Menu.prototype.renderBattleMenuMain = function() {
+  ctx.font="40px Arial";
+  ctx.fillText("Fight", 350, 385);
+  ctx.fillText("Bag", 580, 385);
+  ctx.fillText("Monsters", 350, 455);
+  ctx.fillText("Run", 580, 455);
+};
+
+
+
+
+
+
+// ---------------- BATTLE ----------------
+
 var battleEvent = function(){
   state.prevLevel = state.currentLevel;
   state.locX = player.x;
   state.locY = player.y;
+  state.wildIntroText = 1;
   var randomNum = Math.random() * 100;
-  if(randomNum <= 5){
+  if(randomNum <= 90){
     state.currentLevel = 'battleLevel';
     state.enemyToBattle = enemyBattle();
   };
@@ -77,7 +107,10 @@ var enemyBattle = function(){
   return firstLevelMonsters[Math.floor(firstLevelMonsters.length * Math.random())];
 }
 
-// ------ MONSTERS -------
+
+
+
+// ---------------------- MONSTERS -----------------------
 
 // Monster class determines the initial stats of the monster based on the level and the multiplier
 // Multipliers defined later on individual monsters.
@@ -398,12 +431,21 @@ Player.prototype.handleInput = function(key) {
   }
   // Controls for the battle system
   else if(state.currentLevel === 'battleLevel'){
-    switch(key){
-      case 'space':
-      state.currentLevel = state.prevLevel;
-      this.x = state.locX;
-      this.y = state.locY;
-      break;
+    if (state.wildIntroText === 1) {
+      switch(key){
+        case 'space':
+          state.wildIntroText = 0;
+          state.battleMenuMain = 1;
+      }
+    }
+    else {
+      switch(key){
+        case 'space':
+        state.currentLevel = state.prevLevel;
+        this.x = state.locX;
+        this.y = state.locY;
+        break;
+      }
     }
   }
   // Controls for all the world levels
