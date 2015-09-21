@@ -107,7 +107,7 @@ var battleEvent = function(){
   
   var randomNum = Math.random() * 100;
   
-  if(randomNum <= 10){
+  if(randomNum <= 25){
     state.wildIntroText = 1;
     state.currentLevel = 'battleLevel';
     state.playerBattleMonster = monsterInventory[0];
