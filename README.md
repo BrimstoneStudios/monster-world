@@ -6,7 +6,9 @@ Choose a starting character and a starting monster. Roam around the world defeat
 Controls:
 
 Movement = arrows
+
 Space = select
+
 Shift = open/close menu 
 
 
