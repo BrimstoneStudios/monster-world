@@ -84,6 +84,7 @@ var enemyBattle = function(){
 var Monster = function (lvl){
   this.level = lvl;
   this.hp = this.level * this.hpMult;
+  this.currentHp = this.hp;
   this.attack = this.level * this.attackMult;
   this.defense = this.level * this.defenseMult;
   this.spAttack = this.level * this.spAttackMult;
@@ -106,6 +107,17 @@ Monster.prototype.levelUp = function(){
   this.spAttack = this.level * this.spAttackMult;
   this.spDefense = this.level * this.spDefenseMult;
   this.speed = this.level * this.speedMult;
+};
+
+Monster.prototype.renderMonsterStats = function(monster){
+  ctx.font="35px Arial";
+  ctx.fillText(monsterInventory[monster].name, 350, 200);
+  ctx.fillText("Lv", 610, 200);
+  ctx.fillText(monsterInventory[monster].level, 650, 200);
+  ctx.fillText("HP:", 350, 240);
+  ctx.fillText(monsterInventory[monster].currentHp, 450, 240);
+  ctx.fillText("/", 475, 240)
+  ctx.fillText(monsterInventory[monster].hp, 510, 240);
 };
 
 // ----------------------------

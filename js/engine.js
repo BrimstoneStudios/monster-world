@@ -140,6 +140,7 @@ var Engine = (function(global) {
     }
     else if (state.currentLevel === 'battleLevel'){
       monsterInventory[0].render(50, 200);
+      monsterInventory[0].renderMonsterStats(0);
       state.enemyToBattle.render(550, 40);
     }
     
