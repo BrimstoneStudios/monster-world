@@ -153,6 +153,9 @@ var Engine = (function(global) {
       else if (state.battleMenuFight === 1) {
         menu.renderBattleMenuFight();
       }
+      else if (state.battleFailedRunAway === 1){
+        menu.renderFailedRunAwayText();
+      }
       
     }
     
