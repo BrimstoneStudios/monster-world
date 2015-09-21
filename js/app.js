@@ -2,7 +2,6 @@
 var state = {};
 var monsterInventory = [];
 var itemInventory = [];
-var firstLevelMonsters = [];
 
 
 // ------ State Variable -------
@@ -97,14 +96,22 @@ var battleEvent = function(){
   state.locY = player.y;
   state.wildIntroText = 1;
   var randomNum = Math.random() * 100;
-  if(randomNum <= 90){
+
+  if(randomNum <= 95){
     state.currentLevel = 'battleLevel';
     state.enemyToBattle = enemyBattle();
   };
 };
 
 var enemyBattle = function(){
-  return firstLevelMonsters[Math.floor(firstLevelMonsters.length * Math.random())];
+  if(state.prevLevel === 'firstLevel'){
+    monstersAvailable = [Drag1, Hydra1, Wormy1];
+    var level = Math.floor(Math.random()*3) + 1;
+    var randomMonster = Math.floor(Math.random() * monstersAvailable.length);
+    var newMonster = monstersAvailable[randomMonster];
+    var enemyMonster = new newMonster(level);
+    return enemyMonster;
+  }
 }
 
 
@@ -117,6 +124,7 @@ var enemyBattle = function(){
 var Monster = function (lvl){
   this.level = lvl;
   this.hp = this.level * this.hpMult;
+  this.currentHp = this.hp;
   this.attack = this.level * this.attackMult;
   this.defense = this.level * this.defenseMult;
   this.spAttack = this.level * this.spAttackMult;
@@ -139,6 +147,28 @@ Monster.prototype.levelUp = function(){
   this.spAttack = this.level * this.spAttackMult;
   this.spDefense = this.level * this.spDefenseMult;
   this.speed = this.level * this.speedMult;
+};
+
+Monster.prototype.renderBtlMonStats = function(player){
+  ctx.font="35px Arial";
+  if(player === "player"){
+    ctx.fillText(this.name, 350, 260);
+    ctx.fillText("Lv", 610, 260);
+    ctx.fillText(this.level, 650, 260);
+    ctx.fillText("HP:", 350, 300);
+    ctx.fillText(this.currentHp, 450, 300);
+    ctx.fillText("/", 495, 300)
+    ctx.fillText(this.hp, 510, 300);
+  }
+  else{
+    ctx.fillText(this.name, 50, 60);
+    ctx.fillText("Lv", 310, 60);
+    ctx.fillText(this.level, 350, 60);
+    ctx.fillText("HP:", 50, 100);
+    ctx.fillText(this.currentHp, 150, 100);
+    ctx.fillText("/", 195, 100)
+    ctx.fillText(this.hp, 210, 100);
+  }
 };
 
 // ----------------------------
@@ -517,13 +547,6 @@ Player.prototype.handleInput = function(key) {
 var allNPC = [];
 var player = new Player();
 var menu = new Menu();
-var drag = new Drag1(1);
-var hydra = new Hydra1(1);
-var wormy = new Wormy1(1);
-
-firstLevelMonsters.push(drag);
-firstLevelMonsters.push(hydra);
-firstLevelMonsters.push(wormy);
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method.

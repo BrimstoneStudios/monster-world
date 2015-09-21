@@ -140,13 +140,17 @@ var Engine = (function(global) {
     }
     else if (state.currentLevel === 'battleLevel'){
       monsterInventory[0].render(50, 200);
+      monsterInventory[0].renderBtlMonStats("player");
       state.enemyToBattle.render(550, 40);
+      state.enemyToBattle.renderBtlMonStats("enemy");
+      
       if(state.wildIntroText === 1){
         menu.renderWildIntroText();
       }
       else if (state.battleMenuMain === 1) {
         menu.renderBattleMenuMain();
       }
+      
     }
     
     player.render();
