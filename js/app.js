@@ -29,6 +29,9 @@ state.battleMenuMain = 0;
 state.battleMenuFight = 0;
 state.battleMenuBag = 0;
 state.battleMenuMonsters = 0;
+state.battleRunAway = 0;
+state.battleFailedRunAway = 0;
+
 
 
 // ---------------- MENU ----------------
@@ -90,6 +93,11 @@ Menu.prototype.renderBattleMenuFight = function(){
   }
 };
 
+Menu.prototype.renderFailedRunAwayText = function(){
+  ctx.font="30px Arial";
+  ctx.fillText("Escape failed. FIGHT!", 350, 385);
+}
+
 // ---------------- BATTLE ----------------
 
 var battleEvent = function(){
@@ -120,8 +128,10 @@ var enemyBattle = function(){
 
 //function to run from battle when run is selected in the menu
 var runFromBattle = function(){
-  // if(state.run === true){
   var randomNum = Math.floor(Math.random()*2); //produces either 0 or 1
+  state.battleFailedRunAway = 0;
+  state.battleRunAway = 0;
+  state.battleMenuMain = 0;
   
   if (randomNum === 1){
     state.currentLevel = state.prevLevel;
@@ -130,6 +140,7 @@ var runFromBattle = function(){
   }
   
   else{
+    state.battleFailedRunAway = 1;
     player.x = 300;
     player.y = 350;
   }
@@ -477,7 +488,7 @@ Player.prototype.handleInput = function(key) {
         if (state.monsterStatCurrent === 0) {
           state.monsterStatCurrent = 1;
         }
-        else {
+        else{
           state.monsterStatCurrent = 0;
         };
       }
@@ -529,9 +540,9 @@ Player.prototype.handleInput = function(key) {
           state.battleMenuMain = 0;
           state.battleMenuFight = 1;
           this.x = 0;
-          
         }
         else if (this.x === 530 && this.y === 420){
+          state.battleMenuMain = 0;
           runFromBattle();
         }
         else{
@@ -540,6 +551,15 @@ Player.prototype.handleInput = function(key) {
         break;
       }
     }
+    else if(state.battleFailedRunAway === 1){
+      switch(key){
+        case 'space':
+        state.battleMenuMain = 1;
+        state.battleFailedRunAway = 0;
+        break;
+      }
+    }
+    
     // Battle menu fight controls
     else if (state.battleMenuFight === 1) {
       switch(key){
@@ -558,12 +578,12 @@ Player.prototype.handleInput = function(key) {
           }
           break;
         case 'space':
-          for (var i = 0; i < state.playerBattleMonster.abilities.length; i++){
-            if (this.y === 350 +(i*40)){
-              state.playerBattleMonster.abilities[i].func();
-            }
-          };
-          break;
+        for (var i = 0; i < state.playerBattleMonster.abilities.length; i++){
+          if (this.y === 350 +(i*40)){
+            state.playerBattleMonster.abilities[i].func();
+          }
+        };
+        break;
       };
     }
     else {
