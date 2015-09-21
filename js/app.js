@@ -476,7 +476,7 @@ Player.prototype.handleInput = function(key) {
         if (state.monsterStatCurrent === 0) {
           state.monsterStatCurrent = 1;
         }
-        else {
+        else{
           state.monsterStatCurrent = 0;
         };
       }
@@ -528,7 +528,6 @@ Player.prototype.handleInput = function(key) {
           state.battleMenuMain = 0;
           state.battleMenuFight = 1;
           this.x = 0;
-          
         }
         else if (this.x === 530 && this.y === 420){
           runFromBattle();
