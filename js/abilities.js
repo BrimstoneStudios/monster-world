@@ -15,8 +15,9 @@
 // 	accuracy:,
 // 	effect:,
 // },
+
 var attackFunc = function(){
-	// Still needs random modifier, effectiveness modifier, accuracy modifier 
+	// Still needs random modifier, effectiveness modifier, accuracy modifier
 	var damage = (((this.power*state.playerBattleMonster.attack)*0.1)/state.enemyToBattle.defense);
 	state.enemyToBattle.currentHp = Math.round(state.enemyToBattle.currentHp - damage);
 	if (state.enemyToBattle.currentHp < 0){
@@ -34,6 +35,22 @@ var spAttackFunc = function(){
 		state.currentLevel = state.prevLevel;
 	}
 };
+
+var enemyAbilityUsed = function(){
+	var randomAttack = Math.floor(Math.random() * state.enemyToBattle.abilities.length);
+	state.enemyAttackUsed = state.enemyToBattle.abilities[randomAttack];
+	if(state.enemyAttackUsed.category === "special"){
+		var damage =(((state.enemyAttackUsed.power*state.enemyToBattle.spAttack)*0.1)/state.playerBattleMonster.spDefense);
+	}
+	else{
+		var damage =(((state.enemyAttackUsed.power*state.enemyToBattle.attack)*0.1)/state.playerBattleMonster.defense);
+	}
+	state.playerBattleMonster.currentHP = Math.round(state.playerBattleMonster.currentHp - damage);
+	if( state.playerBattleMonster.currentHP < 0){
+		state.playerBattleMonster.currentHp = 0;
+		state.currentLevel = state.prevLevel;
+	}
+}
 
 var abilities = {
 	scratch: {
@@ -101,7 +118,7 @@ var abilities = {
 		func: function(){
 			spAttackFunc.call(this);
 		}
-},
+	},
 	waterBlast: {
 		name: 'Water Blast',
 		type: 'water',
