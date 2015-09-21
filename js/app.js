@@ -143,7 +143,6 @@ var runFromBattle = function(){
   }
 };
 
-
 // ---------------------- MONSTERS -----------------------
 
 // Monster class determines the initial stats of the monster based on the level and the multiplier
