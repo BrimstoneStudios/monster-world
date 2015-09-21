@@ -95,7 +95,7 @@ Monster.prototype.update = function(){
 };
 
 Monster.prototype.render = function(x, y) {
-  ctx.drawImage(Resources.get(this.sprite), x, y);
+  ctx.drawImage(Resources.get(this.sprite), x, y, 100, 100);
 };
 
 // Level up method to update stats based on current level
@@ -120,18 +120,12 @@ FireType.prototype.constructor = FireType;
 FireType.prototype.type = 'fire';
 FireType.prototype.weaknesss ='water';
 
-// Dragon family - subclass of FireType
-var DragFam = function(lvl){
+
+// Drag1 monster - subclass of FireType
+var Drag1 = function(lvl){
   FireType.call(this, lvl);
 };
-DragFam.prototype = Object.create(FireType.prototype);
-DragFam.prototype.constructor = DragFam;
-
-// Drag1 monster - subclass of DragFam
-var Drag1 = function(lvl){
-  DragFam.call(this, lvl);
-};
-Drag1.prototype = Object.create(DragFam.prototype);
+Drag1.prototype = Object.create(FireType.prototype);
 Drag1.prototype.constructor = Drag1;
 Drag1.prototype.sprite = 'images/monsters/drag1.gif';
 Drag1.prototype.name = 'Drag1';
@@ -153,18 +147,12 @@ WaterType.prototype.constructor = WaterType;
 WaterType.prototype.type = 'water';
 WaterType.prototype.weaknesss = 'grass';
 
-// Hydra family - subclass of WaterType
-var HydraFam = function(lvl){
+
+// Hydra1 monster - subclass of WaterType
+var Hydra1 = function(lvl){
   WaterType.call(this, lvl);
 };
-HydraFam.prototype = Object.create(Monster.prototype);
-HydraFam.prototype.constructor = HydraFam;
-
-// Hydra1 monster - subclass of HydraFam
-var Hydra1 = function(lvl){
-  HydraFam.call(this, lvl);
-};
-Hydra1.prototype = Object.create(HydraFam.prototype);
+Hydra1.prototype = Object.create(WaterType.prototype);
 Hydra1.prototype.constructor = Hydra1;
 Hydra1.prototype.sprite = 'images/monsters/hydra1.png';
 Hydra1.prototype.name = 'Hydra1';
@@ -190,18 +178,11 @@ GrassType.prototype.constructor = GrassType;
 GrassType.prototype.type = 'grass';
 GrassType.prototype.weaknesss = 'fire';
 
-// Wormy family - subclass of GrassType
-var WormyFam = function(lvl){
+// Wormy1 monster - subclass of GrassType
+var Wormy1 = function(lvl){
   GrassType.call(this, lvl);
 };
-WormyFam.prototype = Object.create(GrassType.prototype);
-WormyFam.prototype.constructor = WormyFam;
-
-// Wormy1 monster - subclass of WormyFam
-var Wormy1 = function(lvl){
-  WormyFam.call(this, lvl);
-};
-Wormy1.prototype = Object.create(WormyFam.prototype);
+Wormy1.prototype = Object.create(GrassType.prototype);
 Wormy1.prototype.constructor = Wormy1;
 Wormy1.prototype.sprite = 'images/monsters/wormy1.gif';
 Wormy1.prototype.name = 'Wormy1';
