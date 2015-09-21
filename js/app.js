@@ -3,7 +3,6 @@ var state = {};
 var monsterInventory = [];
 var itemInventory = [];
 
-
 // ------ State Variable -------
 // Set the initial level
 state.currentLevel = 'startScreen';
@@ -19,15 +18,13 @@ state.monsterStatCurrent= 0;
 // When a monster stat is going to be shown, save the ID here
 state.monsterStatID;
 
-state.enemyToBattle;
-
 // Battle menu states, 1 = currently displaying
+state.enemyToBattle;
 state.wildIntroText = 0;
 state.battleMenuMain = 0;
 state.battleMenuFight = 0;
 state.battleMenuBag = 0;
 state.battleMenuMonsters = 0;
-
 
 
 // ---------------- MENU ----------------
@@ -83,11 +80,6 @@ Menu.prototype.renderBattleMenuMain = function() {
   ctx.fillText("Run", 580, 455);
 };
 
-
-
-
-
-
 // ---------------- BATTLE ----------------
 
 var battleEvent = function(){
@@ -96,7 +88,7 @@ var battleEvent = function(){
   state.locY = player.y;
   state.wildIntroText = 1;
   var randomNum = Math.random() * 100;
-
+  
   if(randomNum <= 95){
     state.currentLevel = 'battleLevel';
     state.enemyToBattle = enemyBattle();
@@ -113,9 +105,6 @@ var enemyBattle = function(){
     return enemyMonster;
   }
 }
-
-
-
 
 // ---------------------- MONSTERS -----------------------
 
@@ -226,11 +215,7 @@ Hydra1.prototype.spAttackMult = 1;
 Hydra1.prototype.spDefenseMult = 3;
 Hydra1.prototype.speedMult = 1;
 
-
-
-
 // ----------------------------
-
 
 // Grass type - subclass of Monster
 var GrassType = function(lvl){
@@ -245,6 +230,7 @@ GrassType.prototype.weaknesss = 'fire';
 var Wormy1 = function(lvl){
   GrassType.call(this, lvl);
 };
+
 Wormy1.prototype = Object.create(GrassType.prototype);
 Wormy1.prototype.constructor = Wormy1;
 Wormy1.prototype.sprite = 'images/monsters/wormy1.gif';
@@ -278,7 +264,6 @@ NPC.prototype.render = function() {
 
 
 // ------ PLAYER -------
-// Do we need this state.sprite?
 state.sprite;
 
 var Player = function() {
@@ -296,7 +281,7 @@ Player.prototype.update = function(){
   else if(state.currentLevel === 'charSelectLevel' || state.currentLevel === 'monsterSelectLevel'){
     this.sprite = 'images/characters/selector.png';
   }
-  else if (state.currentLevel === 'mainMenu' || state.currentLevel === 'monsterInventory'){
+  else if (state.currentLevel === 'mainMenu' || state.currentLevel === 'monsterInventory' || state.currentLevel === 'battleLevel'){
     this.sprite = 'images/characters/menuSelector.png';
   }
   else {
@@ -464,8 +449,8 @@ Player.prototype.handleInput = function(key) {
     if (state.wildIntroText === 1) {
       switch(key){
         case 'space':
-          state.wildIntroText = 0;
-          state.battleMenuMain = 1;
+        state.wildIntroText = 0;
+        state.battleMenuMain = 1;
       }
     }
     else {
