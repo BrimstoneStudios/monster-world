@@ -216,7 +216,7 @@ Drag1.prototype.defenseMult = 1;
 Drag1.prototype.spAttackMult = 2;
 Drag1.prototype.spDefenseMult = 1;
 Drag1.prototype.speedMult = 3;
-Drag1.prototype.abilities = [abilities.scratch, abilities.fireBreath];
+Drag1.prototype.abilities = [abilities.scratch, abilities.stare, abilities.fireBreath];
 
 // ----------------------------
 
@@ -244,7 +244,7 @@ Hydra1.prototype.defenseMult = 2;
 Hydra1.prototype.spAttackMult = 1;
 Hydra1.prototype.spDefenseMult = 3;
 Hydra1.prototype.speedMult = 1;
-Hydra1.prototype.abilities = [abilities.bite, abilities.waterBlast];
+Hydra1.prototype.abilities = [abilities.bite, abilities.growl, abilities.waterBlast];
 
 // ----------------------------
 
@@ -272,7 +272,7 @@ Wormy1.prototype.defenseMult = 2;
 Wormy1.prototype.spAttackMult = 2;
 Wormy1.prototype.spDefenseMult = 2;
 Wormy1.prototype.speedMult = 2;
-Wormy1.prototype.abilities = [abilities.bite, abilities.razorLeaf];
+Wormy1.prototype.abilities = [abilities.bite, abilities.stare, abilities.razorLeaf];
 
 
 // ------ NPCs -------
