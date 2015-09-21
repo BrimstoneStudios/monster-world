@@ -78,11 +78,16 @@ Menu.prototype.renderWildIntroText = function(){
 };
 Menu.prototype.renderBattleMenuMain = function() {
   ctx.font="30px Arial";
-  ctx.fillText('What will ',50 ,385 );
   ctx.fillText("Fight", 350, 385);
   ctx.fillText("Bag", 580, 385);
   ctx.fillText("Monsters", 350, 455);
   ctx.fillText("Run", 580, 455);
+};
+Menu.prototype.renderBattleMenuFight = function(){
+  ctx.font="30px Arial";
+  for (var i = 0, j = 0; i < state.playerBattleMonster.abilities.length; i++, j = j +40){
+    ctx.fillText(state.playerBattleMonster.abilities[i].name, 50, 385+j);
+  }
 };
 
 // ---------------- BATTLE ----------------
@@ -211,6 +216,7 @@ Drag1.prototype.defenseMult = 1;
 Drag1.prototype.spAttackMult = 2;
 Drag1.prototype.spDefenseMult = 1;
 Drag1.prototype.speedMult = 3;
+Drag1.prototype.abilities = [abilities.scratch, abilities.fireBreath];
 
 // ----------------------------
 
@@ -238,6 +244,7 @@ Hydra1.prototype.defenseMult = 2;
 Hydra1.prototype.spAttackMult = 1;
 Hydra1.prototype.spDefenseMult = 3;
 Hydra1.prototype.speedMult = 1;
+Hydra1.prototype.abilities = [abilities.bite, abilities.waterBlast];
 
 // ----------------------------
 
@@ -265,6 +272,7 @@ Wormy1.prototype.defenseMult = 2;
 Wormy1.prototype.spAttackMult = 2;
 Wormy1.prototype.spDefenseMult = 2;
 Wormy1.prototype.speedMult = 2;
+Wormy1.prototype.abilities = [abilities.bite, abilities.razorLeaf];
 
 
 // ------ NPCs -------
@@ -487,6 +495,7 @@ Player.prototype.handleInput = function(key) {
         break;
       };
     }
+    // battleMenuMain controls
     else if (state.battleMenuMain === 1){
       switch(key){
         case 'left':
@@ -514,9 +523,12 @@ Player.prototype.handleInput = function(key) {
         }
         break;
         case 'space':
+        
         if (this.x === 300 && this.y === 350){
           state.battleMenuMain = 0;
           state.battleMenuFight = 1;
+          this.x = 0;
+          
         }
         else if (this.x === 530 && this.y === 420){
           runFromBattle();
@@ -525,8 +537,28 @@ Player.prototype.handleInput = function(key) {
           runFromBattle();
         }
         break;
-        
       }
+    }
+    // batleMenuFight controls
+    else if (state.battleMenuFight === 1) {
+      switch(key){
+        case 'up':
+        this.y = this.y - 40;
+        if (this.y <350) {
+          this.y = 350;
+        }
+        break;
+        case 'down':
+        this.y = this.y +40;
+        var maxY =  (350+((state.playerBattleMonster.abilities.length-1) * 40));
+        console.log(maxY);
+        if (this.y > maxY) {
+          this.y = maxY;
+        }
+        break;
+        case 'space':
+        break;
+      };
     }
     else {
       switch(key){
