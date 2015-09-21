@@ -495,7 +495,7 @@ Player.prototype.handleInput = function(key) {
         break;
       };
     }
-    // battleMenuMain controls
+    // Battle menu main controls
     else if (state.battleMenuMain === 1){
       switch(key){
         case 'left':
@@ -539,7 +539,7 @@ Player.prototype.handleInput = function(key) {
         break;
       }
     }
-    // batleMenuFight controls
+    // Battle menu fight controls
     else if (state.battleMenuFight === 1) {
       switch(key){
         case 'up':
@@ -557,7 +557,12 @@ Player.prototype.handleInput = function(key) {
         }
         break;
         case 'space':
-        break;
+          for (var i = 0; i < state.playerBattleMonster.abilities.length; i++){
+            if (this.y === 350 +(i*40)){
+              state.playerBattleMonster.abilities[i].func();
+            }
+          };
+          break;
       };
     }
     else {
