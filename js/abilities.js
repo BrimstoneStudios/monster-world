@@ -22,6 +22,8 @@ var attackFunc = function(){
 	if (state.enemyToBattle.currentHp < 0){
 		state.enemyToBattle.currentHp = 0;
 		state.currentLevel = state.prevLevel;
+		player.x = state.locX;
+		player.y = state.locY;
 	}
 };
 var spAttackFunc = function(){
