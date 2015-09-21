@@ -3,7 +3,6 @@ var state = {};
 var monsterInventory = [];
 var itemInventory = [];
 
-
 // ------ State Variable -------
 // Set the initial level
 state.currentLevel = 'startScreen';
@@ -22,13 +21,14 @@ state.monsterStatID;
 state.playerBattleMonster;
 state.enemyToBattle;
 
+
 // Battle menu states, 1 = currently displaying
+state.enemyToBattle;
 state.wildIntroText = 0;
 state.battleMenuMain = 0;
 state.battleMenuFight = 0;
 state.battleMenuBag = 0;
 state.battleMenuMonsters = 0;
-
 
 
 // ---------------- MENU ----------------
@@ -85,11 +85,6 @@ Menu.prototype.renderBattleMenuMain = function() {
   ctx.fillText("Run", 580, 455);
 };
 
-
-
-
-
-
 // ---------------- BATTLE ----------------
 
 var battleEvent = function(){
@@ -98,7 +93,7 @@ var battleEvent = function(){
   state.locY = player.y;
   state.wildIntroText = 1;
   var randomNum = Math.random() * 100;
-
+  
   if(randomNum <= 95){
     state.currentLevel = 'battleLevel';
     state.playerBattleMonster = monsterInventory[0];
@@ -116,9 +111,6 @@ var enemyBattle = function(){
     return enemyMonster;
   }
 }
-
-
-
 
 // ---------------------- MONSTERS -----------------------
 
@@ -229,11 +221,7 @@ Hydra1.prototype.spAttackMult = 1;
 Hydra1.prototype.spDefenseMult = 3;
 Hydra1.prototype.speedMult = 1;
 
-
-
-
 // ----------------------------
-
 
 // Grass type - subclass of Monster
 var GrassType = function(lvl){
@@ -248,6 +236,7 @@ GrassType.prototype.weaknesss = 'fire';
 var Wormy1 = function(lvl){
   GrassType.call(this, lvl);
 };
+
 Wormy1.prototype = Object.create(GrassType.prototype);
 Wormy1.prototype.constructor = Wormy1;
 Wormy1.prototype.sprite = 'images/monsters/wormy1.gif';
@@ -281,7 +270,6 @@ NPC.prototype.render = function() {
 
 
 // ------ PLAYER -------
-// Do we need this state.sprite?
 state.sprite;
 
 var Player = function() {
@@ -513,6 +501,7 @@ Player.prototype.handleInput = function(key) {
             state.battleMenuFight = 1;
           }
           break;
+
       }
     }
     else {
