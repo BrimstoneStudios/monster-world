@@ -19,6 +19,7 @@ state.monsterStatCurrent= 0;
 // When a monster stat is going to be shown, save the ID here
 state.monsterStatID;
 
+state.playerBattleMonster;
 state.enemyToBattle;
 
 // Battle menu states, 1 = currently displaying
@@ -76,7 +77,8 @@ Menu.prototype.renderWildIntroText = function(){
   ctx.fillText('A wild ' + wildName + ' has appeared!', 50, 405);
 };
 Menu.prototype.renderBattleMenuMain = function() {
-  ctx.font="40px Arial";
+  ctx.font="30px Arial";
+  ctx.fillText('What will ',50 ,385 );
   ctx.fillText("Fight", 350, 385);
   ctx.fillText("Bag", 580, 385);
   ctx.fillText("Monsters", 350, 455);
@@ -99,6 +101,7 @@ var battleEvent = function(){
 
   if(randomNum <= 95){
     state.currentLevel = 'battleLevel';
+    state.playerBattleMonster = monsterInventory[0];
     state.enemyToBattle = enemyBattle();
   };
 };
@@ -287,6 +290,7 @@ var Player = function() {
   this.y = 0;
 };
 
+// Update Player based on state
 Player.prototype.update = function(){
   // Update the sprite based on the level
   if (state.currentLevel === 'startScreen') {
@@ -296,12 +300,18 @@ Player.prototype.update = function(){
   else if(state.currentLevel === 'charSelectLevel' || state.currentLevel === 'monsterSelectLevel'){
     this.sprite = 'images/characters/selector.png';
   }
-  else if (state.currentLevel === 'mainMenu' || state.currentLevel === 'monsterInventory'){
+  else if (state.currentLevel === 'mainMenu' || state.currentLevel === 'monsterInventory' || state.currentLevel === 'battleLevel'){
     this.sprite = 'images/characters/menuSelector.png';
   }
   else {
     this.sprite = state.sprite;
-  }
+  };
+
+  // Remove player from the screen 
+  if (state.wildIntroText === 1) {
+    this.x = -100;
+    this.y = -100;
+  };
 };
 
 // Renders the character on the screen based on it's sprite, x and  y location
@@ -466,6 +476,43 @@ Player.prototype.handleInput = function(key) {
         case 'space':
           state.wildIntroText = 0;
           state.battleMenuMain = 1;
+          this.x = 300;
+          this.y = 350;
+          break;
+      };
+    }
+    else if (state.battleMenuMain === 1){
+      switch(key){
+        case 'left':
+          this.x = this.x - 230;
+          if (this.x < 300){
+            this.x = 300;
+          }
+          break;
+        case 'up':
+          this.y = this.y - 70;
+          if (this.y < 350) {
+            this.y = 350;
+          }
+          break;
+        case 'right':
+          this.x = this.x + 230;
+          if (this.x >530) {
+            this.x = 530;
+          }
+          break;
+        case 'down':
+          this.y = this.y + 70;
+          if (this.y >420) {
+            this.y = 420;
+          }
+          break;
+        case 'space':
+          if (this.x === 300 && this.y === 350){
+            state.battleMenuMain = 0;
+            state.battleMenuFight = 1;
+          }
+          break;
       }
     }
     else {
@@ -476,7 +523,7 @@ Player.prototype.handleInput = function(key) {
         this.y = state.locY;
         break;
       }
-    }
+    };
   }
   // Controls for all the world levels
   else{
