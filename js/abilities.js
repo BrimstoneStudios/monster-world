@@ -39,16 +39,20 @@ var spAttackFunc = function(){
 var enemyAbilityUsed = function(){
 	var randomAttack = Math.floor(Math.random() * state.enemyToBattle.abilities.length);
 	state.enemyAttackUsed = state.enemyToBattle.abilities[randomAttack];
+	var damage = 0;
 	if(state.enemyAttackUsed.category === "special"){
-		var damage =(((state.enemyAttackUsed.power*state.enemyToBattle.spAttack)*0.1)/state.playerBattleMonster.spDefense);
+		damage =(((state.enemyAttackUsed.power*state.enemyToBattle.spAttack)*0.1)/state.playerBattleMonster.spDefense);
+		console.log(damage + " special");
 	}
 	else{
-		var damage =(((state.enemyAttackUsed.power*state.enemyToBattle.attack)*0.1)/state.playerBattleMonster.defense);
+		damage =(((state.enemyAttackUsed.power*state.enemyToBattle.attack)*0.1)/state.playerBattleMonster.defense);
+		console.log(damage);
+		
 	}
 	
-	state.playerBattleMonster.currentHP = Math.round(state.playerBattleMonster.currentHp - damage);
+	state.playerBattleMonster.currentHp = Math.round(state.playerBattleMonster.currentHp - damage);
 	
-	if(state.playerBattleMonster.currentHP <= 0){
+	if(state.playerBattleMonster.currentHp <= 0){
 		state.playerBattleMonster.currentHp = 0;
 		state.currentLevel = state.prevLevel;
 	}
@@ -81,7 +85,7 @@ var abilities = {
 		name: 'Growl',
 		type: 'normal',
 		category:'status',
-		power:NaN,
+		power:0,
 		accuracy:1,
 		effect:'Decrease opponent attack damage',
 		func: function() {
@@ -92,7 +96,7 @@ var abilities = {
 		name: 'Stare',
 		type: 'normal',
 		category:'status',
-		power:NaN,
+		power:0,
 		accuracy:1,
 		effect:'Decrease opponent defense',
 		func: function() {
