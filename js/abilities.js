@@ -45,8 +45,10 @@ var enemyAbilityUsed = function(){
 	else{
 		var damage =(((state.enemyAttackUsed.power*state.enemyToBattle.attack)*0.1)/state.playerBattleMonster.defense);
 	}
+	
 	state.playerBattleMonster.currentHP = Math.round(state.playerBattleMonster.currentHp - damage);
-	if( state.playerBattleMonster.currentHP < 0){
+	
+	if(state.playerBattleMonster.currentHP <= 0){
 		state.playerBattleMonster.currentHp = 0;
 		state.currentLevel = state.prevLevel;
 	}

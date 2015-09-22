@@ -150,6 +150,9 @@ var Engine = (function(global) {
       else if (state.battleMenuMain === 1) {
         menu.renderBattleMenuMain();
       }
+      else if (state.turnFor === "AI"){
+        menu.renderEnemyTurnText();
+      }
       else if (state.battleMenuFight === 1) {
         menu.renderBattleMenuFight();
       }

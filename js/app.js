@@ -102,6 +102,10 @@ Menu.prototype.renderSuccessRunAwayText = function(){
   ctx.fillText("You ran away!? You wimp...", 250, 385)
 }
 
+Menu.prototype.renderEnemyTurnText = function(){
+  ctx.font="30px Arial";
+  ctx.fillText(state.enemyToBattle.name + " hit you with " + state.enemyAttackUsed.name, 250, 385)
+}
 // ---------------- BATTLE ----------------
 
 var battleEvent = function(){
@@ -140,7 +144,7 @@ var runFromBattle = function(){
   state.battleRunAway = 0;
   state.battleMenuMain = 0;
   
-  if (randomNum === 1){
+  if (randomNum > 1){
     player.x = 200;
     player.y = 350;
     state.battleRunAway = 1;
@@ -418,7 +422,7 @@ Player.prototype.handleInput = function(key) {
       
       case 'space':
       if(this.x === 200){
-        var drag1 = new Drag1(1);
+        var drag1 = new Drag1(3);
         monsterInventory.push(drag1);
       }
       
@@ -503,121 +507,129 @@ Player.prototype.handleInput = function(key) {
   }
   // Controls for the battle system
   else if(state.currentLevel === 'battleLevel'){
-    if(state.turnFor === "player"){
-      if (state.wildIntroText === 1) {
-        switch(key){
-          case 'space':
-          state.wildIntroText = 0;
-          state.battleMenuMain = 1;
-          this.x = 300;
-          this.y = 350;
-          break;
-        };
-      }
-      // Battle menu main controls
-      else if (state.battleMenuMain === 1){
-        switch(key){
-          case 'left':
-          this.x = this.x - 230;
-          if (this.x < 300){
-            this.x = 300;
-          }
-          break;
-          case 'up':
-          this.y = this.y - 70;
-          if (this.y < 350) {
-            this.y = 350;
-          }
-          break;
-          case 'right':
-          this.x = this.x + 230;
-          if (this.x >530) {
-            this.x = 530;
-          }
-          break;
-          case 'down':
-          this.y = this.y + 70;
-          if (this.y >420) {
-            this.y = 420;
-          }
-          break;
-          case 'space':
-          
-          if (this.x === 300 && this.y === 350){
-            state.battleMenuMain = 0;
-            state.battleMenuFight = 1;
-            this.x = 0;
-          }
-          else if (this.x === 530 && this.y === 420){
-            state.battleMenuMain = 0;
-            runFromBattle();
-          }
-          else{
-            runFromBattle();
-          }
-          break;
-        }
-      }
-      else if(state.battleFailedRunAway === 1){
-        switch(key){
-          case 'space':
-          state.battleMenuMain = 1;
-          state.battleFailedRunAway = 0;
-          state.turnFor = "AI";
-          break;
-        }
-      }
-      else if (state.battleRunAway === 1){
-        switch(key){
-          case 'space':
-          state.battleRunAway = 0;
-          state.currentLevel = state.prevLevel;
-          player.x = state.locX;
-          player.y = state.locY;
-        }
-      }
-      
-      // Battle menu fight controls
-      else if (state.battleMenuFight === 1) {
-        switch(key){
-          case 'up':
-          this.y = this.y - 40;
-          if (this.y <350) {
-            this.y = 350;
-          }
-          break;
-          case 'down':
-          this.y = this.y +40;
-          var maxY =  (350+((state.playerBattleMonster.abilities.length-1) * 40));
-          console.log(maxY);
-          if (this.y > maxY) {
-            this.y = maxY;
-          }
-          break;
-          case 'space':
-          for (var i = 0; i < state.playerBattleMonster.abilities.length; i++){
-            if (this.y === 350 +(i*40)){
-              state.playerBattleMonster.abilities[i].func();
-              state.turnFor = "AI";
-            }
-          };
-          break;
-        };
-      }
-      else {
-        switch(key){
-          case 'space':
-          state.currentLevel = state.prevLevel;
-          this.x = state.locX;
-          this.y = state.locY;
-          break;
-        }
+    if (state.wildIntroText === 1) {
+      switch(key){
+        case 'space':
+        state.wildIntroText = 0;
+        state.battleMenuMain = 1;
+        this.x = 300;
+        this.y = 350;
+        break;
       };
-    }//end of player turnFor
-    else if (state.turnFor === "AI"){
-      enemyAbilityUsed();
-      state.turnFor === "player";
     }
+    else if(state.turnFor === "AI"){
+      switch(key){
+        case 'space':
+        
+        
+        state.battleMenuMain = 1;
+        state.turnFor === "player"
+        state.battleMenuMain = 1;
+        this.x = 300;
+        this.y = 305;
+      }
+    }
+    // Battle menu main controls
+    else if (state.battleMenuMain === 1){
+      switch(key){
+        case 'left':
+        this.x = this.x - 230;
+        if (this.x < 300){
+          this.x = 300;
+        }
+        break;
+        case 'up':
+        this.y = this.y - 70;
+        if (this.y < 350) {
+          this.y = 350;
+        }
+        break;
+        case 'right':
+        this.x = this.x + 230;
+        if (this.x >530) {
+          this.x = 530;
+        }
+        break;
+        case 'down':
+        this.y = this.y + 70;
+        if (this.y >420) {
+          this.y = 420;
+        }
+        break;
+        case 'space':
+        
+        if (this.x === 300 && this.y === 350){
+          state.battleMenuMain = 0;
+          state.battleMenuFight = 1;
+          this.x = 0;
+        }
+        else if (this.x === 530 && this.y === 420){
+          state.battleMenuMain = 0;
+          runFromBattle();
+        }
+        else{
+          runFromBattle();
+        }
+        break;
+      }
+    }
+    else if(state.battleFailedRunAway === 1){
+      switch(key){
+        case 'space':
+        state.battleFailedRunAway = 0;
+        enemyAbilityUsed();
+        state.turnFor = "AI";
+        break;
+      }
+    }
+    else if (state.battleRunAway === 1){
+      switch(key){
+        case 'space':
+        state.battleRunAway = 0;
+        state.currentLevel = state.prevLevel;
+        player.x = state.locX;
+        player.y = state.locY;
+      }
+    }
+    
+    // Battle menu fight controls
+    else if (state.battleMenuFight === 1) {
+      switch(key){
+        case 'up':
+        this.y = this.y - 40;
+        if (this.y <350) {
+          this.y = 350;
+        }
+        break;
+        case 'down':
+        this.y = this.y +40;
+        var maxY =  (350+((state.playerBattleMonster.abilities.length-1) * 40));
+        if (this.y > maxY) {
+          this.y = maxY;
+        }
+        break;
+        case 'space':
+        for (var i = 0; i < state.playerBattleMonster.abilities.length; i++){
+          if (this.y === 350 +(i*40)){
+            state.playerBattleMonster.abilities[i].func();
+            enemyAbilityUsed();
+            state.turnFor = "AI";
+          }
+        };
+        break;
+      };
+    }
+    else {
+      switch(key){
+        case 'space':
+        state.currentLevel = state.prevLevel;
+        this.x = state.locX;
+        this.y = state.locY;
+        break;
+      }
+    };
+    
+    
   }
   // Controls for all the world levels
   else{
