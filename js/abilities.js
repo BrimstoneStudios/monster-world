@@ -1,6 +1,6 @@
 // Types: normal, fire, water, grass
 // Categories: physical, special, status
-// Power: range from 10-???,  status moves have null power
+// Power: range from 10-???,  status moves have 0 power
 // Accuracy: Range from 0.5-1
 // Effect: A special effect on some abilities
 
@@ -15,6 +15,7 @@
 // 	accuracy:,
 // 	effect:,
 // },
+
 
 var attackFunc = function(){
 	// Still needs random modifier, effectiveness modifier, accuracy modifier
@@ -36,6 +37,8 @@ var spAttackFunc = function(){
 	}
 };
 
+
+
 var enemyAbilityUsed = function(){
 	var randomAttack = Math.floor(Math.random() * state.enemyToBattle.abilities.length);
 	state.enemyAttackUsed = state.enemyToBattle.abilities[randomAttack];
@@ -56,6 +59,7 @@ var enemyAbilityUsed = function(){
 	}
 }
 
+// Database of monster abilities 
 var abilities = {
 	scratch: {
 		name: 'Scratch',
