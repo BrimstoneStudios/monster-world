@@ -42,11 +42,9 @@ var enemyAbilityUsed = function(){
 	var damage = 0;
 	if(state.enemyAttackUsed.category === "special"){
 		damage =(((state.enemyAttackUsed.power*state.enemyToBattle.spAttack)*0.1)/state.playerBattleMonster.spDefense);
-		console.log(damage + " special");
 	}
 	else{
 		damage =(((state.enemyAttackUsed.power*state.enemyToBattle.attack)*0.1)/state.playerBattleMonster.defense);
-		console.log(damage);
 		
 	}
 	

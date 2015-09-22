@@ -608,9 +608,12 @@ Player.prototype.handleInput = function(key) {
         for (var i = 0; i < state.playerBattleMonster.abilities.length; i++){
           if (this.y === 350 +(i*40)){
             state.playerBattleMonster.abilities[i].func();
-            enemyAbilityUsed();
-            state.battleMenuFight = 0;
-            state.turnFor = "AI";
+            if(state.enemyToBattle.currentHp > 0){
+              
+              enemyAbilityUsed();
+              state.battleMenuFight = 0;
+              state.turnFor = "AI";
+            }
           }
         };
         break;
