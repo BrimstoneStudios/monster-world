@@ -609,6 +609,7 @@ Player.prototype.handleInput = function(key) {
           if (this.y === 350 +(i*40)){
             state.playerBattleMonster.abilities[i].func();
             enemyAbilityUsed();
+            state.battleMenuFight = 0;
             state.turnFor = "AI";
           }
         };
