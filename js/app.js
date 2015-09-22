@@ -110,20 +110,6 @@ Menu.prototype.renderBattleText = function(){
   }
 };
 
-Menu.prototype.renderBattleMenuMain = function() {
-  ctx.font="30px Arial";
-  ctx.fillText("Fight", 350, 385);
-  ctx.fillText("Bag", 580, 385);
-  ctx.fillText("Monsters", 350, 455);
-  ctx.fillText("Run", 580, 455);
-};
-Menu.prototype.renderBattleMenuFight = function(){
-  ctx.font="30px Arial";
-  for (var i = 0, j = 0; i < state.playerBattleMonster.abilities.length; i++, j = j +40){
-    ctx.fillText(state.playerBattleMonster.abilities[i].name, 50, 385+j);
-  }
-};
-
 // ---------------- BATTLE ----------------
 
 var battleEvent = function(){

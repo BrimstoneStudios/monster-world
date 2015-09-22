@@ -143,9 +143,7 @@ var Engine = (function(global) {
       state.playerBattleMonster.renderBtlMonStats("player");
       state.enemyToBattle.render(550, 40);
       state.enemyToBattle.renderBtlMonStats("enemy");
-      menu.renderBattleText();
-
-      
+      menu.renderBattleText(); 
     }
     
     player.render();
