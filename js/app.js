@@ -32,6 +32,7 @@ state.battleMenuBag = 0;
 state.battleMenuMonsters = 0;
 state.battleRunAway = 0;
 state.battleFailedRunAway = 0;
+state.battleWinText = 0;
 state.turnFor;
 
 // ---------------- MENU ----------------
@@ -73,12 +74,42 @@ Menu.prototype.renderMonsterStat = function(monster) {
   ctx.fillText(monsterInventory[monster].speed, 620, 305);
 };
 
-// Intro text for a wild monster encounter
-Menu.prototype.renderWildIntroText = function(){
-  var wildName = state.enemyToBattle.name;
-  ctx.font="40px Arial";
-  ctx.fillText('A wild ' + wildName + ' has appeared!', 50, 405);
+// Text and menus for battles
+Menu.prototype.renderBattleText = function(){
+  var textX = 50;
+  var textY = 405;
+  if (state.wildIntroText === 1 ) {
+    var wildName = state.enemyToBattle.name;
+    ctx.font="40px Arial";
+    ctx.fillText('A wild ' + wildName + ' has appeared!', textX, textY);
+  }
+  else if (state.battleMenuMain === 1){
+    ctx.font="30px Arial";
+    ctx.fillText("Fight", 350, 385);
+    ctx.fillText("Bag", 580, 385);
+    ctx.fillText("Monsters", 350, 455);
+    ctx.fillText("Run", 580, 455);
+  }
+  else if (state.turnFor === "AI") {
+    ctx.font="30px Arial";
+    ctx.fillText(state.enemyToBattle.name + " hit you with " + state.enemyAttackUsed.name, textX, textY)
+  }
+  else if (state.battleMenuFight === 1){
+    ctx.font="30px Arial";
+    for (var i = 0, j = 0; i < state.playerBattleMonster.abilities.length; i++, j = j +40){
+      ctx.fillText(state.playerBattleMonster.abilities[i].name, 50, 385+j);
+    }
+  }
+  else if (state.battleFailedRunAway === 1) {
+    ctx.font="30px Arial";
+    ctx.fillText("Escape failed. FIGHT!", textX, textY);   
+  }
+  else if (state.battleRunAway === 1){
+    ctx.font="30px Arial";
+    ctx.fillText("You ran away!? You wimp...", textX, textY)
+  }
 };
+
 Menu.prototype.renderBattleMenuMain = function() {
   ctx.font="30px Arial";
   ctx.fillText("Fight", 350, 385);
@@ -93,20 +124,6 @@ Menu.prototype.renderBattleMenuFight = function(){
   }
 };
 
-Menu.prototype.renderFailedRunAwayText = function(){
-  ctx.font="30px Arial";
-  ctx.fillText("Escape failed. FIGHT!", 350, 385);
-}
-
-Menu.prototype.renderSuccessRunAwayText = function(){
-  ctx.font="30px Arial";
-  ctx.fillText("You ran away!? You wimp...", 250, 385)
-}
-
-Menu.prototype.renderEnemyTurnText = function(){
-  ctx.font="30px Arial";
-  ctx.fillText(state.enemyToBattle.name + " hit you with " + state.enemyAttackUsed.name, 250, 385)
-}
 // ---------------- BATTLE ----------------
 
 var battleEvent = function(){
@@ -361,11 +378,11 @@ Player.prototype.handleInput = function(key) {
   // Controls for the start screen
   if (state.currentLevel === 'startScreen') {
     switch(key){
-      case 'space':
-      state.currentLevel = 'charSelectLevel' ;
-      this.x = 250;
-      this.y = 200;
-      default:
+        case 'space':
+        state.currentLevel = 'charSelectLevel' ;
+        this.x = 250;
+        this.y = 200;
+        default:
       break;
     };
   }
@@ -557,13 +574,13 @@ Player.prototype.handleInput = function(key) {
             state.battleMenuFight = 1;
             this.x = 0;
           }
-        else if (this.x === 530 && this.y === 420){
-          state.battleMenuMain = 0;
-          runFromBattle();
-        }
-        else{
-          runFromBattle();
-        }
+          else if (this.x === 530 && this.y === 420){
+            state.battleMenuMain = 0;
+            runFromBattle();
+          }
+          else{
+            // runFromBattle();
+          }
         break;
       }
     }
@@ -611,11 +628,11 @@ Player.prototype.handleInput = function(key) {
               if(state.enemyToBattle.currentHp > 0){
                 
                 enemyAbilityUsed();
-                state.battleMenuFight = 0;
                 state.turnFor = "AI";
               }
             }
           };
+          state.battleMenuFight = 0;
         break;
       };
     }
