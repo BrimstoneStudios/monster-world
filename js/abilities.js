@@ -15,8 +15,9 @@
 // 	accuracy:,
 // 	effect:,
 // },
+
 var attackFunc = function(){
-	// Still needs random modifier, effectiveness modifier, accuracy modifier 
+	// Still needs random modifier, effectiveness modifier, accuracy modifier
 	var damage = (((this.power*state.playerBattleMonster.attack)*0.1)/state.enemyToBattle.defense);
 	state.enemyToBattle.currentHp = Math.round(state.enemyToBattle.currentHp - damage);
 	if (state.enemyToBattle.currentHp < 0){
@@ -34,6 +35,26 @@ var spAttackFunc = function(){
 		state.currentLevel = state.prevLevel;
 	}
 };
+
+var enemyAbilityUsed = function(){
+	var randomAttack = Math.floor(Math.random() * state.enemyToBattle.abilities.length);
+	state.enemyAttackUsed = state.enemyToBattle.abilities[randomAttack];
+	var damage = 0;
+	if(state.enemyAttackUsed.category === "special"){
+		damage =(((state.enemyAttackUsed.power*state.enemyToBattle.spAttack)*0.1)/state.playerBattleMonster.spDefense);
+	}
+	else{
+		damage =(((state.enemyAttackUsed.power*state.enemyToBattle.attack)*0.1)/state.playerBattleMonster.defense);
+		
+	}
+	
+	state.playerBattleMonster.currentHp = Math.round(state.playerBattleMonster.currentHp - damage);
+	
+	if(state.playerBattleMonster.currentHp <= 0){
+		state.playerBattleMonster.currentHp = 0;
+		state.currentLevel = state.prevLevel;
+	}
+}
 
 var abilities = {
 	scratch: {
@@ -62,7 +83,7 @@ var abilities = {
 		name: 'Growl',
 		type: 'normal',
 		category:'status',
-		power:NaN,
+		power:0,
 		accuracy:1,
 		effect:'Decrease opponent attack damage',
 		func: function() {
@@ -73,7 +94,7 @@ var abilities = {
 		name: 'Stare',
 		type: 'normal',
 		category:'status',
-		power:NaN,
+		power:0,
 		accuracy:1,
 		effect:'Decrease opponent defense',
 		func: function() {
@@ -101,7 +122,7 @@ var abilities = {
 		func: function(){
 			spAttackFunc.call(this);
 		}
-},
+	},
 	waterBlast: {
 		name: 'Water Blast',
 		type: 'water',
