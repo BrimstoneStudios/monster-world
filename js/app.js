@@ -24,6 +24,7 @@ state.enemyToBattle;
 
 // Battle menu states, 1 = currently displaying
 state.enemyToBattle;
+state.enemyAttackUsed;
 state.wildIntroText = 0;
 state.battleMenuMain = 0;
 state.battleMenuFight = 0;
@@ -31,12 +32,10 @@ state.battleMenuBag = 0;
 state.battleMenuMonsters = 0;
 state.battleRunAway = 0;
 state.battleFailedRunAway = 0;
-
-
+state.turnFor;
 
 // ---------------- MENU ----------------
 var Menu = function(){
-  
 };
 
 // Main menu
@@ -98,6 +97,15 @@ Menu.prototype.renderFailedRunAwayText = function(){
   ctx.fillText("Escape failed. FIGHT!", 350, 385);
 }
 
+Menu.prototype.renderSuccessRunAwayText = function(){
+  ctx.font="30px Arial";
+  ctx.fillText("You ran away!? You wimp...", 250, 385)
+}
+
+Menu.prototype.renderEnemyTurnText = function(){
+  ctx.font="30px Arial";
+  ctx.fillText(state.enemyToBattle.name + " hit you with " + state.enemyAttackUsed.name, 250, 385)
+}
 // ---------------- BATTLE ----------------
 
 var battleEvent = function(){
@@ -108,6 +116,7 @@ var battleEvent = function(){
   var randomNum = Math.random() * 100;
   
   if(randomNum <= 25){
+    state.turnFor = "player";
     state.wildIntroText = 1;
     state.currentLevel = 'battleLevel';
     state.playerBattleMonster = monsterInventory[0];
@@ -133,10 +142,10 @@ var runFromBattle = function(){
   state.battleRunAway = 0;
   state.battleMenuMain = 0;
   
-  if (randomNum === 1){
-    state.currentLevel = state.prevLevel;
-    player.x = state.locX;
-    player.y = state.locY;
+  if (randomNum > 1){
+    player.x = 200;
+    player.y = 350;
+    state.battleRunAway = 1;
   }
   
   else{
@@ -145,7 +154,6 @@ var runFromBattle = function(){
     player.y = 350;
   }
 };
-
 
 // ---------------------- MONSTERS -----------------------
 
@@ -412,7 +420,7 @@ Player.prototype.handleInput = function(key) {
       
       case 'space':
       if(this.x === 200){
-        var drag1 = new Drag1(1);
+        var drag1 = new Drag1(3);
         monsterInventory.push(drag1);
       }
       
@@ -507,6 +515,16 @@ Player.prototype.handleInput = function(key) {
         break;
       };
     }
+    else if(state.turnFor === "AI"){
+      switch(key){
+        case 'space':
+        state.turnFor = "player"
+        state.battleMenuMain = 1;
+        this.x = 300;
+        this.y = 350;
+        break;
+      };
+    }
     // Battle menu main controls
     else if (state.battleMenuMain === 1){
       switch(key){
@@ -554,9 +572,19 @@ Player.prototype.handleInput = function(key) {
     else if(state.battleFailedRunAway === 1){
       switch(key){
         case 'space':
-        state.battleMenuMain = 1;
         state.battleFailedRunAway = 0;
+        enemyAbilityUsed();
+        state.turnFor = "AI";
         break;
+      }
+    }
+    else if (state.battleRunAway === 1){
+      switch(key){
+        case 'space':
+        state.battleRunAway = 0;
+        state.currentLevel = state.prevLevel;
+        player.x = state.locX;
+        player.y = state.locY;
       }
     }
     
@@ -570,17 +598,22 @@ Player.prototype.handleInput = function(key) {
         }
         break;
         case 'down':
-          this.y = this.y +40;
-          var maxY =  (350+((state.playerBattleMonster.abilities.length-1) * 40));
-          console.log(maxY);
-          if (this.y > maxY) {
-            this.y = maxY;
-          }
-          break;
+        this.y = this.y +40;
+        var maxY =  (350+((state.playerBattleMonster.abilities.length-1) * 40));
+        if (this.y > maxY) {
+          this.y = maxY;
+        }
+        break;
         case 'space':
         for (var i = 0; i < state.playerBattleMonster.abilities.length; i++){
           if (this.y === 350 +(i*40)){
             state.playerBattleMonster.abilities[i].func();
+            if(state.enemyToBattle.currentHp > 0){
+              
+              enemyAbilityUsed();
+              state.battleMenuFight = 0;
+              state.turnFor = "AI";
+            }
           }
         };
         break;
@@ -589,67 +622,69 @@ Player.prototype.handleInput = function(key) {
     else {
       switch(key){
         case 'space':
-          state.currentLevel = state.prevLevel;
-          this.x = state.locX;
-          this.y = state.locY;
-          break;
+        state.currentLevel = state.prevLevel;
+        this.x = state.locX;
+        this.y = state.locY;
+        break;
       }
     };
+    
+    
   }
   // Controls for all the world levels
   else{
     switch(key) {
       case 'shift':
-        state.prevLevel = state.currentLevel;
-        state.locX = this.x;
-        state.locY = this.y;
-        state.currentLevel = 'mainMenu';
-        this.x = 180;
-        this.y = 157;
+      state.prevLevel = state.currentLevel;
+      state.locX = this.x;
+      state.locY = this.y;
+      state.currentLevel = 'mainMenu';
+      this.x = 180;
+      this.y = 157;
       break;
       
       case 'left':
-        this.x = this.x - 50;
-        battleEvent();
-        if (state.currentLevel ==='secondLevel' && this.x < 10) {
-          this.x = 10;
-          //Changes the level to the startScreen once player reach far left of screen
-          state.currentLevel = 'firstLevel';
-          this.x = 655;
-        }
-        else if (this.x <10) {
-          this.x=10;
-        }
+      this.x = this.x - 50;
+      battleEvent();
+      if (state.currentLevel ==='secondLevel' && this.x < 10) {
+        this.x = 10;
+        //Changes the level to the startScreen once player reach far left of screen
+        state.currentLevel = 'firstLevel';
+        this.x = 655;
+      }
+      else if (this.x <10) {
+        this.x=10;
+      }
       break;
       
       case 'up':
-        this.y = this.y - 50;
-        battleEvent();
-        if (this.y < 10){
-          this.y = 10;
-        }
+      this.y = this.y - 50;
+      battleEvent();
+      if (this.y < 10){
+        this.y = 10;
+      }
       break;
       
       case 'right':
-        this.x = this.x + 50;
-        battleEvent();
-        if (state.currentLevel === 'firstLevel' && this.x > 660) {
-          this.x = 660;
-          //Changes the level to the firstLevel once player reaches far right of screen
-          state.currentLevel = 'secondLevel';
-          this.x = 10;
-        }
-        else if (this.x >660) {
-          this.x = 660;
-        };
+      this.x = this.x + 50;
+      battleEvent();
+      if (state.currentLevel === 'firstLevel' && this.x > 660) {
+        this.x = 660;
+        //Changes the level to the firstLevel once player reaches far right of screen
+        state.currentLevel = 'secondLevel';
+        this.x = 10;
+      }
+      else if (this.x >660) {
+        this.x = 660;
+      };
       break;
       
       case 'down':
-        this.y = this.y + 50;
-        battleEvent();
-        if (this.y > 450) {
-          this.y = 450;
-        }
+      this.y = this.y + 50;
+      battleEvent();
+      if (this.y > 450) {
+        this.y = 450;
+      }
       break;
       default:
       break;
