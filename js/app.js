@@ -142,7 +142,7 @@ var runFromBattle = function(){
   state.battleRunAway = 0;
   state.battleMenuMain = 0;
   
-  if (randomNum > 1){
+  if (randomNum === 1){
     player.x = 200;
     player.y = 350;
     state.battleRunAway = 1;
@@ -582,6 +582,7 @@ Player.prototype.handleInput = function(key) {
       switch(key){
         case 'space':
         state.battleRunAway = 0;
+        state.battleMenuMain = 1;
         state.currentLevel = state.prevLevel;
         player.x = state.locX;
         player.y = state.locY;
