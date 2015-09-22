@@ -135,8 +135,6 @@ var enemyBattle = function(){
   }
 }
 
-
-
 //function to run from battle when run is selected in the menu
 var runFromBattle = function(){
   var randomNum = Math.floor(Math.random()*2); //produces either 0 or 1
@@ -520,14 +518,12 @@ Player.prototype.handleInput = function(key) {
     else if(state.turnFor === "AI"){
       switch(key){
         case 'space':
-        
-        
-        state.battleMenuMain = 1;
-        state.turnFor === "player"
+        state.turnFor = "player"
         state.battleMenuMain = 1;
         this.x = 300;
-        this.y = 305;
-      }
+        this.y = 350;
+        break;
+      };
     }
     // Battle menu main controls
     else if (state.battleMenuMain === 1){
