@@ -87,8 +87,13 @@ Menu.prototype.renderBattleText = function(){
     ctx.fillText(state.enemyToBattle.name + " hit you with " + state.enemyAttackUsed.name, textX, textY);
   }
   else if (state.battleState === 'battleMonsterDie'){
-    ctx.fillText(state.enemyToBattle.name + " hit you with " + state.enemyAttackUsed.name, textX, textY);
-    ctx.fillText(state.playerBattleMonster.name + " has died!", textX, textY+50);
+    if(state.playerBattleMonster.currentHp === 0){
+      ctx.fillText(state.playerBattleMonster.name + " has died!", textX, textY+50);
+    }
+    else{
+      ctx.fillText(state.enemyMonster.name + " has died!", textX, textY+50);
+      
+    }
   }
   else if (state.battleState === 'battleMenuFight'){
     ctx.font="30px Arial";
@@ -570,7 +575,12 @@ Player.prototype.handleInput = function(key) {
         case 'space':
         this.x = 300;
         this.y = 350;
-        state.battleState = 'battleMenuMain';
+        if(state.playerBattleMonster.currentHp === 0){
+          state.battleState = 'battleMonsterDie';
+        }
+        else{
+          state.battleState = 'battleMenuMain';
+        }
         break;
       }
     }
@@ -656,12 +666,11 @@ Player.prototype.handleInput = function(key) {
           if (this.y === 350 +(i*40)){
             state.playerBattleMonster.abilities[i].func();
             if(state.enemyToBattle.currentHp > 0){
-              
               enemyAbilityUsed();
               state.battleState = 'AI';
             }
             else{
-              state.battleState = 0;
+              state.battleState = 'battleMonsterDie';
             }
           }
         };
