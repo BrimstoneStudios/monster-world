@@ -25,15 +25,7 @@ state.enemyToBattle;
 // Battle menu states, 1 = currently displaying
 state.enemyToBattle;
 state.enemyAttackUsed;
-state.wildIntroText = 0;
-state.battleMenuMain = 0;
-state.battleMenuFight = 0;
-state.battleMenuBag = 0;
-state.battleMenuMonsters = 0;
-state.battleRunAway = 0;
-state.battleFailedRunAway = 0;
-state.battleMonsterDie = 0;
-state.battleWinText = 0;
+state.battleState;
 state.turnFor;
 
 // ---------------- MENU ----------------
@@ -79,47 +71,43 @@ Menu.prototype.renderMonsterStat = function(monster) {
 Menu.prototype.renderBattleText = function(){
   var textX = 50;
   var textY = 405;
-  if (state.wildIntroText === 1 ) {
+  if (state.battleState === 'wildIntroText' ) {
     var wildName = state.enemyToBattle.name;
     ctx.font="40px Arial";
     ctx.fillText('A wild ' + wildName + ' has appeared!', textX, textY);
   }
-  else if (state.battleMenuMain === 1){
+  else if (state.battleState === 'battleMenuMain'){
     ctx.font="30px Arial";
     ctx.fillText("Fight", 350, 385);
     ctx.fillText("Bag", 580, 385);
     ctx.fillText("Monsters", 350, 455);
     ctx.fillText("Run", 580, 455);
   }
-  else if (state.turnFor === "AI") {
+  else if (state.battleState === 'AI') {
     ctx.font="30px Arial";
-    console.log(state.battleMonsterDie);
-    if (state.battleMonsterDie === 1){
+    if (state.battleState === 'battleMonsterDie'){
       ctx.fillText(state.enemyToBattle.name + " hit you with " + state.enemyAttackUsed.name, textX, textY);
       ctx.fillText(state.playerBattleMonster.name + " has died!", textX, textY+50);
-      // monsterInventory.splice(0, 1)
-      console.log(state.battleMonsterDie);
-      // state.battleMonsterDie = 0;
     }
     else {
       ctx.fillText(state.enemyToBattle.name + " hit you with " + state.enemyAttackUsed.name, textX, textY);
     }
   }
-  else if (state.battleMenuFight === 1){
+  else if (state.battleState === 'battleMenuFight'){
     ctx.font="30px Arial";
     for (var i = 0, j = 0; i < state.playerBattleMonster.abilities.length; i++, j = j +40){
       ctx.fillText(state.playerBattleMonster.abilities[i].name, 50, 385+j);
     }
   }
-  else if (state.battleFailedRunAway === 1) {
+  else if (state.battleState === 'battleFailedRunAway') {
     ctx.font="30px Arial";
-    ctx.fillText("Escape failed. FIGHT!", textX, textY);   
+    ctx.fillText("Escape failed. FIGHT!", textX, textY);
   }
-  else if (state.battleRunAway === 1){
+  else if (state.battleState === 'battleRunAway'){
     ctx.font="30px Arial";
     ctx.fillText("You ran away!? You wimp...", textX, textY)
   }
-  else if (state.battleWinText === 1){
+  else if (state.battleState === 'battleWinText'){
     ctx.font="30px Arial";
     ctx.fillText('You have defeated '+state.enemyToBattle.name+'!', textX, textY)
   }
@@ -135,8 +123,7 @@ var battleEvent = function(){
   var randomNum = Math.random() * 100;
   
   if(randomNum <= 25){
-    state.turnFor = "player";
-    state.wildIntroText = 1;
+    state.battleState = 'wildIntroText';
     state.currentLevel = 'battleLevel';
     state.playerBattleMonster = monsterInventory[0];
     state.enemyToBattle = enemyBattle();
@@ -157,18 +144,16 @@ var enemyBattle = function(){
 //function to run from battle when run is selected in the menu
 var runFromBattle = function(){
   var randomNum = Math.floor(Math.random()*2); //produces either 0 or 1
-  state.battleFailedRunAway = 0;
-  state.battleRunAway = 0;
-  state.battleMenuMain = 0;
+  state.battleState = 0;
   
   if (randomNum === 1){
     player.x = 200;
     player.y = 350;
-    state.battleRunAway = 1;
+    state.battleState = 'battleRunAway';
   }
   
   else{
-    state.battleFailedRunAway = 1;
+    state.battleState = 'battleFailedRunAway';
     player.x = 300;
     player.y = 350;
   }
@@ -389,7 +374,7 @@ Player.prototype.update = function(){
   };
   
   // Remove player from the screen
-  if (state.wildIntroText === 1) {
+  if (state.battleState === 'wildIntroText') {
     this.x = -100;
     this.y = -100;
   };
@@ -407,11 +392,11 @@ Player.prototype.handleInput = function(key) {
   // Controls for the start screen
   if (state.currentLevel === 'startScreen') {
     switch(key){
-        case 'space':
-        state.currentLevel = 'charSelectLevel' ;
-        this.x = 250;
-        this.y = 200;
-        default:
+      case 'space':
+      state.currentLevel = 'charSelectLevel' ;
+      this.x = 250;
+      this.y = 200;
+      default:
       break;
     };
   }
@@ -420,27 +405,27 @@ Player.prototype.handleInput = function(key) {
   else if(state.currentLevel === 'charSelectLevel'){
     switch(key) {
       case 'left':
-        this.x = this.x - 150;
-        if (this.x < 250) {
-          this.x = 250;
-        }
+      this.x = this.x - 150;
+      if (this.x < 250) {
+        this.x = 250;
+      }
       break;
       case 'right':
-        this.x = this.x + 150;
-        if (this.x > 400) {
-          this.x = 400;
-        }
+      this.x = this.x + 150;
+      if (this.x > 400) {
+        this.x = 400;
+      }
       break;
       case 'space':
-        state.currentLevel = 'monsterSelectLevel';
-        if(this.x === 400){
-          state.sprite = 'images/characters/monk.gif';
-        }
-        else{
-          state.sprite = 'images/characters/deathCaster.gif';
-        }
-        this.x = 200;
-        this.y = 200;
+      state.currentLevel = 'monsterSelectLevel';
+      if(this.x === 400){
+        state.sprite = 'images/characters/monk.gif';
+      }
+      else{
+        state.sprite = 'images/characters/deathCaster.gif';
+      }
+      this.x = 200;
+      this.y = 200;
       break;
     };
   }
@@ -449,37 +434,37 @@ Player.prototype.handleInput = function(key) {
   else if(state.currentLevel === 'monsterSelectLevel'){
     switch(key) {
       case 'left':
-        this.x = this.x - 100;
-        if (this.x < 200) {
-          this.x = 200;
-        }
+      this.x = this.x - 100;
+      if (this.x < 200) {
+        this.x = 200;
+      }
       break;
       
       case 'right':
-        this.x = this.x + 100;
-        if (this.x > 400) {
-          this.x = 400;
-        }
+      this.x = this.x + 100;
+      if (this.x > 400) {
+        this.x = 400;
+      }
       break;
       
       
       case 'space':
-        if(this.x === 200){
-          var drag1 = new Drag1(1);
-          monsterInventory.push(drag1);
-        }
-        
-        else if(this.x === 300){
-          var hydra1 = new Hydra1(2);
-          monsterInventory.push(hydra1);
-        }
-        else{
-          var wormy1 = new Wormy1(3);
-          monsterInventory.push(wormy1);
-        }
-        state.currentLevel = 'firstLevel';
-        this.x = 10;
-        this.y = 10;
+      if(this.x === 200){
+        var drag1 = new Drag1(1);
+        monsterInventory.push(drag1);
+      }
+      
+      else if(this.x === 300){
+        var hydra1 = new Hydra1(2);
+        monsterInventory.push(hydra1);
+      }
+      else{
+        var wormy1 = new Wormy1(3);
+        monsterInventory.push(wormy1);
+      }
+      state.currentLevel = 'firstLevel';
+      this.x = 10;
+      this.y = 10;
       break;
     }
   }
@@ -488,28 +473,28 @@ Player.prototype.handleInput = function(key) {
   else if (state.currentLevel === 'mainMenu'){
     switch(key){
       case 'shift':
-        state.currentLevel = state.prevLevel;
-        this.x = state.locX;
-        this.y = state.locY;
+      state.currentLevel = state.prevLevel;
+      this.x = state.locX;
+      this.y = state.locY;
       break;
-        case 'up':
-        this.y = this.y -90;
-        if (this.y < 140){
-          this.y=157;
-        }
+      case 'up':
+      this.y = this.y -90;
+      if (this.y < 140){
+        this.y=157;
+      }
       break;
-        case 'down':
-        this.y = this.y + 90;
-        if (this.y >250) {
-          this.y = 247;
-        }
-        break;
-        case 'space':
-        if (this.y === 247){
-          state.currentLevel = 'monsterInventory';
-          this.x = 15;
-          this.y = 42;
-        }
+      case 'down':
+      this.y = this.y + 90;
+      if (this.y >250) {
+        this.y = 247;
+      }
+      break;
+      case 'space':
+      if (this.y === 247){
+        state.currentLevel = 'monsterInventory';
+        this.x = 15;
+        this.y = 42;
+      }
       break;
     }
   }
@@ -518,176 +503,170 @@ Player.prototype.handleInput = function(key) {
   else if (state.currentLevel === 'monsterInventory'){
     switch(key){
       case 'shift':
-        state.currentLevel = state.prevLevel;
-        this.x = state.locX;
-        this.y = state.locY;
+      state.currentLevel = state.prevLevel;
+      this.x = state.locX;
+      this.y = state.locY;
       break;
       
       case 'up' :
-        this.y = this.y -90;
-        if (this.y < 42){
-          this.y=42;
-        }
+      this.y = this.y -90;
+      if (this.y < 42){
+        this.y=42;
+      }
       break;
       case 'down':
-        this.y = this.y + 90;
-        if (this.y > ((monsterInventory.length-1) *90)+42) {
-          this.y = ((monsterInventory.length-1) *90)+42;
-        }
+      this.y = this.y + 90;
+      if (this.y > ((monsterInventory.length-1) *90)+42) {
+        this.y = ((monsterInventory.length-1) *90)+42;
+      }
       break;
-        case 'space':
-        if (this.y === 42){
-          state.monsterStatID = 0;
-          if (state.monsterStatCurrent === 0) {
-            state.monsterStatCurrent = 1;
-          }
-          else{
-            state.monsterStatCurrent = 0;
-          };
+      case 'space':
+      if (this.y === 42){
+        state.monsterStatID = 0;
+        if (state.monsterStatCurrent === 0) {
+          state.monsterStatCurrent = 1;
         }
+        else{
+          state.monsterStatCurrent = 0;
+        };
+      }
       break;
     }
   }
   // Controls for the battle system
   else if(state.currentLevel === 'battleLevel'){
-    if (state.wildIntroText === 1) {
+    if (state.battleState === 'wildIntroText') {
       switch(key){
         case 'space':
-          state.wildIntroText = 0;
-          state.battleMenuMain = 1;
-          this.x = 300;
-          this.y = 350;
+        state.battleState = 'battleMenuMain';
+        this.x = 300;
+        this.y = 350;
         break;
       };
     }
-    else if(state.turnFor === "AI"){
+    else if(state.battleState === 'AI'){
       switch(key){
         case 'space':
-          if (state.battleMonsterDie === 1){
-            state.currentLevel = state.prevLevel;
-            this.x = state.locX;
-            this.y = state.locY;
-            state.battleMonsterDie = 0;
-            monsterInventory.splice(0, 1);
-            if (monsterInventory === []) {
-              var playerMon = new PlayerMon(2);
-              monsterInventory.push(playerMon);
-              state.playerMonster = 1;
-            }
+        if (state.battleState === 'battleMonsterDie'){
+          state.currentLevel = state.prevLevel;
+          this.x = state.locX;
+          this.y = state.locY;
+          state.battleState = 0;
+          monsterInventory.splice(0, 1);
+          if (monsterInventory === []) {
+            var playerMon = new PlayerMon(2);
+            monsterInventory.push(playerMon);
+            state.playerMonster = 1;
           }
-          else {
-            state.turnFor = "player"
-            state.battleMenuMain = 1;
-            this.x = 300;
-            this.y = 350;
-            
-          }
+        }
+        else {
+          state.battleState = 'battleMenuMain';
+          this.x = 300;
+          this.y = 350;
+          
+        }
         break;
       };
     }
     // Battle menu main controls
-    else if (state.battleMenuMain === 1){
+    else if (state.battleState === 'battleMenuMain'){
       switch(key){
         case 'left':
-          this.x = this.x - 230;
-          if (this.x < 300){
-            this.x = 300;
-          }
+        this.x = this.x - 230;
+        if (this.x < 300){
+          this.x = 300;
+        }
         break;
         case 'up':
-          this.y = this.y - 70;
-          if (this.y < 350) {
-            this.y = 350;
-          }
+        this.y = this.y - 70;
+        if (this.y < 350) {
+          this.y = 350;
+        }
         break;
         case 'right':
-          this.x = this.x + 230;
-          if (this.x >530) {
-            this.x = 530;
-          }
+        this.x = this.x + 230;
+        if (this.x >530) {
+          this.x = 530;
+        }
         break;
         case 'down':
-          this.y = this.y + 70;
-          if (this.y >420) {
-            this.y = 420;
-          }
+        this.y = this.y + 70;
+        if (this.y >420) {
+          this.y = 420;
+        }
         break;
         case 'space':
-          if (this.x === 300 && this.y === 350){
-            state.battleMenuMain = 0;
-            state.battleMenuFight = 1;
-            this.x = 0;
-          }
-          else if (this.x === 530 && this.y === 420){
-            state.battleMenuMain = 0;
-            runFromBattle();
-          }
-          else{
-            // runFromBattle();
-          }
-        break;
-      }
-    }
-    else if(state.battleFailedRunAway === 1){
-      switch(key){
-        case 'space':
-          state.battleFailedRunAway = 0;
-          state.turnFor = "AI";
-          enemyAbilityUsed();
+        if (this.x === 300 && this.y === 350){
+          state.battleState = 'battleMenuFight';
+          this.x = 0;
+        }
+        else if (this.x === 530 && this.y === 420){
+          state.battleState = 0;
+          runFromBattle();
+        }
+        else{
+          // runFromBattle();
+        }
         break;
       }
     }
-    else if (state.battleRunAway === 1){
+    else if(state.battleState === 'battleFailedRunAway'){
       switch(key){
         case 'space':
-          state.battleRunAway = 0;
-          state.battleMenuMain = 1;
-          state.currentLevel = state.prevLevel;
-          player.x = state.locX;
-          player.y = state.locY;
+        state.battleState = 'AI';
+        enemyAbilityUsed();
+        break;
+      }
+    }
+    else if (state.battleState === 'battleRunAway'){
+      switch(key){
+        case 'space':
+        state.battleState = 'battleMenuMain';
+        state.currentLevel = state.prevLevel;
+        player.x = state.locX;
+        player.y = state.locY;
         break;
       }
     }
     
     // Battle menu fight controls
-    else if (state.battleMenuFight === 1) {
+    else if (state.battleState === 'battleMenuFight') {
       switch(key){
         case 'up':
-          this.y = this.y - 40;
-          if (this.y <350) {
-            this.y = 350;
-          }
+        this.y = this.y - 40;
+        if (this.y <350) {
+          this.y = 350;
+        }
         break;
         case 'down':
-          this.y = this.y +40;
-          var maxY =  (350+((state.playerBattleMonster.abilities.length-1) * 40));
-          if (this.y > maxY) {
-            this.y = maxY;
-          }
+        this.y = this.y +40;
+        var maxY =  (350+((state.playerBattleMonster.abilities.length-1) * 40));
+        if (this.y > maxY) {
+          this.y = maxY;
+        }
         break;
         case 'space':
-          for (var i = 0; i < state.playerBattleMonster.abilities.length; i++){
-            if (this.y === 350 +(i*40)){
-              state.playerBattleMonster.abilities[i].func();
-              if(state.enemyToBattle.currentHp > 0){
-                
-                enemyAbilityUsed();
-                state.turnFor = "AI";
-              }
+        for (var i = 0; i < state.playerBattleMonster.abilities.length; i++){
+          if (this.y === 350 +(i*40)){
+            state.playerBattleMonster.abilities[i].func();
+            if(state.enemyToBattle.currentHp > 0){
+              
+              enemyAbilityUsed();
+              state.turnFor = 'AI';
             }
-          };
-          state.battleMenuFight = 0;
+          }
+        };
+        state.battleState = 0;
         break;
       };
     }
-    else if (state.battleWinText === 1){
+    else if (state.battleState === 'battleWinText'){
       switch(key){
         case 'space':
-          state.currentLevel = state.prevLevel;
-          this.x = state.locX;
-          this.y = state.locY;
-          state.battleWinText = 0;
-          // state.battleMonsterDie = 0;
+        state.currentLevel = state.prevLevel;
+        this.x = state.locX;
+        this.y = state.locY;
+        state.battleState = 0;
         break;
       }
     };
