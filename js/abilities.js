@@ -56,16 +56,15 @@ var enemyAbilityUsed = function(){
 	if(state.playerBattleMonster.currentHp <= 0){
 		state.playerBattleMonster.currentHp = 0;
 		if (state.playerBattleMonster.player === 1){
-			// Render game over 
+			// Render game over
 			state.battleState = 0;
 			state.gameOver = 1;
 		}
-		state.battleMonsterDie = 1;
-		console.log('Dead');
+		state.battleState = 'battleMonsterDie';
 	}
 }
 
-// Database of monster abilities 
+// Database of monster abilities
 var abilities = {
 	scratch: {
 		name: 'Scratch',

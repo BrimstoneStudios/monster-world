@@ -23,10 +23,8 @@ state.enemyToBattle;
 
 
 // Battle menu states, 1 = currently displaying
-state.enemyToBattle;
 state.enemyAttackUsed;
 state.battleState;
-state.turnFor;
 
 // ---------------- MENU ----------------
 var Menu = function(){
@@ -85,13 +83,14 @@ Menu.prototype.renderBattleText = function(){
   }
   else if (state.battleState === 'AI') {
     ctx.font="30px Arial";
-
-    if (state.battleState === 'battleMonsterDie'){
-      ctx.fillText(state.enemyToBattle.name + " hit you with " + state.enemyAttackUsed.name, textX, textY);
+    ctx.fillText(state.enemyToBattle.name + " hit you with " + state.enemyAttackUsed.name, textX, textY);
+  }
+  else if (state.battleState === 'battleMonsterDie'){
+    if(state.playerBattleMonster.currentHp === 0){
       ctx.fillText(state.playerBattleMonster.name + " has died!", textX, textY+50);
     }
-    else {
-      ctx.fillText(state.enemyToBattle.name + " hit you with " + state.enemyAttackUsed.name, textX, textY);
+    else{
+      ctx.fillText(state.enemyToBattle.name + " has died!", textX, textY+50);
     }
   }
   else if (state.battleState === 'battleMenuFight'){
@@ -110,7 +109,7 @@ Menu.prototype.renderBattleText = function(){
   }
   else if (state.battleState === 'battleWinText'){
     ctx.font="30px Arial";
-    ctx.fillText('You have defeated '+state.enemyToBattle.name+'!', textX, textY)
+    ctx.fillText('You have defeated ' + state.enemyToBattle.name + '!', textX, textY)
   }
 };
 
@@ -145,8 +144,6 @@ var enemyBattle = function(){
 //function to run from battle when run is selected in the menu
 var runFromBattle = function(){
   var randomNum = Math.floor(Math.random()*2); //produces either 0 or 1
-  state.battleState = 0;
-  
   if (randomNum === 1){
     player.x = 200;
     player.y = 350;
@@ -557,19 +554,19 @@ Player.prototype.handleInput = function(key) {
       };
     }
     // Controls for after an opponent attacks
-    else if(state.battleState === 'AI'){
+    else if (state.battleState === 'battleMonsterDie'){
       switch(key){
         case 'space':
-          if (state.battleState === 'battleMonsterDie'){
-            state.currentLevel = state.prevLevel;
-            this.x = state.locX;
-            this.y = state.locY;
-            state.battleMonsterDie = 0;
+          state.currentLevel = state.prevLevel;
+          this.x = state.locX;
+          this.y = state.locY;
+          state.battleState = 'battleMenuMain';
+          if (state.playerBattleMonster.currentHp === 0){
             // ** Will have to change to target the current monster rather than the first in the array
             monsterInventory.splice(0, 1);
             if (monsterInventory.length === 0) {
               if (state.sprite === 'images/characters/monk.gif') {
-              var playerMon = new PlayerMon(2, 'monk');
+                var playerMon = new PlayerMon(2, 'monk');
               }
               else {
                 var playerMon = new PlayerMon(2, 'deathCaster');
@@ -578,14 +575,24 @@ Player.prototype.handleInput = function(key) {
               state.playerMonster = 1;
             }
           }
-          else {
-            state.battleState = 'battleMenuMain';
-            this.x = 300;
-            this.y = 350;
-          }
-          break;
-        }
+        break;
       }
+    }
+
+    else if(state.battleState === 'AI'){
+      switch(key){
+        case 'space':
+        this.x = 300;
+        this.y = 350;
+        if(state.playerBattleMonster.currentHp === 0){
+          state.battleState = 'battleMonsterDie';
+        }
+        else{
+          state.battleState = 'battleMenuMain';
+        }
+        break;
+      }
+    }
     // Battle menu main controls
     else if (state.battleState === 'battleMenuMain'){
       switch(key){
@@ -619,7 +626,6 @@ Player.prototype.handleInput = function(key) {
           this.x = 0;
         }
         else if (this.x === 530 && this.y === 420){
-          state.battleState = 0;
           runFromBattle();
         }
         else{
@@ -668,13 +674,14 @@ Player.prototype.handleInput = function(key) {
           if (this.y === 350 +(i*40)){
             state.playerBattleMonster.abilities[i].func();
             if(state.enemyToBattle.currentHp > 0){
-              
               enemyAbilityUsed();
-              state.turnFor = 'AI';
+              state.battleState = 'AI';
+            }
+            else{
+              state.battleState = 'battleMonsterDie';
             }
           }
         };
-        state.battleState = 0;
         break;
       };
     }
@@ -702,34 +709,34 @@ Player.prototype.handleInput = function(key) {
   else{
     switch(key) {
       case 'shift':
-        state.prevLevel = state.currentLevel;
-        state.locX = this.x;
-        state.locY = this.y;
-        state.currentLevel = 'mainMenu';
-        this.x = 180;
-        this.y = 157;
+      state.prevLevel = state.currentLevel;
+      state.locX = this.x;
+      state.locY = this.y;
+      state.currentLevel = 'mainMenu';
+      this.x = 180;
+      this.y = 157;
       break;
       
       case 'left':
-        this.x = this.x - 50;
-        battleEvent();
-        if (state.currentLevel ==='secondLevel' && this.x < 10) {
-          this.x = 10;
-          //Changes the level to the startScreen once player reach far left of screen
-          state.currentLevel = 'firstLevel';
-          this.x = 655;
-        }
-        else if (this.x <10) {
-          this.x=10;
-        }
+      this.x = this.x - 50;
+      battleEvent();
+      if (state.currentLevel ==='secondLevel' && this.x < 10) {
+        this.x = 10;
+        //Changes the level to the startScreen once player reach far left of screen
+        state.currentLevel = 'firstLevel';
+        this.x = 655;
+      }
+      else if (this.x <10) {
+        this.x=10;
+      }
       break;
       
       case 'up':
-        this.y = this.y - 50;
-        battleEvent();
-        if (this.y < 10){
-          this.y = 10;
-        }
+      this.y = this.y - 50;
+      battleEvent();
+      if (this.y < 10){
+        this.y = 10;
+      }
       break;
       
       case 'right':
