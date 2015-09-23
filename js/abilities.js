@@ -58,7 +58,9 @@ var enemyAbilityUsed = function(){
 		if (state.playerBattleMonster.player === 1){
 			// Render game over
 			state.battleState = 0;
-			state.gameOver = 1;
+			state.currentLevel = 'gameOver';
+			player.x = 0;
+			player.y = 0;
 		}
 		state.battleState = 'battleMonsterDie';
 	}
