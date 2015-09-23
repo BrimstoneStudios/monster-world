@@ -32,6 +32,7 @@ state.battleMenuBag = 0;
 state.battleMenuMonsters = 0;
 state.battleRunAway = 0;
 state.battleFailedRunAway = 0;
+state.battleMonsterDie = 0;
 state.battleWinText = 0;
 state.turnFor;
 
@@ -92,7 +93,17 @@ Menu.prototype.renderBattleText = function(){
   }
   else if (state.turnFor === "AI") {
     ctx.font="30px Arial";
-    ctx.fillText(state.enemyToBattle.name + " hit you with " + state.enemyAttackUsed.name, textX, textY)
+    console.log(state.battleMonsterDie);
+    if (state.battleMonsterDie === 1){
+      ctx.fillText(state.enemyToBattle.name + " hit you with " + state.enemyAttackUsed.name, textX, textY);
+      ctx.fillText(state.playerBattleMonster.name + " has died!", textX, textY+50);
+      // monsterInventory.splice(0, 1)
+      console.log(state.battleMonsterDie);
+      // state.battleMonsterDie = 0;
+    }
+    else {
+      ctx.fillText(state.enemyToBattle.name + " hit you with " + state.enemyAttackUsed.name, textX, textY);
+    }
   }
   else if (state.battleMenuFight === 1){
     ctx.font="30px Arial";
@@ -108,19 +119,9 @@ Menu.prototype.renderBattleText = function(){
     ctx.font="30px Arial";
     ctx.fillText("You ran away!? You wimp...", textX, textY)
   }
-};
-
-Menu.prototype.renderBattleMenuMain = function() {
-  ctx.font="30px Arial";
-  ctx.fillText("Fight", 350, 385);
-  ctx.fillText("Bag", 580, 385);
-  ctx.fillText("Monsters", 350, 455);
-  ctx.fillText("Run", 580, 455);
-};
-Menu.prototype.renderBattleMenuFight = function(){
-  ctx.font="30px Arial";
-  for (var i = 0, j = 0; i < state.playerBattleMonster.abilities.length; i++, j = j +40){
-    ctx.fillText(state.playerBattleMonster.abilities[i].name, 50, 385+j);
+  else if (state.battleWinText === 1){
+    ctx.font="30px Arial";
+    ctx.fillText('You have defeated '+state.enemyToBattle.name+'!', textX, textY)
   }
 };
 
@@ -226,6 +227,34 @@ Monster.prototype.renderBtlMonStats = function(player){
     ctx.fillText(this.hp, 210, 100);
   }
 };
+
+// ----------------------------
+
+// Normal type - subclass of Monster
+var NormalType = function(lvl){
+  Monster.call(this, lvl);
+};
+
+NormalType.prototype = Object.create(Monster.prototype);
+NormalType.prototype.constructor = NormalType;
+NormalType.prototype.type = 'normal';
+NormalType.prototype.weaknesss ='';
+
+// PlayerMon monster - subclass of NormalType
+var PlayerMon = function(lvl){
+  NormalType.call(this, lvl);
+};
+PlayerMon.prototype = Object.create(NormalType.prototype);
+PlayerMon.prototype.constructor = PlayerMon;
+PlayerMon.prototype.sprite = state.sprite;
+PlayerMon.prototype.name = 'PlayerMon';
+PlayerMon.prototype.hpMult = 5;
+PlayerMon.prototype.attackMult = 3;
+PlayerMon.prototype.defenseMult = 1;
+PlayerMon.prototype.spAttackMult = 2;
+PlayerMon.prototype.spDefenseMult = 1;
+PlayerMon.prototype.speedMult = 3;
+PlayerMon.prototype.abilities = [abilities.scratch, abilities.stare, abilities.fireBreath];
 
 // ----------------------------
 
@@ -462,7 +491,7 @@ Player.prototype.handleInput = function(key) {
         state.currentLevel = state.prevLevel;
         this.x = state.locX;
         this.y = state.locY;
-        break;
+      break;
         case 'up':
         this.y = this.y -90;
         if (this.y < 140){
@@ -534,10 +563,25 @@ Player.prototype.handleInput = function(key) {
     else if(state.turnFor === "AI"){
       switch(key){
         case 'space':
-          state.turnFor = "player"
-          state.battleMenuMain = 1;
-          this.x = 300;
-          this.y = 350;
+          if (state.battleMonsterDie === 1){
+            state.currentLevel = state.prevLevel;
+            this.x = state.locX;
+            this.y = state.locY;
+            state.battleMonsterDie = 0;
+            monsterInventory.splice(0, 1);
+            if (monsterInventory === []) {
+              var playerMon = new PlayerMon(2);
+              monsterInventory.push(playerMon);
+              state.playerMonster = 1;
+            }
+          }
+          else {
+            state.turnFor = "player"
+            state.battleMenuMain = 1;
+            this.x = 300;
+            this.y = 350;
+            
+          }
         break;
       };
     }
@@ -588,8 +632,8 @@ Player.prototype.handleInput = function(key) {
       switch(key){
         case 'space':
           state.battleFailedRunAway = 0;
-          enemyAbilityUsed();
           state.turnFor = "AI";
+          enemyAbilityUsed();
         break;
       }
     }
@@ -636,12 +680,14 @@ Player.prototype.handleInput = function(key) {
         break;
       };
     }
-    else {
+    else if (state.battleWinText === 1){
       switch(key){
         case 'space':
           state.currentLevel = state.prevLevel;
           this.x = state.locX;
           this.y = state.locY;
+          state.battleWinText = 0;
+          // state.battleMonsterDie = 0;
         break;
       }
     };

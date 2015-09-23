@@ -16,29 +16,29 @@
 // 	effect:,
 // },
 
-
+// Attack function for physical attacks
 var attackFunc = function(){
 	// Still needs random modifier, effectiveness modifier, accuracy modifier
 	var damage = (((this.power*state.playerBattleMonster.attack)*0.1)/state.enemyToBattle.defense);
 	state.enemyToBattle.currentHp = Math.round(state.enemyToBattle.currentHp - damage);
 	if (state.enemyToBattle.currentHp < 0){
 		state.enemyToBattle.currentHp = 0;
-		state.currentLevel = state.prevLevel;
-		player.x = state.locX;
-		player.y = state.locY;
+		state.battleWinText = 1;
 	}
 };
+
+// Attack function for special attacks
 var spAttackFunc = function(){
 	var damage = (((this.power*state.playerBattleMonster.spAttack)*0.1)/state.enemyToBattle.spDefense);
 	state.enemyToBattle.currentHp = Math.round(state.enemyToBattle.currentHp - damage);
 	if (state.enemyToBattle.currentHp < 0){
 		state.enemyToBattle.currentHp = 0;
-		state.currentLevel = state.prevLevel;
+		state.battleWinText = 1;
 	}
 };
 
 
-
+// Attack function for enemy monsters
 var enemyAbilityUsed = function(){
 	var randomAttack = Math.floor(Math.random() * state.enemyToBattle.abilities.length);
 	state.enemyAttackUsed = state.enemyToBattle.abilities[randomAttack];
@@ -55,7 +55,8 @@ var enemyAbilityUsed = function(){
 	
 	if(state.playerBattleMonster.currentHp <= 0){
 		state.playerBattleMonster.currentHp = 0;
-		state.currentLevel = state.prevLevel;
+		state.battleMonsterDie = 1;
+		console.log('Dead');
 	}
 }
 
