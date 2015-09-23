@@ -1,7 +1,7 @@
 // Global variable objects
 var state = {};
 var monsterInventory = [];
-var itemInventory = [];
+var itemInventory = ['Potion', 'Lettuce', 'Monster Net'];
 
 // ------ State Variables -------
 // Set the initial level
@@ -103,6 +103,12 @@ Menu.prototype.renderBattleText = function(){
     ctx.font="30px Arial";
     for (var i = 0, j = 0; i < monsterInventory.length; i++, j = j + 40){
       ctx.fillText(monsterInventory[i].name, 50, 385 + j)
+    }
+  }
+  else if (state.battleState === 'invMenu'){
+    ctx.font="30px Arial";
+    for (var i = 0, j = 0; i < itemInventory.length; i++, j = j + 40){
+      ctx.fillText(itemInventory[i], 50, 385 + j)
     }
   }
   else if (state.battleState === 'battleFailedRunAway') {
@@ -632,18 +638,26 @@ Player.prototype.handleInput = function(key) {
           this.x = 0;
         }
         else if(this.x === 300 && this.y === 420){ //Monsters inventory in battleMenuMain
-          state.battleState = 'monsterInvMenu'
+          state.battleState = 'monsterInvMenu';
         }
         else if (this.x === 530 && this.y === 420){ //Run in battleMenuMain
           runFromBattle();
         }
-        else{
-          // runFromBattle();
+        else{ // Inventory in battleMenuMain
+          state.battleState = 'invMenu';
         }
         break;
       }
     }
     else if(state.battleState === 'monsterInvMenu'){
+      switch(key){
+        case 'space':
+        state.battleState = 'battleMenuMain'
+        break;
+      }
+    }
+    
+    else if(state.battleState === 'invMenu'){
       switch(key){
         case 'space':
         state.battleState = 'battleMenuMain'
