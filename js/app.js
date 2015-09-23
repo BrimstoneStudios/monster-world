@@ -89,6 +89,7 @@ Menu.prototype.renderBattleText = function(){
       ctx.fillText(state.enemyToBattle.name + " hit you with " + state.enemyAttackUsed.name, textX, textY);
       ctx.fillText(state.playerBattleMonster.name + " has died!", textX, textY+50);
     }
+    else if (state.BattleState = 'battleMonsterDie')
     else {
       ctx.fillText(state.enemyToBattle.name + " hit you with " + state.enemyAttackUsed.name, textX, textY);
     }
