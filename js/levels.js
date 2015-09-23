@@ -91,6 +91,10 @@ var allLevels = {
     levelName : 'itemInventory',
     tiles : allWhite,
   },
+  gameOver:{
+    levelName: 'gameOver',
+    tiles: allWhite,
+  },
   firstLevel:{
     levelName : 'firstLevel',
     tiles : [

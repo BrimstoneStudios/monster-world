@@ -3,7 +3,7 @@ var state = {};
 var monsterInventory = [];
 var itemInventory = [];
 
-// ------ State Variable -------
+// ------ State Variables -------
 // Set the initial level
 state.currentLevel = 'startScreen';
 
@@ -374,6 +374,9 @@ Player.prototype.update = function(){
   else if (state.currentLevel === 'mainMenu' || state.currentLevel === 'monsterInventory' || state.currentLevel === 'battleLevel'){
     this.sprite = 'images/characters/menuSelector.png';
   }
+  else if (state.currentLevel === 'gameOver'){
+    this.sprite = 'images/characters/gameOver.png';
+  }
   else {
     this.sprite = state.sprite;
   };
@@ -538,6 +541,7 @@ Player.prototype.handleInput = function(key) {
       break;
     }
   }
+
   // Controls for the battle system
   else if(state.currentLevel === 'battleLevel'){
     if (state.battleState === 'wildIntroText') {
@@ -549,24 +553,32 @@ Player.prototype.handleInput = function(key) {
         break;
       };
     }
+    // Controls for after an opponent attacks
     else if (state.battleState === 'battleMonsterDie'){
-      state.currentLevel = state.prevLevel;
-      this.x = state.locX;
-      this.y = state.locY;
-      state.battleState = 'battleMenuMain';
-      monsterInventory.splice(0, 1);
-      
-      if (monsterInventory.length === 0) {
-        if (state.sprite === 'images/characters/monk.gif') {
-          var playerMon = new PlayerMon(2, 'monk');
-        }
-        else {
-          var playerMon = new PlayerMon(2, 'deathCaster');
-        };
-        monsterInventory.push(playerMon);
-        state.playerMonster = 1;
+      switch(key){
+        case 'space':
+          state.currentLevel = state.prevLevel;
+          this.x = state.locX;
+          this.y = state.locY;
+          state.battleState = 'battleMenuMain';
+          if (state.playerBattleMonster.currentHp === 0){
+            // ** Will have to change to target the current monster rather than the first in the array
+            monsterInventory.splice(0, 1);
+            if (monsterInventory.length === 0) {
+              if (state.sprite === 'images/characters/monk.gif') {
+                var playerMon = new PlayerMon(2, 'monk');
+              }
+              else {
+                var playerMon = new PlayerMon(2, 'deathCaster');
+              };
+              monsterInventory.push(playerMon);
+              state.playerMonster = 1;
+            }
+          }
+        break;
       }
     }
+
     else if(state.battleState === 'AI'){
       switch(key){
         case 'space':
@@ -683,7 +695,16 @@ Player.prototype.handleInput = function(key) {
         break;
       }
     };
+  } // End of Battle controls
+
+  else if(state.currentLevel === 'gameOver'){
+    switch(key) {
+      case 'space':
+        location.reload();
+      break;
+    };
   }
+
   // Controls for all the world levels
   else{
     switch(key) {
