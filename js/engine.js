@@ -176,6 +176,7 @@ var Engine = (function(global) {
     'images/characters/monk.gif',
     'images/characters/selector.png',
     'images/characters/menuSelector.png',
+    'images/characters/gameOver.png',
     
     //Monsters
     'images/monsters/hydra1.png',
@@ -186,7 +187,7 @@ var Engine = (function(global) {
     'images/monsters/drag3.gif',
     'images/monsters/wormy1.gif',
     'images/monsters/wormy2.gif',
-    'images/monsters/wormy3.gif'
+    'images/monsters/wormy3.gif',
   ]);
   Resources.onReady(init);
   
