@@ -143,25 +143,8 @@ var Engine = (function(global) {
       state.playerBattleMonster.renderBtlMonStats("player");
       state.enemyToBattle.render(550, 40);
       state.enemyToBattle.renderBtlMonStats("enemy");
-      
-      if(state.wildIntroText === 1){
-        menu.renderWildIntroText();
-      }
-      else if (state.battleMenuMain === 1) {
-        menu.renderBattleMenuMain();
-      }
-      else if (state.turnFor === "AI"){
-        menu.renderEnemyTurnText();
-      }
-      else if (state.battleMenuFight === 1) {
-        menu.renderBattleMenuFight();
-      }
-      else if (state.battleFailedRunAway === 1){
-        menu.renderFailedRunAwayText();
-      }
-      else if (state.battleRunAway === 1){
-        menu.renderSuccessRunAwayText();
-      }
+      menu.renderBattleText();
+
       
     }
     

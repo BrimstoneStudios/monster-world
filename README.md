@@ -1,7 +1,7 @@
 Monster World
 =============
 
-Choose a starting character and a starting monster. Roam around the world defeating other monsters in random encounter fights. 
+Choose a starting character and a starting monster. Roam around the world defeating other monsters in random monster encounter fights. 
 
 Controls:
 
