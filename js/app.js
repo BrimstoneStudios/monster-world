@@ -145,8 +145,6 @@ var enemyBattle = function(){
 //function to run from battle when run is selected in the menu
 var runFromBattle = function(){
   var randomNum = Math.floor(Math.random()*2); //produces either 0 or 1
-  state.battleState = 0;
-  
   if (randomNum === 1){
     player.x = 200;
     player.y = 350;
@@ -556,8 +554,9 @@ Player.prototype.handleInput = function(key) {
       state.currentLevel = state.prevLevel;
       this.x = state.locX;
       this.y = state.locY;
-      state.battleMonsterDie = 0;
+      state.battleState = 'battleMenuMain';
       monsterInventory.splice(0, 1);
+      
       if (monsterInventory.length === 0) {
         if (state.sprite === 'images/characters/monk.gif') {
           var playerMon = new PlayerMon(2, 'monk');
@@ -616,7 +615,6 @@ Player.prototype.handleInput = function(key) {
           this.x = 0;
         }
         else if (this.x === 530 && this.y === 420){
-          state.battleState = 0;
           runFromBattle();
         }
         else{
