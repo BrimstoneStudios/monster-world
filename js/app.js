@@ -92,7 +92,6 @@ Menu.prototype.renderBattleText = function(){
     }
     else{
       ctx.fillText(state.enemyMonster.name + " has died!", textX, textY+50);
-      
     }
   }
   else if (state.battleState === 'battleMenuFight'){
