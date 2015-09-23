@@ -85,6 +85,7 @@ Menu.prototype.renderBattleText = function(){
   }
   else if (state.battleState === 'AI') {
     ctx.font="30px Arial";
+
     if (state.battleState === 'battleMonsterDie'){
       ctx.fillText(state.enemyToBattle.name + " hit you with " + state.enemyAttackUsed.name, textX, textY);
       ctx.fillText(state.playerBattleMonster.name + " has died!", textX, textY+50);
@@ -227,13 +228,20 @@ NormalType.prototype.type = 'normal';
 NormalType.prototype.weaknesss ='';
 
 // PlayerMon monster - subclass of NormalType
-var PlayerMon = function(lvl){
+var PlayerMon = function(lvl, char){
   NormalType.call(this, lvl);
+  if (char === "monk") {
+    this.sprite = 'images/characters/monk.gif';
+  }
+  else {
+    this.sprite = 'images/characters/deathCaster.gif';
+  }
 };
 PlayerMon.prototype = Object.create(NormalType.prototype);
 PlayerMon.prototype.constructor = PlayerMon;
 PlayerMon.prototype.sprite = state.sprite;
 PlayerMon.prototype.name = 'PlayerMon';
+PlayerMon.prototype.player = 1;
 PlayerMon.prototype.hpMult = 5;
 PlayerMon.prototype.attackMult = 3;
 PlayerMon.prototype.defenseMult = 1;
@@ -548,27 +556,31 @@ Player.prototype.handleInput = function(key) {
     else if(state.battleState === 'AI'){
       switch(key){
         case 'space':
-        if (state.battleState === 'battleMonsterDie'){
-          state.currentLevel = state.prevLevel;
-          this.x = state.locX;
-          this.y = state.locY;
-          state.battleState = 0;
-          monsterInventory.splice(0, 1);
-          if (monsterInventory === []) {
-            var playerMon = new PlayerMon(2);
-            monsterInventory.push(playerMon);
-            state.playerMonster = 1;
+          if (state.battleState === 'battleMonsterDie'){
+            state.currentLevel = state.prevLevel;
+            this.x = state.locX;
+            this.y = state.locY;
+            state.battleMonsterDie = 0;
+            monsterInventory.splice(0, 1);
+            if (monsterInventory.length === 0) {
+              if (state.sprite === 'images/characters/monk.gif') {
+              var playerMon = new PlayerMon(2, 'monk');
+              }
+              else {
+                var playerMon = new PlayerMon(2, 'deathCaster');
+              };
+              monsterInventory.push(playerMon);
+              state.playerMonster = 1;
+            }
           }
+          else {
+            state.battleState = 'battleMenuMain';
+            this.x = 300;
+            this.y = 350;
+          }
+          break;
         }
-        else {
-          state.battleState = 'battleMenuMain';
-          this.x = 300;
-          this.y = 350;
-          
-        }
-        break;
-      };
-    }
+      }
     // Battle menu main controls
     else if (state.battleState === 'battleMenuMain'){
       switch(key){
@@ -671,41 +683,39 @@ Player.prototype.handleInput = function(key) {
         break;
       }
     };
-    
-    
   }
   // Controls for all the world levels
   else{
     switch(key) {
       case 'shift':
-      state.prevLevel = state.currentLevel;
-      state.locX = this.x;
-      state.locY = this.y;
-      state.currentLevel = 'mainMenu';
-      this.x = 180;
-      this.y = 157;
+        state.prevLevel = state.currentLevel;
+        state.locX = this.x;
+        state.locY = this.y;
+        state.currentLevel = 'mainMenu';
+        this.x = 180;
+        this.y = 157;
       break;
       
       case 'left':
-      this.x = this.x - 50;
-      battleEvent();
-      if (state.currentLevel ==='secondLevel' && this.x < 10) {
-        this.x = 10;
-        //Changes the level to the startScreen once player reach far left of screen
-        state.currentLevel = 'firstLevel';
-        this.x = 655;
-      }
-      else if (this.x <10) {
-        this.x=10;
-      }
+        this.x = this.x - 50;
+        battleEvent();
+        if (state.currentLevel ==='secondLevel' && this.x < 10) {
+          this.x = 10;
+          //Changes the level to the startScreen once player reach far left of screen
+          state.currentLevel = 'firstLevel';
+          this.x = 655;
+        }
+        else if (this.x <10) {
+          this.x=10;
+        }
       break;
       
       case 'up':
-      this.y = this.y - 50;
-      battleEvent();
-      if (this.y < 10){
-        this.y = 10;
-      }
+        this.y = this.y - 50;
+        battleEvent();
+        if (this.y < 10){
+          this.y = 10;
+        }
       break;
       
       case 'right':
