@@ -93,13 +93,9 @@ Menu.prototype.renderBattleText = function(){
   }
   else if (state.turnFor === "AI") {
     ctx.font="30px Arial";
-    console.log(state.battleMonsterDie);
     if (state.battleMonsterDie === 1){
       ctx.fillText(state.enemyToBattle.name + " hit you with " + state.enemyAttackUsed.name, textX, textY);
       ctx.fillText(state.playerBattleMonster.name + " has died!", textX, textY+50);
-      // monsterInventory.splice(0, 1)
-      console.log(state.battleMonsterDie);
-      // state.battleMonsterDie = 0;
     }
     else {
       ctx.fillText(state.enemyToBattle.name + " hit you with " + state.enemyAttackUsed.name, textX, textY);
@@ -241,8 +237,14 @@ NormalType.prototype.type = 'normal';
 NormalType.prototype.weaknesss ='';
 
 // PlayerMon monster - subclass of NormalType
-var PlayerMon = function(lvl){
+var PlayerMon = function(lvl, char){
   NormalType.call(this, lvl);
+  if (char === "monk") {
+    this.sprite = 'images/characters/monk.gif';
+  }
+  else {
+    this.sprite = 'images/characters/deathCaster.gif';
+  }
 };
 PlayerMon.prototype = Object.create(NormalType.prototype);
 PlayerMon.prototype.constructor = PlayerMon;
@@ -569,10 +571,16 @@ Player.prototype.handleInput = function(key) {
             this.y = state.locY;
             state.battleMonsterDie = 0;
             monsterInventory.splice(0, 1);
-            if (monsterInventory === []) {
-              var playerMon = new PlayerMon(2);
+            if (monsterInventory.length === 0) {
+              if (state.sprite === 'images/characters/monk.gif') {
+              var playerMon = new PlayerMon(2, 'monk');
+              }
+              else {
+                var playerMon = new PlayerMon(2, 'deathCaster');
+              };
               monsterInventory.push(playerMon);
               state.playerMonster = 1;
+              console.log(monsterInventory);
             }
           }
           else {
