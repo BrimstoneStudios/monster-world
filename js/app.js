@@ -250,6 +250,7 @@ PlayerMon.prototype = Object.create(NormalType.prototype);
 PlayerMon.prototype.constructor = PlayerMon;
 PlayerMon.prototype.sprite = state.sprite;
 PlayerMon.prototype.name = 'PlayerMon';
+PlayerMon.prototype.player = 1;
 PlayerMon.prototype.hpMult = 5;
 PlayerMon.prototype.attackMult = 3;
 PlayerMon.prototype.defenseMult = 1;
