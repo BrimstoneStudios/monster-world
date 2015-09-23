@@ -22,7 +22,7 @@ state.playerBattleMonster;
 state.enemyToBattle;
 
 
-// Battle menu states, 1 = currently displaying
+// Battle states
 state.enemyAttackUsed;
 state.battleState;
 
@@ -87,7 +87,7 @@ Menu.prototype.renderBattleText = function(){
   }
   else if (state.battleState === 'battleMonsterDie'){
     if(state.playerBattleMonster.currentHp === 0){
-      ctx.fillText(state.playerBattleMonster.name + " has died!", textX, textY+50);
+      ctx.fillText(state.playerBattleMonster.name + " has died!", textX, textY + 50);
     }
     else{
       ctx.fillText(state.enemyToBattle.name + " has died!", textX, textY+50);
@@ -95,8 +95,14 @@ Menu.prototype.renderBattleText = function(){
   }
   else if (state.battleState === 'battleMenuFight'){
     ctx.font="30px Arial";
-    for (var i = 0, j = 0; i < state.playerBattleMonster.abilities.length; i++, j = j +40){
-      ctx.fillText(state.playerBattleMonster.abilities[i].name, 50, 385+j);
+    for (var i = 0, j = 0; i < state.playerBattleMonster.abilities.length; i++, j = j + 40){
+      ctx.fillText(state.playerBattleMonster.abilities[i].name, 50, 385 + j);
+    }
+  }
+  else if (state.battleState === 'monsterInvMenu'){
+    ctx.font="30px Arial";
+    for (var i = 0, j = 0; i < monsterInventory.length; i++, j = j + 40){
+      ctx.fillText(monsterInventory[i].name, 50, 385 + j)
     }
   }
   else if (state.battleState === 'battleFailedRunAway') {
@@ -541,7 +547,7 @@ Player.prototype.handleInput = function(key) {
       break;
     }
   }
-
+  
   // Controls for the battle system
   else if(state.currentLevel === 'battleLevel'){
     if (state.battleState === 'wildIntroText') {
@@ -557,28 +563,28 @@ Player.prototype.handleInput = function(key) {
     else if (state.battleState === 'battleMonsterDie'){
       switch(key){
         case 'space':
-          state.currentLevel = state.prevLevel;
-          this.x = state.locX;
-          this.y = state.locY;
-          state.battleState = 'battleMenuMain';
-          if (state.playerBattleMonster.currentHp === 0){
-            // ** Will have to change to target the current monster rather than the first in the array
-            monsterInventory.splice(0, 1);
-            if (monsterInventory.length === 0) {
-              if (state.sprite === 'images/characters/monk.gif') {
-                var playerMon = new PlayerMon(2, 'monk');
-              }
-              else {
-                var playerMon = new PlayerMon(2, 'deathCaster');
-              };
-              monsterInventory.push(playerMon);
-              state.playerMonster = 1;
+        state.currentLevel = state.prevLevel;
+        this.x = state.locX;
+        this.y = state.locY;
+        state.battleState = 'battleMenuMain';
+        if (state.playerBattleMonster.currentHp === 0){
+          // ** Will have to change to target the current monster rather than the first in the array
+          monsterInventory.splice(0, 1);
+          if (monsterInventory.length === 0) {
+            if (state.sprite === 'images/characters/monk.gif') {
+              var playerMon = new PlayerMon(2, 'monk');
             }
+            else {
+              var playerMon = new PlayerMon(2, 'deathCaster');
+            };
+            monsterInventory.push(playerMon);
+            state.playerMonster = 1;
           }
+        }
         break;
       }
     }
-
+    
     else if(state.battleState === 'AI'){
       switch(key){
         case 'space':
@@ -625,7 +631,10 @@ Player.prototype.handleInput = function(key) {
           state.battleState = 'battleMenuFight';
           this.x = 0;
         }
-        else if (this.x === 530 && this.y === 420){
+        else if(this.x === 300 && this.y === 420){ //Monsters inventory in battleMenuMain
+          state.battleState = 'monsterInvMenu'
+        }
+        else if (this.x === 530 && this.y === 420){ //Run in battleMenuMain
           runFromBattle();
         }
         else{
@@ -634,6 +643,14 @@ Player.prototype.handleInput = function(key) {
         break;
       }
     }
+    else if(state.battleState === 'monsterInvMenu'){
+      switch(key){
+        case 'space':
+        state.battleState = 'battleMenuMain'
+        break;
+      }
+    }
+    
     else if(state.battleState === 'battleFailedRunAway'){
       switch(key){
         case 'space':
@@ -696,15 +713,15 @@ Player.prototype.handleInput = function(key) {
       }
     };
   } // End of Battle controls
-
+  
   else if(state.currentLevel === 'gameOver'){
     switch(key) {
       case 'space':
-        location.reload();
+      location.reload();
       break;
     };
   }
-
+  
   // Controls for all the world levels
   else{
     switch(key) {
