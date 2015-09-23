@@ -23,7 +23,6 @@ state.enemyToBattle;
 
 
 // Battle menu states, 1 = currently displaying
-state.enemyToBattle;
 state.enemyAttackUsed;
 state.battleState;
 
@@ -91,7 +90,7 @@ Menu.prototype.renderBattleText = function(){
       ctx.fillText(state.playerBattleMonster.name + " has died!", textX, textY+50);
     }
     else{
-      ctx.fillText(state.enemyMonster.name + " has died!", textX, textY+50);
+      ctx.fillText(state.enemyToBattle.name + " has died!", textX, textY+50);
     }
   }
   else if (state.battleState === 'battleMenuFight'){
@@ -110,7 +109,7 @@ Menu.prototype.renderBattleText = function(){
   }
   else if (state.battleState === 'battleWinText'){
     ctx.font="30px Arial";
-    ctx.fillText('You have defeated '+state.enemyToBattle.name+'!', textX, textY)
+    ctx.fillText('You have defeated ' + state.enemyToBattle.name + '!', textX, textY)
   }
 };
 
