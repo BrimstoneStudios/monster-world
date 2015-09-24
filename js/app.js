@@ -504,16 +504,16 @@ Player.prototype.handleInput = function(key) {
       
       case 'space':
       if(this.x === 200){
-        var drag1 = new Drag1(1);
+        var drag1 = new Drag1(3);
         monsterInventory.push(drag1);
       }
       
       else if(this.x === 300){
-        var hydra1 = new Hydra1(2);
+        var hydra1 = new Hydra1(1);
         monsterInventory.push(hydra1);
       }
       else{
-        var wormy1 = new Wormy1(3);
+        var wormy1 = new Wormy1(2);
         monsterInventory.push(wormy1);
       }
       state.currentLevel = 'firstLevel';
