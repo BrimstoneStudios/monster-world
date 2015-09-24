@@ -130,7 +130,9 @@ var Engine = (function(global) {
     
     if (state.currentLevel === 'mainMenu'){
       menu.renderMain();
-      
+    }
+    else if (state.currentLevel === 'itemsInv'){
+      menu.renderItemsInv();
     }
     else if (state.currentLevel === 'monsterInventory'){
       menu.renderMonsterInv();
@@ -143,7 +145,7 @@ var Engine = (function(global) {
       state.playerBattleMonster.renderBtlMonStats("player");
       state.enemyToBattle.render(550, 40);
       state.enemyToBattle.renderBtlMonStats("enemy");
-      menu.renderBattleText(); 
+      menu.renderBattleText();
     }
     
     player.render();

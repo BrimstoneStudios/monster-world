@@ -37,6 +37,12 @@ Menu.prototype.renderMain = function() {
   ctx.fillText("Monsters",245,290);
 };
 
+Menu.prototype.renderItemsInv = function(){
+  ctx.font="50px Arial";
+  for (var i = 0, j = 0; i < itemInventory.length; i++, j = j+50){
+    ctx.fillText(itemInventory[i].name, 155, 85+j);
+  };
+};
 // Monster Inventory Menu
 Menu.prototype.renderMonsterInv = function(){
   ctx.font="50px Arial";
@@ -398,7 +404,7 @@ Player.prototype.update = function(){
   else if(state.currentLevel === 'charSelectLevel' || state.currentLevel === 'monsterSelectLevel'){
     this.sprite = 'images/characters/selector.png';
   }
-  else if (state.currentLevel === 'mainMenu' || state.currentLevel === 'monsterInventory' || state.currentLevel === 'battleLevel'){
+  else if (state.currentLevel === 'mainMenu' || state.currentLevel === 'itemsInv' || state.currentLevel === 'monsterInventory' || state.currentLevel === 'battleLevel'){
     this.sprite = 'images/characters/menuSelector.png';
   }
   else if (state.currentLevel === 'gameOver'){
@@ -530,11 +536,39 @@ Player.prototype.handleInput = function(key) {
         this.x = 15;
         this.y = 42;
       }
+      else{
+        state.currentLevel = 'itemsInv';
+        this.x = 15;
+        this.y = 42;
+      }
       break;
     }
   }
   
   // Controls for the monster inventory
+  else if (state.currentLevel === 'itemsInv'){
+    switch(key){
+      case 'shift':
+      state.currentLevel = state.prevLevel;
+      this.x = state.locX;
+      this.y = state.locY;
+      break;
+      
+      case 'up' :
+      this.y = this.y -90;
+      if (this.y < 42){
+        this.y=42;
+      }
+      break;
+      case 'down':
+      this.y = this.y + 90;
+      if (this.y > ((itemInventory.length-1) *90)+42) {
+        this.y = ((itemInventory.length-1) *90)+42;
+      }
+      break;
+      
+    }
+  }
   else if (state.currentLevel === 'monsterInventory'){
     switch(key){
       case 'shift':
@@ -692,6 +726,7 @@ Player.prototype.handleInput = function(key) {
         for (var i = 0; i < itemInventory.length; i++){
           if (this.y === 350 +(i*40)){
             itemInventory[i].func();
+            itemInventory.splice(i, 1);
             enemyAbilityUsed();
             state.battleState = 'AI';
           }
@@ -836,11 +871,9 @@ var items = {
   potion:{
     name:'Potion',
     func: function(){
-      if(state.currentLevel === 'battleLevel'){
-        state.playerBattleMonster.currentHp += 5;
-        if (state.playerBattleMonster.currentHp > state.playerBattleMonster.hp){
-          state.playerBattleMonster.currentHp = state.playerBattleMonster.hp;
-        }
+      state.playerBattleMonster.currentHp += 5;
+      if (state.playerBattleMonster.currentHp > state.playerBattleMonster.hp){
+        state.playerBattleMonster.currentHp = state.playerBattleMonster.hp;
       }
     }
   },
@@ -848,6 +881,10 @@ var items = {
     name:'Elixir',
     func: function(){
       //must remove ailments
+      if(state.playerBattleMonster.condition != 'healthy'){
+        state.playerBattleMonster.condition = 'healthy';
+        
+      }
     }
   },
   net:{
