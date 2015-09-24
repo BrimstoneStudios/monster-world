@@ -23,7 +23,7 @@ var attackFunc = function(){
 	state.enemyToBattle.currentHp = Math.round(state.enemyToBattle.currentHp - damage);
 	if (state.enemyToBattle.currentHp < 0){
 		state.enemyToBattle.currentHp = 0;
-		state.battleWinText = 1;
+		state.playerBattleMonster.expGain();
 	}
 };
 
@@ -33,7 +33,7 @@ var spAttackFunc = function(){
 	state.enemyToBattle.currentHp = Math.round(state.enemyToBattle.currentHp - damage);
 	if (state.enemyToBattle.currentHp < 0){
 		state.enemyToBattle.currentHp = 0;
-		state.battleWinText = 1;
+		state.playerBattleMonster.expGain();
 	}
 };
 
@@ -127,7 +127,7 @@ var abilities = {
 		name: 'Razor Leaf',
 		type: 'grass',
 		category:'special',
-		power:50,
+		power:999,
 		accuracy:.9,
 		effect:'',
 		func: function(){

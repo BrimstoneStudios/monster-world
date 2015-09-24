@@ -87,10 +87,10 @@ Menu.prototype.renderBattleText = function(){
   }
   else if (state.battleState === 'battleMonsterDie'){
     if(state.playerBattleMonster.currentHp === 0){
-      ctx.fillText(state.playerBattleMonster.name + " has died!", textX, textY + 50);
+      ctx.fillText(state.playerBattleMonster.name + " has died!", textX, textY);
     }
     else{
-      ctx.fillText(state.enemyToBattle.name + " has died!", textX, textY+50);
+      ctx.fillText(state.enemyToBattle.name + " has died!", textX, textY);
     }
   }
   else if (state.battleState === 'battleMenuFight'){
@@ -119,6 +119,7 @@ Menu.prototype.renderBattleText = function(){
     ctx.font="30px Arial";
     ctx.fillText("You ran away!? You wimp...", textX, textY)
   }
+  //This will be used when we defeat NPC
   else if (state.battleState === 'battleWinText'){
     ctx.font="30px Arial";
     ctx.fillText('You have defeated ' + state.enemyToBattle.name + '!', textX, textY)
@@ -182,6 +183,9 @@ var Monster = function (lvl){
   this.spAttack = this.level * this.spAttackMult;
   this.spDefense = this.level * this.spDefenseMult;
   this.speed = this.level * this.speedMult;
+  this.currentExp = 0;
+  this.expToLevel = 10 + (10*this.level);
+  this.expReward = 5 + (3*this.level);
 };
 
 Monster.prototype.update = function(){
@@ -191,14 +195,25 @@ Monster.prototype.render = function(x, y) {
   ctx.drawImage(Resources.get(this.sprite), x, y, 100, 100);
 };
 
+Monster.prototype.expGain = function(){
+  this.currentExp += state.enemyToBattle.expReward;
+  console.log(this.currentExp);
+  if (this.currentExp >= this.expToLevel){
+    this.levelUp();
+  }
+};
+
 // Level up method to update stats based on current level
 Monster.prototype.levelUp = function(){
+  this.level++;
   this.hp = this.level * this.hpMult;
   this.attack = this.level * this.attackMult;
   this.defense = this.level * this.defenseMult;
   this.spAttack = this.level * this.spAttackMult;
   this.spDefense = this.level * this.spDefenseMult;
   this.speed = this.level * this.speedMult;
+  this.currentExp = 0;
+  this.expToLevel = 10 + (10*this.level);
 };
 
 Monster.prototype.renderBtlMonStats = function(player){
