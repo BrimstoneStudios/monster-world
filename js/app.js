@@ -90,7 +90,13 @@ Menu.prototype.renderBattleText = function(){
       ctx.fillText(state.playerBattleMonster.name + " has died!", textX, textY);
     }
     else{
-      ctx.fillText(state.enemyToBattle.name + " has died!", textX, textY);
+      if (state.levelUp === 1){
+        ctx.fillText(state.enemyToBattle.name + " has died!", textX, textY);
+        ctx.fillText(state.playerBattleMonster.name + " has gained a level!", textX, textY +50);
+      }
+      else {
+        ctx.fillText(state.enemyToBattle.name + " has died!", textX, textY);
+      }
     }
   }
   else if (state.battleState === 'battleMenuFight'){
@@ -205,6 +211,7 @@ Monster.prototype.expGain = function(){
 
 // Level up method to update stats based on current level
 Monster.prototype.levelUp = function(){
+  state.levelUp = 1;
   this.level++;
   this.hp = this.level * this.hpMult;
   this.attack = this.level * this.attackMult;
@@ -587,6 +594,7 @@ Player.prototype.handleInput = function(key) {
         state.currentLevel = state.prevLevel;
         this.x = state.locX;
         this.y = state.locY;
+        state.levelUp = 0;
         state.battleState = 'battleMenuMain';
         if (state.playerBattleMonster.currentHp === 0){
           // ** Will have to change to target the current monster rather than the first in the array
