@@ -79,16 +79,16 @@ var allLevels = {
     levelName : 'mainMenu',
     tiles : allWhite,
   },
+  itemsInv:{
+    levelName : 'itemsInv',
+    tiles : allWhite,
+  },
   monsterInventory:{
     levelName : 'monsterInventory',
     tiles : allWhite,
   },
   monsterStats:{
     levelName : 'monsterStats',
-    tiles : allWhite,
-  },
-  itemInventory:{
-    levelName : 'itemInventory',
     tiles : allWhite,
   },
   gameOver:{
