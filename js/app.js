@@ -1,7 +1,7 @@
 // Global variable objects
 var state = {};
 var monsterInventory = [];
-var itemInventory = ['Potion', 'Lettuce', 'Monster Net'];
+var itemInventory = [];
 
 // ------ State Variables -------
 // Set the initial level
@@ -108,7 +108,7 @@ Menu.prototype.renderBattleText = function(){
   else if (state.battleState === 'invMenu'){
     ctx.font="30px Arial";
     for (var i = 0, j = 0; i < itemInventory.length; i++, j = j + 40){
-      ctx.fillText(itemInventory[i], 50, 385 + j)
+      ctx.fillText(itemInventory[i].name, 50, 385 + j)
     }
   }
   else if (state.battleState === 'battleFailedRunAway') {
@@ -673,10 +673,30 @@ Player.prototype.handleInput = function(key) {
     }
     
     else if(state.battleState === 'invMenu'){
+      
       switch(key){
-        case 'space':
-        state.battleState = 'battleMenuMain'
+        case 'up':
+        this.y = this.y - 40;
+        if (this.y <350) {
+          this.y = 350;
+        }
         break;
+        case 'down':
+        this.y = this.y +40;
+        var maxY =  (350+((itemInventory.length-1) * 40));
+        if (this.y > maxY) {
+          this.y = maxY;
+        }
+        break;
+        case 'space':
+        for (var i = 0; i < itemInventory.length; i++){
+          if (this.y === 350 +(i*40)){
+            itemInventory[i].func();
+            enemyAbilityUsed();
+            state.battleState = 'AI';
+          }
+          break;
+        }
       }
     }
     
@@ -812,6 +832,32 @@ Player.prototype.handleInput = function(key) {
   } //End of else
 }
 
+var items = {
+  potion:{
+    name:'Potion',
+    func: function(){
+      if(state.currentLevel === 'battleLevel'){
+        state.playerBattleMonster.currentHp += 5;
+        if (state.playerBattleMonster.currentHp > state.playerBattleMonster.hp){
+          state.playerBattleMonster.currentHp = state.playerBattleMonster.hp;
+        }
+      }
+    }
+  },
+  elixir:{
+    name:'Elixir',
+    func: function(){
+      //must remove ailments
+    }
+  },
+  net:{
+    name:'Monster Net',
+    func: function(){
+      //captures monster
+    }
+  }
+}
+itemInventory.push(items.potion);
 // Global functions
 // Now instantiate your objects.
 // Place all NPC objects in an array called allNPC
