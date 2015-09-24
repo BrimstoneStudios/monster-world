@@ -20,6 +20,7 @@ state.monsterStatID;
 state.run;
 state.playerBattleMonster;
 state.enemyToBattle;
+state.levelUp;
 
 
 // Battle states
@@ -194,6 +195,7 @@ var Monster = function (lvl){
   this.level = lvl;
   this.hp = this.level * this.hpMult;
   this.currentHp = this.hp;
+  this.condition = 'healthy';
   this.attack = this.level * this.attackMult;
   this.defense = this.level * this.defenseMult;
   this.spAttack = this.level * this.spAttackMult;

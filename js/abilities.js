@@ -98,6 +98,7 @@ var abilities = {
 		accuracy:1,
 		effect:'Decrease opponent attack damage',
 		func: function() {
+			console.log(this);
 			state.enemyToBattle.attack = state.enemyToBattle.attack*0.85;
 		}
 	},
@@ -109,6 +110,7 @@ var abilities = {
 		accuracy:1,
 		effect:'Decrease opponent defense',
 		func: function() {
+			console.log(this);
 			state.enemyToBattle.defense = state.enemyToBattle.defense*0.85;
 		}
 	},
@@ -121,6 +123,11 @@ var abilities = {
 		effect:'Chance of burn',
 		func: function(){
 			spAttackFunc.call(this);
+			var burnChance = Math.random();
+			if (burnChance > 0.8) {
+				state.playerBattleMonster.condition = 'burn';
+				console.log("Burn baby burn!");
+			}
 		}
 	},
 	razorLeaf: {
