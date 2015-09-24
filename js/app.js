@@ -91,6 +91,10 @@ Menu.prototype.renderBattleText = function(){
     ctx.font="30px Arial";
     ctx.fillText(state.enemyToBattle.name + " hit you with " + state.enemyAttackUsed.name, textX, textY);
   }
+  else if (state.battleState === 'itemUsed') {
+    ctx.font="30px Arial";
+    ctx.fillText("You used a...?", textX, textY);
+  }
   else if (state.battleState === 'battleMonsterDie'){
     if(state.playerBattleMonster.currentHp === 0){
       ctx.fillText(state.playerBattleMonster.name + " has died!", textX, textY);
@@ -639,6 +643,16 @@ Player.prototype.handleInput = function(key) {
         break;
       }
     }
+    else if(state.battleState === 'itemUsed'){
+      switch(key){
+        case 'space':
+        this.x = 300;
+        this.y = 350;
+        enemyAbilityUsed();
+        state.battleState = 'AI';
+        break;
+      }
+    }
     
     else if(state.battleState === 'AI'){
       switch(key){
@@ -727,8 +741,7 @@ Player.prototype.handleInput = function(key) {
           if (this.y === 350 +(i*40)){
             itemInventory[i].func();
             itemInventory.splice(i, 1);
-            enemyAbilityUsed();
-            state.battleState = 'AI';
+            state.battleState = 'itemUsed';
           }
           break;
         }
