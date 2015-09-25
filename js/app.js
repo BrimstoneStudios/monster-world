@@ -6,7 +6,7 @@ var itemInventory = [];
 // ------ State Variables -------
 // Set the initial level
 state.currentLevel = 'startScreen';
-
+state.sprite;
 // Where we will store our level and location when entering a battle/menu so we can return after
 state.prevLevel;
 state.locX;
@@ -209,10 +209,12 @@ var Monster = function (lvl){
 Monster.prototype.update = function(){
 };
 
+// Render the monster onto the screen
 Monster.prototype.render = function(x, y) {
   ctx.drawImage(Resources.get(this.sprite), x, y, 100, 100);
 };
 
+// Gain exp upon defeating an enemy monster
 Monster.prototype.expGain = function(){
   this.currentExp += state.enemyToBattle.expReward;
   console.log(this.currentExp);
@@ -232,9 +234,10 @@ Monster.prototype.levelUp = function(){
   this.spDefense = this.level * this.spDefenseMult;
   this.speed = this.level * this.speedMult;
   this.currentExp = 0;
-  this.expToLevel = 10 + (10*this.level);
+  this.expToLevel = 10 + (4*this.level);
 };
 
+// Show player and enemy monster stats on the screen during a battle
 Monster.prototype.renderBtlMonStats = function(player){
   ctx.font="35px Arial";
   if(player === "player"){
@@ -399,7 +402,6 @@ NPC.prototype.render = function() {
 
 
 // ------ PLAYER -------
-state.sprite;
 
 var Player = function() {
   // Initial location for the start screen, the whole start screen image is the player sprite, takes up the whole screen
@@ -582,6 +584,7 @@ Player.prototype.handleInput = function(key) {
       
     }
   }
+  // Monster inventory controls
   else if (state.currentLevel === 'monsterInventory'){
     switch(key){
       case 'shift':
@@ -890,6 +893,8 @@ Player.prototype.handleInput = function(key) {
   } //End of else
 }
 
+
+// ------ ITEMS -------
 var items = {
   potion:{
     name:'Potion',
@@ -918,7 +923,6 @@ var items = {
   }
 }
 itemInventory.push(items.potion);
-// Global functions
 // Now instantiate your objects.
 // Place all NPC objects in an array called allNPC
 // Place the player object in a variable called player
