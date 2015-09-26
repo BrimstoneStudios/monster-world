@@ -205,6 +205,7 @@ var Monster = function (lvl){
   this.expToLevel = 10 + (10*this.level);
   this.expReward = 5 + (3*this.level);
 };
+Monster.prototype.controller = 'computer';
 
 Monster.prototype.update = function(){
 };
@@ -378,7 +379,7 @@ Wormy1.prototype.defenseMult = 2;
 Wormy1.prototype.spAttackMult = 2;
 Wormy1.prototype.spDefenseMult = 2;
 Wormy1.prototype.speedMult = 2;
-Wormy1.prototype.abilities = [abilities.bite, abilities.stare, abilities.razorLeaf];
+Wormy1.prototype.abilities = [abilities.bite, abilities.growl, abilities.razorLeaf];
 
 
 // ------ NPCs -------
@@ -507,15 +508,18 @@ Player.prototype.handleInput = function(key) {
       case 'space':
       if(this.x === 200){
         var drag1 = new Drag1(3);
+        drag1.controller = 'player';
         monsterInventory.push(drag1);
       }
       
       else if(this.x === 300){
         var hydra1 = new Hydra1(1);
+        hydra1.controller = 'player';
         monsterInventory.push(hydra1);
       }
       else{
         var wormy1 = new Wormy1(2);
+        wormy1.controller = 'player';
         monsterInventory.push(wormy1);
       }
       state.currentLevel = 'firstLevel';
@@ -799,7 +803,7 @@ Player.prototype.handleInput = function(key) {
         case 'space':
         for (var i = 0; i < state.playerBattleMonster.abilities.length; i++){
           if (this.y === 350 +(i*40)){
-            state.playerBattleMonster.abilities[i].func();
+            state.playerBattleMonster.abilities[i].func(state.playerBattleMonster.controller);
             if(state.enemyToBattle.currentHp > 0){
               enemyAbilityUsed();
               state.battleState = 'AI';

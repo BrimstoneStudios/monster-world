@@ -46,10 +46,13 @@ var enemyAbilityUsed = function(){
 	if(state.enemyAttackUsed.category === "special"){
 		damage =(((state.enemyAttackUsed.power*state.enemyToBattle.spAttack)*0.1)/state.playerBattleMonster.spDefense);
 	}
-	else{
+	else if (state.enemyAttackUsed.category === "physical"){
 		damage =(((state.enemyAttackUsed.power*state.enemyToBattle.attack)*0.1)/state.playerBattleMonster.defense);
 		
 	}
+	else {
+		state.enemyAttackUsed.func(state.enemyToBattle.controller);
+	};
 	
 	state.playerBattleMonster.currentHp = Math.round(state.playerBattleMonster.currentHp - damage);
 	
@@ -75,7 +78,7 @@ var abilities = {
 		power: 40,
 		accuracy: 1,
 		effect:'',
-		func: function(){
+		func: function(controller){
 			attackFunc.call(this);
 		}
 	},
@@ -86,7 +89,7 @@ var abilities = {
 		power: 45,
 		accuracy: 0.9,
 		effect:'',
-		func: function() {
+		func: function(controller) {
 			attackFunc.call(this);
 		}
 	},
@@ -97,9 +100,13 @@ var abilities = {
 		power:0,
 		accuracy:1,
 		effect:'Decrease opponent attack damage',
-		func: function() {
-			console.log(this);
-			state.enemyToBattle.attack = state.enemyToBattle.attack*0.85;
+		func: function(controller) {
+			if (controller === "player") {
+				state.enemyToBattle.attack = state.enemyToBattle.attack*0.8;
+			}
+			else {
+				state.playerBattleMonster.attack = state.playerBattleMonster.attack * 0.8;
+			};
 		}
 	},
 	stare: {
@@ -109,9 +116,13 @@ var abilities = {
 		power:0,
 		accuracy:1,
 		effect:'Decrease opponent defense',
-		func: function() {
-			console.log(this);
-			state.enemyToBattle.defense = state.enemyToBattle.defense*0.85;
+		func: function(controller) {
+			if (controller === "player") {
+				state.enemyToBattle.defence = state.enemyToBattle.defence*0.8;
+			}
+			else {
+				state.playerBattleMonster.defence = state.playerBattleMonster.defence * 0.8;
+			};
 		}
 	},
 	fireBreath:{
@@ -121,7 +132,7 @@ var abilities = {
 		power: 45,
 		accuracy: .9,
 		effect:'Chance of burn',
-		func: function(){
+		func: function(controller){
 			spAttackFunc.call(this);
 			var burnChance = Math.random();
 			if (burnChance > 0.8) {
@@ -137,7 +148,7 @@ var abilities = {
 		power:999,
 		accuracy:.9,
 		effect:'',
-		func: function(){
+		func: function(controller){
 			spAttackFunc.call(this);
 		}
 	},
@@ -148,7 +159,7 @@ var abilities = {
 		power:50,
 		accuracy:.9,
 		effect:'',
-		func: function(){
+		func: function(controller){
 			spAttackFunc.call(this);
 		}
 	},
