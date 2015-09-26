@@ -19,9 +19,9 @@
 // Attack function for physical attacks
 var attackFunc = function(){
 	// Still needs random modifier, effectiveness modifier, accuracy modifier
-	var damage = (((this.power*state.playerBattleMonster.attack)*0.1)/state.enemyToBattle.defense);
+	var damage = (((this.power*state.playerBattleMonster.attack)*0.05)/state.enemyToBattle.defense);
 	state.enemyToBattle.currentHp = Math.round(state.enemyToBattle.currentHp - damage);
-	if (state.enemyToBattle.currentHp < 0){
+	if (state.enemyToBattle.currentHp <= 0){
 		state.enemyToBattle.currentHp = 0;
 		state.playerBattleMonster.expGain();
 	}
@@ -29,9 +29,9 @@ var attackFunc = function(){
 
 // Attack function for special attacks
 var spAttackFunc = function(){
-	var damage = (((this.power*state.playerBattleMonster.spAttack)*0.1)/state.enemyToBattle.spDefense);
+	var damage = (((this.power*state.playerBattleMonster.spAttack)*0.05)/state.enemyToBattle.spDefense);
 	state.enemyToBattle.currentHp = Math.round(state.enemyToBattle.currentHp - damage);
-	if (state.enemyToBattle.currentHp < 0){
+	if (state.enemyToBattle.currentHp <= 0){
 		state.enemyToBattle.currentHp = 0;
 		state.playerBattleMonster.expGain();
 	}
@@ -44,10 +44,10 @@ var enemyAbilityUsed = function(){
 	state.enemyAttackUsed = state.enemyToBattle.abilities[randomAttack];
 	var damage = 0;
 	if(state.enemyAttackUsed.category === "special"){
-		damage =(((state.enemyAttackUsed.power*state.enemyToBattle.spAttack)*0.1)/state.playerBattleMonster.spDefense);
+		damage =(((state.enemyAttackUsed.power*state.enemyToBattle.spAttack)*0.05)/state.playerBattleMonster.spDefense);
 	}
 	else if (state.enemyAttackUsed.category === "physical"){
-		damage =(((state.enemyAttackUsed.power*state.enemyToBattle.attack)*0.1)/state.playerBattleMonster.defense);
+		damage =(((state.enemyAttackUsed.power*state.enemyToBattle.attack)*0.05)/state.playerBattleMonster.defense);
 		
 	}
 	else {
@@ -129,7 +129,7 @@ var abilities = {
 		name: 'Fire Breath',
 		type: 'fire',
 		category: 'special',
-		power: 45,
+		power: 10000,
 		accuracy: .9,
 		effect:'Chance of burn',
 		func: function(controller){
@@ -142,7 +142,7 @@ var abilities = {
 				}
 				else {
 					state.playerBattleMonster.condition = 'burn';
-					consoles.log(state.playerBattleMonster.name);
+					console.log(state.playerBattleMonster.name);
 
 				}
 				
@@ -153,7 +153,7 @@ var abilities = {
 		name: 'Razor Leaf',
 		type: 'grass',
 		category:'special',
-		power:999,
+		power:50,
 		accuracy:.9,
 		effect:'',
 		func: function(controller){
