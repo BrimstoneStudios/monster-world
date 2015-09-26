@@ -1,9 +1,3 @@
-// Types: normal, fire, water, grass
-// Categories: physical, special, status
-// Power: range from 10-???,  status moves have 0 power
-// Accuracy: Range from 0.5-1
-// Effect: A description of the special effects on some abilities
-
 // Type effectiveness data
 var type = {
 	fire: {
@@ -20,22 +14,12 @@ var type = {
 	},
 };
 
-// Template:
-
-// : {
-// 	name: '',
-// 	type: '',
-// 	category:'',
-// 	power:,
-// 	accuracy:,
-// 	effect:,
-// },
 
 // Attack function for physical attacks
 var attackFunc = function(controller){
 	if (controller === 'player') {
 		state.playerAttackUsed = this;
-		// Still needs random modifier, effectiveness modifier, accuracy modifier
+		// Still needs random modifier, accuracy modifier
 		var damage = (((this.power*state.playerBattleMonster.attack)*0.05)/state.enemyToBattle.defense);
 		state.enemyToBattle.currentHp = Math.round(state.enemyToBattle.currentHp - damage);
 		if (state.enemyToBattle.currentHp <= 0){
@@ -130,6 +114,23 @@ var enemyAbilityUsed = function(){
 		state.battleState = 'battleMonsterDie';
 	}
 }
+
+// Types: normal, fire, water, grass
+// Categories: physical, special, status
+// Power: range from 10-???,  status moves have 0 power
+// Accuracy: Range from 0.5-1
+// Effect: A description of the special effects on some abilities
+
+// Template:
+
+// : {
+// 	name: '',
+// 	type: '',
+// 	category:'',
+// 	power:,
+// 	accuracy:,
+// 	effect:,
+// },
 
 // Database of monster abilities
 var abilities = {

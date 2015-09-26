@@ -190,6 +190,9 @@ var Engine = (function(global) {
     'images/monsters/wormy1.gif',
     'images/monsters/wormy2.gif',
     'images/monsters/wormy3.gif',
+    'images/monsters/giantRat.gif',
+    'images/monsters/bat.gif',
+    'images/monsters/munchkin.gif',
   ]);
   Resources.onReady(init);
   
