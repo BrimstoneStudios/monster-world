@@ -2,7 +2,7 @@
 // Categories: physical, special, status
 // Power: range from 10-???,  status moves have 0 power
 // Accuracy: Range from 0.5-1
-// Effect: A special effect on some abilities
+// Effect: A description of the special effects on some abilities
 
 
 // Template:
@@ -17,23 +17,27 @@
 // },
 
 // Attack function for physical attacks
-var attackFunc = function(){
-	// Still needs random modifier, effectiveness modifier, accuracy modifier
-	var damage = (((this.power*state.playerBattleMonster.attack)*0.05)/state.enemyToBattle.defense);
-	state.enemyToBattle.currentHp = Math.round(state.enemyToBattle.currentHp - damage);
-	if (state.enemyToBattle.currentHp <= 0){
-		state.enemyToBattle.currentHp = 0;
-		state.playerBattleMonster.expGain();
+var attackFunc = function(controller){
+	if (controller === 'player') {
+		// Still needs random modifier, effectiveness modifier, accuracy modifier
+		var damage = (((this.power*state.playerBattleMonster.attack)*0.05)/state.enemyToBattle.defense);
+		state.enemyToBattle.currentHp = Math.round(state.enemyToBattle.currentHp - damage);
+		if (state.enemyToBattle.currentHp <= 0){
+			state.enemyToBattle.currentHp = 0;
+			state.playerBattleMonster.expGain();
+		}
 	}
 };
 
 // Attack function for special attacks
-var spAttackFunc = function(){
-	var damage = (((this.power*state.playerBattleMonster.spAttack)*0.05)/state.enemyToBattle.spDefense);
-	state.enemyToBattle.currentHp = Math.round(state.enemyToBattle.currentHp - damage);
-	if (state.enemyToBattle.currentHp <= 0){
-		state.enemyToBattle.currentHp = 0;
-		state.playerBattleMonster.expGain();
+var spAttackFunc = function(controller){
+	if (controller === 'player') {
+		var damage = (((this.power*state.playerBattleMonster.spAttack)*0.05)/state.enemyToBattle.spDefense);
+		state.enemyToBattle.currentHp = Math.round(state.enemyToBattle.currentHp - damage);
+		if (state.enemyToBattle.currentHp <= 0){
+			state.enemyToBattle.currentHp = 0;
+			state.playerBattleMonster.expGain();
+		}
 	}
 };
 
@@ -79,7 +83,7 @@ var abilities = {
 		accuracy: 1,
 		effect:'',
 		func: function(controller){
-			attackFunc.call(this);
+			attackFunc.call(this, controller);
 		}
 	},
 	bite: {
@@ -90,7 +94,7 @@ var abilities = {
 		accuracy: 0.9,
 		effect:'',
 		func: function(controller) {
-			attackFunc.call(this);
+			attackFunc.call(this, controller);
 		}
 	},
 	growl: {
@@ -129,11 +133,11 @@ var abilities = {
 		name: 'Fire Breath',
 		type: 'fire',
 		category: 'special',
-		power: 10000,
+		power: 50,
 		accuracy: .9,
 		effect:'Chance of burn',
 		func: function(controller){
-			spAttackFunc.call(this);
+			spAttackFunc.call(this, controller);
 			var burnChance = Math.random();
 			if (burnChance > 0.1) {
 				if (controller === "player"){
@@ -157,7 +161,7 @@ var abilities = {
 		accuracy:.9,
 		effect:'',
 		func: function(controller){
-			spAttackFunc.call(this);
+			spAttackFunc.call(this, controller);
 		}
 	},
 	waterBlast: {
@@ -168,7 +172,7 @@ var abilities = {
 		accuracy:.9,
 		effect:'',
 		func: function(controller){
-			spAttackFunc.call(this);
+			spAttackFunc.call(this, controller);
 		}
 	},
 };

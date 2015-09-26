@@ -653,6 +653,7 @@ Player.prototype.handleInput = function(key) {
             else {
               var playerMon = new PlayerMon(2, 'deathCaster');
             };
+            playerMon.controller = 'player';
             monsterInventory.push(playerMon);
             state.playerMonster = 1;
           }
