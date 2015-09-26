@@ -196,11 +196,11 @@ var Monster = function (lvl){
   this.hp = this.level * this.hpMult;
   this.currentHp = this.hp;
   this.condition = 'healthy';
-  this.attack = this.level * this.attackMult;
-  this.defense = this.level * this.defenseMult;
-  this.spAttack = this.level * this.spAttackMult;
-  this.spDefense = this.level * this.spDefenseMult;
-  this.speed = this.level * this.speedMult;
+  this.attack = ((((30 + this.attackMult) * 2)* this.level)/100)+4;
+  this.defence = ((((30 + this.defenceMult) * 2)* this.level)/100)+4;
+  this.spAttack = ((((30 + this.spAttackMult) * 2)* this.level)/100)+4;
+  this.spDefence = ((((30 + this.spDefenceMult) * 2)* this.level)/100)+4;
+  this.speed = ((((30 + this.speedMult) * 2)* this.level)/100)+4;
   this.currentExp = 0;
   this.expToLevel = 10 + (10*this.level);
   this.expReward = 5 + (3*this.level);
@@ -513,7 +513,7 @@ Player.prototype.handleInput = function(key) {
       }
       
       else if(this.x === 300){
-        var hydra1 = new Hydra1(1);
+        var hydra1 = new Hydra1(2);
         hydra1.controller = 'player';
         monsterInventory.push(hydra1);
       }
