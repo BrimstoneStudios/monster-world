@@ -135,10 +135,18 @@ var abilities = {
 		func: function(controller){
 			spAttackFunc.call(this);
 			var burnChance = Math.random();
-			if (burnChance > 0.8) {
-				state.playerBattleMonster.condition = 'burn';
-				console.log("Burn baby burn!");
-			}
+			if (burnChance > 0.1) {
+				if (controller === "player"){
+					state.enemyToBattle.condition = 'burn';
+					console.log(state.enemyToBattle.name + ' has been burned!');
+				}
+				else {
+					state.playerBattleMonster.condition = 'burn';
+					consoles.log(state.playerBattleMonster.name);
+
+				}
+				
+			};
 		}
 	},
 	razorLeaf: {
