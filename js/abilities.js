@@ -89,7 +89,7 @@ var enemyAbilityUsed = function(){
 	var damageMod;
 	var enemyType = state.playerBattleMonster.type;
 	var spellType = state.enemyAttackUsed.type;
-	var damage;
+	var damage = 0;
 	// Special attacks
 	if(state.enemyAttackUsed.category === "special"){
 		if (type[spellType].super.indexOf(enemyType) >= 0){
