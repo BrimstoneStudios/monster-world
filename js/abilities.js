@@ -4,6 +4,21 @@
 // Accuracy: Range from 0.5-1
 // Effect: A description of the special effects on some abilities
 
+// Type effectiveness data
+var type = {
+	fire: {
+		super: ['grass'],
+		notVery: ['water', 'fire'],
+	},
+	water: {
+		super: ['fire'],
+		notVery: ['grass', 'water'],
+	},
+	grass: {
+		super: ['water'],
+		notVery: ['fire', 'grass'],
+	},
+};
 
 // Template:
 
@@ -19,6 +34,7 @@
 // Attack function for physical attacks
 var attackFunc = function(controller){
 	if (controller === 'player') {
+		state.playerAttackUsed = this;
 		// Still needs random modifier, effectiveness modifier, accuracy modifier
 		var damage = (((this.power*state.playerBattleMonster.attack)*0.05)/state.enemyToBattle.defense);
 		state.enemyToBattle.currentHp = Math.round(state.enemyToBattle.currentHp - damage);
@@ -28,14 +44,37 @@ var attackFunc = function(controller){
 		}
 	}
 };
+// Ability needs to be able to see its type and the defending monsters type
+// 
+
 
 // Attack function for special attacks
 var spAttackFunc = function(controller){
 	if (controller === 'player') {
-		var damage = (((this.power*state.playerBattleMonster.spAttack)*0.05)/state.enemyToBattle.spDefense);
+		state.playerAttackUsed = this;
+		// Check effectiveness 
+		var damageMod;
+		var enemyType = state.enemyToBattle.type;
+		var spellType = this.type;
+
+		if (type[spellType].super.indexOf(enemyType) >= 0){
+			state.playerDamageMod = 'super'; 
+			damageMod = 1.5;
+		}
+		else if (type[spellType].notVery.indexOf(enemyType) >= 0) {
+			state.playerDamageMod = 'notVery'; 
+			damageMod = 0.5;
+		}
+		else {
+			damageMod = 1;
+		};
+
+		var damage = ((((this.power*state.playerBattleMonster.spAttack)*0.05)/state.enemyToBattle.spDefense)* damageMod);
 		state.enemyToBattle.currentHp = Math.round(state.enemyToBattle.currentHp - damage);
+
 		if (state.enemyToBattle.currentHp <= 0){
 			state.enemyToBattle.currentHp = 0;
+			// If the enemy monster dies, gain exp
 			state.playerBattleMonster.expGain();
 		}
 	}
@@ -44,16 +83,35 @@ var spAttackFunc = function(controller){
 
 // Attack function for enemy monsters
 var enemyAbilityUsed = function(){
+
 	var randomAttack = Math.floor(Math.random() * state.enemyToBattle.abilities.length);
 	state.enemyAttackUsed = state.enemyToBattle.abilities[randomAttack];
-	var damage = 0;
+	var damageMod;
+	var enemyType = state.playerBattleMonster.type;
+	var spellType = state.enemyAttackUsed.type;
+	var damage;
+	// Special attacks
 	if(state.enemyAttackUsed.category === "special"){
-		damage =(((state.enemyAttackUsed.power*state.enemyToBattle.spAttack)*0.05)/state.playerBattleMonster.spDefense);
+		if (type[spellType].super.indexOf(enemyType) >= 0){
+			state.enemyDamageMod = 'super';
+			damageMod = 1.5;
+		}
+		else if (type[spellType].notVery.indexOf(enemyType) >= 0) {
+			state.enemyDamageMod = 'notVery';
+			damageMod = 0.5;
+		}
+		else {
+			state.enemyDamageMod = 'none';
+			damageMod = 1;
+		};
+		damage =((((state.enemyAttackUsed.power*state.enemyToBattle.spAttack)*0.05)/state.playerBattleMonster.spDefense)*damageMod);
 	}
+	// Physical attacks
 	else if (state.enemyAttackUsed.category === "physical"){
 		damage =(((state.enemyAttackUsed.power*state.enemyToBattle.attack)*0.05)/state.playerBattleMonster.defense);
 		
 	}
+	// Status attacks
 	else {
 		state.enemyAttackUsed.func(state.enemyToBattle.controller);
 	};
@@ -106,6 +164,7 @@ var abilities = {
 		effect:'Decrease opponent attack damage',
 		func: function(controller) {
 			if (controller === "player") {
+				state.playerAttackUsed = this;
 				state.enemyToBattle.attack = state.enemyToBattle.attack*0.8;
 			}
 			else {
@@ -122,6 +181,7 @@ var abilities = {
 		effect:'Decrease opponent defense',
 		func: function(controller) {
 			if (controller === "player") {
+				state.playerAttackUsed = this;
 				state.enemyToBattle.defence = state.enemyToBattle.defence*0.8;
 			}
 			else {
