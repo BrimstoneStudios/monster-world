@@ -96,19 +96,19 @@ Menu.prototype.renderBattleText = function(){
     ctx.fillText("You hit enemy " + state.enemyToBattle.name + " with " + state.playerAttackUsed.name, textX, textY);
     // Additional text if not very or super effective
     if (state.playerDamageMod === 'super') {
-      ctx.fillText("It was super effective!", textX, textY + 40);
+      ctx.fillText("It was super effective!", textX, textY + 50);
     }
     else if (state.playerDamageMod === 'notVery'){
-      ctx.fillText("It was not very effective", textX, textY + 40);
+      ctx.fillText("It was not very effective", textX, textY + 50);
     };
   }
   else if (state.battleState === 'AI') {
-    ctx.fillText(state.enemyToBattle.name + " hit you with" + state.enemyAttackUsed.name, textX, textY);
+    ctx.fillText(state.enemyToBattle.name + " hit you with " + state.enemyAttackUsed.name, textX, textY);
     if (state.enemyDamageMod === 'super') {
-      ctx.fillText("It was super effective!", textX, textY + 40);
+      ctx.fillText("It was super effective!", textX, textY + 50);
     }
     else if (state.enemyDamageMod === 'notVery'){
-      ctx.fillText("It was not very effective", textX, textY + 40);
+      ctx.fillText("It was not very effective", textX, textY + 50);
     };
   }
   else if (state.battleState === 'itemUsed') {
