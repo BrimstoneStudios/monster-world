@@ -171,7 +171,6 @@ var FireType = function(lvl){
 FireType.prototype = Object.create(Monster.prototype);
 FireType.prototype.constructor = FireType;
 FireType.prototype.type = 'fire';
-FireType.prototype.weaknesss ='water';
 
 
 // Drag1 monster - subclass of FireType
@@ -199,7 +198,6 @@ var WaterType = function(lvl){
 WaterType.prototype = Object.create(Monster.prototype);
 WaterType.prototype.constructor = WaterType;
 WaterType.prototype.type = 'water';
-WaterType.prototype.weaknesss = 'grass';
 
 
 // Hydra1 monster - subclass of WaterType
@@ -227,7 +225,6 @@ var GrassType = function(lvl){
 GrassType.prototype = Object.create(Monster.prototype);
 GrassType.prototype.constructor = GrassType;
 GrassType.prototype.type = 'grass';
-GrassType.prototype.weaknesss = 'fire';
 
 // Wormy1 monster - subclass of GrassType
 var Wormy1 = function(lvl){
@@ -246,10 +243,61 @@ Wormy1.prototype.spDefenseMult = 2;
 Wormy1.prototype.speedMult = 2;
 Wormy1.prototype.abilities = [abilities.bite, abilities.growl, abilities.razorLeaf];
 
+// ----------------------------
+
+// Electric type - subclass of Monster
+var ElectricType = function(lvl){
+  Monster.call(this, lvl);
+};
+
+ElectricType.prototype = Object.create(Monster.prototype);
+ElectricType.prototype.constructor = ElectricType;
+ElectricType.prototype.type = 'electric';
+
+// ----------------------------
+
+// Rock type - subclass of Monster
+var RockType = function(lvl){
+  Monster.call(this, lvl);
+};
+
+RockType.prototype = Object.create(Monster.prototype);
+RockType.prototype.constructor = RockType;
+RockType.prototype.type = 'rock';
+
+// ----------------------------
+
+// Ghost type - subclass of Monster
+var GhostType = function(lvl){
+  Monster.call(this, lvl);
+};
+
+GhostType.prototype = Object.create(Monster.prototype);
+GhostType.prototype.constructor = GhostType;
+GhostType.prototype.type = 'ghost';
 
 
+// ----------------------------
 
+// Psychic type - subclass of Monster
+var PsychicType = function(lvl){
+  Monster.call(this, lvl);
+};
 
+PsychicType.prototype = Object.create(Monster.prototype);
+PsychicType.prototype.constructor = PsychicType;
+PsychicType.prototype.type = 'psychic';
+
+// ----------------------------
+
+// Fighting type - subclass of Monster
+var FightingType = function(lvl){
+  Monster.call(this, lvl);
+};
+
+FightingType.prototype = Object.create(Monster.prototype);
+FightingType.prototype.constructor = FightingType;
+FightingType.prototype.type = 'fighting';
 
 
 

@@ -1,17 +1,41 @@
-// Type effectiveness data
+// Ability type effectiveness data
 var type = {
+	normal: {
+		super: [],
+		notVery: ['ghost', 'rock'],
+	},
 	fire: {
 		super: ['grass'],
 		notVery: ['water', 'fire'],
 	},
 	water: {
-		super: ['fire'],
+		super: ['fire', 'rock'],
 		notVery: ['grass', 'water'],
 	},
 	grass: {
-		super: ['water'],
+		super: ['water', 'rock'],
 		notVery: ['fire', 'grass'],
 	},
+	electric: {
+		super: ['water'],
+		notVery: ['rock', 'electric'],
+	},
+	rock: {
+		super: ['electric'],
+		notVery: ['rock'],
+	},
+	ghost: {
+		super: ['ghost', 'psychic'],
+		notVery: ['normal'],
+	},
+	psychic: {
+		super: ['fighting'],
+		notVery: ['psychic', 'ghost'],
+	},
+	fighting: {
+		super: ['normal'],
+		notVery: ['psychic'],
+	}
 };
 
 
@@ -100,10 +124,14 @@ var enemyAbilityUsed = function(){
 		state.enemyAttackUsed.func(state.enemyToBattle.controller);
 	};
 	
+	//Currently deals damage regardless of attack type
 	state.playerBattleMonster.currentHp = Math.round(state.playerBattleMonster.currentHp - damage);
 	
+	// If your monster dies
 	if(state.playerBattleMonster.currentHp <= 0){
 		state.playerBattleMonster.currentHp = 0;
+
+		//If the Player monster dies, GAME OVER 
 		if (state.playerBattleMonster.player === 1){
 			// Render game over
 			state.battleState = 0;
