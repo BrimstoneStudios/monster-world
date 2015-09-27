@@ -44,7 +44,7 @@ var attackFunc = function(controller){
 	if (controller === 'player') {
 		state.playerAttackUsed = this;
 		// Still needs random modifier, accuracy modifier
-		var damage = (((this.power*state.playerBattleMonster.attack)*0.05)/state.enemyToBattle.defense);
+		var damage = (((this.power*(state.playerBattleMonster.attack*2))*0.04)/state.enemyToBattle.defense);
 		state.enemyToBattle.currentHp = Math.round(state.enemyToBattle.currentHp - damage);
 		if (state.enemyToBattle.currentHp <= 0){
 			state.enemyToBattle.currentHp = 0;
@@ -77,7 +77,7 @@ var spAttackFunc = function(controller){
 			damageMod = 1;
 		};
 
-		var damage = ((((this.power*state.playerBattleMonster.spAttack)*0.05)/state.enemyToBattle.spDefense)* damageMod);
+		var damage = ((((this.power*(state.playerBattleMonster.spAttack*2))*0.04)/state.enemyToBattle.spDefense)* damageMod);
 		state.enemyToBattle.currentHp = Math.round(state.enemyToBattle.currentHp - damage);
 
 		if (state.enemyToBattle.currentHp <= 0){
@@ -112,11 +112,11 @@ var enemyAbilityUsed = function(){
 			state.enemyDamageMod = 'none';
 			damageMod = 1;
 		};
-		damage =((((state.enemyAttackUsed.power*state.enemyToBattle.spAttack)*0.05)/state.playerBattleMonster.spDefense)*damageMod);
+		damage =((((state.enemyAttackUsed.power*(state.enemyToBattle.spAttack*2))*0.04)/state.playerBattleMonster.spDefense)*damageMod);
 	}
 	// Physical attacks
 	else if (state.enemyAttackUsed.category === "physical"){
-		damage =(((state.enemyAttackUsed.power*state.enemyToBattle.attack)*0.05)/state.playerBattleMonster.defense);
+		damage =(((state.enemyAttackUsed.power*(state.enemyToBattle.attack*2))*0.04)/state.playerBattleMonster.defense);
 		
 	}
 	// Status attacks
@@ -211,10 +211,10 @@ var abilities = {
 		func: function(controller) {
 			if (controller === "player") {
 				state.playerAttackUsed = this;
-				state.enemyToBattle.defence = state.enemyToBattle.defence*0.8;
+				state.enemyToBattle.defense = state.enemyToBattle.defense*0.8;
 			}
 			else {
-				state.playerBattleMonster.defence = state.playerBattleMonster.defence * 0.8;
+				state.playerBattleMonster.defense = state.playerBattleMonster.defense * 0.8;
 			};
 		}
 	},
@@ -248,8 +248,14 @@ var abilities = {
 		category:'special',
 		power:50,
 		accuracy:.9,
-		effect:'',
+		effect:'Reduces defending monster defense',
 		func: function(controller){
+			if (controller === "player") {
+				state.enemyToBattle.defense = state.enemyToBattle.defense*0.9;
+			}
+			else {
+				state.playerBattleMonster.defense = state.playerBattleMonster.defense * 0.9;
+			};
 			spAttackFunc.call(this, controller);
 		}
 	},
@@ -259,8 +265,14 @@ var abilities = {
 		category:'special',
 		power:50,
 		accuracy:.9,
-		effect:'',
+		effect:'Reduces defending monsters attack',
 		func: function(controller){
+			if (controller === "player") {
+				state.enemyToBattle.attack = state.enemyToBattle.attack*0.9;
+			}
+			else {
+				state.playerBattleMonster.attack = state.playerBattleMonster.attack * 0.9;
+			};
 			spAttackFunc.call(this, controller);
 		}
 	},
