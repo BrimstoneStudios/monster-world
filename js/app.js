@@ -2,6 +2,16 @@
 var Menu = function(){
 };
 
+Menu.prototype.renderCharSelect = function() {
+  ctx.font="50px Arial";
+  ctx.fillText("Choose a character",140,380);
+}
+
+Menu.prototype.renderMonsterSelect = function() {
+  ctx.font="50px Arial";
+  ctx.fillText("Choose a starting monster",50,380);
+}
+
 // Main menu
 Menu.prototype.renderMain = function() {
   ctx.font="50px Arial";
@@ -694,6 +704,8 @@ Player.prototype.handleInput = function(key) {
 
 
 // ------ ITEMS -------
+// ** Refactor to reference currently selected monster outside of combat
+// ** (i.e. choose which monster to give a potion to)
 var items = {
   potion:{
     name:'Potion',
@@ -722,15 +734,13 @@ var items = {
   }
 }
 itemInventory.push(items.potion);
-// Now instantiate your objects.
-// Place all NPC objects in an array called allNPC
-// Place the player object in a variable called player
 
+// Instantiate objects
 var allNPC = [];
 var player = new Player();
 var menu = new Menu();
 
-// This listens for key presses and sends the keys to your
+// Listens for key presses and sends the keys to 
 // Player.handleInput() method.
 
 document.addEventListener('keyup', function(e) {
