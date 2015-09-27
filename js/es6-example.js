@@ -35,3 +35,7 @@ class FireType extends Monster {
 }
 
 var thing = new FireType();
+
+
+
+
