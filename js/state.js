@@ -22,6 +22,7 @@ state.run;
 
 // Player monster currently battling
 state.playerBattleMonster;
+state.playerBattleMonsterStats;
 // Current monster battle opponent
 state.enemyToBattle;
 

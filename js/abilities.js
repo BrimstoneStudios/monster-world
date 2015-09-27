@@ -44,7 +44,7 @@ var attackFunc = function(controller){
 	if (controller === 'player') {
 		state.playerAttackUsed = this;
 		// Still needs random modifier, accuracy modifier
-		var damage = (((this.power*(state.playerBattleMonster.attack*2))*0.04)/state.enemyToBattle.defense);
+		var damage = (((this.power*(state.playerBattleMonster.attack*1.5))*0.04)/state.enemyToBattle.defense);
 		state.enemyToBattle.currentHp = Math.round(state.enemyToBattle.currentHp - damage);
 		if (state.enemyToBattle.currentHp <= 0){
 			state.enemyToBattle.currentHp = 0;
@@ -77,7 +77,7 @@ var spAttackFunc = function(controller){
 			damageMod = 1;
 		};
 
-		var damage = ((((this.power*(state.playerBattleMonster.spAttack*2))*0.04)/state.enemyToBattle.spDefense)* damageMod);
+		var damage = ((((this.power*(state.playerBattleMonster.spAttack*1.5))*0.04)/state.enemyToBattle.spDefense)* damageMod);
 		state.enemyToBattle.currentHp = Math.round(state.enemyToBattle.currentHp - damage);
 
 		if (state.enemyToBattle.currentHp <= 0){
@@ -112,11 +112,11 @@ var enemyAbilityUsed = function(){
 			state.enemyDamageMod = 'none';
 			damageMod = 1;
 		};
-		damage =((((state.enemyAttackUsed.power*(state.enemyToBattle.spAttack*2))*0.04)/state.playerBattleMonster.spDefense)*damageMod);
+		damage =((((state.enemyAttackUsed.power*(state.enemyToBattle.spAttack*1.5))*0.04)/state.playerBattleMonster.spDefense)*damageMod);
 	}
 	// Physical attacks
 	else if (state.enemyAttackUsed.category === "physical"){
-		damage =(((state.enemyAttackUsed.power*(state.enemyToBattle.attack*2))*0.04)/state.playerBattleMonster.defense);
+		damage =(((state.enemyAttackUsed.power*(state.enemyToBattle.attack*1.5))*0.04)/state.playerBattleMonster.defense);
 		
 	}
 	// Status attacks

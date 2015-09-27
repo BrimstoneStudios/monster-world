@@ -164,7 +164,7 @@ var battleEvent = function(){
 var enemyBattle = function(){
   if(state.prevLevel === 'firstLevel'){
     monstersAvailable = [Bat, GiantRat, Munchkin];
-    var levelsAvailable = [1, 2, 3];
+    var levelsAvailable = [1, 2];
   }
   else if(state.prevLevel === 'secondLevel'){
     monstersAvailable = [Bat, GiantRat, Munchkin];
@@ -321,18 +321,18 @@ Player.prototype.handleInput = function(key) {
       
       case 'space':
       if(this.x === 200){
-        var drag1 = new Drag1(3);
+        var drag1 = new Drag1(1);
         drag1.controller = 'player';
         monsterInventory.push(drag1);
       }
       
       else if(this.x === 300){
-        var hydra1 = new Hydra1(2);
+        var hydra1 = new Hydra1(1);
         hydra1.controller = 'player';
         monsterInventory.push(hydra1);
       }
       else{
-        var wormy1 = new Wormy1(2);
+        var wormy1 = new Wormy1(1);
         wormy1.controller = 'player';
         monsterInventory.push(wormy1);
       }
@@ -791,6 +791,9 @@ var items = {
     }
   }
 }
+itemInventory.push(items.potion);
+itemInventory.push(items.potion);
+itemInventory.push(items.potion);
 itemInventory.push(items.potion);
 
 // Instantiate objects
