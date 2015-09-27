@@ -1,32 +1,3 @@
-// Global variable objects
-var state = {};
-var monsterInventory = [];
-var itemInventory = [];
-
-// ------ State Variables -------
-// Set the initial level
-state.currentLevel = 'startScreen';
-
-// Where we will store our level and location when entering a battle/menu so we can return after
-state.prevLevel;
-state.locX;
-state.locY;
-
-// 0 = not currently displaying , 1 = currently displaying
-state.monsterStatCurrent= 0;
-
-// When a monster stat is going to be shown, save the ID here
-state.monsterStatID;
-state.run;
-state.playerBattleMonster;
-state.enemyToBattle;
-state.levelUp;
-
-
-// Battle states
-state.enemyAttackUsed;
-state.battleState;
-
 // ---------------- MENU ----------------
 var Menu = function(){
 };
@@ -76,24 +47,39 @@ Menu.prototype.renderMonsterStat = function(monster) {
 Menu.prototype.renderBattleText = function(){
   var textX = 50;
   var textY = 405;
+  ctx.font="30px Arial";
+
   if (state.battleState === 'wildIntroText' ) {
     var wildName = state.enemyToBattle.name;
     ctx.font="40px Arial";
     ctx.fillText('A wild ' + wildName + ' has appeared!', textX, textY);
   }
   else if (state.battleState === 'battleMenuMain'){
-    ctx.font="30px Arial";
     ctx.fillText("Fight", 350, 385);
     ctx.fillText("Bag", 580, 385);
     ctx.fillText("Monsters", 350, 455);
     ctx.fillText("Run", 580, 455);
   }
+  else if (state.battleState === 'playerMove') {
+    ctx.fillText("You hit enemy " + state.enemyToBattle.name + " with " + state.playerAttackUsed.name, textX, textY);
+    // Additional text if not very or super effective
+    if (state.playerDamageMod === 'super') {
+      ctx.fillText("It was super effective!", textX, textY + 50);
+    }
+    else if (state.playerDamageMod === 'notVery'){
+      ctx.fillText("It was not very effective", textX, textY + 50);
+    };
+  }
   else if (state.battleState === 'AI') {
-    ctx.font="30px Arial";
     ctx.fillText(state.enemyToBattle.name + " hit you with " + state.enemyAttackUsed.name, textX, textY);
+    if (state.enemyDamageMod === 'super') {
+      ctx.fillText("It was super effective!", textX, textY + 50);
+    }
+    else if (state.enemyDamageMod === 'notVery'){
+      ctx.fillText("It was not very effective", textX, textY + 50);
+    };
   }
   else if (state.battleState === 'itemUsed') {
-    ctx.font="30px Arial";
     ctx.fillText("You used a...?", textX, textY);
   }
   else if (state.battleState === 'battleMonsterDie'){
@@ -111,34 +97,28 @@ Menu.prototype.renderBattleText = function(){
     }
   }
   else if (state.battleState === 'battleMenuFight'){
-    ctx.font="30px Arial";
     for (var i = 0, j = 0; i < state.playerBattleMonster.abilities.length; i++, j = j + 40){
       ctx.fillText(state.playerBattleMonster.abilities[i].name, 50, 385 + j);
     }
   }
   else if (state.battleState === 'monsterInvMenu'){
-    ctx.font="30px Arial";
     for (var i = 0, j = 0; i < monsterInventory.length; i++, j = j + 40){
       ctx.fillText(monsterInventory[i].name, 50, 385 + j)
     }
   }
   else if (state.battleState === 'invMenu'){
-    ctx.font="30px Arial";
     for (var i = 0, j = 0; i < itemInventory.length; i++, j = j + 40){
       ctx.fillText(itemInventory[i].name, 50, 385 + j)
     }
   }
   else if (state.battleState === 'battleFailedRunAway') {
-    ctx.font="30px Arial";
     ctx.fillText("Escape failed. FIGHT!", textX, textY);
   }
   else if (state.battleState === 'battleRunAway'){
-    ctx.font="30px Arial";
     ctx.fillText("You ran away!? You wimp...", textX, textY)
   }
   //This will be used when we defeat NPC
   else if (state.battleState === 'battleWinText'){
-    ctx.font="30px Arial";
     ctx.fillText('You have defeated ' + state.enemyToBattle.name + '!', textX, textY)
   }
 };
@@ -162,7 +142,7 @@ var battleEvent = function(){
 
 var enemyBattle = function(){
   if(state.prevLevel === 'firstLevel'){
-    monstersAvailable = [Drag1, Hydra1, Wormy1];
+    monstersAvailable = [Bat, GiantRat, Munchkin];
     var level = Math.floor(Math.random()*3) + 1;
     var randomMonster = Math.floor(Math.random() * monstersAvailable.length);
     var newMonster = monstersAvailable[randomMonster];
@@ -187,196 +167,6 @@ var runFromBattle = function(){
   }
 };
 
-// ---------------------- MONSTERS -----------------------
-
-// Monster class determines the initial stats of the monster based on the level and the multiplier
-// Multipliers defined later on individual monsters.
-var Monster = function (lvl){
-  this.level = lvl;
-  this.hp = this.level * this.hpMult;
-  this.currentHp = this.hp;
-  this.condition = 'healthy';
-  this.attack = this.level * this.attackMult;
-  this.defense = this.level * this.defenseMult;
-  this.spAttack = this.level * this.spAttackMult;
-  this.spDefense = this.level * this.spDefenseMult;
-  this.speed = this.level * this.speedMult;
-  this.currentExp = 0;
-  this.expToLevel = 10 + (10*this.level);
-  this.expReward = 5 + (3*this.level);
-};
-
-Monster.prototype.update = function(){
-};
-
-Monster.prototype.render = function(x, y) {
-  ctx.drawImage(Resources.get(this.sprite), x, y, 100, 100);
-};
-
-Monster.prototype.expGain = function(){
-  this.currentExp += state.enemyToBattle.expReward;
-  console.log(this.currentExp);
-  if (this.currentExp >= this.expToLevel){
-    this.levelUp();
-  }
-};
-
-// Level up method to update stats based on current level
-Monster.prototype.levelUp = function(){
-  state.levelUp = 1;
-  this.level++;
-  this.hp = this.level * this.hpMult;
-  this.attack = this.level * this.attackMult;
-  this.defense = this.level * this.defenseMult;
-  this.spAttack = this.level * this.spAttackMult;
-  this.spDefense = this.level * this.spDefenseMult;
-  this.speed = this.level * this.speedMult;
-  this.currentExp = 0;
-  this.expToLevel = 10 + (10*this.level);
-};
-
-Monster.prototype.renderBtlMonStats = function(player){
-  ctx.font="35px Arial";
-  if(player === "player"){
-    ctx.fillText(this.name, 350, 260);
-    ctx.fillText("Lv", 610, 260);
-    ctx.fillText(this.level, 650, 260);
-    ctx.fillText("HP:", 350, 300);
-    ctx.fillText(this.currentHp, 450, 300);
-    ctx.fillText("/", 495, 300)
-    ctx.fillText(this.hp, 510, 300);
-  }
-  else{
-    ctx.fillText(this.name, 50, 60);
-    ctx.fillText("Lv", 310, 60);
-    ctx.fillText(this.level, 350, 60);
-    ctx.fillText("HP:", 50, 100);
-    ctx.fillText(this.currentHp, 150, 100);
-    ctx.fillText("/", 195, 100)
-    ctx.fillText(this.hp, 210, 100);
-  }
-};
-
-// ----------------------------
-
-// Normal type - subclass of Monster
-var NormalType = function(lvl){
-  Monster.call(this, lvl);
-};
-
-NormalType.prototype = Object.create(Monster.prototype);
-NormalType.prototype.constructor = NormalType;
-NormalType.prototype.type = 'normal';
-NormalType.prototype.weaknesss ='';
-
-// PlayerMon monster - subclass of NormalType
-var PlayerMon = function(lvl, char){
-  NormalType.call(this, lvl);
-  if (char === "monk") {
-    this.sprite = 'images/characters/monk.gif';
-  }
-  else {
-    this.sprite = 'images/characters/deathCaster.gif';
-  }
-};
-PlayerMon.prototype = Object.create(NormalType.prototype);
-PlayerMon.prototype.constructor = PlayerMon;
-PlayerMon.prototype.sprite = state.sprite;
-PlayerMon.prototype.name = 'PlayerMon';
-PlayerMon.prototype.player = 1;
-PlayerMon.prototype.hpMult = 5;
-PlayerMon.prototype.attackMult = 3;
-PlayerMon.prototype.defenseMult = 1;
-PlayerMon.prototype.spAttackMult = 2;
-PlayerMon.prototype.spDefenseMult = 1;
-PlayerMon.prototype.speedMult = 3;
-PlayerMon.prototype.abilities = [abilities.scratch, abilities.stare, abilities.fireBreath];
-
-// ----------------------------
-
-// Fire type - subclass of Monster
-var FireType = function(lvl){
-  Monster.call(this, lvl);
-};
-
-FireType.prototype = Object.create(Monster.prototype);
-FireType.prototype.constructor = FireType;
-FireType.prototype.type = 'fire';
-FireType.prototype.weaknesss ='water';
-
-
-// Drag1 monster - subclass of FireType
-var Drag1 = function(lvl){
-  FireType.call(this, lvl);
-};
-Drag1.prototype = Object.create(FireType.prototype);
-Drag1.prototype.constructor = Drag1;
-Drag1.prototype.sprite = 'images/monsters/drag1.gif';
-Drag1.prototype.name = 'Drag1';
-Drag1.prototype.hpMult = 5;
-Drag1.prototype.attackMult = 3;
-Drag1.prototype.defenseMult = 1;
-Drag1.prototype.spAttackMult = 2;
-Drag1.prototype.spDefenseMult = 1;
-Drag1.prototype.speedMult = 3;
-Drag1.prototype.abilities = [abilities.scratch, abilities.stare, abilities.fireBreath];
-
-// ----------------------------
-
-// Water type - subclass of Monster
-var WaterType = function(lvl){
-  Monster.call(this, lvl);
-};
-WaterType.prototype = Object.create(Monster.prototype);
-WaterType.prototype.constructor = WaterType;
-WaterType.prototype.type = 'water';
-WaterType.prototype.weaknesss = 'grass';
-
-
-// Hydra1 monster - subclass of WaterType
-var Hydra1 = function(lvl){
-  WaterType.call(this, lvl);
-};
-Hydra1.prototype = Object.create(WaterType.prototype);
-Hydra1.prototype.constructor = Hydra1;
-Hydra1.prototype.sprite = 'images/monsters/hydra1.png';
-Hydra1.prototype.name = 'Hydra1';
-Hydra1.prototype.hpMult = 7;
-Hydra1.prototype.attackMult = 1;
-Hydra1.prototype.defenseMult = 2;
-Hydra1.prototype.spAttackMult = 1;
-Hydra1.prototype.spDefenseMult = 3;
-Hydra1.prototype.speedMult = 1;
-Hydra1.prototype.abilities = [abilities.bite, abilities.growl, abilities.waterBlast];
-
-// ----------------------------
-
-// Grass type - subclass of Monster
-var GrassType = function(lvl){
-  Monster.call(this, lvl);
-};
-GrassType.prototype = Object.create(Monster.prototype);
-GrassType.prototype.constructor = GrassType;
-GrassType.prototype.type = 'grass';
-GrassType.prototype.weaknesss = 'fire';
-
-// Wormy1 monster - subclass of GrassType
-var Wormy1 = function(lvl){
-  GrassType.call(this, lvl);
-};
-
-Wormy1.prototype = Object.create(GrassType.prototype);
-Wormy1.prototype.constructor = Wormy1;
-Wormy1.prototype.sprite = 'images/monsters/wormy1.gif';
-Wormy1.prototype.name = 'Wormy1';
-Wormy1.prototype.hpMult = 6;
-Wormy1.prototype.attackMult = 1;
-Wormy1.prototype.defenseMult = 2;
-Wormy1.prototype.spAttackMult = 2;
-Wormy1.prototype.spDefenseMult = 2;
-Wormy1.prototype.speedMult = 2;
-Wormy1.prototype.abilities = [abilities.bite, abilities.stare, abilities.razorLeaf];
-
 
 // ------ NPCs -------
 // Other characters in the game, can be friendly or hostile
@@ -399,7 +189,6 @@ NPC.prototype.render = function() {
 
 
 // ------ PLAYER -------
-state.sprite;
 
 var Player = function() {
   // Initial location for the start screen, the whole start screen image is the player sprite, takes up the whole screen
@@ -504,16 +293,19 @@ Player.prototype.handleInput = function(key) {
       
       case 'space':
       if(this.x === 200){
-        var drag1 = new Drag1(1);
+        var drag1 = new Drag1(3);
+        drag1.controller = 'player';
         monsterInventory.push(drag1);
       }
       
       else if(this.x === 300){
         var hydra1 = new Hydra1(2);
+        hydra1.controller = 'player';
         monsterInventory.push(hydra1);
       }
       else{
-        var wormy1 = new Wormy1(3);
+        var wormy1 = new Wormy1(2);
+        wormy1.controller = 'player';
         monsterInventory.push(wormy1);
       }
       state.currentLevel = 'firstLevel';
@@ -582,6 +374,7 @@ Player.prototype.handleInput = function(key) {
       
     }
   }
+  // Monster inventory controls
   else if (state.currentLevel === 'monsterInventory'){
     switch(key){
       case 'shift':
@@ -621,9 +414,9 @@ Player.prototype.handleInput = function(key) {
     if (state.battleState === 'wildIntroText') {
       switch(key){
         case 'space':
-        state.battleState = 'battleMenuMain';
-        this.x = 300;
-        this.y = 350;
+          state.battleState = 'battleMenuMain';
+          this.x = 300;
+          this.y = 350;
         break;
       };
     }
@@ -631,50 +424,59 @@ Player.prototype.handleInput = function(key) {
     else if (state.battleState === 'battleMonsterDie'){
       switch(key){
         case 'space':
-        state.currentLevel = state.prevLevel;
-        this.x = state.locX;
-        this.y = state.locY;
-        state.levelUp = 0;
-        state.battleState = 'battleMenuMain';
-        if (state.playerBattleMonster.currentHp === 0){
-          // ** Will have to change to target the current monster rather than the first in the array
-          monsterInventory.splice(0, 1);
-          if (monsterInventory.length === 0) {
-            if (state.sprite === 'images/characters/monk.gif') {
-              var playerMon = new PlayerMon(2, 'monk');
+          state.currentLevel = state.prevLevel;
+          this.x = state.locX;
+          this.y = state.locY;
+          state.levelUp = 0;
+          state.battleState = 'battleMenuMain';
+          if (state.playerBattleMonster.currentHp === 0){
+            // ** Will have to change to target the current monster rather than the first in the array
+            monsterInventory.splice(0, 1);
+            if (monsterInventory.length === 0) {
+              if (state.sprite === 'images/characters/monk.gif') {
+                var playerMon = new PlayerMon(2, 'monk');
+              }
+              else {
+                var playerMon = new PlayerMon(2, 'deathCaster');
+              };
+              playerMon.controller = 'player';
+              monsterInventory.push(playerMon);
+              state.playerMonster = 1;
             }
-            else {
-              var playerMon = new PlayerMon(2, 'deathCaster');
-            };
-            monsterInventory.push(playerMon);
-            state.playerMonster = 1;
           }
-        }
         break;
       }
     }
     else if(state.battleState === 'itemUsed'){
       switch(key){
         case 'space':
-        this.x = 300;
-        this.y = 350;
-        enemyAbilityUsed();
-        state.battleState = 'AI';
+          this.x = 300;
+          this.y = 350;
+          enemyAbilityUsed();
+          state.battleState = 'AI';
         break;
       }
     }
-    
+    else if (state.battleState === 'playerMove'){
+      switch(key){
+        case 'space':
+          state.playerDamageMod = 'none';
+          state.battleState = 'AI';
+        break;
+      };
+    }
     else if(state.battleState === 'AI'){
       switch(key){
         case 'space':
-        this.x = 300;
-        this.y = 350;
-        if(state.playerBattleMonster.currentHp === 0){
-          state.battleState = 'battleMonsterDie';
-        }
-        else{
-          state.battleState = 'battleMenuMain';
-        }
+          this.x = 300;
+          this.y = 350;
+          state.enemyDamageMod = 'none';
+          if(state.playerBattleMonster.currentHp === 0){
+            state.battleState = 'battleMonsterDie';
+          }
+          else{
+            state.battleState = 'battleMenuMain';
+          }
         break;
       }
     }
@@ -796,10 +598,10 @@ Player.prototype.handleInput = function(key) {
         case 'space':
         for (var i = 0; i < state.playerBattleMonster.abilities.length; i++){
           if (this.y === 350 +(i*40)){
-            state.playerBattleMonster.abilities[i].func();
+            state.playerBattleMonster.abilities[i].func(state.playerBattleMonster.controller);
             if(state.enemyToBattle.currentHp > 0){
               enemyAbilityUsed();
-              state.battleState = 'AI';
+              state.battleState = 'playerMove';
             }
             else{
               state.battleState = 'battleMonsterDie';
@@ -890,6 +692,8 @@ Player.prototype.handleInput = function(key) {
   } //End of else
 }
 
+
+// ------ ITEMS -------
 var items = {
   potion:{
     name:'Potion',
@@ -918,7 +722,6 @@ var items = {
   }
 }
 itemInventory.push(items.potion);
-// Global functions
 // Now instantiate your objects.
 // Place all NPC objects in an array called allNPC
 // Place the player object in a variable called player
@@ -942,3 +745,17 @@ document.addEventListener('keyup', function(e) {
   
   player.handleInput(allowedKeys[e.keyCode]);
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
