@@ -13,7 +13,7 @@ var Monster = function (lvl){
   this.spDefense = ((((5 + this.spDefenseMult) * 11)* this.level)/100)+2;
   this.speed = ((((30 + this.speedMult) * 11)* this.level)/100)+2;
   this.currentExp = 0;
-  this.expToLevel = 10 + (10*this.level);
+  this.expToLevel = 10 + (3*this.level);
   this.expReward = 5 + (3*this.level);
 };
 Monster.prototype.controller = 'computer';
@@ -154,7 +154,7 @@ Munchkin.prototype.sprite = state.sprite;
 Munchkin.prototype.name = 'Munchkin';
 Munchkin.prototype.player = 1;
 Munchkin.prototype.hpMult = 6;
-Munchkin.prototype.attackMult = 2;
+Munchkin.prototype.attackMult = 3;
 Munchkin.prototype.defenseMult = 1;
 Munchkin.prototype.spAttackMult = 2;
 Munchkin.prototype.spDefenseMult = 2;
@@ -245,3 +245,14 @@ Wormy1.prototype.spAttackMult = 2;
 Wormy1.prototype.spDefenseMult = 2;
 Wormy1.prototype.speedMult = 2;
 Wormy1.prototype.abilities = [abilities.bite, abilities.growl, abilities.razorLeaf];
+
+
+
+
+
+
+
+
+
+
+

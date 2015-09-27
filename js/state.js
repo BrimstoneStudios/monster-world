@@ -29,3 +29,10 @@ state.playerDamageMod = 'none';
 state.enemyAttackUsed;
 state.enemyDamageMod = 'none';
 state.battleState;
+
+
+
+
+
+
+
