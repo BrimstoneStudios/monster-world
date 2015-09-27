@@ -44,7 +44,7 @@ var attackFunc = function(controller){
 	if (controller === 'player') {
 		state.playerAttackUsed = this;
 		// Still needs random modifier, accuracy modifier
-		var damage = (((this.power*(state.playerBattleMonster.attack*1.5))*0.04)/state.enemyToBattle.defense);
+		var damage = (((this.power*(state.playerBattleMonster.attack*1.5))*0.04)/(state.enemyToBattle.defense));
 		state.enemyToBattle.currentHp = Math.round(state.enemyToBattle.currentHp - damage);
 		if (state.enemyToBattle.currentHp <= 0){
 			state.enemyToBattle.currentHp = 0;
@@ -83,6 +83,10 @@ var spAttackFunc = function(controller){
 		if (state.enemyToBattle.currentHp <= 0){
 			state.enemyToBattle.currentHp = 0;
 			// If the enemy monster dies, gain exp
+			state.playerBattleMonster.attack = state.playerBattleMonsterAttack;
+			state.playerBattleMonster.defense = state.playerBattleMonsterDefense;
+			state.playerBattleMonster.spAttack = state.playerBattleMonsterSpAttack;
+			state.playerBattleMonster.spDefense = state.playerBattleMonsterSpDefense;
 			state.playerBattleMonster.expGain();
 		}
 	}
@@ -211,10 +215,10 @@ var abilities = {
 		func: function(controller) {
 			if (controller === "player") {
 				state.playerAttackUsed = this;
-				state.enemyToBattle.defense = state.enemyToBattle.defense*0.8;
+				state.enemyToBattle.defense = state.enemyToBattle.defense*0.9;
 			}
 			else {
-				state.playerBattleMonster.defense = state.playerBattleMonster.defense * 0.8;
+				state.playerBattleMonster.defense = state.playerBattleMonster.defense * 0.9;
 			};
 		}
 	},

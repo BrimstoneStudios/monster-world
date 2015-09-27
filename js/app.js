@@ -158,6 +158,10 @@ var battleEvent = function(){
     state.currentLevel = 'battleLevel';
     state.playerBattleMonster = monsterInventory[0];
     state.enemyToBattle = enemyBattle();
+    state.playerBattleMonsterAttack = state.playerBattleMonster.attack;
+    state.playerBattleMonsterDefense = state.playerBattleMonster.defense;
+    state.playerBattleMonsterSpAttack = state.playerBattleMonster.spAttack;
+    state.playerBattleMonsterSpDefense = state.playerBattleMonster.spDefense;
   };
 };
 
@@ -760,14 +764,14 @@ var items = {
     func: function(){
       //checks to see if the potion is used in a battle
       if(state.currentLevel === 'battleLevel'){
-        state.playerBattleMonster.currentHp += 5;
+        state.playerBattleMonster.currentHp += 10;
         if (state.playerBattleMonster.currentHp > state.playerBattleMonster.hp){
           state.playerBattleMonster.currentHp = state.playerBattleMonster.hp;
         }
       }
       //if not used in a battle the potion is used in the invMenu
       else{
-        monsterInventory[0].currentHp += 5;
+        monsterInventory[0].currentHp += 10;
         if(monsterInventory[0].currentHp > monsterInventory.hp){
           monsterInventory[0].currentHp = monsterInventory[0].hp;
         }
