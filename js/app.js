@@ -21,10 +21,16 @@ Menu.prototype.renderMain = function() {
 
 Menu.prototype.renderItemsInv = function(){
   ctx.font="50px Arial";
-  for (var i = 0, j = 0; i < itemInventory.length; i++, j = j+50){
-    ctx.fillText(itemInventory[i].name, 155, 85+j);
-  };
+  if (itemInventory.length > 0){
+    for (var i = 0, j = 0; i < itemInventory.length; i++, j = j+50){
+      ctx.fillText(itemInventory[i].name, 155, 85+j);
+    }
+  }
+  else{
+    ctx.fillText("Your bag is empty.", 155, 85);
+  }
 };
+
 // Monster Inventory Menu
 Menu.prototype.renderMonsterInv = function(){
   ctx.font="50px Arial";
@@ -58,7 +64,7 @@ Menu.prototype.renderBattleText = function(){
   var textX = 50;
   var textY = 405;
   ctx.font="30px Arial";
-
+  
   if (state.battleState === 'wildIntroText' ) {
     var wildName = state.enemyToBattle.name;
     ctx.font="40px Arial";
@@ -113,23 +119,28 @@ Menu.prototype.renderBattleText = function(){
   }
   else if (state.battleState === 'monsterInvMenu'){
     for (var i = 0, j = 0; i < monsterInventory.length; i++, j = j + 40){
-      ctx.fillText(monsterInventory[i].name, 50, 385 + j)
+      ctx.fillText(monsterInventory[i].name, 50, 385 + j);
     }
   }
   else if (state.battleState === 'invMenu'){
-    for (var i = 0, j = 0; i < itemInventory.length; i++, j = j + 40){
-      ctx.fillText(itemInventory[i].name, 50, 385 + j)
+    if (itemInventory.length > 0){
+      for (var i = 0, j = 0; i < itemInventory.length; i++, j = j + 40){
+        ctx.fillText(itemInventory[i].name, 50, 385 + j);
+      }
+    }
+    else{
+      ctx.fillText("You have no items to use!", 50, 385);
     }
   }
   else if (state.battleState === 'battleFailedRunAway') {
     ctx.fillText("Escape failed. FIGHT!", textX, textY);
   }
   else if (state.battleState === 'battleRunAway'){
-    ctx.fillText("You ran away!? You wimp...", textX, textY)
+    ctx.fillText("You ran away!? You wimp...", textX, textY);
   }
   //This will be used when we defeat NPC
   else if (state.battleState === 'battleWinText'){
-    ctx.fillText('You have defeated ' + state.enemyToBattle.name + '!', textX, textY)
+    ctx.fillText('You have defeated ' + state.enemyToBattle.name + '!', textX, textY);
   }
 };
 
@@ -153,12 +164,19 @@ var battleEvent = function(){
 var enemyBattle = function(){
   if(state.prevLevel === 'firstLevel'){
     monstersAvailable = [Bat, GiantRat, Munchkin];
-    var level = Math.floor(Math.random()*3) + 1;
-    var randomMonster = Math.floor(Math.random() * monstersAvailable.length);
-    var newMonster = monstersAvailable[randomMonster];
-    var enemyMonster = new newMonster(level);
-    return enemyMonster;
+    var levelsAvailable = [1, 2, 3];
   }
+  else if(state.prevLevel === 'secondLevel'){
+    monstersAvailable = [Bat, GiantRat, Munchkin];
+    var levelsAvailable = [3,4,5];
+  }
+  
+  var randomLevel = Math.floor(Math.random()*levelsAvailable.length);
+  var newLevel = levelsAvailable[randomLevel];
+  var randomMonster = Math.floor(Math.random() * monstersAvailable.length);
+  var newMonster = monstersAvailable[randomMonster];
+  var enemyMonster = new newMonster(newLevel);
+  return enemyMonster;
 }
 
 //function to run from battle when run is selected in the menu
@@ -360,7 +378,7 @@ Player.prototype.handleInput = function(key) {
     }
   }
   
-  // Controls for the monster inventory
+  // Controls for the items inventory
   else if (state.currentLevel === 'itemsInv'){
     switch(key){
       case 'shift':
@@ -382,6 +400,15 @@ Player.prototype.handleInput = function(key) {
       }
       break;
       
+      case 'space':
+      for (var i = 0; i < itemInventory.length; i++){
+        console.log(this.y);
+        if (this.y === 42 + (i*90)){
+          itemInventory[i].func();
+          itemInventory.splice(i, 1);
+        }
+      }
+      break;
     }
   }
   // Monster inventory controls
@@ -424,9 +451,9 @@ Player.prototype.handleInput = function(key) {
     if (state.battleState === 'wildIntroText') {
       switch(key){
         case 'space':
-          state.battleState = 'battleMenuMain';
-          this.x = 300;
-          this.y = 350;
+        state.battleState = 'battleMenuMain';
+        this.x = 300;
+        this.y = 350;
         break;
       };
     }
@@ -434,59 +461,59 @@ Player.prototype.handleInput = function(key) {
     else if (state.battleState === 'battleMonsterDie'){
       switch(key){
         case 'space':
-          state.currentLevel = state.prevLevel;
-          this.x = state.locX;
-          this.y = state.locY;
-          state.levelUp = 0;
-          state.battleState = 'battleMenuMain';
-          if (state.playerBattleMonster.currentHp === 0){
-            // ** Will have to change to target the current monster rather than the first in the array
-            monsterInventory.splice(0, 1);
-            if (monsterInventory.length === 0) {
-              if (state.sprite === 'images/characters/monk.gif') {
-                var playerMon = new PlayerMon(2, 'monk');
-              }
-              else {
-                var playerMon = new PlayerMon(2, 'deathCaster');
-              };
-              playerMon.controller = 'player';
-              monsterInventory.push(playerMon);
-              state.playerMonster = 1;
+        state.currentLevel = state.prevLevel;
+        this.x = state.locX;
+        this.y = state.locY;
+        state.levelUp = 0;
+        state.battleState = 'battleMenuMain';
+        if (state.playerBattleMonster.currentHp === 0){
+          // ** Will have to change to target the current monster rather than the first in the array
+          monsterInventory.splice(0, 1);
+          if (monsterInventory.length === 0) {
+            if (state.sprite === 'images/characters/monk.gif') {
+              var playerMon = new PlayerMon(2, 'monk');
             }
+            else {
+              var playerMon = new PlayerMon(2, 'deathCaster');
+            };
+            playerMon.controller = 'player';
+            monsterInventory.push(playerMon);
+            state.playerMonster = 1;
           }
+        }
         break;
       }
     }
     else if(state.battleState === 'itemUsed'){
       switch(key){
         case 'space':
-          this.x = 300;
-          this.y = 350;
-          enemyAbilityUsed();
-          state.battleState = 'AI';
+        this.x = 300;
+        this.y = 350;
+        enemyAbilityUsed();
+        state.battleState = 'AI';
         break;
       }
     }
     else if (state.battleState === 'playerMove'){
       switch(key){
         case 'space':
-          state.playerDamageMod = 'none';
-          state.battleState = 'AI';
+        state.playerDamageMod = 'none';
+        state.battleState = 'AI';
         break;
       };
     }
     else if(state.battleState === 'AI'){
       switch(key){
         case 'space':
-          this.x = 300;
-          this.y = 350;
-          state.enemyDamageMod = 'none';
-          if(state.playerBattleMonster.currentHp === 0){
-            state.battleState = 'battleMonsterDie';
-          }
-          else{
-            state.battleState = 'battleMenuMain';
-          }
+        this.x = 300;
+        this.y = 350;
+        state.enemyDamageMod = 'none';
+        if(state.playerBattleMonster.currentHp === 0){
+          state.battleState = 'battleMonsterDie';
+        }
+        else{
+          state.battleState = 'battleMenuMain';
+        }
         break;
       }
     }
@@ -537,36 +564,53 @@ Player.prototype.handleInput = function(key) {
     else if(state.battleState === 'monsterInvMenu'){
       switch(key){
         case 'space':
-        state.battleState = 'battleMenuMain'
+        state.battleState = 'battleMenuMain';
+        break;
+        
+        case 'shift':
+        state.battleState = 'battleMenuMain';
         break;
       }
     }
     
     else if(state.battleState === 'invMenu'){
-      
-      switch(key){
-        case 'up':
-        this.y = this.y - 40;
-        if (this.y <350) {
-          this.y = 350;
-        }
-        break;
-        case 'down':
-        this.y = this.y +40;
-        var maxY =  (350+((itemInventory.length-1) * 40));
-        if (this.y > maxY) {
-          this.y = maxY;
-        }
-        break;
-        case 'space':
-        for (var i = 0; i < itemInventory.length; i++){
-          if (this.y === 350 +(i*40)){
-            itemInventory[i].func();
-            itemInventory.splice(i, 1);
-            state.battleState = 'itemUsed';
+      if(itemInventory.length > 0){
+        switch(key){
+          case 'up':
+          this.y = this.y - 40;
+          if (this.y <350) {
+            this.y = 350;
           }
           break;
+          case 'down':
+          this.y = this.y +40;
+          var maxY =  (350+((itemInventory.length-1) * 40));
+          if (this.y > maxY) {
+            this.y = maxY;
+          }
+          break;
+          case 'space':
+          for (var i = 0; i < itemInventory.length; i++){
+            if (this.y === 350 +(i*40)){
+              itemInventory[i].func();
+              itemInventory.splice(i, 1);
+              state.battleState = 'itemUsed';
+            }
+            break;
+          }
         }
+      }
+      else{
+        switch(key){
+          case 'space':
+          state.battleState = 'battleMenuMain';
+          break;
+        }
+      }
+      switch(key){
+        case 'shift':
+        state.battleState = 'battleMenuMain';
+        break;
       }
     }
     
@@ -592,6 +636,10 @@ Player.prototype.handleInput = function(key) {
     // Battle menu fight controls
     else if (state.battleState === 'battleMenuFight') {
       switch(key){
+        case 'shift':
+        state.battleState = 'battleMenuMain';
+        break;
+        
         case 'up':
         this.y = this.y - 40;
         if (this.y <350) {
@@ -710,9 +758,19 @@ var items = {
   potion:{
     name:'Potion',
     func: function(){
-      state.playerBattleMonster.currentHp += 5;
-      if (state.playerBattleMonster.currentHp > state.playerBattleMonster.hp){
-        state.playerBattleMonster.currentHp = state.playerBattleMonster.hp;
+      //checks to see if the potion is used in a battle
+      if(state.currentLevel === 'battleLevel'){
+        state.playerBattleMonster.currentHp += 5;
+        if (state.playerBattleMonster.currentHp > state.playerBattleMonster.hp){
+          state.playerBattleMonster.currentHp = state.playerBattleMonster.hp;
+        }
+      }
+      //if not used in a battle the potion is used in the invMenu
+      else{
+        monsterInventory[0].currentHp += 5;
+        if(monsterInventory[0].currentHp > monsterInventory.hp){
+          monsterInventory[0].currentHp = monsterInventory[0].hp;
+        }
       }
     }
   },
@@ -755,17 +813,3 @@ document.addEventListener('keyup', function(e) {
   
   player.handleInput(allowedKeys[e.keyCode]);
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
