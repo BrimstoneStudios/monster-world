@@ -11,10 +11,16 @@ Menu.prototype.renderMain = function() {
 
 Menu.prototype.renderItemsInv = function(){
   ctx.font="50px Arial";
-  for (var i = 0, j = 0; i < itemInventory.length; i++, j = j+50){
-    ctx.fillText(itemInventory[i].name, 155, 85+j);
-  };
+  if (itemInventory.length > 0){
+    for (var i = 0, j = 0; i < itemInventory.length; i++, j = j+50){
+      ctx.fillText(itemInventory[i].name, 155, 85+j);
+    }
+  }
+  else{
+    ctx.fillText("Your bag is empty.", 155, 85);
+  }
 };
+
 // Monster Inventory Menu
 Menu.prototype.renderMonsterInv = function(){
   ctx.font="50px Arial";
@@ -148,12 +154,19 @@ var battleEvent = function(){
 var enemyBattle = function(){
   if(state.prevLevel === 'firstLevel'){
     monstersAvailable = [Bat, GiantRat, Munchkin];
-    var level = Math.floor(Math.random()*3) + 1;
-    var randomMonster = Math.floor(Math.random() * monstersAvailable.length);
-    var newMonster = monstersAvailable[randomMonster];
-    var enemyMonster = new newMonster(level);
-    return enemyMonster;
+    var levelsAvailable = [1, 2, 3];
   }
+  else if(state.prevLevel === 'secondLevel'){
+    monstersAvailable = [Bat, GiantRat, Munchkin];
+    var levelsAvailable = [3,4,5];
+  }
+  
+  var randomLevel = Math.floor(Math.random()*levelsAvailable.length);
+  var newLevel = levelsAvailable[randomLevel];
+  var randomMonster = Math.floor(Math.random() * monstersAvailable.length);
+  var newMonster = monstersAvailable[randomMonster];
+  var enemyMonster = new newMonster(newLevel);
+  return enemyMonster;
 }
 
 //function to run from battle when run is selected in the menu
@@ -355,7 +368,7 @@ Player.prototype.handleInput = function(key) {
     }
   }
   
-  // Controls for the monster inventory
+  // Controls for the items inventory
   else if (state.currentLevel === 'itemsInv'){
     switch(key){
       case 'shift':
@@ -377,6 +390,15 @@ Player.prototype.handleInput = function(key) {
       }
       break;
       
+      case 'space':
+      for (var i = 0; i < itemInventory.length; i++){
+        console.log(this.y);
+        if (this.y === 42 + (i*90)){
+          itemInventory[i].func();
+          itemInventory.splice(i, 1);
+        }
+      }
+      break;
     }
   }
   // Monster inventory controls
@@ -724,9 +746,19 @@ var items = {
   potion:{
     name:'Potion',
     func: function(){
-      state.playerBattleMonster.currentHp += 5;
-      if (state.playerBattleMonster.currentHp > state.playerBattleMonster.hp){
-        state.playerBattleMonster.currentHp = state.playerBattleMonster.hp;
+      //checks to see if the potion is used in a battle
+      if(state.currentLevel === 'battleLevel'){
+        state.playerBattleMonster.currentHp += 5;
+        if (state.playerBattleMonster.currentHp > state.playerBattleMonster.hp){
+          state.playerBattleMonster.currentHp = state.playerBattleMonster.hp;
+        }
+      }
+      //if not used in a battle the potion is used in the invMenu
+      else{
+        monsterInventory[0].currentHp += 5;
+        if(monsterInventory[0].currentHp > monsterInventory.hp){
+          monsterInventory[0].currentHp = monsterInventory[0].hp;
+        }
       }
     }
   },
