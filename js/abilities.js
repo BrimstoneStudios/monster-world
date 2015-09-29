@@ -46,43 +46,47 @@ var type = {
 };
 
 
-// Attack function for physical attacks
+// Attack function 
 var attackFunc = function(controller){
 	if (controller === 'player') {
 		state.playerAttackUsed = this;
-		// Still needs random modifier, accuracy modifier
+
+		// Check effectiveness 
+		var damageMod;
+		var enemyType = state.enemyToBattle.type;
+		var spellType = this.type;
+		if (type[spellType].super.indexOf(enemyType) >= 0){
+			state.playerDamageMod = 'super'; 
+			damageMod = 1.5;
+		}
+		else if (type[spellType].notVery.indexOf(enemyType) >= 0) {
+			state.playerDamageMod = 'notVery'; 
+			damageMod = 0.5;
+		}
+		else {
+			damageMod = 1;
+		};
+
+		// Still needs accuracy modifier
 		if (this.category === 'physical') {
-			var damage = (((this.power*(state.playerBattleMonster.attack*1.5))*0.04)/(state.enemyToBattle.defense));
+			var damage = (((this.power*(state.playerBattleMonster.attack*1.5))*0.04)/(state.enemyToBattle.defense)* damageMod);
 			state.enemyToBattle.currentHp = Math.round(state.enemyToBattle.currentHp - damage);
 		}
 		else if (this.category === 'special') {
-			// Check effectiveness 
-			var damageMod;
-			var enemyType = state.enemyToBattle.type;
-			var spellType = this.type;
-
-			if (type[spellType].super.indexOf(enemyType) >= 0){
-				state.playerDamageMod = 'super'; 
-				damageMod = 1.5;
-			}
-			else if (type[spellType].notVery.indexOf(enemyType) >= 0) {
-				state.playerDamageMod = 'notVery'; 
-				damageMod = 0.5;
-			}
-			else {
-				damageMod = 1;
-			};
-
 			var damage = ((((this.power*(state.playerBattleMonster.spAttack*1.5))*0.04)/state.enemyToBattle.spDefense)* damageMod);
 			state.enemyToBattle.currentHp = Math.round(state.enemyToBattle.currentHp - damage);
 		}
 
+		// When your attack kills the enemy monster
 		if (state.enemyToBattle.currentHp <= 0){
 			state.enemyToBattle.currentHp = 0;
+
+			// Return your stats to original state
 			state.playerBattleMonster.attack = state.playerBattleMonsterAttack;
 			state.playerBattleMonster.defense = state.playerBattleMonsterDefense;
 			state.playerBattleMonster.spAttack = state.playerBattleMonsterSpAttack;
 			state.playerBattleMonster.spDefense = state.playerBattleMonsterSpDefense;
+			// Gain exp
 			state.playerBattleMonster.expGain();
 		}
 	}
