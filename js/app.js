@@ -792,9 +792,54 @@ var items = {
     name:'Monster Net',
     func: function(){
       //captures monster
+      if(state.currentLevel === 'battleLevel'){
+        var hpPercent = state.enemyToBattle.currentHp / state.enemyToBattle.hp;
+        var randomNum = Math.random();
+
+        if (hpPercent >= 0.9) {
+          if (randomNum >= 0.8) {
+            state.enemyToBattle.controller = 'player';
+            monsterInventory.push(state.enemyToBattle);
+            state.currentLevel = state.prevLevel;
+            player.x = state.locX;
+            player.y = state.locY;
+          };
+          return;
+        }
+        else if (hpPercent >= 0.6) {
+          if (randomNum >= 0.5) {
+            state.enemyToBattle.controller = 'player';
+            monsterInventory.push(state.enemyToBattle);
+            state.currentLevel = state.prevLevel;
+            player.x = state.locX;
+            player.y = state.locY;
+          };
+          return;
+        }
+        else if (hpPercent >= 0.3) {
+          if (randomNum >= 0.25) {
+            state.enemyToBattle.controller = 'player';
+            monsterInventory.push(state.enemyToBattle);
+            state.currentLevel = state.prevLevel;
+            player.x = state.locX;
+            player.y = state.locY;
+          }
+          return;
+        }
+        else {
+          state.enemyToBattle.controller = 'player';
+          monsterInventory.push(state.enemyToBattle);
+          state.currentLevel = state.prevLevel;
+          player.x = state.locX;
+          player.y = state.locY;
+          return;
+        };
+
+      };
     }
   }
 }
+itemInventory.push(items.net);
 itemInventory.push(items.potion);
 itemInventory.push(items.potion);
 itemInventory.push(items.potion);
