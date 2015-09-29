@@ -98,6 +98,13 @@ Menu.prototype.renderBattleText = function(){
   else if (state.battleState === 'itemUsed') {
     ctx.fillText("You used a...?", textX, textY);
   }
+  else if (state.battleState === 'caughtMonster') {
+    ctx.fillText("You caught " + state.enemyToBattle.name + "!", textX, textY);
+  }
+  else if (state.battleState === 'failedCatch'){
+    ctx.fillText("You failed to catch " + state.enemyToBattle.name + "!", textX, textY);
+    ctx.fillText("Try dealing more damage next time.", textX, textY+50);
+  }
   else if (state.battleState === 'battleMonsterDie'){
     if(state.playerBattleMonster.currentHp === 0){
       ctx.fillText(state.playerBattleMonster.name + " has died!", textX, textY);
@@ -488,7 +495,7 @@ Player.prototype.handleInput = function(key) {
         break;
       }
     }
-    else if(state.battleState === 'itemUsed'){
+    else if(state.battleState === 'itemUsed' || state.battleState === 'failedCatch'){
       switch(key){
         case 'space':
         this.x = 300;
@@ -497,6 +504,15 @@ Player.prototype.handleInput = function(key) {
         state.battleState = 'AI';
         break;
       }
+    }
+    else if (state.battleState === 'caughtMonster'){
+      switch(key){
+        case 'space':
+          state.currentLevel = state.prevLevel;
+          this.x = state.locX;
+          this.y = state.locY;
+        break;
+      };
     }
     else if (state.battleState === 'playerMove'){
       switch(key){
@@ -565,6 +581,7 @@ Player.prototype.handleInput = function(key) {
         break;
       }
     }
+    // Battle Monster inventory
     else if(state.battleState === 'monsterInvMenu'){
       switch(key){
         case 'space':
@@ -577,6 +594,7 @@ Player.prototype.handleInput = function(key) {
       }
     }
     
+    // Battle item inventory
     else if(state.battleState === 'invMenu'){
       if(itemInventory.length > 0){
         switch(key){
@@ -587,7 +605,7 @@ Player.prototype.handleInput = function(key) {
           }
           break;
           case 'down':
-          this.y = this.y +40;
+          this.y = this.y +30;
           var maxY =  (350+((itemInventory.length-1) * 40));
           if (this.y > maxY) {
             this.y = maxY;
@@ -597,8 +615,11 @@ Player.prototype.handleInput = function(key) {
           for (var i = 0; i < itemInventory.length; i++){
             if (this.y === 350 +(i*40)){
               itemInventory[i].func();
+              console.log(itemInventory[i].name);
+              if (itemInventory[i].name === 'Potion') {
+                state.battleState = 'itemUsed';
+              }
               itemInventory.splice(i, 1);
-              state.battleState = 'itemUsed';
             }
             break;
           }
@@ -795,6 +816,7 @@ var items = {
       if(state.currentLevel === 'battleLevel'){
         var hpPercent = state.enemyToBattle.currentHp / state.enemyToBattle.hp;
         var randomNum = Math.random();
+
         var catchMonster = function() {
           if (monsterInventory[0].name === 'PlayerMon') {
             state.playerBattleMonster.player = 0;
@@ -803,9 +825,9 @@ var items = {
 
           state.enemyToBattle.controller = 'player';
           monsterInventory.push(state.enemyToBattle);
-          state.currentLevel = state.prevLevel;
-          player.x = state.locX;
-          player.y = state.locY;
+
+          state.battleState = 'caughtMonster';
+          console.log(state.battleState);
         };
  
         // Probability of successfully catching a monster increases with decreasing monster health %
@@ -813,18 +835,21 @@ var items = {
           if (randomNum >= 0.8) {
             catchMonster();
           };
+          state.battleState = "failedCatch";
           return;
         }
         else if (hpPercent >= 0.6) {
           if (randomNum >= 0.5) {
             catchMonster();
           };
+          state.battleState = "failedCatch";
           return;
         }
         else if (hpPercent >= 0.3) {
           if (randomNum >= 0.25) {
             catchMonster();
           }
+          state.battleState = "failedCatch";
           return;
         }
         else {
