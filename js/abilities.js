@@ -90,6 +90,11 @@ var attackFunc = function(controller){
 			state.playerBattleMonster.spDefense = state.playerBattleMonsterSpDefense;
 			// Gain exp
 			state.playerBattleMonster.expGain();
+
+			// if (Math.random() > 0.9) {
+			// 	itemDrop();
+			// 	state.itemDrop = 1;
+			// };
 		}
 	}
 };
@@ -119,7 +124,7 @@ var enemyAbilityUsed = function(){
 		state.enemyDamageMod = 'none';
 		damageMod = 1;
 	};
-	
+
 	// Special attacks
 	if(state.enemyAttackUsed.category === "special"){
 		damage =((((state.enemyAttackUsed.power*(state.enemyToBattle.spAttack*1.5))*0.04)/state.playerBattleMonster.spDefense)*damageMod);
@@ -251,7 +256,7 @@ var abilities = {
 		name: 'Razor Leaf',
 		type: 'grass',
 		category:'special',
-		power:50,
+		power:50000,
 		accuracy:.9,
 		effect:'Reduces defending monster defense',
 		func: function(controller){

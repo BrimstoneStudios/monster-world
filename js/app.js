@@ -95,8 +95,8 @@ Menu.prototype.renderBattleText = function(){
       ctx.fillText("It was not very effective", textX, textY + 50);
     };
   }
-  else if (state.battleState === 'itemUsed') {
-    ctx.fillText("You used a...?", textX, textY);
+  else if (state.battleState === 'potionUsed') {
+    ctx.fillText("You used a potion!", textX, textY);
   }
   else if (state.battleState === 'caughtMonster') {
     ctx.fillText("You caught " + state.enemyToBattle.name + "!", textX, textY);
@@ -118,6 +118,9 @@ Menu.prototype.renderBattleText = function(){
         ctx.fillText(state.enemyToBattle.name + " has died!", textX, textY);
       }
     }
+  }
+  else if (state.battleState === 'itemDrop'){
+    ctx.fillText(state.enemyToBattle.name + " dropped a " + state.droppedItem + "!", textX, textY);
   }
   else if (state.battleState === 'battleMenuFight'){
     for (var i = 0, j = 0; i < state.playerBattleMonster.abilities.length; i++, j = j + 40){
@@ -203,6 +206,19 @@ var runFromBattle = function(){
     state.battleState = 'battleFailedRunAway';
     player.x = 300;
     player.y = 350;
+  }
+};
+
+// Item drop
+var itemDrop = function(){
+  var randNum = Math.random();
+  if (randNum > 0.8) {
+    itemInventory.push(items.net);
+    state.droppedItem = 'net';
+  }
+  else {
+    itemInventory.push(items.potion);
+    state.droppedItem = 'potion';
   }
 };
 
@@ -472,14 +488,20 @@ Player.prototype.handleInput = function(key) {
     else if (state.battleState === 'battleMonsterDie'){
       switch(key){
         case 'space':
-        state.currentLevel = state.prevLevel;
-        this.x = state.locX;
-        this.y = state.locY;
-        state.levelUp = 0;
-        state.battleState = 'battleMenuMain';
-        if (state.playerBattleMonster.currentHp === 0){
+          if (state.enemyToBattle.currentHp === 0) {
+            var randNum = Math.random();
+            if (randNum > 0.5) {
+              itemDrop();
+              state.battleState = 'itemDrop';
+              return;
+            }
+          }
+        // Remove dead monster from the inventory
+        else if (state.playerBattleMonster.currentHp === 0){
           // ** Will have to change to target the current monster rather than the first in the array
           monsterInventory.splice(0, 1);
+
+          // If there are no more monsters left, create new PlayerMon
           if (monsterInventory.length === 0) {
             if (state.sprite === 'images/characters/monk.gif') {
               var playerMon = new PlayerMon(2, 'monk');
@@ -492,10 +514,35 @@ Player.prototype.handleInput = function(key) {
             state.playerMonster = 1;
           }
         }
+        // Return to pre-fight level and location
+        state.currentLevel = state.prevLevel;
+        this.x = state.locX;
+        this.y = state.locY;
+
+        // Reset battle states
+        state.levelUp = 0;
+        state.itemDrop = 0;
+        state.battleState = 'battleMenuMain';
+
         break;
       }
     }
-    else if(state.battleState === 'itemUsed' || state.battleState === 'failedCatch'){
+    else if (state.battleState === 'itemDrop') {
+      switch(key){
+        case 'space':
+          // Return to pre-fight level and location
+          state.currentLevel = state.prevLevel;
+          this.x = state.locX;
+          this.y = state.locY;
+
+          // Reset battle states
+          state.levelUp = 0;
+          state.itemDrop = 0;
+          state.battleState = 'battleMenuMain';
+        break;
+      }
+    }
+    else if(state.battleState === 'potionUsed' || state.battleState === 'failedCatch'){
       switch(key){
         case 'space':
         this.x = 300;
@@ -599,30 +646,29 @@ Player.prototype.handleInput = function(key) {
       if(itemInventory.length > 0){
         switch(key){
           case 'up':
-          this.y = this.y - 40;
-          if (this.y <350) {
-            this.y = 350;
-          }
+            this.y = this.y - 40;
+            if (this.y <350) {
+              this.y = 350;
+            }
           break;
           case 'down':
-          this.y = this.y +30;
-          var maxY =  (350+((itemInventory.length-1) * 40));
-          if (this.y > maxY) {
-            this.y = maxY;
-          }
+            this.y = this.y +40;
+            var maxY =  (350+((itemInventory.length-1) * 40));
+            if (this.y > maxY) {
+              this.y = maxY;
+            }
           break;
           case 'space':
-          for (var i = 0; i < itemInventory.length; i++){
-            if (this.y === 350 +(i*40)){
-              itemInventory[i].func();
-              console.log(itemInventory[i].name);
-              if (itemInventory[i].name === 'Potion') {
-                state.battleState = 'itemUsed';
+            for (var i = 0; i < itemInventory.length; i++){
+              if (this.y === 350 +(i*40)){
+                itemInventory[i].func();
+                if (itemInventory[i].name === 'Potion') {
+                  state.battleState = 'potionUsed';
+                }
+                itemInventory.splice(i, 1);
               }
-              itemInventory.splice(i, 1);
             }
-            break;
-          }
+          break;
         }
       }
       else{
@@ -638,7 +684,6 @@ Player.prototype.handleInput = function(key) {
         break;
       }
     }
-    
     else if(state.battleState === 'battleFailedRunAway'){
       switch(key){
         case 'space':
@@ -810,7 +855,7 @@ var items = {
     }
   },
   net:{
-    name:'Monster Net',
+    name:'Net',
     func: function(){
       //captures monster
       if(state.currentLevel === 'battleLevel'){
@@ -862,9 +907,7 @@ var items = {
 }
 itemInventory.push(items.net);
 itemInventory.push(items.potion);
-itemInventory.push(items.potion);
-itemInventory.push(items.potion);
-itemInventory.push(items.potion);
+
 
 // Instantiate objects
 var allNPC = [];
