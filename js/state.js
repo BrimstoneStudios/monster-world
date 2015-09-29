@@ -3,10 +3,11 @@ var state = {};
 var monsterInventory = [];
 var itemInventory = [];
 
-// ------ State Variables -------
+// ------Global State Variables -------
 // Set the initial level
 state.currentLevel = 'startScreen';
 state.sprite;
+
 // Where we will store our level and location when entering a battle/menu so we can return after
 state.prevLevel;
 state.locX;
@@ -18,8 +19,16 @@ state.monsterStatCurrent= 0;
 // When a monster stat is going to be shown, save the ID here
 state.monsterStatID;
 state.run;
+
+// Player monster currently battling
 state.playerBattleMonster;
+state.playerBattleMonsterAttack;
+state.playerBattleMonsterDefense;
+state.playerBattleMonsterSpAttack;
+state.playerBattleMonsterSpDefense;
+// Current monster battle opponent
 state.enemyToBattle;
+
 state.levelUp;
 
 

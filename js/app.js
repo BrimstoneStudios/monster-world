@@ -2,6 +2,16 @@
 var Menu = function(){
 };
 
+Menu.prototype.renderCharSelect = function() {
+  ctx.font="50px Arial";
+  ctx.fillText("Choose a character",140,380);
+}
+
+Menu.prototype.renderMonsterSelect = function() {
+  ctx.font="50px Arial";
+  ctx.fillText("Choose a starting monster",50,380);
+}
+
 // Main menu
 Menu.prototype.renderMain = function() {
   ctx.font="50px Arial";
@@ -148,13 +158,17 @@ var battleEvent = function(){
     state.currentLevel = 'battleLevel';
     state.playerBattleMonster = monsterInventory[0];
     state.enemyToBattle = enemyBattle();
+    state.playerBattleMonsterAttack = state.playerBattleMonster.attack;
+    state.playerBattleMonsterDefense = state.playerBattleMonster.defense;
+    state.playerBattleMonsterSpAttack = state.playerBattleMonster.spAttack;
+    state.playerBattleMonsterSpDefense = state.playerBattleMonster.spDefense;
   };
 };
 
 var enemyBattle = function(){
   if(state.prevLevel === 'firstLevel'){
     monstersAvailable = [Bat, GiantRat, Munchkin];
-    var levelsAvailable = [1, 2, 3];
+    var levelsAvailable = [1, 2];
   }
   else if(state.prevLevel === 'secondLevel'){
     monstersAvailable = [Bat, GiantRat, Munchkin];
@@ -311,18 +325,18 @@ Player.prototype.handleInput = function(key) {
       
       case 'space':
       if(this.x === 200){
-        var drag1 = new Drag1(3);
+        var drag1 = new Drag1(1);
         drag1.controller = 'player';
         monsterInventory.push(drag1);
       }
       
       else if(this.x === 300){
-        var hydra1 = new Hydra1(2);
+        var hydra1 = new Hydra1(1);
         hydra1.controller = 'player';
         monsterInventory.push(hydra1);
       }
       else{
-        var wormy1 = new Wormy1(2);
+        var wormy1 = new Wormy1(1);
         wormy1.controller = 'player';
         monsterInventory.push(wormy1);
       }
@@ -742,20 +756,22 @@ Player.prototype.handleInput = function(key) {
 
 
 // ------ ITEMS -------
+// ** Refactor to reference currently selected monster outside of combat
+// ** (i.e. choose which monster to give a potion to)
 var items = {
   potion:{
     name:'Potion',
     func: function(){
       //checks to see if the potion is used in a battle
       if(state.currentLevel === 'battleLevel'){
-        state.playerBattleMonster.currentHp += 5;
+        state.playerBattleMonster.currentHp += 10;
         if (state.playerBattleMonster.currentHp > state.playerBattleMonster.hp){
           state.playerBattleMonster.currentHp = state.playerBattleMonster.hp;
         }
       }
       //if not used in a battle the potion is used in the invMenu
       else{
-        monsterInventory[0].currentHp += 5;
+        monsterInventory[0].currentHp += 10;
         if(monsterInventory[0].currentHp > monsterInventory.hp){
           monsterInventory[0].currentHp = monsterInventory[0].hp;
         }
@@ -780,15 +796,16 @@ var items = {
   }
 }
 itemInventory.push(items.potion);
-// Now instantiate your objects.
-// Place all NPC objects in an array called allNPC
-// Place the player object in a variable called player
+itemInventory.push(items.potion);
+itemInventory.push(items.potion);
+itemInventory.push(items.potion);
 
+// Instantiate objects
 var allNPC = [];
 var player = new Player();
 var menu = new Menu();
 
-// This listens for key presses and sends the keys to your
+// Listens for key presses and sends the keys to 
 // Player.handleInput() method.
 
 document.addEventListener('keyup', function(e) {

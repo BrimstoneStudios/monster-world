@@ -128,7 +128,13 @@ var Engine = (function(global) {
       npc.render();
     });
     
-    if (state.currentLevel === 'mainMenu'){
+    if (state.currentLevel === 'charSelectLevel'){
+      menu.renderCharSelect();
+    }
+    else if (state.currentLevel === 'monsterSelectLevel'){
+      menu.renderMonsterSelect();
+    }
+    else if (state.currentLevel === 'mainMenu'){
       menu.renderMain();
     }
     else if (state.currentLevel === 'itemsInv'){
