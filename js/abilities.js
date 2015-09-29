@@ -1,3 +1,10 @@
+// Types: normal, fire, water, grass
+// Categories: physical, special, status
+// Power: range from 10-???,  status moves have 0 power
+// Accuracy: Range from 0.5-1
+// Effect: A description of the special effects on some abilities
+
+
 // Ability type effectiveness data
 var type = {
 	normal: {
@@ -44,45 +51,34 @@ var attackFunc = function(controller){
 	if (controller === 'player') {
 		state.playerAttackUsed = this;
 		// Still needs random modifier, accuracy modifier
-		var damage = (((this.power*(state.playerBattleMonster.attack*1.5))*0.04)/(state.enemyToBattle.defense));
-		state.enemyToBattle.currentHp = Math.round(state.enemyToBattle.currentHp - damage);
-		if (state.enemyToBattle.currentHp <= 0){
-			state.enemyToBattle.currentHp = 0;
-			state.playerBattleMonster.expGain();
+		if (this.category === 'physical') {
+			var damage = (((this.power*(state.playerBattleMonster.attack*1.5))*0.04)/(state.enemyToBattle.defense));
+			state.enemyToBattle.currentHp = Math.round(state.enemyToBattle.currentHp - damage);
 		}
-	}
-};
-// Ability needs to be able to see its type and the defending monsters type
-// 
+		else if (this.category === 'special') {
+			// Check effectiveness 
+			var damageMod;
+			var enemyType = state.enemyToBattle.type;
+			var spellType = this.type;
 
+			if (type[spellType].super.indexOf(enemyType) >= 0){
+				state.playerDamageMod = 'super'; 
+				damageMod = 1.5;
+			}
+			else if (type[spellType].notVery.indexOf(enemyType) >= 0) {
+				state.playerDamageMod = 'notVery'; 
+				damageMod = 0.5;
+			}
+			else {
+				damageMod = 1;
+			};
 
-// Attack function for special attacks
-var spAttackFunc = function(controller){
-	if (controller === 'player') {
-		state.playerAttackUsed = this;
-		// Check effectiveness 
-		var damageMod;
-		var enemyType = state.enemyToBattle.type;
-		var spellType = this.type;
-
-		if (type[spellType].super.indexOf(enemyType) >= 0){
-			state.playerDamageMod = 'super'; 
-			damageMod = 1.5;
+			var damage = ((((this.power*(state.playerBattleMonster.spAttack*1.5))*0.04)/state.enemyToBattle.spDefense)* damageMod);
+			state.enemyToBattle.currentHp = Math.round(state.enemyToBattle.currentHp - damage);
 		}
-		else if (type[spellType].notVery.indexOf(enemyType) >= 0) {
-			state.playerDamageMod = 'notVery'; 
-			damageMod = 0.5;
-		}
-		else {
-			damageMod = 1;
-		};
-
-		var damage = ((((this.power*(state.playerBattleMonster.spAttack*1.5))*0.04)/state.enemyToBattle.spDefense)* damageMod);
-		state.enemyToBattle.currentHp = Math.round(state.enemyToBattle.currentHp - damage);
 
 		if (state.enemyToBattle.currentHp <= 0){
 			state.enemyToBattle.currentHp = 0;
-			// If the enemy monster dies, gain exp
 			state.playerBattleMonster.attack = state.playerBattleMonsterAttack;
 			state.playerBattleMonster.defense = state.playerBattleMonsterDefense;
 			state.playerBattleMonster.spAttack = state.playerBattleMonsterSpAttack;
@@ -91,6 +87,7 @@ var spAttackFunc = function(controller){
 		}
 	}
 };
+
 
 
 // Attack function for enemy monsters
@@ -147,11 +144,6 @@ var enemyAbilityUsed = function(){
 	}
 }
 
-// Types: normal, fire, water, grass
-// Categories: physical, special, status
-// Power: range from 10-???,  status moves have 0 power
-// Accuracy: Range from 0.5-1
-// Effect: A description of the special effects on some abilities
 
 // Template:
 
@@ -230,7 +222,7 @@ var abilities = {
 		accuracy: .9,
 		effect:'Chance of burn',
 		func: function(controller){
-			spAttackFunc.call(this, controller);
+			attackFunc.call(this, controller);
 			var burnChance = Math.random();
 			if (burnChance > 0.1) {
 				if (controller === "player"){
@@ -260,7 +252,7 @@ var abilities = {
 			else {
 				state.playerBattleMonster.defense = state.playerBattleMonster.defense * 0.9;
 			};
-			spAttackFunc.call(this, controller);
+			attackFunc.call(this, controller);
 		}
 	},
 	waterBlast: {
@@ -277,7 +269,7 @@ var abilities = {
 			else {
 				state.playerBattleMonster.attack = state.playerBattleMonster.attack * 0.9;
 			};
-			spAttackFunc.call(this, controller);
+			attackFunc.call(this, controller);
 		}
 	},
 };
