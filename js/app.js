@@ -795,44 +795,40 @@ var items = {
       if(state.currentLevel === 'battleLevel'){
         var hpPercent = state.enemyToBattle.currentHp / state.enemyToBattle.hp;
         var randomNum = Math.random();
+        var catchMonster = function() {
+          if (monsterInventory[0].name === 'PlayerMon') {
+            state.playerBattleMonster.player = 0;
+            monsterInventory.pop();
+          };
 
-        if (hpPercent >= 0.9) {
-          if (randomNum >= 0.8) {
-            state.enemyToBattle.controller = 'player';
-            monsterInventory.push(state.enemyToBattle);
-            state.currentLevel = state.prevLevel;
-            player.x = state.locX;
-            player.y = state.locY;
-          };
-          return;
-        }
-        else if (hpPercent >= 0.6) {
-          if (randomNum >= 0.5) {
-            state.enemyToBattle.controller = 'player';
-            monsterInventory.push(state.enemyToBattle);
-            state.currentLevel = state.prevLevel;
-            player.x = state.locX;
-            player.y = state.locY;
-          };
-          return;
-        }
-        else if (hpPercent >= 0.3) {
-          if (randomNum >= 0.25) {
-            state.enemyToBattle.controller = 'player';
-            monsterInventory.push(state.enemyToBattle);
-            state.currentLevel = state.prevLevel;
-            player.x = state.locX;
-            player.y = state.locY;
-          }
-          return;
-        }
-        else {
           state.enemyToBattle.controller = 'player';
           monsterInventory.push(state.enemyToBattle);
           state.currentLevel = state.prevLevel;
           player.x = state.locX;
           player.y = state.locY;
+        };
+ 
+        // Probability of successfully catching a monster increases with decreasing monster health %
+        if (hpPercent >= 0.9) {
+          if (randomNum >= 0.8) {
+            catchMonster();
+          };
           return;
+        }
+        else if (hpPercent >= 0.6) {
+          if (randomNum >= 0.5) {
+            catchMonster();
+          };
+          return;
+        }
+        else if (hpPercent >= 0.3) {
+          if (randomNum >= 0.25) {
+            catchMonster();
+          }
+          return;
+        }
+        else {
+          catchMonster();
         };
 
       };

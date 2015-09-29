@@ -51,7 +51,7 @@ var attackFunc = function(controller){
 	if (controller === 'player') {
 		state.playerAttackUsed = this;
 
-		// Check effectiveness 
+		// Check effectiveness of ability vs defensing monster type
 		var damageMod;
 		var enemyType = state.enemyToBattle.type;
 		var spellType = this.type;
@@ -68,10 +68,12 @@ var attackFunc = function(controller){
 		};
 
 		// Still needs accuracy modifier
+		// Physical attacks use the attack and defense attributes
 		if (this.category === 'physical') {
 			var damage = (((this.power*(state.playerBattleMonster.attack*1.5))*0.04)/(state.enemyToBattle.defense)* damageMod);
 			state.enemyToBattle.currentHp = Math.round(state.enemyToBattle.currentHp - damage);
 		}
+		// Special attacks use the spAttack and spDefense attributes
 		else if (this.category === 'special') {
 			var damage = ((((this.power*(state.playerBattleMonster.spAttack*1.5))*0.04)/state.enemyToBattle.spDefense)* damageMod);
 			state.enemyToBattle.currentHp = Math.round(state.enemyToBattle.currentHp - damage);
@@ -103,25 +105,28 @@ var enemyAbilityUsed = function(){
 	var enemyType = state.playerBattleMonster.type;
 	var spellType = state.enemyAttackUsed.type;
 	var damage = 0;
+
+	// Check effectiveness
+	if (type[spellType].super.indexOf(enemyType) >= 0){
+		state.enemyDamageMod = 'super';
+		damageMod = 1.5;
+	}
+	else if (type[spellType].notVery.indexOf(enemyType) >= 0) {
+		state.enemyDamageMod = 'notVery';
+		damageMod = 0.5;
+	}
+	else {
+		state.enemyDamageMod = 'none';
+		damageMod = 1;
+	};
+	
 	// Special attacks
 	if(state.enemyAttackUsed.category === "special"){
-		if (type[spellType].super.indexOf(enemyType) >= 0){
-			state.enemyDamageMod = 'super';
-			damageMod = 1.5;
-		}
-		else if (type[spellType].notVery.indexOf(enemyType) >= 0) {
-			state.enemyDamageMod = 'notVery';
-			damageMod = 0.5;
-		}
-		else {
-			state.enemyDamageMod = 'none';
-			damageMod = 1;
-		};
 		damage =((((state.enemyAttackUsed.power*(state.enemyToBattle.spAttack*1.5))*0.04)/state.playerBattleMonster.spDefense)*damageMod);
 	}
 	// Physical attacks
 	else if (state.enemyAttackUsed.category === "physical"){
-		damage =(((state.enemyAttackUsed.power*(state.enemyToBattle.attack*1.5))*0.04)/state.playerBattleMonster.defense);
+		damage =((((state.enemyAttackUsed.power*(state.enemyToBattle.attack*1.5))*0.04)/state.playerBattleMonster.defense)*damageMod);
 		
 	}
 	// Status attacks
