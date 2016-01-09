@@ -57,6 +57,8 @@ Menu.prototype.renderMonsterStat = function(monster) {
   ctx.fillText(monsterInventory[monster].spDefense, 620, 265);
   ctx.fillText("Speed:", 450, 305);
   ctx.fillText(monsterInventory[monster].speed, 620, 305);
+  ctx.fillText("Type:", 450, 345);
+  ctx.fillText(monsterInventory[monster].type, 620, 345);
 };
 
 // Text and menus for battles
