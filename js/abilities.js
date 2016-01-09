@@ -1,3 +1,10 @@
+// Types: normal, fire, water, grass, etc..
+// Categories: physical, special, status
+// Power: range from 10-???,  status moves have 0 power
+// Accuracy: Range from 0.5-1
+// Effect: A description of the special effects on some abilities
+
+
 // Ability type effectiveness data
 var type = {
 	normal: {
@@ -39,32 +46,15 @@ var type = {
 };
 
 
-// Attack function for physical attacks
+// Attack function 
 var attackFunc = function(controller){
 	if (controller === 'player') {
 		state.playerAttackUsed = this;
-		// Still needs random modifier, accuracy modifier
-		var damage = (((this.power*(state.playerBattleMonster.attack*1.5))*0.04)/(state.enemyToBattle.defense));
-		state.enemyToBattle.currentHp = Math.round(state.enemyToBattle.currentHp - damage);
-		if (state.enemyToBattle.currentHp <= 0){
-			state.enemyToBattle.currentHp = 0;
-			state.playerBattleMonster.expGain();
-		}
-	}
-};
-// Ability needs to be able to see its type and the defending monsters type
-// 
 
-
-// Attack function for special attacks
-var spAttackFunc = function(controller){
-	if (controller === 'player') {
-		state.playerAttackUsed = this;
-		// Check effectiveness 
+		// Check effectiveness of ability vs defensing monster type
 		var damageMod;
 		var enemyType = state.enemyToBattle.type;
 		var spellType = this.type;
-
 		if (type[spellType].super.indexOf(enemyType) >= 0){
 			state.playerDamageMod = 'super'; 
 			damageMod = 1.5;
@@ -77,20 +67,38 @@ var spAttackFunc = function(controller){
 			damageMod = 1;
 		};
 
-		var damage = ((((this.power*(state.playerBattleMonster.spAttack*1.5))*0.04)/state.enemyToBattle.spDefense)* damageMod);
-		state.enemyToBattle.currentHp = Math.round(state.enemyToBattle.currentHp - damage);
+		// Still needs accuracy modifier
+		// Physical attacks use the attack and defense attributes
+		if (this.category === 'physical') {
+			var damage = (((this.power*(state.playerBattleMonster.attack*1.5))*0.04)/(state.enemyToBattle.defense)* damageMod);
+			state.enemyToBattle.currentHp = Math.round(state.enemyToBattle.currentHp - damage);
+		}
+		// Special attacks use the spAttack and spDefense attributes
+		else if (this.category === 'special') {
+			var damage = ((((this.power*(state.playerBattleMonster.spAttack*1.5))*0.04)/state.enemyToBattle.spDefense)* damageMod);
+			state.enemyToBattle.currentHp = Math.round(state.enemyToBattle.currentHp - damage);
+		}
 
+		// When your attack kills the enemy monster
 		if (state.enemyToBattle.currentHp <= 0){
 			state.enemyToBattle.currentHp = 0;
-			// If the enemy monster dies, gain exp
+
+			// Return your stats to original state
 			state.playerBattleMonster.attack = state.playerBattleMonsterAttack;
 			state.playerBattleMonster.defense = state.playerBattleMonsterDefense;
 			state.playerBattleMonster.spAttack = state.playerBattleMonsterSpAttack;
 			state.playerBattleMonster.spDefense = state.playerBattleMonsterSpDefense;
+			// Gain exp
 			state.playerBattleMonster.expGain();
+
+			// if (Math.random() > 0.9) {
+			// 	itemDrop();
+			// 	state.itemDrop = 1;
+			// };
 		}
 	}
 };
+
 
 
 // Attack function for enemy monsters
@@ -102,25 +110,28 @@ var enemyAbilityUsed = function(){
 	var enemyType = state.playerBattleMonster.type;
 	var spellType = state.enemyAttackUsed.type;
 	var damage = 0;
+
+	// Check effectiveness
+	if (type[spellType].super.indexOf(enemyType) >= 0){
+		state.enemyDamageMod = 'super';
+		damageMod = 1.5;
+	}
+	else if (type[spellType].notVery.indexOf(enemyType) >= 0) {
+		state.enemyDamageMod = 'notVery';
+		damageMod = 0.5;
+	}
+	else {
+		state.enemyDamageMod = 'none';
+		damageMod = 1;
+	};
+
 	// Special attacks
 	if(state.enemyAttackUsed.category === "special"){
-		if (type[spellType].super.indexOf(enemyType) >= 0){
-			state.enemyDamageMod = 'super';
-			damageMod = 1.5;
-		}
-		else if (type[spellType].notVery.indexOf(enemyType) >= 0) {
-			state.enemyDamageMod = 'notVery';
-			damageMod = 0.5;
-		}
-		else {
-			state.enemyDamageMod = 'none';
-			damageMod = 1;
-		};
 		damage =((((state.enemyAttackUsed.power*(state.enemyToBattle.spAttack*1.5))*0.04)/state.playerBattleMonster.spDefense)*damageMod);
 	}
 	// Physical attacks
 	else if (state.enemyAttackUsed.category === "physical"){
-		damage =(((state.enemyAttackUsed.power*(state.enemyToBattle.attack*1.5))*0.04)/state.playerBattleMonster.defense);
+		damage =((((state.enemyAttackUsed.power*(state.enemyToBattle.attack*1.5))*0.04)/state.playerBattleMonster.defense)*damageMod);
 		
 	}
 	// Status attacks
@@ -147,11 +158,6 @@ var enemyAbilityUsed = function(){
 	}
 }
 
-// Types: normal, fire, water, grass
-// Categories: physical, special, status
-// Power: range from 10-???,  status moves have 0 power
-// Accuracy: Range from 0.5-1
-// Effect: A description of the special effects on some abilities
 
 // Template:
 
@@ -230,7 +236,7 @@ var abilities = {
 		accuracy: .9,
 		effect:'Chance of burn',
 		func: function(controller){
-			spAttackFunc.call(this, controller);
+			attackFunc.call(this, controller);
 			var burnChance = Math.random();
 			if (burnChance > 0.1) {
 				if (controller === "player"){
@@ -250,7 +256,7 @@ var abilities = {
 		name: 'Razor Leaf',
 		type: 'grass',
 		category:'special',
-		power:50,
+		power:50000,
 		accuracy:.9,
 		effect:'Reduces defending monster defense',
 		func: function(controller){
@@ -260,7 +266,7 @@ var abilities = {
 			else {
 				state.playerBattleMonster.defense = state.playerBattleMonster.defense * 0.9;
 			};
-			spAttackFunc.call(this, controller);
+			attackFunc.call(this, controller);
 		}
 	},
 	waterBlast: {
@@ -277,7 +283,7 @@ var abilities = {
 			else {
 				state.playerBattleMonster.attack = state.playerBattleMonster.attack * 0.9;
 			};
-			spAttackFunc.call(this, controller);
+			attackFunc.call(this, controller);
 		}
 	},
 };
