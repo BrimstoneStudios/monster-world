@@ -667,8 +667,9 @@ Player.prototype.handleInput = function(key) {
                 itemInventory[i].func();
                 if (itemInventory[i].name === 'Potion') {
                   state.battleState = 'potionUsed';
+                  itemInventory.splice(i, 1);
                 }
-                itemInventory.splice(i, 1);
+                
               }
             }
           break;
