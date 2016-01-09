@@ -1,8 +1,11 @@
 // Data for all levels
 
 var Di = 'images/terrain/dirt-tile50.png'; // dirt tile 50x50
-var Gr = 'images/terrain/grass-tile50.png' // grass tile 50x50
-var Wh = 'images/terrain/white-tile50.png' // white tile 50x50
+var Gr = 'images/terrain/grass-tile50.png'; // grass tile 50x50
+var Wh = 'images/terrain/white-tile50.png'; // white tile 50x50
+var La = 'images/terrain/lava-tile50.png';
+var Ro = 'images/terrain/rock-tile50.jpg';
+
 var s1 = 'images/terrain/drag1-wb.jpg';
 var s2 = 'images/terrain/hydra1-wb.jpg';
 var s3 = 'images/terrain/wormy1-wb.jpg';
@@ -100,7 +103,7 @@ var allLevels = {
     levelName : 'firstLevel',
     tiles : [
       [Di, Di, Di, Gr, Gr, Gr, Di, Di, Di, Di, Di, Di, Di, Gr],
-      [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
+      [Di, Di, Di, Gr, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di],
       [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
       [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
       [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
@@ -112,7 +115,7 @@ var allLevels = {
     ],
   },
   secondLevel:{
-    secondName : 'secondLevel',
+    levelName : 'secondLevel',
     tiles : [
       [Di, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
       [Di, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
@@ -124,6 +127,21 @@ var allLevels = {
       [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
       [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
       [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di]
+    ],
+  },
+  fireLevel: {
+    levelName: 'fireLevel',
+    tiles : [
+      [La, La, La, La, Ro, Ro, La, Ro, Ro, Ro, Ro, Ro, Ro, Ro],
+      [La, La, La, Ro, Ro, La, La, La, Ro, Ro, Ro, Ro, Ro, Ro],
+      [La, La, La, Ro, Ro, La, La, La, Ro, Ro, Ro, Ro, Ro, Ro],
+      [La, Ro, Ro, Ro, Ro, Ro, La, Ro, Ro, Ro, Ro, Ro, Ro, Ro],
+      [Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, La, La, La, La],
+      [Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, La, Ro, Ro, Ro],
+      [Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, La, Ro, Ro],
+      [Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, La, Ro],
+      [Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, La],
+      [Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro],  
     ],
   }
 };

@@ -185,6 +185,10 @@ var enemyBattle = function(){
     monstersAvailable = [Bat, GiantRat, Munchkin];
     var levelsAvailable = [3,4,5];
   }
+  else if (state.prevLevel === 'fireLevel'){
+    monstersAvailable = [LavaOgre];
+    var levelsAvailable = [2,3];
+  }
   
   var randomLevel = Math.floor(Math.random()*levelsAvailable.length);
   var newLevel = levelsAvailable[randomLevel];
@@ -812,7 +816,12 @@ Player.prototype.handleInput = function(key) {
       case 'up':
       this.y = this.y - 50;
       battleEvent();
-      if (this.y < 10){
+      if (state.currentLevel === 'firstLevel' && this.y < 10){
+        // this.y = 10;
+        state.currentLevel = 'fireLevel';
+        this.y = 450;
+      }
+      else if (this.y < 10){
         this.y = 10;
       }
       break;
@@ -821,7 +830,7 @@ Player.prototype.handleInput = function(key) {
       this.x = this.x + 50;
       battleEvent();
       if (state.currentLevel === 'firstLevel' && this.x > 660) {
-        this.x = 660;
+        // this.x = 660;
         //Changes the level to the firstLevel once player reaches far right of screen
         state.currentLevel = 'secondLevel';
         this.x = 10;

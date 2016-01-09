@@ -181,6 +181,8 @@ var Engine = (function(global) {
     'images/terrain/drag1-wb.jpg',
     'images/terrain/hydra1-wb.jpg',
     'images/terrain/wormy1-wb.jpg',
+    'images/terrain/lava-tile50.png',
+    'images/terrain/rock-tile50.jpg',
     
     // Characters
     'images/characters/deathCaster.gif',
@@ -203,6 +205,7 @@ var Engine = (function(global) {
     'images/monsters/giantRat.gif',
     'images/monsters/bat.gif',
     'images/monsters/munchkin.gif',
+    'images/monsters/lavaogre.gif',
   ]);
   Resources.onReady(init);
   

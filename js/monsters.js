@@ -191,6 +191,23 @@ Drag1.prototype.spDefenseMult = 1;
 Drag1.prototype.speedMult = 3;
 Drag1.prototype.abilities = [abilities.scratch, abilities.stare, abilities.fireBreath];
 
+// LavaOgre monster - subclass of FireType
+var LavaOgre = function(lvl){
+  FireType.call(this, lvl);
+};
+LavaOgre.prototype = Object.create(FireType.prototype);
+LavaOgre.prototype.constructor = LavaOgre;
+LavaOgre.prototype.sprite = 'images/monsters/lavaogre.gif';
+LavaOgre.prototype.name = 'LavaOgre';
+LavaOgre.prototype.evolve = 7;
+LavaOgre.prototype.hpMult = 3;
+LavaOgre.prototype.attackMult = 2;
+LavaOgre.prototype.defenseMult = 1;
+LavaOgre.prototype.spAttackMult = 2;
+LavaOgre.prototype.spDefenseMult = 2;
+LavaOgre.prototype.speedMult = 3;
+LavaOgre.prototype.abilities = [abilities.scratch, abilities.stare, abilities.fireBreath];
+
 // ----------------------------
 
 // Water type - subclass of Monster
