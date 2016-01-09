@@ -70,14 +70,13 @@ Menu.prototype.renderBattleText = function(){
 		x: 0,
 		y: 15
 	}
-  var textX = 50;
-  var textY = 405;
+
   ctx.font="30px Arial";
   
   if (state.battleState === 'wildIntroText' ) {
     var wildName = state.enemyToBattle.name;
     ctx.font="40px Arial";
-    ctx.fillText('A wild ' + wildName + ' has appeared!', battleMessagePos.x, textY);
+    ctx.fillText('A wild ' + wildName + ' has appeared!', battleMessagePos.x, battleMessagePos.y);
   }
   else if (state.battleState === 'battleMenuMain'){
     ctx.fillText("Fight", 350, 385);
@@ -120,8 +119,8 @@ Menu.prototype.renderBattleText = function(){
     }
     else{
       if (state.levelUp === 1){
-        ctx.fillText(state.enemyToBattle.name + " has died!", textX, textY);
-        ctx.fillText(state.playerBattleMonster.name + " has gained a level!", textX, textY +50);
+        ctx.fillText(state.enemyToBattle.name + " has died!", battleMessagePos.x, battleMessagePos.y);
+        ctx.fillText(state.playerBattleMonster.name + " has gained a level!", battleMessagePos.x, battleMessagePos.y +50);
       }
       else {
         ctx.fillText(state.enemyToBattle.name + " has died!", battleMessagePos.x, battleMessagePos.y);
