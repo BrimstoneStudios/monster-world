@@ -30,6 +30,8 @@ state.playerBattleMonsterSpDefense;
 state.enemyToBattle;
 
 state.levelUp;
+state.itemDrop;
+state.droppedItem;
 
 
 // Battle states
