@@ -10,6 +10,7 @@ var dT = 'images/terrain/deathCaster-wb.png';
 var mT = 'images/terrain/monk-wb.png';
 var dC = 'images/characters/deathCaster.gif';
 var mK = 'images/characters/monk.gif';
+var wZ = 'images/characters/wizard.gif';
 var mo //first monster in monsterInventory array. This var is defined during the battle event function
 
 var allWhite = [
