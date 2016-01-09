@@ -61,16 +61,6 @@ Menu.prototype.renderMonsterStat = function(monster) {
   ctx.fillText(monsterInventory[monster].type, 620, 345);
 };
 
-//Set of common button locations
-var battleMessageTopLeft = {
-  x: 75,
-  y: 385
-};
-
-var battleMessageTopLeftSelector = {
-  x: 30,
-  y: 350
-};
 
 // Text and menus for battles
 Menu.prototype.renderBattleText = function(){
