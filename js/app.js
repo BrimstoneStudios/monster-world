@@ -43,21 +43,21 @@ Menu.prototype.renderMonsterInv = function(){
 // Monster Stats display
 Menu.prototype.renderMonsterStat = function(monster) {
   ctx.font="25px Arial";
-  ctx.fillText("Level:", 450, 65);
+  ctx.fillText("Level:", 430, 65);
   ctx.fillText(monsterInventory[monster].level, 620, 65);
-  ctx.fillText("HP:", 450, 105);
+  ctx.fillText("HP:", 430, 105);
   ctx.fillText(monsterInventory[monster].hp, 620, 105);
-  ctx.fillText("Attack:", 450, 145);
+  ctx.fillText("Attack:", 430, 145);
   ctx.fillText(monsterInventory[monster].attack, 620, 145);
-  ctx.fillText("Defense:", 450, 185);
+  ctx.fillText("Defense:", 430, 185);
   ctx.fillText(monsterInventory[monster].defense, 620, 185);
-  ctx.fillText("Sp Attack:", 450, 225);
+  ctx.fillText("Sp Attack:", 430, 225);
   ctx.fillText(monsterInventory[monster].spAttack, 620, 225);
-  ctx.fillText("Sp Defense:", 450, 265);
+  ctx.fillText("Sp Defense:", 430, 265);
   ctx.fillText(monsterInventory[monster].spDefense, 620, 265);
-  ctx.fillText("Speed:", 450, 305);
+  ctx.fillText("Speed:", 430, 305);
   ctx.fillText(monsterInventory[monster].speed, 620, 305);
-  ctx.fillText("Type:", 450, 345);
+  ctx.fillText("Type:", 430, 345);
   ctx.fillText(monsterInventory[monster].type, 620, 345);
 };
 
@@ -835,7 +835,11 @@ Player.prototype.handleInput = function(key) {
       case 'left':
       this.x = this.x - 50;
       battleEvent();
-      if (state.currentLevel ==='secondLevel' && this.x < 10) {
+      if (state.currentLevel === 'firstLevel' && this.x < 10) {
+        state.currentLevel = 'waterLevel';
+        this.x = 660;
+      }
+      else if (state.currentLevel ==='secondLevel' && this.x < 10) {
         this.x = 10;
         //Changes the level to the startScreen once player reach far left of screen
         state.currentLevel = 'firstLevel';
@@ -866,6 +870,10 @@ Player.prototype.handleInput = function(key) {
         // this.x = 660;
         //Changes the level to the firstLevel once player reaches far right of screen
         state.currentLevel = 'secondLevel';
+        this.x = 10;
+      }
+      if (state.currentLevel === 'waterLevel' && this.x > 660){
+        this.currentLevel = 'firstLevel';
         this.x = 10;
       }
       else if (this.x >660) {

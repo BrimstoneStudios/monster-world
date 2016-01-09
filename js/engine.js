@@ -183,6 +183,9 @@ var Engine = (function(global) {
     'images/terrain/wormy1-wb.jpg',
     'images/terrain/lava-tile50.png',
     'images/terrain/rock-tile50.jpg',
+    'images/terrain/sand-tile50.png',
+    'images/terrain/water-tile.jpg',
+
     
     // Characters
     'images/characters/deathCaster.gif',

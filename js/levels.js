@@ -5,6 +5,8 @@ var Gr = 'images/terrain/grass-tile50.png'; // grass tile 50x50
 var Wh = 'images/terrain/white-tile50.png'; // white tile 50x50
 var La = 'images/terrain/lava-tile50.png';
 var Ro = 'images/terrain/rock-tile50.jpg';
+var Sa = 'images/terrain/sand-tile50.png';
+var Wa = 'images/terrain/water-tile.jpg';
 
 var s1 = 'images/terrain/drag1-wb.jpg';
 var s2 = 'images/terrain/hydra1-wb.jpg';
@@ -142,6 +144,21 @@ var allLevels = {
       [Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, La, Ro],
       [Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, La],
       [Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro],  
+    ],
+  },
+  waterLevel: {
+    levelName: 'waterLevel',
+    tiles : [
+      [Wa, Wa, Wa, Wa, Wa, Wa, Wa, Wa, Sa, Sa, Sa, Sa, Sa, Sa],
+      [Wa, Wa, Wa, Wa, Wa, Wa, Wa, Sa, Sa, Sa, Sa, Sa, Sa, Sa],
+      [Wa, Wa, Wa, Wa, Wa, Wa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa],
+      [Wa, Wa, Wa, Wa, Wa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa],
+      [Wa, Wa, Wa, Wa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa],
+      [Wa, Wa, Wa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa],
+      [Wa, Wa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa],
+      [Wa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa],
+      [Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa],
+      [Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa],
     ],
   }
 };
