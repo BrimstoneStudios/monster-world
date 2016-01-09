@@ -79,7 +79,8 @@ var Engine = (function(global) {
   */
   function updateEntities(dt) {
     allNPC.forEach(function(npc) {
-      NPC.update(dt);
+
+      npc.update();
     });
     player.update();
   }
@@ -125,7 +126,9 @@ var Engine = (function(global) {
     * the render function you have defined.
     */
     allNPC.forEach(function(npc) {
-      npc.render();
+      if (state.currentLevel === npc.level) {
+         npc.render();
+      }
     });
     
     if (state.currentLevel === 'charSelectLevel'){
@@ -182,6 +185,7 @@ var Engine = (function(global) {
     // Characters
     'images/characters/deathCaster.gif',
     'images/characters/monk.gif',
+    'images/characters/wizard.gif',
     'images/characters/selector.png',
     'images/characters/menuSelector.png',
     'images/characters/gameOver.png',

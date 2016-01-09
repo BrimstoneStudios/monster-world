@@ -172,7 +172,7 @@ var battleEvent = function(){
   
   var randomNum = Math.random() * 100;
   
-  if(randomNum <= 25){
+  if(randomNum <= 10){
     state.battleState = 'wildIntroText';
     state.currentLevel = 'battleLevel';
     state.playerBattleMonster = monsterInventory[0];
@@ -234,22 +234,32 @@ var itemDrop = function(){
 
 // ------ NPCs -------
 // Other characters in the game, can be friendly or hostile
-var NPC = function() {
+var NPC = function(x, y) {
   // Variables applied to each of our instances go here
-  this.sprite = mK;
-  this.x= 20;
-  this.y = 20;
+  this.sprite = wZ;
+  this.x= x;
+  this.y = y;
 };
 
 // Update the NPC's position, required method for game
 // Parameter: dt, a time delta between ticks
-NPC.prototype.update = function(dt) {
+NPC.prototype.update = function() {
 };
 
 // Draw the NPC on the screen
 NPC.prototype.render = function() {
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
+
+// Class of NPC to heal your monsters, give it location and which
+// which level to be displayed on 
+var HealerNPC = function (x, y, level) {
+  NPC.call(this,x, y);
+  this.level = level; 
+}
+HealerNPC.prototype = Object.create(NPC.prototype);
+HealerNPC.prototype.constructor = HealerNPC;
+HealerNPC.prototype.level = 0;
 
 
 // ------ PLAYER -------
@@ -684,8 +694,9 @@ Player.prototype.handleInput = function(key) {
                 itemInventory[i].func();
                 if (itemInventory[i].name === 'Potion') {
                   state.battleState = 'potionUsed';
+                  itemInventory.splice(i, 1);
                 }
-                itemInventory.splice(i, 1);
+                
               }
             }
           break;
@@ -789,6 +800,16 @@ Player.prototype.handleInput = function(key) {
       state.currentLevel = 'mainMenu';
       this.x = 180;
       this.y = 157;
+      break;
+
+      case 'space':
+      if (this.x === healer.x && this.y === healer.y){
+        console.log("test");
+        monsterInventory.forEach(function(monster){
+          console.log(monster);
+          monster.currentHp = monster.hp;
+        });
+      }
       break;
       
       case 'left':
@@ -929,9 +950,10 @@ var items = {
 itemInventory.push(items.net);
 itemInventory.push(items.potion);
 
+var healer = new HealerNPC(60, 60, "firstLevel");
 
 // Instantiate objects
-var allNPC = [];
+var allNPC = [healer];
 var player = new Player();
 var menu = new Menu();
 
