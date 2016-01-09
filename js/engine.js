@@ -206,6 +206,9 @@ var Engine = (function(global) {
     'images/monsters/bat.gif',
     'images/monsters/munchkin.gif',
     'images/monsters/lavaogre.gif',
+    'images/monsters/firehead.gif',
+    'images/monsters/ignis.gif',
+    'images/monsters/phoenix.gif',
   ]);
   Resources.onReady(init);
   

@@ -186,7 +186,7 @@ var enemyBattle = function(){
     var levelsAvailable = [3,4,5];
   }
   else if (state.prevLevel === 'fireLevel'){
-    monstersAvailable = [LavaOgre];
+    monstersAvailable = [LavaOgre, Ignis, Phoenix];
     var levelsAvailable = [2,3];
   }
   

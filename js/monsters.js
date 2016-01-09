@@ -191,6 +191,23 @@ Drag1.prototype.spDefenseMult = 1;
 Drag1.prototype.speedMult = 3;
 Drag1.prototype.abilities = [abilities.scratch, abilities.stare, abilities.fireBreath];
 
+// Ignis monster - subclass of FireType
+var Ignis = function(lvl){
+  FireType.call(this, lvl);
+};
+Ignis.prototype = Object.create(FireType.prototype);
+Ignis.prototype.constructor = Ignis;
+Ignis.prototype.sprite = 'images/monsters/ignis.gif';
+Ignis.prototype.name = 'Ignis';
+Ignis.prototype.evolve = 7;
+Ignis.prototype.hpMult = 3;
+Ignis.prototype.attackMult = 1;
+Ignis.prototype.defenseMult = 1;
+Ignis.prototype.spAttackMult = 2;
+Ignis.prototype.spDefenseMult = 1;
+Ignis.prototype.speedMult = 2;
+Ignis.prototype.abilities = [abilities.fireBreath];
+
 // LavaOgre monster - subclass of FireType
 var LavaOgre = function(lvl){
   FireType.call(this, lvl);
@@ -207,6 +224,23 @@ LavaOgre.prototype.spAttackMult = 2;
 LavaOgre.prototype.spDefenseMult = 2;
 LavaOgre.prototype.speedMult = 3;
 LavaOgre.prototype.abilities = [abilities.scratch, abilities.stare, abilities.fireBreath];
+
+// Phoenix monster - subclass of FireType
+var Phoenix = function(lvl){
+  FireType.call(this, lvl);
+};
+Phoenix.prototype = Object.create(FireType.prototype);
+Phoenix.prototype.constructor = Phoenix;
+Phoenix.prototype.sprite = 'images/monsters/phoenix.gif';
+Phoenix.prototype.name = 'Phoenix';
+Phoenix.prototype.evolve = 7;
+Phoenix.prototype.hpMult = 3;
+Phoenix.prototype.attackMult = 2;
+Phoenix.prototype.defenseMult = 1;
+Phoenix.prototype.spAttackMult = 2;
+Phoenix.prototype.spDefenseMult = 2;
+Phoenix.prototype.speedMult = 3;
+Phoenix.prototype.abilities = [abilities.stare, abilities.fireBlast];
 
 // ----------------------------
 
