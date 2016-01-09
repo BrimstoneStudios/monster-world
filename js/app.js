@@ -157,6 +157,7 @@ Menu.prototype.renderBattleText = function(){
 // ---------------- BATTLE ----------------
 
 var battleEvent = function(){
+  // Save the pre-battle state
   state.prevLevel = state.currentLevel;
   state.locX = player.x;
   state.locY = player.y;
@@ -453,12 +454,14 @@ Player.prototype.handleInput = function(key) {
         this.y=42;
       }
       break;
+
       case 'down':
       this.y = this.y + 90;
       if (this.y > ((monsterInventory.length-1) *90)+42) {
         this.y = ((monsterInventory.length-1) *90)+42;
       }
       break;
+
       case 'space':
       if (this.y === 42){
         state.monsterStatID = 0;
@@ -905,6 +908,7 @@ var items = {
     }
   }
 }
+
 itemInventory.push(items.net);
 itemInventory.push(items.potion);
 

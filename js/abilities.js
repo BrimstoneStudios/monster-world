@@ -1,4 +1,4 @@
-// Types: normal, fire, water, grass
+// Types: normal, fire, water, grass, etc..
 // Categories: physical, special, status
 // Power: range from 10-???,  status moves have 0 power
 // Accuracy: Range from 0.5-1
