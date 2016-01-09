@@ -252,6 +252,30 @@ var abilities = {
 			};
 		}
 	},
+	fireBlast:{
+		name: 'Fire Blast',
+		type: 'fire',
+		category: 'special',
+		power: 80,
+		accuracy: .9,
+		effect:'Chance of burn',
+		func: function(controller){
+			attackFunc.call(this, controller);
+			var burnChance = Math.random();
+			if (burnChance > 0.1) {
+				if (controller === "player"){
+					state.enemyToBattle.condition = 'burn';
+					console.log(state.enemyToBattle.name + ' has been burned!');
+				}
+				else {
+					state.playerBattleMonster.condition = 'burn';
+					console.log(state.playerBattleMonster.name);
+
+				}
+				
+			};
+		}
+	},
 	razorLeaf: {
 		name: 'Razor Leaf',
 		type: 'grass',

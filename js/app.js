@@ -57,6 +57,8 @@ Menu.prototype.renderMonsterStat = function(monster) {
   ctx.fillText(monsterInventory[monster].spDefense, 620, 265);
   ctx.fillText("Speed:", 450, 305);
   ctx.fillText(monsterInventory[monster].speed, 620, 305);
+  ctx.fillText("Type:", 450, 345);
+  ctx.fillText(monsterInventory[monster].type, 620, 345);
 };
 
 //Set of common button locations
@@ -194,6 +196,10 @@ var enemyBattle = function(){
   else if(state.prevLevel === 'secondLevel'){
     monstersAvailable = [Bat, GiantRat, Munchkin];
     var levelsAvailable = [3,4,5];
+  }
+  else if (state.prevLevel === 'fireLevel'){
+    monstersAvailable = [LavaOgre, Ignis, Phoenix];
+    var levelsAvailable = [2,3];
   }
   
   var randomLevel = Math.floor(Math.random()*levelsAvailable.length);
@@ -837,7 +843,12 @@ Player.prototype.handleInput = function(key) {
       case 'up':
       this.y = this.y - 50;
       battleEvent();
-      if (this.y < 10){
+      if (state.currentLevel === 'firstLevel' && this.y < 10){
+        // this.y = 10;
+        state.currentLevel = 'fireLevel';
+        this.y = 450;
+      }
+      else if (this.y < 10){
         this.y = 10;
       }
       break;
@@ -846,7 +857,7 @@ Player.prototype.handleInput = function(key) {
       this.x = this.x + 50;
       battleEvent();
       if (state.currentLevel === 'firstLevel' && this.x > 660) {
-        this.x = 660;
+        // this.x = 660;
         //Changes the level to the firstLevel once player reaches far right of screen
         state.currentLevel = 'secondLevel';
         this.x = 10;
@@ -859,7 +870,11 @@ Player.prototype.handleInput = function(key) {
       case 'down':
       this.y = this.y + 50;
       battleEvent();
-      if (this.y > 450) {
+      if (state.currentLevel === 'fireLevel' && this.y > 450) {
+        state.currentLevel = 'firstLevel';
+        this.y = 10;
+      }
+      else if (this.y > 450) {
         this.y = 450;
       }
       break;
