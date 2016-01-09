@@ -61,6 +61,15 @@ Menu.prototype.renderMonsterStat = function(monster) {
 
 // Text and menus for battles
 Menu.prototype.renderBattleText = function(){
+	var battleMessagePos = {
+		x: 75,
+		y: 405
+	}
+
+	var button2 = {
+		x: 0,
+		y: 15
+	}
   var textX = 50;
   var textY = 405;
   ctx.font="30px Arial";
@@ -68,7 +77,7 @@ Menu.prototype.renderBattleText = function(){
   if (state.battleState === 'wildIntroText' ) {
     var wildName = state.enemyToBattle.name;
     ctx.font="40px Arial";
-    ctx.fillText('A wild ' + wildName + ' has appeared!', textX, textY);
+    ctx.fillText('A wild ' + wildName + ' has appeared!', battleMessagePos.x, textY);
   }
   else if (state.battleState === 'battleMenuMain'){
     ctx.fillText("Fight", 350, 385);
@@ -77,37 +86,37 @@ Menu.prototype.renderBattleText = function(){
     ctx.fillText("Run", 580, 455);
   }
   else if (state.battleState === 'playerMove') {
-    ctx.fillText("You hit enemy " + state.enemyToBattle.name + " with " + state.playerAttackUsed.name, textX, textY);
+    ctx.fillText("You hit enemy " + state.enemyToBattle.name + " with " + state.playerAttackUsed.name, battleMessagePos.x, battleMessagePos.y);
     // Additional text if not very or super effective
     if (state.playerDamageMod === 'super') {
-      ctx.fillText("It was super effective!", textX, textY + 50);
+      ctx.fillText("It was super effective!", battleMessagePos.x, battleMessagePos.y + 50);
     }
     else if (state.playerDamageMod === 'notVery'){
-      ctx.fillText("It was not very effective", textX, textY + 50);
+      ctx.fillText("It was not very effective", battleMessagePos.x, battleMessagePos.y + 50);
     };
   }
   else if (state.battleState === 'AI') {
-    ctx.fillText(state.enemyToBattle.name + " hit you with " + state.enemyAttackUsed.name, textX, textY);
+    ctx.fillText(state.enemyToBattle.name + " hit you with " + state.enemyAttackUsed.name, battleMessagePos.x, battleMessagePos.y);
     if (state.enemyDamageMod === 'super') {
-      ctx.fillText("It was super effective!", textX, textY + 50);
+      ctx.fillText("It was super effective!", battleMessagePos.x, battleMessagePos.y + 50);
     }
     else if (state.enemyDamageMod === 'notVery'){
-      ctx.fillText("It was not very effective", textX, textY + 50);
+      ctx.fillText("It was not very effective", battleMessagePos.x, battleMessagePos.y + 50);
     };
   }
   else if (state.battleState === 'potionUsed') {
-    ctx.fillText("You used a potion!", textX, textY);
+    ctx.fillText("You used a potion!", battleMessagePos.x, battleMessagePos.y);
   }
   else if (state.battleState === 'caughtMonster') {
-    ctx.fillText("You caught " + state.enemyToBattle.name + "!", textX, textY);
+    ctx.fillText("You caught " + state.enemyToBattle.name + "!", battleMessagePos.x, battleMessagePos.y);
   }
   else if (state.battleState === 'failedCatch'){
-    ctx.fillText("You failed to catch " + state.enemyToBattle.name + "!", textX, textY);
-    ctx.fillText("Try dealing more damage next time.", textX, textY+50);
+    ctx.fillText("You failed to catch " + state.enemyToBattle.name + "!", battleMessagePos.x, battleMessagePos.y);
+    ctx.fillText("Try dealing more damage next time.", battleMessagePos.x, battleMessagePos.y+50);
   }
   else if (state.battleState === 'battleMonsterDie'){
     if(state.playerBattleMonster.currentHp === 0){
-      ctx.fillText(state.playerBattleMonster.name + " has died!", textX, textY);
+      ctx.fillText(state.playerBattleMonster.name + " has died!", battleMessagePos.x, battleMessagePos.y);
     }
     else{
       if (state.levelUp === 1){
@@ -115,12 +124,12 @@ Menu.prototype.renderBattleText = function(){
         ctx.fillText(state.playerBattleMonster.name + " has gained a level!", textX, textY +50);
       }
       else {
-        ctx.fillText(state.enemyToBattle.name + " has died!", textX, textY);
+        ctx.fillText(state.enemyToBattle.name + " has died!", battleMessagePos.x, battleMessagePos.y);
       }
     }
   }
   else if (state.battleState === 'itemDrop'){
-    ctx.fillText(state.enemyToBattle.name + " dropped a " + state.droppedItem + "!", textX, textY);
+    ctx.fillText(state.enemyToBattle.name + " dropped a " + state.droppedItem + "!", battleMessagePos.x, battleMessagePos.y);
   }
   else if (state.battleState === 'battleMenuFight'){
     for (var i = 0, j = 0; i < state.playerBattleMonster.abilities.length; i++, j = j + 40){
@@ -139,18 +148,18 @@ Menu.prototype.renderBattleText = function(){
       }
     }
     else{
-      ctx.fillText("You have no items to use!", 50, 385);
+      ctx.fillText("You have no items to use!", battleMessagePos.x, battleMessagePos.y);
     }
   }
   else if (state.battleState === 'battleFailedRunAway') {
-    ctx.fillText("Escape failed. FIGHT!", textX, textY);
+    ctx.fillText("Escape failed. FIGHT!", battleMessagePos.x, battleMessagePos.y);
   }
   else if (state.battleState === 'battleRunAway'){
-    ctx.fillText("You ran away!? You wimp...", textX, textY);
+    ctx.fillText("You ran away!? You wimp...", battleMessagePos.x, battleMessagePos.y);
   }
   //This will be used when we defeat NPC
   else if (state.battleState === 'battleWinText'){
-    ctx.fillText('You have defeated ' + state.enemyToBattle.name + '!', textX, textY);
+    ctx.fillText('You have defeated ' + state.enemyToBattle.name + '!', battleMessagePos.x, battleMessagePos.y);
   }
 };
 
@@ -198,15 +207,15 @@ var enemyBattle = function(){
 var runFromBattle = function(){
   var randomNum = Math.floor(Math.random()*2); //produces either 0 or 1
   if (randomNum === 1){
-    player.x = 200;
-    player.y = 350;
+    player.x = 30;
+    player.y = 370;
     state.battleState = 'battleRunAway';
   }
   
   else{
+    player.x = 30;
+    player.y = 370;
     state.battleState = 'battleFailedRunAway';
-    player.x = 300;
-    player.y = 350;
   }
 };
 
