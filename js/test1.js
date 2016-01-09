@@ -1,7 +1,7 @@
-
-    $(document).ready( function(){
-        $(document).keydown(function(event){
-            // -- here comes your code of function --
+function level(){
                 console.log(state.currentLevel);
-        });
-    });
+};
+
+function consoleState(){
+    console.log(state);
+}
