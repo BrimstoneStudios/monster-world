@@ -641,7 +641,7 @@ Player.prototype.handleInput = function(key) {
             	this.y = 350;
       	}
       	else{
-	          this.x = 50;
+	          this.x = 30;
       	    this.y = 370;	
       	}
         }
