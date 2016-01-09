@@ -843,7 +843,11 @@ Player.prototype.handleInput = function(key) {
       case 'down':
       this.y = this.y + 50;
       battleEvent();
-      if (this.y > 450) {
+      if (state.currentLevel === 'fireLevel' && this.y > 450) {
+        state.currentLevel = 'firstLevel';
+        this.y = 10;
+      }
+      else if (this.y > 450) {
         this.y = 450;
       }
       break;
