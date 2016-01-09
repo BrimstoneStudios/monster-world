@@ -143,7 +143,7 @@ Menu.prototype.renderBattleText = function(){
   else if (state.battleState === 'invMenu'){
     if (itemInventory.length > 0){
       for (var i = 0, j = 0; i < itemInventory.length; i++, j = j + 40){
-        ctx.fillText(itemInventory[i].name, 50, 385 + j);
+        ctx.fillText(itemInventory[i].name, 75, 385 + j);
       }
     }
     else{
@@ -635,6 +635,15 @@ Player.prototype.handleInput = function(key) {
         }
         else{ // Inventory in battleMenuMain
           state.battleState = 'invMenu';
+
+            if (itemInventory.length > 0){
+            	this.x = 30;
+            	this.y = 350;
+      	}
+      	else{
+	          this.x = 50;
+      	    this.y = 370;	
+      	}
         }
         break;
       }
