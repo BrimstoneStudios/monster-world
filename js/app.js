@@ -591,6 +591,8 @@ Player.prototype.handleInput = function(key) {
     else if (state.battleState === 'playerMove'){
       switch(key){
         case 'space':
+        player.x = battleMessageTopLeftSelector.x;
+        player.y = battleMessageTopLeftSelector.y;
         state.playerDamageMod = 'none';
         state.battleState = 'AI';
         break;
@@ -603,6 +605,8 @@ Player.prototype.handleInput = function(key) {
         this.y = 350;
         state.enemyDamageMod = 'none';
         if(state.playerBattleMonster.currentHp === 0){
+                      player.x = battleMessageTopLeftSelector.x;
+            player.y = battleMessageTopLeftSelector.y;
           state.battleState = 'battleMonsterDie';
         }
         else{
@@ -774,6 +778,8 @@ Player.prototype.handleInput = function(key) {
             state.playerBattleMonster.abilities[i].func(state.playerBattleMonster.controller);
             if(state.enemyToBattle.currentHp > 0){
               enemyAbilityUsed();
+                          player.x = battleMessageTopLeftSelector.x;
+            player.y = battleMessageTopLeftSelector.y;
               state.battleState = 'playerMove';
             }
             else{
