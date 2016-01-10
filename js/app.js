@@ -22,7 +22,7 @@ Menu.prototype.renderMain = function() {
 Menu.prototype.renderItemsInv = function(){
   ctx.font="50px Arial";
   if (itemInventory.length > 0){
-    for (var i = 0, j = 0; i < itemInventory.length; i++, j = j+50){
+    for (var i = 0, j = 0; i < itemInventory.length; i++, j = j+menuInv.inter){
       ctx.fillText(itemInventory[i].name, 155, 85+j);
     }
   }
@@ -34,7 +34,7 @@ Menu.prototype.renderItemsInv = function(){
 // Monster Inventory Menu
 Menu.prototype.renderMonsterInv = function(){
   ctx.font="50px Arial";
-  for (var i = 0, j = 0; i < monsterInventory.length; i++, j = j+50){
+  for (var i = 0, j = 0; i < monsterInventory.length; i++, j = j+menuInv.inter){
     ctx.drawImage(Resources.get(monsterInventory[i].sprite), 85, 50+j);
     ctx.fillText(monsterInventory[i].name, 155, 85+j);
   };
@@ -43,34 +43,24 @@ Menu.prototype.renderMonsterInv = function(){
 // Monster Stats display
 Menu.prototype.renderMonsterStat = function(monster) {
   ctx.font="25px Arial";
-  ctx.fillText("Level:", 450, 65);
+  ctx.fillText("Level:", 430, 65);
   ctx.fillText(monsterInventory[monster].level, 620, 65);
-  ctx.fillText("HP:", 450, 105);
+  ctx.fillText("HP:", 430, 105);
   ctx.fillText(monsterInventory[monster].hp, 620, 105);
-  ctx.fillText("Attack:", 450, 145);
+  ctx.fillText("Attack:", 430, 145);
   ctx.fillText(monsterInventory[monster].attack, 620, 145);
-  ctx.fillText("Defense:", 450, 185);
+  ctx.fillText("Defense:", 430, 185);
   ctx.fillText(monsterInventory[monster].defense, 620, 185);
-  ctx.fillText("Sp Attack:", 450, 225);
+  ctx.fillText("Sp Attack:", 430, 225);
   ctx.fillText(monsterInventory[monster].spAttack, 620, 225);
-  ctx.fillText("Sp Defense:", 450, 265);
+  ctx.fillText("Sp Defense:", 430, 265);
   ctx.fillText(monsterInventory[monster].spDefense, 620, 265);
-  ctx.fillText("Speed:", 450, 305);
+  ctx.fillText("Speed:", 430, 305);
   ctx.fillText(monsterInventory[monster].speed, 620, 305);
-  ctx.fillText("Type:", 450, 345);
+  ctx.fillText("Type:", 430, 345);
   ctx.fillText(monsterInventory[monster].type, 620, 345);
 };
 
-//Set of common button locations
-var battleMessageTopLeft = {
-  x: 75,
-  y: 385
-};
-
-var battleMessageTopLeftSelector = {
-  x: 30,
-  y: 350
-};
 
 // Text and menus for battles
 Menu.prototype.renderBattleText = function(){
@@ -418,6 +408,8 @@ Player.prototype.handleInput = function(key) {
       case 'space':
       if (this.y === 247){
         state.currentLevel = 'monsterInventory';
+        state.monsterStatID = 0;
+        state.monsterStatCurrent = 1;
         this.x = 15;
         this.y = 42;
       }
@@ -440,22 +432,22 @@ Player.prototype.handleInput = function(key) {
       break;
       
       case 'up' :
-      this.y = this.y -90;
-      if (this.y < 42){
-        this.y=42;
+      this.y = this.y -menuInv.inter;
+      if (this.y < menuInv.y){
+        this.y=menuInv.y;
       }
       break;
       case 'down':
-      this.y = this.y + 90;
-      if (this.y > ((itemInventory.length-1) *90)+42) {
-        this.y = ((itemInventory.length-1) *90)+42;
+      this.y = this.y + menuInv.inter;
+      if (this.y > ((itemInventory.length-1) *menuInv.inter)+menuInv.y) {
+        this.y = ((itemInventory.length-1) *menuInv.inter)+menuInv.y;
       }
       break;
       
       case 'space':
       for (var i = 0; i < itemInventory.length; i++){
         console.log(this.y);
-        if (this.y === 42 + (i*90)){
+        if (this.y === menuInv.y + (i*menuInv.inter)){
           itemInventory[i].func();
           itemInventory.splice(i, 1);
         }
@@ -473,29 +465,33 @@ Player.prototype.handleInput = function(key) {
       break;
       
       case 'up' :
-      this.y = this.y -90;
-      if (this.y < 42){
-        this.y=42;
+      this.y = this.y - menuInv.inter;
+      state.monsterStatID = state.monsterStatID - 1;
+      if (state.monsterStatID < 0) {
+        state.monsterStatID = 0;
+      }
+      if (this.y < menuInv.y){
+        this.y=menuInv.y;
       }
       break;
 
       case 'down':
-      this.y = this.y + 90;
-      if (this.y > ((monsterInventory.length-1) *90)+42) {
-        this.y = ((monsterInventory.length-1) *90)+42;
-      }
+      //Controls the display of the selector
+      this.y = this.y + menuInv.inter;
+      if (this.y > ((monsterInventory.length-1) *menuInv.inter)+menuInv.y) {
+        this.y = ((monsterInventory.length-1) *menuInv.inter)+menuInv.y;
+      };
+      //Controls the update of the monster stat display
+      state.monsterStatID = state.monsterStatID + 1;
+      if (state.monsterStatID > (monsterInventory.length - 1)) {
+        state.monsterStatID = monsterInventory.length -1;
+      };
+      
+
       break;
 
       case 'space':
-      if (this.y === 42){
-        state.monsterStatID = 0;
-        if (state.monsterStatCurrent === 0) {
-          state.monsterStatCurrent = 1;
-        }
-        else{
-          state.monsterStatCurrent = 0;
-        };
-      }
+      
       break;
     }
   }
@@ -835,7 +831,11 @@ Player.prototype.handleInput = function(key) {
       case 'left':
       this.x = this.x - 50;
       battleEvent();
-      if (state.currentLevel ==='secondLevel' && this.x < 10) {
+      if (state.currentLevel === 'firstLevel' && this.x < 10) {
+        state.currentLevel = 'waterLevel';
+        this.x = 660;
+      }
+      else if (state.currentLevel ==='secondLevel' && this.x < 10) {
         this.x = 10;
         //Changes the level to the startScreen once player reach far left of screen
         state.currentLevel = 'firstLevel';
@@ -866,6 +866,10 @@ Player.prototype.handleInput = function(key) {
         // this.x = 660;
         //Changes the level to the firstLevel once player reaches far right of screen
         state.currentLevel = 'secondLevel';
+        this.x = 10;
+      }
+      if (state.currentLevel === 'waterLevel' && this.x > 660){
+        this.currentLevel = 'firstLevel';
         this.x = 10;
       }
       else if (this.x >660) {
