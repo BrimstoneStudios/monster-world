@@ -8,3 +8,9 @@ var battleMessageTopLeftSelector = {
   x: 30,
   y: 350
 };
+
+var monsterInv = {
+	x : 15,
+	y : 42,
+	inter: 75,
+}
