@@ -22,7 +22,7 @@ Menu.prototype.renderMain = function() {
 Menu.prototype.renderItemsInv = function(){
   ctx.font="50px Arial";
   if (itemInventory.length > 0){
-    for (var i = 0, j = 0; i < itemInventory.length; i++, j = j+50){
+    for (var i = 0, j = 0; i < itemInventory.length; i++, j = j+menuInv.inter){
       ctx.fillText(itemInventory[i].name, 155, 85+j);
     }
   }
@@ -34,7 +34,7 @@ Menu.prototype.renderItemsInv = function(){
 // Monster Inventory Menu
 Menu.prototype.renderMonsterInv = function(){
   ctx.font="50px Arial";
-  for (var i = 0, j = 0; i < monsterInventory.length; i++, j = j+monsterInv.inter){
+  for (var i = 0, j = 0; i < monsterInventory.length; i++, j = j+menuInv.inter){
     ctx.drawImage(Resources.get(monsterInventory[i].sprite), 85, 50+j);
     ctx.fillText(monsterInventory[i].name, 155, 85+j);
   };
@@ -432,22 +432,22 @@ Player.prototype.handleInput = function(key) {
       break;
       
       case 'up' :
-      this.y = this.y -90;
-      if (this.y < 42){
-        this.y=42;
+      this.y = this.y -menuInv.inter;
+      if (this.y < menuInv.y){
+        this.y=menuInv.y;
       }
       break;
       case 'down':
-      this.y = this.y + 90;
-      if (this.y > ((itemInventory.length-1) *90)+42) {
-        this.y = ((itemInventory.length-1) *90)+42;
+      this.y = this.y + menuInv.inter;
+      if (this.y > ((itemInventory.length-1) *menuInv.inter)+menuInv.y) {
+        this.y = ((itemInventory.length-1) *menuInv.inter)+menuInv.y;
       }
       break;
       
       case 'space':
       for (var i = 0; i < itemInventory.length; i++){
         console.log(this.y);
-        if (this.y === 42 + (i*90)){
+        if (this.y === menuInv.y + (i*menuInv.inter)){
           itemInventory[i].func();
           itemInventory.splice(i, 1);
         }
@@ -465,28 +465,29 @@ Player.prototype.handleInput = function(key) {
       break;
       
       case 'up' :
-      this.y = this.y - monsterInv.inter;
+      this.y = this.y - menuInv.inter;
       state.monsterStatID = state.monsterStatID - 1;
       if (state.monsterStatID < 0) {
         state.monsterStatID = 0;
       }
-      if (this.y < monsterInv.y){
-        this.y=monsterInv.y;
+      if (this.y < menuInv.y){
+        this.y=menuInv.y;
       }
       break;
 
       case 'down':
       //Controls the display of the selector
-      this.y = this.y + monsterInv.inter;
-      if (this.y > ((monsterInventory.length-1) *monsterInv.inter)+monsterInv.y) {
-        this.y = ((monsterInventory.length-1) *monsterInv.inter)+monsterInv.y;
+      this.y = this.y + menuInv.inter;
+      if (this.y > ((monsterInventory.length-1) *menuInv.inter)+menuInv.y) {
+        this.y = ((monsterInventory.length-1) *menuInv.inter)+menuInv.y;
       };
-
       //Controls the update of the monster stat display
       state.monsterStatID = state.monsterStatID + 1;
       if (state.monsterStatID > (monsterInventory.length - 1)) {
         state.monsterStatID = monsterInventory.length -1;
       };
+      
+
       break;
 
       case 'space':
