@@ -43,21 +43,21 @@ Menu.prototype.renderMonsterInv = function(){
 // Monster Stats display
 Menu.prototype.renderMonsterStat = function(monster) {
 	ctx.font="25px Arial";
-	ctx.fillText("Level:", 450, 65);
+	ctx.fillText("Level:", 430, 65);
 	ctx.fillText(monsterInventory[monster].level, 620, 65);
-	ctx.fillText("HP:", 450, 105);
+	ctx.fillText("HP:", 430, 105);
 	ctx.fillText(monsterInventory[monster].hp, 620, 105);
-	ctx.fillText("Attack:", 450, 145);
+	ctx.fillText("Attack:", 430, 145);
 	ctx.fillText(monsterInventory[monster].attack, 620, 145);
-	ctx.fillText("Defense:", 450, 185);
+	ctx.fillText("Defense:", 430, 185);
 	ctx.fillText(monsterInventory[monster].defense, 620, 185);
-	ctx.fillText("Sp Attack:", 450, 225);
+	ctx.fillText("Sp Attack:", 430, 225);
 	ctx.fillText(monsterInventory[monster].spAttack, 620, 225);
-	ctx.fillText("Sp Defense:", 450, 265);
+	ctx.fillText("Sp Defense:", 430, 265);
 	ctx.fillText(monsterInventory[monster].spDefense, 620, 265);
-	ctx.fillText("Speed:", 450, 305);
+	ctx.fillText("Speed:", 430, 305);
 	ctx.fillText(monsterInventory[monster].speed, 620, 305);
-	ctx.fillText("Type:", 450, 345);
+	ctx.fillText("Type:", 430, 345);
 	ctx.fillText(monsterInventory[monster].type, 620, 345);
 };
 
@@ -440,75 +440,79 @@ Player.prototype.handleInput = function(key) {
 		}
 	}
 	
-	// Controls for the items inventory
-	else if (state.currentLevel === 'itemsInv'){
-		switch(key){
-			case 'shift':
-			state.currentLevel = state.prevLevel;
-			this.x = state.locX;
-			this.y = state.locY;
-			break;
-			
-			case 'up' :
-			this.y = this.y -90;
-			if (this.y < 42){
-				this.y=42;
-			}
-			break;
-			case 'down':
-			this.y = this.y + 90;
-			if (this.y > ((itemInventory.length-1) *90)+42) {
-				this.y = ((itemInventory.length-1) *90)+42;
-			}
-			break;
-			
-			case 'space':
-			for (var i = 0; i < itemInventory.length; i++){
-				console.log(this.y);
-				if (this.y === 42 + (i*90)){
-					itemInventory[i].func();
-					itemInventory.splice(i, 1);
-				}
-			}
-			break;
-		}
-	}
-	// Monster inventory controls
-	else if (state.currentLevel === 'monsterInventory'){
-		switch(key){
-			case 'shift':
-			state.currentLevel = state.prevLevel;
-			this.x = state.locX;
-			this.y = state.locY;
-			break;
-			
-			case 'up' :
-			this.y = this.y -90;
-			if (this.y < 42){
-				this.y=42;
-			}
-			break;
+	  // Controls for the items inventory
+	  else if (state.currentLevel === 'itemsInv'){
+	    switch(key){
+	      case 'shift':
+	      state.currentLevel = state.prevLevel;
+	      this.x = state.locX;
+	      this.y = state.locY;
+	      break;
+	      
+	      case 'up' :
+	      this.y = this.y -menuInv.inter;
+	      if (this.y < menuInv.y){
+	        this.y=menuInv.y;
+	      }
+	      break;
+	      case 'down':
+	      this.y = this.y + menuInv.inter;
+	      if (this.y > ((itemInventory.length-1) *menuInv.inter)+menuInv.y) {
+	        this.y = ((itemInventory.length-1) *menuInv.inter)+menuInv.y;
+	      }
+	      break;
+	      
+	      case 'space':
+	      for (var i = 0; i < itemInventory.length; i++){
+	        console.log(this.y);
+	        if (this.y === menuInv.y + (i*menuInv.inter)){
+	          itemInventory[i].func();
+	          itemInventory.splice(i, 1);
+	        }
+	      }
+	      break;
+	    }
+	  }
+	  // Monster inventory controls
+  else if (state.currentLevel === 'monsterInventory'){
+    switch(key){
+      case 'shift':
+      state.currentLevel = state.prevLevel;
+      this.x = state.locX;
+      this.y = state.locY;
+      break;
+      
+      case 'up' :
+      this.y = this.y - menuInv.inter;
+      state.monsterStatID = state.monsterStatID - 1;
+      if (state.monsterStatID < 0) {
+        state.monsterStatID = 0;
+      }
+      if (this.y < menuInv.y){
+        this.y=menuInv.y;
+      }
+      break;
 
-			case 'down':
-			this.y = this.y + 90;
-			if (this.y > ((monsterInventory.length-1) *90)+42) {
-				this.y = ((monsterInventory.length-1) *90)+42;
-			}
-			break;
+      case 'down':
+      //Controls the display of the selector
+      this.y = this.y + menuInv.inter;
+      if (this.y > ((monsterInventory.length-1) *menuInv.inter)+menuInv.y) {
+        this.y = ((monsterInventory.length-1) *menuInv.inter)+menuInv.y;
+      };
+      //Controls the update of the monster stat display
+      state.monsterStatID = state.monsterStatID + 1;
+      if (state.monsterStatID > (monsterInventory.length - 1)) {
+        state.monsterStatID = monsterInventory.length -1;
+      };
+      
 
-			case 'space':
-			if (this.y === 42){
-				state.monsterStatID = 0;
-				if (state.monsterStatCurrent === 0) {
-					state.monsterStatCurrent = 1;
-				}
-				else{
-					state.monsterStatCurrent = 0;
-				};
-			}
-			break;
-		}
-	}
+      break;
+
+      case 'space':
+      
+      break;
+    }
+  }
 	
 	// Controls for the battle system
 	else if(state.currentLevel === 'battleLevel'){
@@ -827,85 +831,92 @@ Player.prototype.handleInput = function(key) {
 	}
 	
 	// Controls for all the world levels
-	else{
-		switch(key) {
-			case 'shift':
-			state.prevLevel = state.currentLevel;
-			state.locX = this.x;
-			state.locY = this.y;
-			state.currentLevel = 'mainMenu';
-			this.x = 180;
-			this.y = 157;
-			break;
+  else{
+    switch(key) {
+      case 'shift':
+      state.prevLevel = state.currentLevel;
+      state.locX = this.x;
+      state.locY = this.y;
+      state.currentLevel = 'mainMenu';
+      this.x = 180;
+      this.y = 157;
+      break;
 
-			case 'space':
-			if (this.x === healer.x && this.y === healer.y){
-				console.log("test");
-				monsterInventory.forEach(function(monster){
-					console.log(monster);
-					monster.currentHp = monster.hp;
-				});
-			}
-			break;
-			
-			case 'left':
-			this.x = this.x - 50;
-			battleEvent();
-			if (state.currentLevel ==='secondLevel' && this.x < 10) {
-				this.x = 10;
-				//Changes the level to the startScreen once player reach far left of screen
-				state.currentLevel = 'firstLevel';
-				this.x = 655;
-			}
-			else if (this.x <10) {
-				this.x=10;
-			}
-			break;
-			
-			case 'up':
-			this.y = this.y - 50;
-			battleEvent();
-			if (state.currentLevel === 'firstLevel' && this.y < 10){
-				// this.y = 10;
-				state.currentLevel = 'fireLevel';
-				this.y = 450;
-			}
-			else if (this.y < 10){
-				this.y = 10;
-			}
-			break;
-			
-			case 'right':
-			this.x = this.x + 50;
-			battleEvent();
-			if (state.currentLevel === 'firstLevel' && this.x > 660) {
-				// this.x = 660;
-				//Changes the level to the firstLevel once player reaches far right of screen
-				state.currentLevel = 'secondLevel';
-				this.x = 10;
-			}
-			else if (this.x >660) {
-				this.x = 660;
-			};
-			break;
-			
-			case 'down':
-			this.y = this.y + 50;
-			battleEvent();
-			if (state.currentLevel === 'fireLevel' && this.y > 450) {
-				state.currentLevel = 'firstLevel';
-				this.y = 10;
-			}
-			else if (this.y > 450) {
-				this.y = 450;
-			}
-			break;
-			default:
-			break;
-		}
-	} //End of else
+      case 'space':
+      if (this.x === healer.x && this.y === healer.y){
+        console.log("test");
+        monsterInventory.forEach(function(monster){
+          console.log(monster);
+          monster.currentHp = monster.hp;
+        });
+      }
+      break;
+      
+      case 'left':
+      this.x = this.x - 50;
+      battleEvent();
+      if (state.currentLevel === 'firstLevel' && this.x < 10) {
+        state.currentLevel = 'waterLevel';
+        this.x = 660;
+      }
+      else if (state.currentLevel ==='secondLevel' && this.x < 10) {
+        this.x = 10;
+        //Changes the level to the startScreen once player reach far left of screen
+        state.currentLevel = 'firstLevel';
+        this.x = 655;
+      }
+      else if (this.x <10) {
+        this.x=10;
+      }
+      break;
+      
+      case 'up':
+      this.y = this.y - 50;
+      battleEvent();
+      if (state.currentLevel === 'firstLevel' && this.y < 10){
+        // this.y = 10;
+        state.currentLevel = 'fireLevel';
+        this.y = 450;
+      }
+      else if (this.y < 10){
+        this.y = 10;
+      }
+      break;
+      
+      case 'right':
+      this.x = this.x + 50;
+      battleEvent();
+      if (state.currentLevel === 'firstLevel' && this.x > 660) {
+        // this.x = 660;
+        //Changes the level to the firstLevel once player reaches far right of screen
+        state.currentLevel = 'secondLevel';
+        this.x = 10;
+      }
+      if (state.currentLevel === 'waterLevel' && this.x > 660){
+        this.currentLevel = 'firstLevel';
+        this.x = 10;
+      }
+      else if (this.x >660) {
+        this.x = 660;
+      };
+      break;
+      
+      case 'down':
+      this.y = this.y + 50;
+      battleEvent();
+      if (state.currentLevel === 'fireLevel' && this.y > 450) {
+        state.currentLevel = 'firstLevel';
+        this.y = 10;
+      }
+      else if (this.y > 450) {
+        this.y = 450;
+      }
+      break;
+      default:
+      break;
+    }
+  } //End of else
 }
-
 
 // ------ ITEMS -------
 // ** Refactor to reference currently selected monster outside of combat
