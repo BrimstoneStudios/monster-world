@@ -4,7 +4,6 @@
 // Accuracy: Range from 0.5-1
 // Effect: A description of the special effects on some abilities
 
-
 // Ability type effectiveness data
 var type = {
 	normal: {
@@ -47,113 +46,42 @@ var type = {
 
 
 // Attack function
-var attackFunc = function ( controller ) {
-	if ( controller === 'player' ) {
-		state.playerAttackUsed = this;
+var abilityUsed = function ( attacker ) {
 
-		// Check effectiveness of ability vs defensing monster type
-		var damageMod;
-		var damage;
-		var enemyType = state.enemyToBattle.type;
-		var spellType = this.type;
+	var ability;
+	var defender;
 
-		if ( type[spellType].super.indexOf( enemyType ) >= 0 ) {
-			state.playerDamageMod = 'super';
-			damageMod = 1.5;
-		} else if ( type[spellType].notVery.indexOf( enemyType ) >= 0 ) {
-			state.playerDamageMod = 'notVery';
-			damageMod = 0.5;
-		} else {
-			damageMod = 1;
-		}
-
-		// Still needs accuracy modifier
-		// Physical attacks use the attack and defense attributes
-		if ( this.category === 'physical' ) {
-			damage = ( ( ( this.power * ( state.playerBattleMonster.attack * 1.5 ) ) * 0.04 ) / ( state.enemyToBattle.defense ) * damageMod );
-			state.enemyToBattle.currentHp = Math.round( state.enemyToBattle.currentHp - damage );
-		} else if ( this.category === 'special' ) { // Special attacks use the spAttack and spDefense attributes
-			damage = ( ( ( ( this.power * ( state.playerBattleMonster.spAttack * 1.5 ) ) * 0.04 ) / state.enemyToBattle.spDefense ) * damageMod );
-			state.enemyToBattle.currentHp = Math.round( state.enemyToBattle.currentHp - damage );
-		}
-
-		// When your attack kills the enemy monster
-		if ( state.enemyToBattle.currentHp <= 0 ) {
-			state.enemyToBattle.currentHp = 0;
-
-			// Return your stats to original state
-			state.playerBattleMonster.attack = state.playerBattleMonsterAttack;
-			state.playerBattleMonster.defense = state.playerBattleMonsterDefense;
-			state.playerBattleMonster.spAttack = state.playerBattleMonsterSpAttack;
-			state.playerBattleMonster.spDefense = state.playerBattleMonsterSpDefense;
-			// Gain exp
-			state.playerBattleMonster.expGain();
-		}
-	}
-};
-
-
-
-// Attack function for enemy monsters
-var enemyAbilityUsed = function () {
-
-	var randomAttack = Math.floor( Math.random() * state.enemyToBattle.abilities.length );
-	state.enemyAttackUsed = state.enemyToBattle.abilities[randomAttack];
-	var damageMod;
-	var enemyType = state.playerBattleMonster.type;
-	var spellType = state.enemyAttackUsed.type;
-	var damage = 0;
-
-	// Check effectiveness
-	if ( type[spellType].super.indexOf( enemyType ) >= 0 ) {
-		state.enemyDamageMod = 'super';
-		damageMod = 1.5;
-	} else if ( type[spellType].notVery.indexOf( enemyType ) >= 0 ) {
-		state.enemyDamageMod = 'notVery';
-		damageMod = 0.5;
+	if ( attacker.controller === 'player' ) {
+		defender = state.enemyToBattle;
+		ability = state.playerAttackUsed = this
 	} else {
-		state.enemyDamageMod = 'none';
-		damageMod = 1;
+		defender = state.playerBattleMonster;
+		var randomAttack = Math.floor( Math.random() * state.enemyToBattle.abilities.length );
+		ability = state.enemyAttackUsed = state.enemyToBattle.abilities[randomAttack];
 	}
 
-	// Special attacks
-	if ( state.enemyAttackUsed.category === 'special' ) {
-		damage = ( ( ( ( state.enemyAttackUsed.power * ( state.enemyToBattle.spAttack * 1.5 ) ) * 0.04 ) / state.playerBattleMonster.spDefense ) * damageMod );
-	} else if ( state.enemyAttackUsed.category === 'physical' ) { // Physical attacks
-		damage = ( ( ( ( state.enemyAttackUsed.power * ( state.enemyToBattle.attack * 1.5 ) ) * 0.04 ) / state.playerBattleMonster.defense ) * damageMod );
-	} else { // Status attacks
-		state.enemyAttackUsed.func( state.enemyToBattle.controller );
+	if ( ability.category === 'status' || ability.category === 'special' ) {
+		attributeModification( ability, attacker, defender );
 	}
 
-	//Currently deals damage regardless of attack type
-	state.playerBattleMonster.currentHp = Math.round( state.playerBattleMonster.currentHp - damage );
+	var damageModifier = checkTypeEffectiveness( ability, defender )
+	dealDamage( attacker, ability, damageModifier, defender );
 
-	// If your monster dies
-	if ( state.playerBattleMonster.currentHp <= 0 ) {
-		state.playerBattleMonster.currentHp = 0;
-
-		//If the Player monster dies, GAME OVER
-		if ( state.playerBattleMonster.player === 1 ) {
-			// Render game over
-			state.battleState = 0;
-			state.currentLevel = 'gameOver';
-			player.x = 0;
-			player.y = 0;
-		}
-		state.battleState = 'battleMonsterDie';
-	}
+	checkFightWinCondition( defender );
 };
-
 
 // Template:
-
 // : {
-// 	name: '',
-// 	type: '',
-// 	category:'',
-// 	power:,
-// 	accuracy:,
-// 	effect:,
+// 	name: string,
+// 	type: string,
+// 	category: ['physical', 'special', 'status'],
+//	attribute: string,
+//	modifier: num,
+//	targetSelf: boolean,
+//	conditionApplied: ['burn', 'poison', 'sleep'],
+// 	power: num,
+// 	accuracy: num,
+// 	effect: string,
 // },
 
 // Database of monster abilities
@@ -165,8 +93,8 @@ var abilities = {
 		power: 40,
 		accuracy: 1,
 		effect: '',
-		func: function ( controller ) {
-			attackFunc.call( this, controller );
+		func: function () {
+			abilityUsed.call( this, state.playerBattleMonster );
 		}
 	},
 	bite: {
@@ -176,111 +104,95 @@ var abilities = {
 		power: 45,
 		accuracy: 0.9,
 		effect: '',
-		func: function ( controller ) {
-			attackFunc.call( this, controller );
+		func: function () {
+			abilityUsed.call( this, state.playerBattleMonster );
 		}
 	},
 	growl: {
 		name: 'Growl',
 		type: 'normal',
 		category: 'status',
+		attribute: 'attack',
+		modifier: 0.8,
+		targetSelf: false,
 		power: 0,
 		accuracy: 1,
 		effect: 'Decrease opponent attack damage',
-		func: function ( controller ) {
-			if ( controller === 'player' ) {
-				state.playerAttackUsed = this;
-				state.enemyToBattle.attack = state.enemyToBattle.attack * 0.8;
-			} else {
-				state.playerBattleMonster.attack = state.playerBattleMonster.attack * 0.8;
-			}
+		func: function () {
+			abilityUsed.call( this, state.playerBattleMonster );
 		}
 	},
 	stare: {
 		name: 'Stare',
 		type: 'normal',
 		category: 'status',
+		attribute: 'defense',
+		modifier: 0.9,
+		targetSelf: false,
 		power: 0,
 		accuracy: 1,
 		effect: 'Decrease opponent defense',
-		func: function ( controller ) {
-			if ( controller === 'player' ) {
-				state.playerAttackUsed = this;
-				state.enemyToBattle.defense = state.enemyToBattle.defense * 0.9;
-			} else {
-				state.playerBattleMonster.defense = state.playerBattleMonster.defense * 0.9;
-			}
+		func: function () {
+			abilityUsed.call( this, state.playerBattleMonster );
 		}
 	},
 	fireBreath: {
 		name: 'Fire Breath',
 		type: 'fire',
 		category: 'special',
+		attribute: 'condition',
+		modifier: 0.1,
+		targetSelf: false,
+		conditionApplied: 'burn',
 		power: 50,
 		accuracy: 0.9,
 		effect: 'Chance of burn',
-		func: function ( controller ) {
-			attackFunc.call( this, controller );
-			var burnChance = Math.random();
-			if ( burnChance > 0.1 ) {
-				if ( controller === 'player' ) {
-					state.enemyToBattle.condition = 'burn';
-				}
-				else {
-					state.playerBattleMonster.condition = 'burn';
-				}
-			}
+		func: function () {
+			abilityUsed.call( this, state.playerBattleMonster );
 		}
 	},
 	fireBlast: {
 		name: 'Fire Blast',
 		type: 'fire',
 		category: 'special',
+		attribute: 'condition',
+		modifier: 0.1,
+		targetSelf: false,
+		conditionApplied: 'burn',
 		power: 80,
 		accuracy: 0.9,
 		effect: 'Chance of burn',
-		func: function ( controller ) {
-			attackFunc.call( this, controller );
-			var burnChance = Math.random();
-			if ( burnChance > 0.1 ) {
-				if ( controller === 'player' ) {
-					state.enemyToBattle.condition = 'burn';
-				} else {
-					state.playerBattleMonster.condition = 'burn';
-				}
-			}
+		func: function () {
+			abilityUsed.call( this, state.playerBattleMonster );
 		}
 	},
 	razorLeaf: {
 		name: 'Razor Leaf',
 		type: 'grass',
 		category: 'special',
+		attribute: 'defense',
+		modifier: 0.9,
+		targetSelf: false,
+		conditionApplied: 'burn',
 		power: 50000,
 		accuracy: 0.9,
 		effect: 'Reduces defending monster defense',
-		func: function ( controller ) {
-			if ( controller === 'player') {
-				state.enemyToBattle.defense = state.enemyToBattle.defense * 0.9;
-			} else {
-				state.playerBattleMonster.defense = state.playerBattleMonster.defense * 0.9;
-			}
-			attackFunc.call( this, controller );
+		func: function () {
+			abilityUsed.call( this, state.playerBattleMonster );
 		}
 	},
 	waterBlast: {
 		name: 'Water Blast',
 		type: 'water',
 		category: 'special',
+		attribute: 'attack',
+		modifier: 0.9,
+		targetSelf: false,
 		power: 50,
 		accuracy: 0.9,
 		effect: 'Reduces defending monsters attack',
-		func: function ( controller ) {
-			if ( controller === 'player' ) {
-				state.enemyToBattle.attack = state.enemyToBattle.attack * 0.9;
-			} else {
-				state.playerBattleMonster.attack = state.playerBattleMonster.attack * 0.9;
-			}
-			attackFunc.call( this, controller );
+		func: function () {
+			abilityUsed.call( this, state.playerBattleMonster );
 		}
-	},
+	}
 };
