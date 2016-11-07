@@ -1,5 +1,4 @@
 // Data for all levels
-
 var Di = 'images/terrain/dirt-tile50.png'; // dirt tile 50x50
 var Gr = 'images/terrain/grass-tile50.png'; // grass tile 50x50
 var Wh = 'images/terrain/white-tile50.png'; // white tile 50x50
@@ -143,7 +142,7 @@ var allLevels = {
       [Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, La, Ro, Ro],
       [Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, La, Ro],
       [Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, La],
-      [Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro],  
+      [Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro],
     ],
   },
   waterLevel: {

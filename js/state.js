@@ -14,7 +14,7 @@ state.locX;
 state.locY;
 
 // 0 = not currently displaying , 1 = currently displaying
-state.monsterStatCurrent= 0;
+state.monsterStatCurrent = 0;
 
 // When a monster stat is going to be shown, save the ID here
 state.monsterStatID;
@@ -32,7 +32,6 @@ state.enemyToBattle;
 state.levelUp;
 state.itemDrop;
 state.droppedItem;
-
 
 // Battle states
 state.playerAttackUsed;

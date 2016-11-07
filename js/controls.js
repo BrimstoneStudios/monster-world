@@ -10,7 +10,7 @@ var battleMessageTopLeftSelector = {
 };
 
 var menuInv = {
-	x : 15,
-	y : 42,
-	inter: 75,
+  x: 15,
+  y: 42,
+  inter: 75,
 }
