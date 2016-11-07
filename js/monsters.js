@@ -2,100 +2,97 @@
 
 // Monster class determines the initial stats of the monster based on the level and the multiplier
 // Multipliers defined later on individual monsters.
-var Monster = function (lvl){
+var Monster = function ( lvl ) {
   this.level = lvl;
-  this.hp = 10 + (this.level * this.hpMult);
+  this.hp = 10 + ( this.level * this.hpMult );
   this.currentHp = this.hp;
   this.condition = 'healthy';
-  this.attack = ((((5 + this.attackMult) * 11)* this.level)/100)+2;
-  this.defense = ((((5 + this.defenseMult) * 11)* this.level)/100)+2;
-  this.spAttack = ((((5 + this.spAttackMult) * 11)* this.level)/100)+2;
-  this.spDefense = ((((5 + this.spDefenseMult) * 11)* this.level)/100)+2;
-  this.speed = ((((5 + this.speedMult) * 11)* this.level)/100)+2;
+  this.attack = ( ( ( ( 5 + this.attackMult ) * 11 ) * this.level ) / 100 ) + 2;
+  this.defense = ( ( ( ( 5 + this.defenseMult ) * 11 ) * this.level ) / 100 ) + 2;
+  this.spAttack = ( ( ( ( 5 + this.spAttackMult ) * 11 ) * this.level ) / 100 ) + 2;
+  this.spDefense = ( ( ( ( 5 + this.spDefenseMult ) * 11 ) * this.level ) / 100 ) + 2;
+  this.speed = ( ( ( ( 5 + this.speedMult ) * 11 ) * this.level ) / 100 ) + 2;
   this.currentExp = 0;
-  this.expToLevel = 10 + (3*this.level);
-  this.expReward = 5 + (3*this.level);
+  this.expToLevel = 10 + ( 3 * this.level );
+  this.expReward = 5 + ( 3 * this.level );
 };
 Monster.prototype.controller = 'computer';
 
-Monster.prototype.update = function(){
+Monster.prototype.update = function () {
 };
 
 // Render the monster onto the screen
-Monster.prototype.render = function(x, y) {
-  ctx.drawImage(Resources.get(this.sprite), x, y, 100, 100);
+Monster.prototype.render = function ( x, y ) {
+  ctx.drawImage( Resources.get( this.sprite ), x, y, 100, 100 );
 };
 
 // Gain exp upon defeating an enemy monster
-Monster.prototype.expGain = function(){
+Monster.prototype.expGain = function () {
   this.currentExp += state.enemyToBattle.expReward;
-  console.log(this.currentExp);
-  if (this.currentExp >= this.expToLevel){
+  if ( this.currentExp >= this.expToLevel ) {
     this.levelUp();
   }
 };
 
 // Level up method to update stats based on current level
-Monster.prototype.levelUp = function(){
+Monster.prototype.levelUp = function () {
   state.levelUp = 1;
   this.level++;
-  this.hp = 10 + (this.level * this.hpMult);
+  this.hp = 10 + ( this.level * this.hpMult );
   this.currentHp = this.currentHp + 5;
-  this.attack = ((((5 + this.attackMult) * 11)* this.level)/100)+2;
-  this.defense = ((((5 + this.defenseMult) * 11)* this.level)/100)+2;
-  this.spAttack = ((((5 + this.spAttackMult) * 11)* this.level)/100)+2;
-  this.spDefense = ((((5 + this.spDefenseMult) * 11)* this.level)/100)+2;
-  this.speed = ((((5 + this.speedMult) * 11)* this.level)/100)+2;
+  this.attack = ( ( ( ( 5 + this.attackMult ) * 11 ) * this.level ) / 100 ) + 2;
+  this.defense = ( ( ( ( 5 + this.defenseMult ) * 11 ) * this.level ) / 100 ) + 2;
+  this.spAttack = ( ( ( ( 5 + this.spAttackMult ) * 11 ) * this.level ) / 100 ) + 2;
+  this.spDefense = ( ( ( ( 5 + this.spDefenseMult ) * 11 ) * this.level ) / 100 ) + 2;
+  this.speed = ( ( ( ( 5 + this.speedMult ) * 11 ) * this.level ) / 100 ) + 2;
   this.currentExp = 0;
-  this.expToLevel = 10 + (4*this.level);
+  this.expToLevel = 10 + ( 4 * this.level );
 };
 
 // Show player and enemy monster stats on the screen during a battle
-Monster.prototype.renderBtlMonStats = function(player){
-  ctx.font="35px Arial";
-  if(player === "player"){
-    ctx.fillText(this.name, 350, 260);
-    ctx.fillText("Lv", 610, 260);
-    ctx.fillText(this.level, 650, 260);
-    ctx.fillText("HP:", 350, 300);
-    ctx.fillText(this.currentHp, 450, 300);
-    ctx.fillText("/", 495, 300)
-    ctx.fillText(this.hp, 510, 300);
-  }
-  else{
-    ctx.fillText(this.name, 50, 60);
-    ctx.fillText("Lv", 310, 60);
-    ctx.fillText(this.level, 350, 60);
-    ctx.fillText("HP:", 50, 100);
-    ctx.fillText(this.currentHp, 150, 100);
-    ctx.fillText("/", 195, 100)
-    ctx.fillText(this.hp, 210, 100);
+Monster.prototype.renderBtlMonStats = function ( player ) {
+  ctx.font = '35px Arial';
+  if ( player === 'player' ) {
+    ctx.fillText( this.name, 350, 260 );
+    ctx.fillText( 'Lv', 610, 260 );
+    ctx.fillText( this.level, 650, 260 );
+    ctx.fillText( 'HP:', 350, 300 );
+    ctx.fillText( this.currentHp, 450, 300 );
+    ctx.fillText( '/', 495, 300 );
+    ctx.fillText( this.hp, 510, 300 );
+  } else {
+    ctx.fillText( this.name, 50, 60 );
+    ctx.fillText( 'Lv', 310, 60 );
+    ctx.fillText( this.level, 350, 60 );
+    ctx.fillText( 'HP:', 50, 100 );
+    ctx.fillText( this.currentHp, 150, 100 );
+    ctx.fillText( '/', 195, 100 );
+    ctx.fillText( this.hp, 210, 100 );
   }
 };
 
 // ----------------------------
 
 // Normal type - subclass of Monster
-var NormalType = function(lvl){
-  Monster.call(this, lvl);
+var NormalType = function ( lvl ){
+  Monster.call( this, lvl );
 };
 
-NormalType.prototype = Object.create(Monster.prototype);
+NormalType.prototype = Object.create( Monster.prototype );
 NormalType.prototype.constructor = NormalType;
 NormalType.prototype.type = 'normal';
 NormalType.prototype.weaknesss ='';
 
 // PlayerMon monster - subclass of NormalType
-var PlayerMon = function(lvl, char){
-  NormalType.call(this, lvl);
-  if (char === "monk") {
+var PlayerMon = function ( lvl, char ) {
+  NormalType.call( this, lvl );
+  if ( char === 'monk' ) {
     this.sprite = 'images/characters/monk.gif';
-  }
-  else {
+  } else {
     this.sprite = 'images/characters/deathCaster.gif';
   }
 };
-PlayerMon.prototype = Object.create(NormalType.prototype);
+PlayerMon.prototype = Object.create( NormalType.prototype );
 PlayerMon.prototype.constructor = PlayerMon;
 PlayerMon.prototype.sprite = state.sprite;
 PlayerMon.prototype.name = 'PlayerMon';
@@ -109,11 +106,11 @@ PlayerMon.prototype.speedMult = 3;
 PlayerMon.prototype.abilities = [abilities.scratch, abilities.stare];
 
 // GiantRat monster - subclass of NormalType
-var GiantRat = function(lvl, char){
-  NormalType.call(this, lvl);
+var GiantRat = function ( lvl, char ) {
+  NormalType.call( this, lvl );
   this.sprite = 'images/monsters/giantRat.gif';
 };
-GiantRat.prototype = Object.create(NormalType.prototype);
+GiantRat.prototype = Object.create( NormalType.prototype );
 GiantRat.prototype.constructor = GiantRat;
 GiantRat.prototype.sprite = state.sprite;
 GiantRat.prototype.name = 'Giant Rat';
@@ -127,11 +124,11 @@ GiantRat.prototype.speedMult = 3;
 GiantRat.prototype.abilities = [abilities.scratch, abilities.growl];
 
 // Bat monster - subclass of NormalType
-var Bat = function(lvl, char){
-  NormalType.call(this, lvl);
+var Bat =  function ( lvl, char ) {
+  NormalType.call( this, lvl );
   this.sprite = 'images/monsters/bat.gif';
 };
-Bat.prototype = Object.create(NormalType.prototype);
+Bat.prototype = Object.create( NormalType.prototype );
 Bat.prototype.constructor = Bat;
 Bat.prototype.sprite = state.sprite;
 Bat.prototype.name = 'Bat';
@@ -145,11 +142,11 @@ Bat.prototype.speedMult = 3;
 Bat.prototype.abilities = [abilities.bite, abilities.stare];
 
 // Munchkin monster - subclass of NormalType
-var Munchkin = function(lvl, char){
-  NormalType.call(this, lvl);
+var Munchkin = function ( lvl, char ) {
+  NormalType.call( this, lvl );
   this.sprite = 'images/monsters/munchkin.gif';
 };
-Munchkin.prototype = Object.create(NormalType.prototype);
+Munchkin.prototype = Object.create( NormalType.prototype );
 Munchkin.prototype.constructor = Munchkin;
 Munchkin.prototype.sprite = state.sprite;
 Munchkin.prototype.name = 'Munchkin';
@@ -165,20 +162,20 @@ Munchkin.prototype.abilities = [abilities.bite, abilities.stare];
 // ----------------------------
 
 // Fire type - subclass of Monster
-var FireType = function(lvl){
-  Monster.call(this, lvl);
+var FireType = function ( lvl ) {
+  Monster.call( this, lvl );
 };
 
-FireType.prototype = Object.create(Monster.prototype);
+FireType.prototype = Object.create( Monster.prototype );
 FireType.prototype.constructor = FireType;
 FireType.prototype.type = 'fire';
 
 
 // Drag1 monster - subclass of FireType
-var Drag1 = function(lvl){
-  FireType.call(this, lvl);
+var Drag1 = function ( lvl ) {
+  FireType.call( this, lvl );
 };
-Drag1.prototype = Object.create(FireType.prototype);
+Drag1.prototype = Object.create( FireType.prototype );
 Drag1.prototype.constructor = Drag1;
 Drag1.prototype.sprite = 'images/monsters/drag1.gif';
 Drag1.prototype.name = 'Drag1';
@@ -192,10 +189,10 @@ Drag1.prototype.speedMult = 3;
 Drag1.prototype.abilities = [abilities.scratch, abilities.stare, abilities.fireBreath];
 
 // Ignis monster - subclass of FireType
-var Ignis = function(lvl){
-  FireType.call(this, lvl);
+var Ignis = function ( lvl ) {
+  FireType.call( this, lvl );
 };
-Ignis.prototype = Object.create(FireType.prototype);
+Ignis.prototype = Object.create( FireType.prototype );
 Ignis.prototype.constructor = Ignis;
 Ignis.prototype.sprite = 'images/monsters/ignis.gif';
 Ignis.prototype.name = 'Ignis';
@@ -209,10 +206,10 @@ Ignis.prototype.speedMult = 2;
 Ignis.prototype.abilities = [abilities.fireBreath];
 
 // LavaOgre monster - subclass of FireType
-var LavaOgre = function(lvl){
-  FireType.call(this, lvl);
+var LavaOgre = function ( lvl ) {
+  FireType.call( this, lvl );
 };
-LavaOgre.prototype = Object.create(FireType.prototype);
+LavaOgre.prototype = Object.create( FireType.prototype );
 LavaOgre.prototype.constructor = LavaOgre;
 LavaOgre.prototype.sprite = 'images/monsters/lavaogre.gif';
 LavaOgre.prototype.name = 'LavaOgre';
@@ -226,10 +223,10 @@ LavaOgre.prototype.speedMult = 3;
 LavaOgre.prototype.abilities = [abilities.scratch, abilities.stare, abilities.fireBreath];
 
 // Phoenix monster - subclass of FireType
-var Phoenix = function(lvl){
-  FireType.call(this, lvl);
+var Phoenix = function ( lvl ) {
+  FireType.call( this, lvl );
 };
-Phoenix.prototype = Object.create(FireType.prototype);
+Phoenix.prototype = Object.create( FireType.prototype );
 Phoenix.prototype.constructor = Phoenix;
 Phoenix.prototype.sprite = 'images/monsters/phoenix.gif';
 Phoenix.prototype.name = 'Phoenix';
@@ -245,19 +242,18 @@ Phoenix.prototype.abilities = [abilities.stare, abilities.fireBlast];
 // ----------------------------
 
 // Water type - subclass of Monster
-var WaterType = function(lvl){
-  Monster.call(this, lvl);
+var WaterType = function ( lvl ) {
+  Monster.call( this, lvl );
 };
-WaterType.prototype = Object.create(Monster.prototype);
+WaterType.prototype = Object.create( Monster.prototype );
 WaterType.prototype.constructor = WaterType;
 WaterType.prototype.type = 'water';
 
-
 // Hydra1 monster - subclass of WaterType
-var Hydra1 = function(lvl){
-  WaterType.call(this, lvl);
+var Hydra1 = function ( lvl ) {
+  WaterType.call( this, lvl );
 };
-Hydra1.prototype = Object.create(WaterType.prototype);
+Hydra1.prototype = Object.create( WaterType.prototype );
 Hydra1.prototype.constructor = Hydra1;
 Hydra1.prototype.sprite = 'images/monsters/hydra1.png';
 Hydra1.prototype.name = 'Hydra1';
@@ -273,19 +269,19 @@ Hydra1.prototype.abilities = [abilities.bite, abilities.growl, abilities.waterBl
 // ----------------------------
 
 // Grass type - subclass of Monster
-var GrassType = function(lvl){
-  Monster.call(this, lvl);
+var GrassType = function ( lvl ) {
+  Monster.call( this, lvl );
 };
-GrassType.prototype = Object.create(Monster.prototype);
+GrassType.prototype = Object.create( Monster.prototype );
 GrassType.prototype.constructor = GrassType;
 GrassType.prototype.type = 'grass';
 
 // Wormy1 monster - subclass of GrassType
-var Wormy1 = function(lvl){
-  GrassType.call(this, lvl);
+var Wormy1 = function ( lvl ) {
+  GrassType.call( this, lvl );
 };
 
-Wormy1.prototype = Object.create(GrassType.prototype);
+Wormy1.prototype = Object.create( GrassType.prototype );
 Wormy1.prototype.constructor = Wormy1;
 Wormy1.prototype.sprite = 'images/monsters/wormy1.gif';
 Wormy1.prototype.name = 'Wormy1';
@@ -301,61 +297,54 @@ Wormy1.prototype.abilities = [abilities.bite, abilities.growl, abilities.razorLe
 // ----------------------------
 
 // Electric type - subclass of Monster
-var ElectricType = function(lvl){
-  Monster.call(this, lvl);
+var ElectricType = function ( lvl ) {
+  Monster.call( this, lvl );
 };
 
-ElectricType.prototype = Object.create(Monster.prototype);
+ElectricType.prototype = Object.create( Monster.prototype );
 ElectricType.prototype.constructor = ElectricType;
 ElectricType.prototype.type = 'electric';
 
 // ----------------------------
 
 // Rock type - subclass of Monster
-var RockType = function(lvl){
-  Monster.call(this, lvl);
+var RockType = function ( lvl ) {
+  Monster.call( this, lvl );
 };
 
-RockType.prototype = Object.create(Monster.prototype);
+RockType.prototype = Object.create( Monster.prototype );
 RockType.prototype.constructor = RockType;
 RockType.prototype.type = 'rock';
 
 // ----------------------------
 
 // Ghost type - subclass of Monster
-var GhostType = function(lvl){
-  Monster.call(this, lvl);
+var GhostType = function ( lvl ) {
+  Monster.call( this, lvl );
 };
 
-GhostType.prototype = Object.create(Monster.prototype);
+GhostType.prototype = Object.create( Monster.prototype );
 GhostType.prototype.constructor = GhostType;
 GhostType.prototype.type = 'ghost';
-
 
 // ----------------------------
 
 // Psychic type - subclass of Monster
-var PsychicType = function(lvl){
-  Monster.call(this, lvl);
+var PsychicType = function ( lvl ) {
+  Monster.call( this, lvl );
 };
 
-PsychicType.prototype = Object.create(Monster.prototype);
+PsychicType.prototype = Object.create( Monster.prototype );
 PsychicType.prototype.constructor = PsychicType;
 PsychicType.prototype.type = 'psychic';
 
 // ----------------------------
 
 // Fighting type - subclass of Monster
-var FightingType = function(lvl){
-  Monster.call(this, lvl);
+var FightingType = function ( lvl ) {
+  Monster.call( this, lvl );
 };
 
-FightingType.prototype = Object.create(Monster.prototype);
+FightingType.prototype = Object.create( Monster.prototype );
 FightingType.prototype.constructor = FightingType;
 FightingType.prototype.type = 'fighting';
-
-
-
-
-
-

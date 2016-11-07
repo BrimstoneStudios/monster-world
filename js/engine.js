@@ -12,96 +12,95 @@
 
 */
 
-var Engine = (function(global) {
+var Engine = ( function ( global ) {
   /* Predefine the variables we'll be using within this scope,
   * create the canvas element, grab the 2D context for that canvas
   * set the canvas elements height/width and add it to the DOM.
   */
   var doc = global.document,
   win = global.window,
-  canvas = doc.createElement('canvas'),
-  ctx = canvas.getContext('2d'),
+  canvas = doc.createElement( 'canvas' ),
+  ctx = canvas.getContext( '2d' ),
   lastTime;
-  
+
   canvas.width = 700;
   canvas.height = 500;
-  doc.body.appendChild(canvas);
-  
+  doc.body.appendChild( canvas );
+
   /* This function serves as the kickoff point for the game loop itself
   * and handles properly calling the update and render methods.
   */
-  function main() {
+  function main () {
     /* Get our time delta information which is required if your game
     * requires smooth animation.
     */
     var now = Date.now(),
-    dt = (now - lastTime) / 1000.0;
-    
+    dt = ( now - lastTime ) / 1000.0;
+
     /* Call our update/render functions, pass along the time delta to
     * our update function since it may be used for smooth animation.
     */
-    update(dt);
+    update( dt );
     render();
-    
+
     /* Set our lastTime variable which is used to determine the time delta
     * for the next time this function is called.
     */
     lastTime = now;
-    
+
     /* Use the browser's requestAnimationFrame function to call this
     * function again as soon as the browser is able to draw another frame.
     */
-    win.requestAnimationFrame(main);
+    win.requestAnimationFrame( main );
   }
-  
+
   /* This function does some initial setup that should only occur once,
   * particularly setting the lastTime variable that is required for the
   * game loop.
   */
-  function init() {
+  function init () {
     reset();
     lastTime = Date.now();
     main();
   }
-  
+
   /* This function is called by main (our game loop) and itself calls all
   * of the functions which may need to update entity's data.
   */
-  function update(dt) {
-    updateEntities(dt);
+  function update ( dt ) {
+    updateEntities( dt );
     // checkCollisions();
   }
-  
+
   /* This is called by the update function  and loops through all of the
   * objects within your allNPC array as defined in app.js and calls
   * their update() methods. It will then call the update function for your
   * player object.
   */
-  function updateEntities(dt) {
-    allNPC.forEach(function(npc) {
-
+  function updateEntities ( dt ) {
+    allNPC.forEach( function ( npc ) {
       npc.update();
-    });
+    } );
     player.update();
   }
-  
+
   /* This function initially draws the "game level", it will then call
   * the renderEntities function.
   */
-  
-  function render() {
-    
+
+  function render () {
+
     var numRows = 10,
     numCols = 14,
     row,col;
-    
+
     //   /* Loop through the number of rows and columns we've defined above
     //   * and, using the rowImages array, draw the correct image for that
     //   * portion of the "grid"
     //   */
-    
-    for (row = 0; row < numRows; row++) {
-      for (col = 0; col < numCols; col++) {
+
+    for ( row = 0; row < numRows; row++ ) {
+      for ( col = 0; col < numCols; col++ ) {
         //       /* The drawImage function of the canvas' context element
         //       * requires 3 parameters: the image to draw, the x coordinate
         //       * to start drawing and the y coordinate to start drawing.
@@ -109,67 +108,62 @@ var Engine = (function(global) {
         //       * so that we get the benefits of caching these images, since
         //       * we're using them over and over.
         //       */
-        ctx.drawImage(Resources.get(allLevels[state.currentLevel].tiles[row][col]), col * 50, row * 50);
-      };
-    };
-    
-    
+        ctx.drawImage( Resources.get( allLevels[state.currentLevel].tiles[row][col] ), col * 50, row * 50 );
+      }
+    }
+
+
     renderEntities();
   }
-  
+
   /* This function is called by the render function and is called on each game
   * tick. It's purpose is to then call the render functions you have defined
   * on your NPC and player entities within app.js
   */
-  function renderEntities() {
+  function renderEntities () {
     /* Loop through all of the objects within the allNPC array and call
     * the render function you have defined.
     */
-    allNPC.forEach(function(npc) {
-      if (state.currentLevel === npc.level) {
+    allNPC.forEach( function ( npc ) {
+      if ( state.currentLevel === npc.level ) {
          npc.render();
       }
     });
-    
-    if (state.currentLevel === 'charSelectLevel'){
+
+    if ( state.currentLevel === 'charSelectLevel' ) {
       menu.renderCharSelect();
-    }
-    else if (state.currentLevel === 'monsterSelectLevel'){
+    } else if ( state.currentLevel === 'monsterSelectLevel' ) {
       menu.renderMonsterSelect();
-    }
-    else if (state.currentLevel === 'mainMenu'){
+    } else if ( state.currentLevel === 'mainMenu' ) {
       menu.renderMain();
-    }
-    else if (state.currentLevel === 'itemsInv'){
+    } else if ( state.currentLevel === 'itemsInv' ) {
       menu.renderItemsInv();
-    }
-    else if (state.currentLevel === 'monsterInventory'){
+    } else if ( state.currentLevel === 'monsterInventory' ) {
       menu.renderMonsterInv();
-      if (state.monsterStatCurrent === 1) {
-        menu.renderMonsterStat(state.monsterStatID);
+      if ( state.monsterStatCurrent === 1 ) {
+        menu.renderMonsterStat( state.monsterStatID );
       }
-    }
-    else if (state.currentLevel === 'battleLevel'){
-      state.playerBattleMonster.render(50, 200);
-      state.playerBattleMonster.renderBtlMonStats("player");
-      state.enemyToBattle.render(550, 40);
-      state.enemyToBattle.renderBtlMonStats("enemy");
+    } else if ( state.currentLevel === 'battleLevel' ) {
+      state.playerBattleMonster.render( 50, 200 );
+      state.playerBattleMonster.renderBtlMonStats( 'player' );
+      state.enemyToBattle.render( 550, 40 );
+      state.enemyToBattle.renderBtlMonStats( 'enemy' );
       menu.renderBattleText();
     }
-    
+
     player.render();
   }
-  
+
   /* Function to create game over screen
   */
-  function reset() {
+  function reset () {
     // noop
   }
-  
+
   /* Loads images to cache
   */
-  Resources.load([
-    
+  Resources.load( [
+
     // Terrain
     'images/terrain/start-screen.png',
     'images/terrain/dirt-tile50.png',
@@ -186,7 +180,6 @@ var Engine = (function(global) {
     'images/terrain/sand-tile50.png',
     'images/terrain/water-tile.jpg',
 
-    
     // Characters
     'images/characters/deathCaster.gif',
     'images/characters/monk.gif',
@@ -194,7 +187,7 @@ var Engine = (function(global) {
     'images/characters/selector.png',
     'images/characters/menuSelector.png',
     'images/characters/gameOver.png',
-    
+
     //Monsters
     'images/monsters/hydra1.png',
     'images/monsters/hydra2.png',
@@ -212,21 +205,12 @@ var Engine = (function(global) {
     'images/monsters/firehead.gif',
     'images/monsters/ignis.gif',
     'images/monsters/phoenix.gif',
-  ]);
-  Resources.onReady(init);
-  
+  ] );
+  Resources.onReady( init );
+
   /* Assign the canvas' context object to the global variable (the window
   * object when run in a browser) so that developer's can use it more easily
   * from within their app.js files.
   */
   global.ctx = ctx;
-})(this);
-
-
-
-
-
-
-
-
-
+} )( this );
