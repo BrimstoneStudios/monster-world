@@ -58,16 +58,15 @@ Monster.prototype.renderBtlMonStats = function ( player ) {
     ctx.fillText( this.level, 650, 260 );
     ctx.fillText( 'HP:', 350, 300 );
     ctx.fillText( this.currentHp, 450, 300 );
-    ctx.fillText( '/', 495, 300 )
+    ctx.fillText( '/', 495, 300 );
     ctx.fillText( this.hp, 510, 300 );
-  }
-  else{
+  } else {
     ctx.fillText( this.name, 50, 60 );
     ctx.fillText( 'Lv', 310, 60 );
     ctx.fillText( this.level, 350, 60 );
     ctx.fillText( 'HP:', 50, 100 );
     ctx.fillText( this.currentHp, 150, 100 );
-    ctx.fillText( '/', 195, 100 )
+    ctx.fillText( '/', 195, 100 );
     ctx.fillText( this.hp, 210, 100 );
   }
 };

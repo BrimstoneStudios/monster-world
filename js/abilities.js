@@ -53,8 +53,10 @@ var attackFunc = function ( controller ) {
 
 		// Check effectiveness of ability vs defensing monster type
 		var damageMod;
+		var damage;
 		var enemyType = state.enemyToBattle.type;
 		var spellType = this.type;
+
 		if ( type[spellType].super.indexOf( enemyType ) >= 0 ) {
 			state.playerDamageMod = 'super';
 			damageMod = 1.5;
@@ -63,15 +65,15 @@ var attackFunc = function ( controller ) {
 			damageMod = 0.5;
 		} else {
 			damageMod = 1;
-		};
+		}
 
 		// Still needs accuracy modifier
 		// Physical attacks use the attack and defense attributes
 		if ( this.category === 'physical' ) {
-			var damage = ( ( ( this.power * ( state.playerBattleMonster.attack * 1.5 ) ) * 0.04 ) / ( state.enemyToBattle.defense ) * damageMod );
+			damage = ( ( ( this.power * ( state.playerBattleMonster.attack * 1.5 ) ) * 0.04 ) / ( state.enemyToBattle.defense ) * damageMod );
 			state.enemyToBattle.currentHp = Math.round( state.enemyToBattle.currentHp - damage );
 		} else if ( this.category === 'special' ) { // Special attacks use the spAttack and spDefense attributes
-			var damage = ( ( ( ( this.power * ( state.playerBattleMonster.spAttack * 1.5 ) ) * 0.04 ) / state.enemyToBattle.spDefense ) * damageMod );
+			damage = ( ( ( ( this.power * ( state.playerBattleMonster.spAttack * 1.5 ) ) * 0.04 ) / state.enemyToBattle.spDefense ) * damageMod );
 			state.enemyToBattle.currentHp = Math.round( state.enemyToBattle.currentHp - damage );
 		}
 
@@ -112,7 +114,7 @@ var enemyAbilityUsed = function () {
 	} else {
 		state.enemyDamageMod = 'none';
 		damageMod = 1;
-	};
+	}
 
 	// Special attacks
 	if ( state.enemyAttackUsed.category === 'special' ) {
@@ -121,7 +123,7 @@ var enemyAbilityUsed = function () {
 		damage = ( ( ( ( state.enemyAttackUsed.power * ( state.enemyToBattle.attack * 1.5 ) ) * 0.04 ) / state.playerBattleMonster.defense ) * damageMod );
 	} else { // Status attacks
 		state.enemyAttackUsed.func( state.enemyToBattle.controller );
-	};
+	}
 
 	//Currently deals damage regardless of attack type
 	state.playerBattleMonster.currentHp = Math.round( state.playerBattleMonster.currentHp - damage );
@@ -140,7 +142,7 @@ var enemyAbilityUsed = function () {
 		}
 		state.battleState = 'battleMonsterDie';
 	}
-}
+};
 
 
 // Template:
@@ -191,7 +193,7 @@ var abilities = {
 				state.enemyToBattle.attack = state.enemyToBattle.attack * 0.8;
 			} else {
 				state.playerBattleMonster.attack = state.playerBattleMonster.attack * 0.8;
-			};
+			}
 		}
 	},
 	stare: {
@@ -207,7 +209,7 @@ var abilities = {
 				state.enemyToBattle.defense = state.enemyToBattle.defense * 0.9;
 			} else {
 				state.playerBattleMonster.defense = state.playerBattleMonster.defense * 0.9;
-			};
+			}
 		}
 	},
 	fireBreath: {
@@ -215,7 +217,7 @@ var abilities = {
 		type: 'fire',
 		category: 'special',
 		power: 50,
-		accuracy: .9,
+		accuracy: 0.9,
 		effect: 'Chance of burn',
 		func: function ( controller ) {
 			attackFunc.call( this, controller );
@@ -227,7 +229,7 @@ var abilities = {
 				else {
 					state.playerBattleMonster.condition = 'burn';
 				}
-			};
+			}
 		}
 	},
 	fireBlast: {
@@ -235,7 +237,7 @@ var abilities = {
 		type: 'fire',
 		category: 'special',
 		power: 80,
-		accuracy: .9,
+		accuracy: 0.9,
 		effect: 'Chance of burn',
 		func: function ( controller ) {
 			attackFunc.call( this, controller );
@@ -246,7 +248,7 @@ var abilities = {
 				} else {
 					state.playerBattleMonster.condition = 'burn';
 				}
-			};
+			}
 		}
 	},
 	razorLeaf: {
@@ -254,14 +256,14 @@ var abilities = {
 		type: 'grass',
 		category: 'special',
 		power: 50000,
-		accuracy: .9,
+		accuracy: 0.9,
 		effect: 'Reduces defending monster defense',
 		func: function ( controller ) {
 			if ( controller === 'player') {
 				state.enemyToBattle.defense = state.enemyToBattle.defense * 0.9;
 			} else {
 				state.playerBattleMonster.defense = state.playerBattleMonster.defense * 0.9;
-			};
+			}
 			attackFunc.call( this, controller );
 		}
 	},
@@ -270,14 +272,14 @@ var abilities = {
 		type: 'water',
 		category: 'special',
 		power: 50,
-		accuracy: .9,
+		accuracy: 0.9,
 		effect: 'Reduces defending monsters attack',
 		func: function ( controller ) {
 			if ( controller === 'player' ) {
 				state.enemyToBattle.attack = state.enemyToBattle.attack * 0.9;
 			} else {
 				state.playerBattleMonster.attack = state.playerBattleMonster.attack * 0.9;
-			};
+			}
 			attackFunc.call( this, controller );
 		}
 	},

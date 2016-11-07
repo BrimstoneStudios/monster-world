@@ -18,12 +18,12 @@
      * image. It will then call our private image loading function accordingly.
      */
     function load( urlOrArr ) {
-        if( urlOrArr instanceof Array ) {
+        if ( urlOrArr instanceof Array ) {
             /* If the developer passed in an array of images
              * loop through each value and call our image
              * loader on that image file
              */
-            urlOrArr.forEach( function( url ) {
+            urlOrArr.forEach( function ( url ) {
                 _load( url );
             });
         } else {
@@ -39,7 +39,7 @@
      * called by the public image loader function.
      */
     function _load( url ) {
-        if( resourceCache[url] ) {
+        if ( resourceCache[url] ) {
             /* If this URL has been previously loaded it will exist within
              * our resourceCache array. Just return that image rather
              * re-loading the image.
@@ -61,7 +61,7 @@
                  * call all of the onReady() callbacks we have defined.
                  */
                 if ( isReady() ) {
-                    readyCallbacks.forEach( function(f unc ) { func(); } );
+                    readyCallbacks.forEach( function ( func ) { func(); } );
                 }
             };
 
@@ -87,7 +87,7 @@
      */
     function isReady() {
         var ready = true;
-        for( var k in resourceCache ) {
+        for ( var k in resourceCache ) {
             if ( resourceCache.hasOwnProperty( k ) &&
                !resourceCache[k] ) {
                 ready = false;

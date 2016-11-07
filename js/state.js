@@ -6,39 +6,39 @@ var itemInventory = [];
 // ------Global State Variables -------
 // Set the initial level
 state.currentLevel = 'startScreen';
-state.sprite;
+state.sprite = null;
 
 // Where we will store our level and location when entering a battle/menu so we can return after
-state.prevLevel;
-state.locX;
-state.locY;
+state.prevLevel = null;
+state.locX = null;
+state.locY = null;
 
 // 0 = not currently displaying , 1 = currently displaying
 state.monsterStatCurrent = 0;
 
 // When a monster stat is going to be shown, save the ID here
-state.monsterStatID;
-state.run;
+state.monsterStatID = null;
+state.run = null;
 
 // Player monster currently battling
-state.playerBattleMonster;
-state.playerBattleMonsterAttack;
-state.playerBattleMonsterDefense;
-state.playerBattleMonsterSpAttack;
-state.playerBattleMonsterSpDefense;
+state.playerBattleMonster = null;
+state.playerBattleMonsterAttack = null;
+state.playerBattleMonsterDefense = null;
+state.playerBattleMonsterSpAttack = null;
+state.playerBattleMonsterSpDefense = null;
 // Current monster battle opponent
-state.enemyToBattle;
+state.enemyToBattle = null;
 
-state.levelUp;
-state.itemDrop;
-state.droppedItem;
+state.levelUp = null;
+state.itemDrop = null;
+state.droppedItem = null;
 
 // Battle states
-state.playerAttackUsed;
+state.playerAttackUsed = null;
 state.playerDamageMod = 'none';
-state.enemyAttackUsed;
+state.enemyAttackUsed = null;
 state.enemyDamageMod = 'none';
-state.battleState;
+state.battleState = null;
 
 
 

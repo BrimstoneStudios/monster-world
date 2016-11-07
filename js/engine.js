@@ -109,8 +109,8 @@ var Engine = ( function ( global ) {
         //       * we're using them over and over.
         //       */
         ctx.drawImage( Resources.get( allLevels[state.currentLevel].tiles[row][col] ), col * 50, row * 50 );
-      };
-    };
+      }
+    }
 
 
     renderEntities();

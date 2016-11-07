@@ -2,15 +2,17 @@
 var Menu = function () {
 };
 
+var maxY;
+
 Menu.prototype.renderCharSelect = function () {
 	ctx.font='50px Arial';
 	ctx.fillText( 'Choose a character',140,380 );
-}
+};
 
 Menu.prototype.renderMonsterSelect = function () {
 	ctx.font='50px Arial';
 	ctx.fillText( 'Choose a starting monster',50,380 );
-}
+};
 
 // Main menu
 Menu.prototype.renderMain = function () {
@@ -22,7 +24,7 @@ Menu.prototype.renderMain = function () {
 Menu.prototype.renderItemsInv = function () {
 	ctx.font='50px Arial';
 	if ( itemInventory.length > 0 ) {
-		for ( var i = 0, j = 0; i < itemInventory.length; i++, j = j + 50 ) {
+		for ( let i = 0, j = 0; i < itemInventory.length; i++, j = j + 50 ) {
 			ctx.fillText( itemInventory[i].name, 155, 85 + j );
 		}
 	} else {
@@ -33,10 +35,10 @@ Menu.prototype.renderItemsInv = function () {
 // Monster Inventory Menu
 Menu.prototype.renderMonsterInv = function () {
 	ctx.font='50px Arial';
-	for ( var i = 0, j = 0; i < monsterInventory.length; i++, j = j + 50 ) {
+	for ( let i = 0, j = 0; i < monsterInventory.length; i++, j = j + 50 ) {
 		ctx.drawImage( Resources.get( monsterInventory[i].sprite ), 85, 50 + j );
 		ctx.fillText( monsterInventory[i].name, 155, 85 + j );
-	};
+	}
 };
 
 // Monster Stats display
@@ -102,14 +104,14 @@ Menu.prototype.renderBattleText = function () {
 			ctx.fillText( 'It was super effective!', battleLeftCol, battleTopRow + 50 );
 		} else if ( state.playerDamageMod === 'notVery' ) {
 			ctx.fillText( 'It was not very effective', battleLeftCol, battleTopRow + 50 );
-		};
+		}
 	} else if ( state.battleState === 'AI' ) {
 		ctx.fillText( state.enemyToBattle.name + ' hit you with ' + state.enemyAttackUsed.name, battleLeftCol, battleTopRow );
 		if ( state.enemyDamageMod === 'super' ) {
 			ctx.fillText( 'It was super effective!', battleLeftCol, battleTopRow + 50 );
 		} else if ( state.enemyDamageMod === 'notVery' ) {
 			ctx.fillText( 'It was not very effective', battleLeftCol, battleTopRow + 50 );
-		};
+		}
 	} else if ( state.battleState === 'potionUsed' ) {
 		ctx.fillText( 'You used a potion!', battleLeftCol, battleTopRow );
 	} else if ( state.battleState === 'caughtMonster' ) {
@@ -131,16 +133,16 @@ Menu.prototype.renderBattleText = function () {
 	} else if ( state.battleState === 'itemDrop' ) {
 		ctx.fillText( state.enemyToBattle.name + ' dropped a ' + state.droppedItem + '!', battleLeftCol, battleTopRow );
 	} else if ( state.battleState === 'battleMenuFight' ) {
-		for ( var i = 0, j = 0; i < state.playerBattleMonster.abilities.length; i++, j = j + 40 ) {
+		for ( let i = 0, j = 0; i < state.playerBattleMonster.abilities.length; i++, j = j + 40 ) {
 			ctx.fillText( state.playerBattleMonster.abilities[i].name, 50, 385 + j );
 		}
 	} else if ( state.battleState === 'monsterInvMenu' ) {
-		for ( var i = 0, j = 0; i < monsterInventory.length; i++, j = j + 40 ) {
+		for ( let i = 0, j = 0; i < monsterInventory.length; i++, j = j + 40 ) {
 			ctx.fillText( monsterInventory[i].name, battleLeftCol, battleTopRow + j );
 		}
 	} else if ( state.battleState === 'invMenu' ) {
 		if ( itemInventory.length > 0 ) {
-			for ( var i = 0, j = 0; i < itemInventory.length; i++, j = j + 40 ) {
+			for ( let i = 0, j = 0; i < itemInventory.length; i++, j = j + 40 ) {
 				ctx.fillText( itemInventory[i].name, 75, 385 + j );
 			}
 		} else {
@@ -174,28 +176,29 @@ var battleEvent = function () {
 		state.playerBattleMonsterDefense = state.playerBattleMonster.defense;
 		state.playerBattleMonsterSpAttack = state.playerBattleMonster.spAttack;
 		state.playerBattleMonsterSpDefense = state.playerBattleMonster.spDefense;
-	};
+	}
 };
 
 var enemyBattle = function () {
+	var levelsAvailable = [];
 	if ( state.prevLevel === 'firstLevel' ) {
 		monstersAvailable = [Bat, GiantRat, Munchkin];
-		var levelsAvailable = [1, 2];
+		levelsAvailable = [1, 2];
 	} else if ( state.prevLevel === 'secondLevel' ) {
 		monstersAvailable = [Bat, GiantRat, Munchkin];
-		var levelsAvailable = [3,4,5];
+		levelsAvailable = [3,4,5];
 	} else if ( state.prevLevel === 'fireLevel' ) {
 		monstersAvailable = [LavaOgre, Ignis, Phoenix];
-		var levelsAvailable = [2,3];
+		levelsAvailable = [2,3];
 	}
 
-	var randomLevel = Math.floor( Math.random()*levelsAvailable.length );
+	var randomLevel = Math.floor( Math.random() * levelsAvailable.length );
 	var newLevel = levelsAvailable[randomLevel];
 	var randomMonster = Math.floor( Math.random() * monstersAvailable.length );
 	var newMonster = monstersAvailable[randomMonster];
 	var enemyMonster = new newMonster( newLevel );
 	return enemyMonster;
-}
+};
 
 //function to run from battle when run is selected in the menu
 var runFromBattle = function () {
@@ -246,7 +249,8 @@ NPC.prototype.render = function () {
 var HealerNPC = function ( x, y, level ) {
 	NPC.call( this,x, y );
 	this.level = level;
-}
+};
+
 HealerNPC.prototype = Object.create( NPC.prototype );
 HealerNPC.prototype.constructor = HealerNPC;
 HealerNPC.prototype.level = 0;
@@ -272,19 +276,19 @@ Player.prototype.update = function () {
 		this.sprite = 'images/characters/gameOver.png';
 	} else {
 		this.sprite = state.sprite;
-	};
+	}
 
 	// Remove player from the screen
 	if ( state.battleState === 'wildIntroText' ) {
 		this.x = -100;
 		this.y = -100;
-	};
+	}
 };
 
 // Renders the character on the screen based on it's sprite, x and  y location
 Player.prototype.render = function () {
 	ctx.drawImage( Resources.get( this.sprite ), this.x, this.y );
-}
+};
 
 // Handles the player input, called on every key press
 Player.prototype.handleInput = function ( key ) {
@@ -292,16 +296,16 @@ Player.prototype.handleInput = function ( key ) {
 
 	// Controls for the start screen
 	if ( state.currentLevel === 'startScreen' ) {
-		switch( key ) {
+		switch ( key ) {
 			case 'space':
 			state.currentLevel = 'charSelectLevel' ;
 			this.x = 250;
 			this.y = 200;
-			default:
 			break;
-		};
+			default:
+		}
 	} else if ( state.currentLevel === 'charSelectLevel' ) { // Controls for the character select level
-		switch( key ) {
+		switch ( key ) {
 			case 'left':
 			this.x = this.x - 150;
 			if ( this.x < 250 ) {
@@ -324,9 +328,9 @@ Player.prototype.handleInput = function ( key ) {
 			this.x = 200;
 			this.y = 200;
 			break;
-		};
+		}
 	}	else if ( state.currentLevel === 'monsterSelectLevel' ) { // Controls for the initial monster select level
-		switch( key ) {
+		switch ( key ) {
 			case 'left':
 			this.x = this.x - 100;
 			if ( this.x < 200 ) {
@@ -361,7 +365,7 @@ Player.prototype.handleInput = function ( key ) {
 			break;
 		}
 	}	else if ( state.currentLevel === 'mainMenu' ) { // Controls for the main menu
-		switch( key ) {
+		switch ( key ) {
 			case 'shift':
 			state.currentLevel = state.prevLevel;
 			this.x = state.locX;
@@ -395,7 +399,7 @@ Player.prototype.handleInput = function ( key ) {
 			break;
 		}
 	} else if ( state.currentLevel === 'itemsInv' ) { // Controls for the items inventory
-			switch( key ) {
+			switch ( key ) {
 				case 'shift':
 				state.currentLevel = state.prevLevel;
 				this.x = state.locX;
@@ -416,7 +420,7 @@ Player.prototype.handleInput = function ( key ) {
 				break;
 
 				case 'space':
-				for ( var i = 0; i < itemInventory.length; i++ ) {
+				for ( let i = 0; i < itemInventory.length; i++ ) {
 					if ( this.y === menuInv.y + ( i * menuInv.inter ) ) {
 						itemInventory[i].func();
 						itemInventory.splice( i, 1 );
@@ -425,7 +429,7 @@ Player.prototype.handleInput = function ( key ) {
 				break;
 			}
 		} else if ( state.currentLevel === 'monsterInventory' ) { // Monster inventory controls
-		switch( key ) {
+		switch ( key ) {
 			case 'shift':
 			state.currentLevel = state.prevLevel;
 			this.x = state.locX;
@@ -448,12 +452,12 @@ Player.prototype.handleInput = function ( key ) {
 			this.y = this.y + menuInv.inter;
 			if ( this.y > ( ( monsterInventory.length - 1 ) *menuInv.inter ) + menuInv.y ) {
 				this.y = ( ( monsterInventory.length - 1 ) *menuInv.inter ) + menuInv.y;
-			};
+			}
 			//Controls the update of the monster stat display
 			state.monsterStatID = state.monsterStatID + 1;
 			if ( state.monsterStatID > ( monsterInventory.length - 1 ) ) {
 				state.monsterStatID = monsterInventory.length -1;
-			};
+			}
 			break;
 
 			case 'space':
@@ -461,15 +465,15 @@ Player.prototype.handleInput = function ( key ) {
 		}
 	}	else if ( state.currentLevel === 'battleLevel' ) { // Controls for the battle system
 		if ( state.battleState === 'wildIntroText' ) {
-			switch( key ) {
+			switch ( key ) {
 				case 'space':
 				state.battleState = 'battleMenuMain';
 				this.x = 300;
 				this.y = 350;
 				break;
-			};
+			}
 		} else if ( state.battleState === 'battleMonsterDie' ) { // Controls for after an opponent attacks
-			switch( key ) {
+			switch ( key ) {
 				case 'space':
 				if ( state.enemyToBattle.currentHp === 0 ) {
 					var randNum = Math.random();
@@ -482,12 +486,13 @@ Player.prototype.handleInput = function ( key ) {
 					// ** Will have to change to target the current monster rather than the first in the array
 					monsterInventory.splice( 0, 1 );
 					// If there are no more monsters left, create new PlayerMon
+					var playerMon;
 					if ( monsterInventory.length === 0 ) {
 						if ( state.sprite === 'images/characters/monk.gif' ) {
-							var playerMon = new PlayerMon( 2, 'monk' );
+							playerMon = new PlayerMon( 2, 'monk' );
 						} else {
-							var playerMon = new PlayerMon( 2, 'deathCaster' );
-						};
+							playerMon = new PlayerMon( 2, 'deathCaster' );
+						}
 						playerMon.controller = 'player';
 						monsterInventory.push( playerMon );
 						state.playerMonster = 1;
@@ -506,7 +511,7 @@ Player.prototype.handleInput = function ( key ) {
 				break;
 			}
 		} else if ( state.battleState === 'itemDrop' ) {
-			switch( key ) {
+			switch ( key ) {
 				case 'space':
 					// Return to pre-fight level and location
 					state.currentLevel = state.prevLevel;
@@ -520,7 +525,7 @@ Player.prototype.handleInput = function ( key ) {
 					break;
 				}
 			} else if ( state.battleState === 'potionUsed' || state.battleState === 'failedCatch' ) {
-				switch( key ) {
+				switch ( key ) {
 					case 'space':
 					player.x = battleTopLeftSelector.x;
 					player.y = battleTopLeftSelector.y;
@@ -529,24 +534,24 @@ Player.prototype.handleInput = function ( key ) {
 					break;
 				}
 			} else if ( state.battleState === 'caughtMonster' ) {
-				switch( key ) {
+				switch ( key ) {
 					case 'space':
 					state.currentLevel = state.prevLevel;
 					this.x = state.locX;
 					this.y = state.locY;
 					break;
-				};
+				}
 			} else if ( state.battleState === 'playerMove' ) {
-				switch( key ) {
+				switch ( key ) {
 					case 'space':
 					player.x = battleTopLeftSelector.x;
 					player.y = battleTopLeftSelector.y;
 					state.playerDamageMod = 'none';
 					state.battleState = 'AI';
 					break;
-				};
+				}
 			} else if ( state.battleState === 'AI' ) {
-				switch( key ) {
+				switch ( key ) {
 					case 'space':
 					this.x = 300;
 					this.y = 350;
@@ -561,7 +566,7 @@ Player.prototype.handleInput = function ( key ) {
 					break;
 				}
 			} else if ( state.battleState === 'battleMenuMain' ) { // Battle menu main controls
-			switch( key ) {
+			switch ( key ) {
 				case 'left':
 				this.x = this.x - 230;
 				if ( this.x < 300 ) {
@@ -595,13 +600,13 @@ Player.prototype.handleInput = function ( key ) {
 					this.x = battleTopLeftSelector.x;
 					this.y = battleTopLeftSelector.y;
 				} else if ( this.x === 530 && this.y === 420 ) { //Run in battleMenuMain
-					runFromBattle()
+					runFromBattle();
 				} else { // Inventory in battleMenuMain
 					state.battleState = 'invMenu';
 						this.x = battleTopLeftSelector.x;
 						this.y = battleTopLeftSelector.y;
 
-					switch( key ) {
+					switch ( key ) {
 					case 'shift':
 					this.x = 0;
 					this.y = 0;
@@ -611,7 +616,7 @@ Player.prototype.handleInput = function ( key ) {
 				break;
 			}
 		} else if ( state.battleState === 'monsterInvMenu' ) { // Battle Monster inventory
-			switch( key ) {
+			switch ( key ) {
 				case 'space':
 				state.battleState = 'battleMenuMain';
 				this.x =300;
@@ -626,7 +631,7 @@ Player.prototype.handleInput = function ( key ) {
 			}
 		} else if ( state.battleState === 'invMenu' ) { // Battle item inventory
 			if ( itemInventory.length > 0 ) {
-				switch( key ) {
+				switch ( key ) {
 					case 'up':
 					this.y = this.y - 40;
 					if ( this.y < 350 ) {
@@ -635,13 +640,13 @@ Player.prototype.handleInput = function ( key ) {
 					break;
 					case 'down':
 					this.y = this.y + 40;
-					var maxY =  ( 350 + ( ( itemInventory.length - 1 ) * 40 ) );
+					maxY =  ( 350 + ( ( itemInventory.length - 1 ) * 40 ) );
 					if ( this.y > maxY ) {
 						this.y = maxY;
 					}
 					break;
 					case 'space':
-					for ( var i = 0; i < itemInventory.length; i++ ) {
+					for ( let i = 0; i < itemInventory.length; i++ ) {
 						if ( this.y === 350 + ( i * 40 ) ) {
 							itemInventory[i].func();
 
@@ -656,26 +661,26 @@ Player.prototype.handleInput = function ( key ) {
 					break;
 				}
 			} else {
-				switch( key ) {
+				switch ( key ) {
 					case 'space':
 					state.battleState = 'battleMenuMain';
 					break;
 				}
 			}
-			switch( key ) {
+			switch ( key ) {
 				case 'shift':
 				state.battleState = 'battleMenuMain';
 				break;
 			}
 		} else if ( state.battleState === 'battleFailedRunAway' ) {
-			switch( key ) {
+			switch ( key ) {
 				case 'space':
 				state.battleState = 'AI';
 				enemyAbilityUsed();
 				break;
 			}
 		} else if ( state.battleState === 'battleRunAway' ) {
-			switch( key ) {
+			switch ( key ) {
 				case 'space':
 				state.battleState = 'battleMenuMain';
 				state.currentLevel = state.prevLevel;
@@ -684,7 +689,7 @@ Player.prototype.handleInput = function ( key ) {
 				break;
 			}
 		} else if ( state.battleState === 'battleMenuFight' ) { // Battle menu fight controls
-			switch( key ) {
+			switch ( key ) {
 				case 'shift':
 				state.battleState = 'battleMenuMain';
 				break;
@@ -697,13 +702,13 @@ Player.prototype.handleInput = function ( key ) {
 				break;
 				case 'down':
 				this.y = this.y + 40;
-				var maxY =  ( 350 + ( ( state.playerBattleMonster.abilities.length - 1 ) * 40 ) );
+				maxY =  ( 350 + ( ( state.playerBattleMonster.abilities.length - 1 ) * 40 ) );
 				if ( this.y > maxY ) {
 					this.y = maxY;
 				}
 				break;
 				case 'space':
-				for ( var i = 0; i < state.playerBattleMonster.abilities.length; i++ ) {
+				for ( let i = 0; i < state.playerBattleMonster.abilities.length; i++ ) {
 					if ( this.y === 350 + ( i * 40 ) ) {
 						state.playerBattleMonster.abilities[i].func( state.playerBattleMonster.controller );
 						if ( state.enemyToBattle.currentHp > 0 ) {
@@ -715,11 +720,11 @@ Player.prototype.handleInput = function ( key ) {
 							state.battleState = 'battleMonsterDie';
 						}
 					}
-				};
+				}
 				break;
-			};
+			}
 		} else if ( state.battleState === 'battleWinText' ) {
-			switch( key ) {
+			switch ( key ) {
 				case 'space':
 				state.currentLevel = state.prevLevel;
 				this.x = state.locX;
@@ -727,15 +732,15 @@ Player.prototype.handleInput = function ( key ) {
 				state.battleState = 0;
 				break;
 			}
-		}; // End of Battle controls
+		} // End of Battle controls
 	} else if ( state.currentLevel === 'gameOver' ) {
-		switch( key ) {
+		switch ( key ) {
 			case 'space':
 			location.reload();
 			break;
-		};
+		}
 	} else { // Controls for all the world levels
-		switch( key ) {
+		switch ( key ) {
 			case 'shift':
 			state.prevLevel = state.currentLevel;
 			state.locX = this.x;
@@ -795,7 +800,7 @@ Player.prototype.handleInput = function ( key ) {
 				this.x = 10;
 			} else if ( this.x >660 ) {
 				this.x = 660;
-			};
+			}
 			break;
 
 			case 'down':
@@ -812,7 +817,7 @@ Player.prototype.handleInput = function ( key ) {
 			break;
 		}
 	} //End of else
-}
+};
 
 // ------ ITEMS -------
 // ** Refactor to reference currently selected monster outside of combat
@@ -856,7 +861,7 @@ var items = {
 					if ( monsterInventory[0].name === 'PlayerMon' ) {
 						state.playerBattleMonster.player = 0;
 						monsterInventory.pop();
-					};
+					}
 
 					state.enemyToBattle.controller = 'player';
 					monsterInventory.push( state.enemyToBattle );
@@ -868,13 +873,13 @@ var items = {
 				if ( hpPercent >= 0.9 ) {
 					if ( randomNum >= 0.8 ) {
 						catchMonster();
-					};
+					}
 					state.battleState = 'failedCatch';
 					return;
 				} else if ( hpPercent >= 0.6 ) {
 					if ( randomNum >= 0.5 ) {
 						catchMonster();
-					};
+					}
 					state.battleState = 'failedCatch';
 					return;
 				} else if ( hpPercent >= 0.3 ) {
@@ -885,11 +890,11 @@ var items = {
 					return;
 				} else {
 					catchMonster();
-				};
-			};
+				}
+			}
 		}
 	}
-}
+};
 
 itemInventory.push( items.net );
 itemInventory.push( items.potion );
