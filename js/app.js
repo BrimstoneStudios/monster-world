@@ -529,7 +529,7 @@ Player.prototype.handleInput = function ( key ) {
 					case 'space':
 					player.x = battleTopLeftSelector.x;
 					player.y = battleTopLeftSelector.y;
-					enemyAbilityUsed();
+					abilityUsed( state.enemyToBattle );
 					state.battleState = 'AI';
 					break;
 				}
@@ -676,7 +676,7 @@ Player.prototype.handleInput = function ( key ) {
 			switch ( key ) {
 				case 'space':
 				state.battleState = 'AI';
-				enemyAbilityUsed();
+				abilityUsed( state.enemyToBattle );
 				break;
 			}
 		} else if ( state.battleState === 'battleRunAway' ) {
@@ -712,7 +712,7 @@ Player.prototype.handleInput = function ( key ) {
 					if ( this.y === 350 + ( i * 40 ) ) {
 						state.playerBattleMonster.abilities[i].func( state.playerBattleMonster.controller );
 						if ( state.enemyToBattle.currentHp > 0 ) {
-							enemyAbilityUsed();
+							abilityUsed( state.enemyToBattle );
 							player.x = battleTopLeftSelector.x;
 							player.y = battleTopLeftSelector.y;
 							state.battleState = 'playerMove';
