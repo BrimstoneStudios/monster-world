@@ -28,7 +28,7 @@ Monster.prototype.render = function ( x, y ) {
 
 // Gain exp upon defeating an enemy monster
 Monster.prototype.expGain = function () {
-  this.currentExp += state.enemyToBattle.expReward;
+  this.currentExp += state.battle.enemy.expReward;
   if ( this.currentExp >= this.expToLevel ) {
     this.levelUp();
   }

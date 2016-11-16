@@ -52,12 +52,12 @@ var abilityUsed = function ( attacker ) {
 	var defender;
 
 	if ( attacker.controller === 'player' ) {
-		defender = state.enemyToBattle;
+		defender = state.battle.enemy;
 		ability = state.playerAttackUsed = this
 	} else {
 		defender = state.playerBattleMonster;
-		var randomAttack = Math.floor( Math.random() * state.enemyToBattle.abilities.length );
-		ability = state.enemyAttackUsed = state.enemyToBattle.abilities[randomAttack];
+		var randomAttack = Math.floor( Math.random() * state.battle.enemy.abilities.length );
+		ability = state.enemyAttackUsed = state.battle.enemy.abilities[randomAttack];
 	}
 
 	if ( ability.category === 'status' || ability.category === 'special' ) {

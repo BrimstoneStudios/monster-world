@@ -114,6 +114,11 @@ var allLevels = {
       [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
       [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di]
     ],
+    monsters: {
+      minLevel: 1,
+      maxLevel: 2,
+      monster: [Bat, GiantRat, Munchkin]
+    }
   },
   secondLevel:{
     levelName : 'secondLevel',
@@ -129,6 +134,11 @@ var allLevels = {
       [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
       [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di]
     ],
+    monsters: {
+      minLevel: 3,
+      maxLevel: 5,
+      monster: [Bat, GiantRat, Munchkin]
+    }
   },
   fireLevel: {
     levelName: 'fireLevel',
@@ -144,6 +154,11 @@ var allLevels = {
       [Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, La],
       [Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro],
     ],
+    monsters: {
+      minLevel: 2,
+      maxLevel: 3,
+      monster: [LavaOgre, Ignis, Phoenix]
+    }
   },
   waterLevel: {
     levelName: 'waterLevel',
@@ -161,3 +176,4 @@ var allLevels = {
     ],
   }
 };
+

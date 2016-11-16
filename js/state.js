@@ -27,7 +27,6 @@ state.playerBattleMonsterDefense = null;
 state.playerBattleMonsterSpAttack = null;
 state.playerBattleMonsterSpDefense = null;
 // Current monster battle opponent
-state.enemyToBattle = null;
 
 state.levelUp = null;
 state.itemDrop = null;
@@ -39,6 +38,7 @@ state.playerDamageMod = 'none';
 state.enemyAttackUsed = null;
 state.enemyDamageMod = 'none';
 state.battleState = null;
+state.battle = {};
 
 
 

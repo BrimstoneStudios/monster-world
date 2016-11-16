@@ -1,3 +1,7 @@
+var rng = function() {
+  return Math.random();
+}
+
 var gameOver = function () {
   state.battleState = 0;
   state.currentLevel = 'gameOver';
