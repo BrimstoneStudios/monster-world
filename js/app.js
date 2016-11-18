@@ -249,8 +249,7 @@ Player.prototype.handleInput = function ( key ) {
 			switch ( key ) {
 				case 'space':
 				if ( state.battle.enemy.currentHp === 0 ) {
-					var randNum = Math.random();
-					if ( randNum > 0.5 ) {
+					if ( rng() <= 0.5 ) {
 						itemDrop();
 						state.battle.battleState = 'itemDrop';
 						return;
@@ -278,7 +277,6 @@ Player.prototype.handleInput = function ( key ) {
 
 				// Reset battle states
 				state.levelUp = 0;
-				state.battle.itemDrop = 0;
 				state.battle.battleState = 'battleMenuMain';
 
 				break;
@@ -293,7 +291,6 @@ Player.prototype.handleInput = function ( key ) {
 
 					// Reset battle states
 					state.levelUp = 0;
-					state.battle.itemDrop = 0;
 					state.battle.battleState = 'battleMenuMain';
 					break;
 				}

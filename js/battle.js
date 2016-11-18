@@ -7,8 +7,8 @@
 //    playerBattleMonster: object,
 //    playerAttackUsed: object,
 //    playerDamageMod: 'string',
-//    itemDrop: object
 // }
+
 var battleEvent = function () {
   if ( rng() <= 0.1 ) {
     // Save the pre-battle state
@@ -18,7 +18,6 @@ var battleEvent = function () {
     state.locY = player.y;
     state.battle.battleState = 'wildIntroText';
     state.battle.enemy = randomEnemy(prevLevel);
-
     state.battle.playerBattleMonster = monsterInventory[0];
   }
 };
