@@ -1,5 +1,4 @@
 // ---------------- BATTLE ----------------
-
 var battleEvent = function () {
   if ( rng() <= 0.1 ) {
     // Save the pre-battle state
@@ -7,9 +6,6 @@ var battleEvent = function () {
     state.currentLevel = 'battleLevel';
     state.locX = player.x;
     state.locY = player.y;
-
-    state.battleState = 'wildIntroText';
-
     state.battle.battleState = 'wildIntroText';
     state.battle.enemy = randomEnemy(prevLevel);
 
@@ -30,9 +26,9 @@ var runFromBattle = function () {
   player.x = battleTopLeftSelector.x;
   player.y = battleTopLeftSelector.y;
   if ( rng() <= 0.5 ) {
-    state.battleState = 'battleRunAway';
+    state.battle.battleState = 'battleRunAway';
   } else {
-    state.battleState = 'battleFailedRunAway';
+    state.battle.battleState = 'battleFailedRunAway';
   }
 };
 

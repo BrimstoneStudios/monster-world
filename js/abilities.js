@@ -53,11 +53,11 @@ var abilityUsed = function ( attacker ) {
 
 	if ( attacker.controller === 'player' ) {
 		defender = state.battle.enemy;
-		ability = state.playerAttackUsed = this
+		ability = state.battle.playerAttackUsed = this
 	} else {
-		defender = state.playerBattleMonster;
+		defender = state.battle.playerBattleMonster;
 		var randomAttack = Math.floor( Math.random() * state.battle.enemy.abilities.length );
-		ability = state.enemyAttackUsed = state.battle.enemy.abilities[randomAttack];
+		ability = state.battle.enemyAttackUsed = state.battle.enemy.abilities[randomAttack];
 	}
 
 	if ( ability.category === 'status' || ability.category === 'special' ) {
@@ -94,7 +94,7 @@ var abilities = {
 		accuracy: 1,
 		effect: '',
 		func: function () {
-			abilityUsed.call( this, state.playerBattleMonster );
+			abilityUsed.call( this, state.battle.playerBattleMonster );
 		}
 	},
 	bite: {
@@ -105,7 +105,7 @@ var abilities = {
 		accuracy: 0.9,
 		effect: '',
 		func: function () {
-			abilityUsed.call( this, state.playerBattleMonster );
+			abilityUsed.call( this, state.battle.playerBattleMonster );
 		}
 	},
 	growl: {
@@ -119,7 +119,7 @@ var abilities = {
 		accuracy: 1,
 		effect: 'Decrease opponent attack damage',
 		func: function () {
-			abilityUsed.call( this, state.playerBattleMonster );
+			abilityUsed.call( this, state.battle.playerBattleMonster );
 		}
 	},
 	stare: {
@@ -133,7 +133,7 @@ var abilities = {
 		accuracy: 1,
 		effect: 'Decrease opponent defense',
 		func: function () {
-			abilityUsed.call( this, state.playerBattleMonster );
+			abilityUsed.call( this, state.battle.playerBattleMonster );
 		}
 	},
 	fireBreath: {
@@ -148,7 +148,7 @@ var abilities = {
 		accuracy: 0.9,
 		effect: 'Chance of burn',
 		func: function () {
-			abilityUsed.call( this, state.playerBattleMonster );
+			abilityUsed.call( this, state.battle.playerBattleMonster );
 		}
 	},
 	fireBlast: {
@@ -163,7 +163,7 @@ var abilities = {
 		accuracy: 0.9,
 		effect: 'Chance of burn',
 		func: function () {
-			abilityUsed.call( this, state.playerBattleMonster );
+			abilityUsed.call( this, state.battle.playerBattleMonster );
 		}
 	},
 	razorLeaf: {
@@ -178,7 +178,7 @@ var abilities = {
 		accuracy: 0.9,
 		effect: 'Reduces defending monster defense',
 		func: function () {
-			abilityUsed.call( this, state.playerBattleMonster );
+			abilityUsed.call( this, state.battle.playerBattleMonster );
 		}
 	},
 	waterBlast: {
@@ -192,7 +192,7 @@ var abilities = {
 		accuracy: 0.9,
 		effect: 'Reduces defending monsters attack',
 		func: function () {
-			abilityUsed.call( this, state.playerBattleMonster );
+			abilityUsed.call( this, state.battle.playerBattleMonster );
 		}
 	}
 };

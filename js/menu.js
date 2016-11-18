@@ -88,59 +88,59 @@ Menu.prototype.renderBattleText = function () {
   var enemy = state.battle.enemy;
   ctx.font='30px Arial';
 
-  if ( state.battleState === 'wildIntroText' ) {
+  if ( state.battle.battleState === 'wildIntroText' ) {
     var wildName = enemy.name;
     ctx.font='40px Arial';
     ctx.fillText( 'A wild ' + wildName + ' has appeared!', battleLeftCol, battleTopRow );
-  } else if ( state.battleState === 'battleMenuMain' ) {
+  } else if ( state.battle.battleState === 'battleMenuMain' ) {
     ctx.fillText( 'Fight', 350, 385 );
     ctx.fillText( 'Bag', 580, 385 );
     ctx.fillText( 'Monsters', 350, 455 );
     ctx.fillText( 'Run', 580, 455 );
-  } else if ( state.battleState === 'playerMove' ) {
-    ctx.fillText( 'You hit enemy ' + enemy.name + ' with ' + state.playerAttackUsed.name, battleLeftCol, battleTopRow );
+  } else if ( state.battle.battleState === 'playerMove' ) {
+    ctx.fillText( 'You hit enemy ' + enemy.name + ' with ' + state.battle.playerAttackUsed.name, battleLeftCol, battleTopRow );
     // Additional text if not very or super effective
-    if ( state.playerDamageMod === 'super' ) {
+    if ( state.battle.playerDamageMod === 'super' ) {
       ctx.fillText( 'It was super effective!', battleLeftCol, battleTopRow + 50 );
-    } else if ( state.playerDamageMod === 'notVery' ) {
+    } else if ( state.battle.playerDamageMod === 'notVery' ) {
       ctx.fillText( 'It was not very effective', battleLeftCol, battleTopRow + 50 );
     }
-  } else if ( state.battleState === 'AI' ) {
-    ctx.fillText( enemy.name + ' hit you with ' + state.enemyAttackUsed.name, battleLeftCol, battleTopRow );
-    if ( state.enemyDamageMod === 'super' ) {
+  } else if ( state.battle.battleState === 'AI' ) {
+    ctx.fillText( enemy.name + ' hit you with ' + state.battle.enemyAttackUsed.name, battleLeftCol, battleTopRow );
+    if ( state.battle.enemyDamageMod === 'super' ) {
       ctx.fillText( 'It was super effective!', battleLeftCol, battleTopRow + 50 );
-    } else if ( state.enemyDamageMod === 'notVery' ) {
+    } else if ( state.battle.enemyDamageMod === 'notVery' ) {
       ctx.fillText( 'It was not very effective', battleLeftCol, battleTopRow + 50 );
     }
-  } else if ( state.battleState === 'potionUsed' ) {
+  } else if ( state.battle.battleState === 'potionUsed' ) {
     ctx.fillText( 'You used a potion!', battleLeftCol, battleTopRow );
-  } else if ( state.battleState === 'caughtMonster' ) {
+  } else if ( state.battle.battleState === 'caughtMonster' ) {
     ctx.fillText( 'You caught ' + enemy.name + '!', battleLeftCol, battleTopRow );
-  } else if ( state.battleState === 'failedCatch' ) {
+  } else if ( state.battle.battleState === 'failedCatch' ) {
     ctx.fillText( 'You failed to catch ' + enemy.name + '!', battleLeftCol, battleTopRow );
     ctx.fillText( 'Try dealing more damage next time.', battleLeftCol, battleTopRow + 50 );
-  } else if ( state.battleState === 'battleMonsterDie' ) {
-    if ( state.playerBattleMonster.currentHp === 0 ) {
-      ctx.fillText( state.playerBattleMonster.name + ' has died!', battleLeftCol, battleTopRow );
+  } else if ( state.battle.battleState === 'battleMonsterDie' ) {
+    if ( state.battle.playerBattleMonster.currentHp === 0 ) {
+      ctx.fillText( state.battle.playerBattleMonster.name + ' has died!', battleLeftCol, battleTopRow );
     } else {
-      if ( state.levelUp === 1 ) {
+      if ( state.battle.levelUp === 1 ) {
         ctx.fillText( enemy.name + ' has died!', battleLeftCol, battleTopRow );
-        ctx.fillText( state.playerBattleMonster.name + ' has gained a level!', battleLeftCol, battleTopRow + 50 );
+        ctx.fillText( state.battle.playerBattleMonster.name + ' has gained a level!', battleLeftCol, battleTopRow + 50 );
       } else {
         ctx.fillText( enemy.name + ' has died!', battleLeftCol, battleTopRow );
       }
     }
-  } else if ( state.battleState === 'itemDrop' ) {
+  } else if ( state.battle.battleState === 'itemDrop' ) {
     ctx.fillText( enemy.name + ' dropped a ' + state.droppedItem + '!', battleLeftCol, battleTopRow );
-  } else if ( state.battleState === 'battleMenuFight' ) {
-    for ( let i = 0, j = 0; i < state.playerBattleMonster.abilities.length; i++, j = j + 40 ) {
-      ctx.fillText( state.playerBattleMonster.abilities[i].name, 50, 385 + j );
+  } else if ( state.battle.battleState === 'battleMenuFight' ) {
+    for ( let i = 0, j = 0; i < state.battle.playerBattleMonster.abilities.length; i++, j = j + 40 ) {
+      ctx.fillText( state.battle.playerBattleMonster.abilities[i].name, 50, 385 + j );
     }
-  } else if ( state.battleState === 'monsterInvMenu' ) {
+  } else if ( state.battle.battleState === 'monsterInvMenu' ) {
     for ( let i = 0, j = 0; i < monsterInventory.length; i++, j = j + 40 ) {
       ctx.fillText( monsterInventory[i].name, battleLeftCol, battleTopRow + j );
     }
-  } else if ( state.battleState === 'invMenu' ) {
+  } else if ( state.battle.battleState === 'invMenu' ) {
     if ( itemInventory.length > 0 ) {
       for ( let i = 0, j = 0; i < itemInventory.length; i++, j = j + 40 ) {
         ctx.fillText( itemInventory[i].name, 75, 385 + j );
@@ -148,11 +148,11 @@ Menu.prototype.renderBattleText = function () {
     } else {
       ctx.fillText( 'You have no items to use!', battleLeftCol, battleTopRow );
     }
-  } else if ( state.battleState === 'battleFailedRunAway' ) {
+  } else if ( state.battle.battleState === 'battleFailedRunAway' ) {
     ctx.fillText( 'Escape failed. FIGHT!', battleLeftCol, battleTopRow );
-  } else if ( state.battleState === 'battleRunAway' ) {
+  } else if ( state.battle.battleState === 'battleRunAway' ) {
     ctx.fillText( 'You ran away!? You wimp...', battleLeftCol, battleTopRow );
-  } else if ( state.battleState === 'battleWinText' ) { //This will be used when we defeat NPC
+  } else if ( state.battle.battleState === 'battleWinText' ) { //This will be used when we defeat NPC
     ctx.fillText( 'You have defeated ' + enemy.name + '!', battleLeftCol, battleTopRow );
   }
 };

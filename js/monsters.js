@@ -36,7 +36,7 @@ Monster.prototype.expGain = function () {
 
 // Level up method to update stats based on current level
 Monster.prototype.levelUp = function () {
-  state.levelUp = 1;
+  state.battle.levelUp = 1;
   this.level++;
   this.hp = 10 + ( this.level * this.hpMult );
   this.currentHp = this.currentHp + 5;

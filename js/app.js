@@ -52,7 +52,7 @@ Player.prototype.update = function () {
 	}
 
 	// Remove player from the screen
-	if ( state.battleState === 'wildIntroText' ) {
+	if ( state.battle.battleState === 'wildIntroText' ) {
 		this.x = -100;
 		this.y = -100;
 	}
@@ -237,25 +237,25 @@ Player.prototype.handleInput = function ( key ) {
 			break;
 		}
 	}	else if ( state.currentLevel === 'battleLevel' ) { // Controls for the battle system
-		if ( state.battleState === 'wildIntroText' ) {
+		if ( state.battle.battleState === 'wildIntroText' ) {
 			switch ( key ) {
 				case 'space':
-				state.battleState = 'battleMenuMain';
+				state.battle.battleState = 'battleMenuMain';
 				this.x = 300;
 				this.y = 350;
 				break;
 			}
-		} else if ( state.battleState === 'battleMonsterDie' ) { // Controls for after an opponent attacks
+		} else if ( state.battle.battleState === 'battleMonsterDie' ) { // Controls for after an opponent attacks
 			switch ( key ) {
 				case 'space':
 				if ( state.battle.enemy.currentHp === 0 ) {
 					var randNum = Math.random();
 					if ( randNum > 0.5 ) {
 						itemDrop();
-						state.battleState = 'itemDrop';
+						state.battle.battleState = 'itemDrop';
 						return;
 					}
-				} else if ( state.playerBattleMonster.currentHp === 0 ) { // Remove dead monster from the inventory
+				} else if ( state.battle.playerBattleMonster.currentHp === 0 ) { // Remove dead monster from the inventory
 					// ** Will have to change to target the current monster rather than the first in the array
 					monsterInventory.splice( 0, 1 );
 					// If there are no more monsters left, create new PlayerMon
@@ -278,12 +278,12 @@ Player.prototype.handleInput = function ( key ) {
 
 				// Reset battle states
 				state.levelUp = 0;
-				state.itemDrop = 0;
-				state.battleState = 'battleMenuMain';
+				state.battle.itemDrop = 0;
+				state.battle.battleState = 'battleMenuMain';
 
 				break;
 			}
-		} else if ( state.battleState === 'itemDrop' ) {
+		} else if ( state.battle.battleState === 'itemDrop' ) {
 			switch ( key ) {
 				case 'space':
 					// Return to pre-fight level and location
@@ -293,20 +293,20 @@ Player.prototype.handleInput = function ( key ) {
 
 					// Reset battle states
 					state.levelUp = 0;
-					state.itemDrop = 0;
-					state.battleState = 'battleMenuMain';
+					state.battle.itemDrop = 0;
+					state.battle.battleState = 'battleMenuMain';
 					break;
 				}
-			} else if ( state.battleState === 'potionUsed' || state.battleState === 'failedCatch' ) {
+			} else if ( state.battle.battleState === 'potionUsed' || state.battle.battleState === 'failedCatch' ) {
 				switch ( key ) {
 					case 'space':
 					player.x = battleTopLeftSelector.x;
 					player.y = battleTopLeftSelector.y;
 					abilityUsed( state.battle.enemy );
-					state.battleState = 'AI';
+					state.battle.battleState = 'AI';
 					break;
 				}
-			} else if ( state.battleState === 'caughtMonster' ) {
+			} else if ( state.battle.battleState === 'caughtMonster' ) {
 				switch ( key ) {
 					case 'space':
 					state.currentLevel = state.prevLevel;
@@ -314,31 +314,31 @@ Player.prototype.handleInput = function ( key ) {
 					this.y = state.locY;
 					break;
 				}
-			} else if ( state.battleState === 'playerMove' ) {
+			} else if ( state.battle.battleState === 'playerMove' ) {
 				switch ( key ) {
 					case 'space':
 					player.x = battleTopLeftSelector.x;
 					player.y = battleTopLeftSelector.y;
-					state.playerDamageMod = 'none';
-					state.battleState = 'AI';
+					state.battle.playerDamageMod = 'none';
+					state.battle.battleState = 'AI';
 					break;
 				}
-			} else if ( state.battleState === 'AI' ) {
+			} else if ( state.battle.battleState === 'AI' ) {
 				switch ( key ) {
 					case 'space':
 					this.x = 300;
 					this.y = 350;
-					state.enemyDamageMod = 'none';
-					if ( state.playerBattleMonster.currentHp === 0 ) {
+					state.battle.enemyDamageMod = 'none';
+					if ( state.battle.playerBattleMonster.currentHp === 0 ) {
 						player.x = battleTopLeftSelector.x;
 						player.y = battleTopLeftSelector.y;
-						state.battleState = 'battleMonsterDie';
+						state.battle.battleState = 'battleMonsterDie';
 					} else {
-						state.battleState = 'battleMenuMain';
+						state.battle.battleState = 'battleMenuMain';
 					}
 					break;
 				}
-			} else if ( state.battleState === 'battleMenuMain' ) { // Battle menu main controls
+			} else if ( state.battle.battleState === 'battleMenuMain' ) { // Battle menu main controls
 			switch ( key ) {
 				case 'left':
 				this.x = this.x - 230;
@@ -366,16 +366,16 @@ Player.prototype.handleInput = function ( key ) {
 				break;
 				case 'space':
 				if ( this.x === 300 && this.y === 350 ) {
-					state.battleState = 'battleMenuFight';
+					state.battle.battleState = 'battleMenuFight';
 					this.x = 0;
 				} else if ( this.x === 300 && this.y === 420 ) { //Monsters inventory in battleMenuMain
-					state.battleState = 'monsterInvMenu';
+					state.battle.battleState = 'monsterInvMenu';
 					this.x = battleTopLeftSelector.x;
 					this.y = battleTopLeftSelector.y;
 				} else if ( this.x === 530 && this.y === 420 ) { //Run in battleMenuMain
 					runFromBattle();
 				} else { // Inventory in battleMenuMain
-					state.battleState = 'invMenu';
+					state.battle.battleState = 'invMenu';
 						this.x = battleTopLeftSelector.x;
 						this.y = battleTopLeftSelector.y;
 
@@ -388,21 +388,21 @@ Player.prototype.handleInput = function ( key ) {
 				}
 				break;
 			}
-		} else if ( state.battleState === 'monsterInvMenu' ) { // Battle Monster inventory
+		} else if ( state.battle.battleState === 'monsterInvMenu' ) { // Battle Monster inventory
 			switch ( key ) {
 				case 'space':
-				state.battleState = 'battleMenuMain';
+				state.battle.battleState = 'battleMenuMain';
 				this.x =300;
 				this.y = 350;
 				break;
 
 				case 'shift':
-				state.battleState = 'battleMenuMain';
+				state.battle.battleState = 'battleMenuMain';
 				this.x = 300;
 				this.y = 350;
 				break;
 			}
-		} else if ( state.battleState === 'invMenu' ) { // Battle item inventory
+		} else if ( state.battle.battleState === 'invMenu' ) { // Battle item inventory
 			if ( itemInventory.length > 0 ) {
 				switch ( key ) {
 					case 'up':
@@ -424,7 +424,7 @@ Player.prototype.handleInput = function ( key ) {
 							itemInventory[i].func();
 
 							if ( itemInventory[i].name === 'Potion' ) {
-								state.battleState = 'potionUsed';
+								state.battle.battleState = 'potionUsed';
 								itemInventory.splice( i, 1 );
 							}
 
@@ -436,35 +436,35 @@ Player.prototype.handleInput = function ( key ) {
 			} else {
 				switch ( key ) {
 					case 'space':
-					state.battleState = 'battleMenuMain';
+					state.battle.battleState = 'battleMenuMain';
 					break;
 				}
 			}
 			switch ( key ) {
 				case 'shift':
-				state.battleState = 'battleMenuMain';
+				state.battle.battleState = 'battleMenuMain';
 				break;
 			}
-		} else if ( state.battleState === 'battleFailedRunAway' ) {
+		} else if ( state.battle.battleState === 'battleFailedRunAway' ) {
 			switch ( key ) {
 				case 'space':
-				state.battleState = 'AI';
+				state.battle.battleState = 'AI';
 				abilityUsed( state.battle.enemy );
 				break;
 			}
-		} else if ( state.battleState === 'battleRunAway' ) {
+		} else if ( state.battle.battleState === 'battleRunAway' ) {
 			switch ( key ) {
 				case 'space':
-				state.battleState = 'battleMenuMain';
+				state.battle.battleState = 'battleMenuMain';
 				state.currentLevel = state.prevLevel;
 				player.x = state.locX;
 				player.y = state.locY;
 				break;
 			}
-		} else if ( state.battleState === 'battleMenuFight' ) { // Battle menu fight controls
+		} else if ( state.battle.battleState === 'battleMenuFight' ) { // Battle menu fight controls
 			switch ( key ) {
 				case 'shift':
-				state.battleState = 'battleMenuMain';
+				state.battle.battleState = 'battleMenuMain';
 				break;
 
 				case 'up':
@@ -475,34 +475,34 @@ Player.prototype.handleInput = function ( key ) {
 				break;
 				case 'down':
 				this.y = this.y + 40;
-				maxY =  ( 350 + ( ( state.playerBattleMonster.abilities.length - 1 ) * 40 ) );
+				maxY =  ( 350 + ( ( state.battle.playerBattleMonster.abilities.length - 1 ) * 40 ) );
 				if ( this.y > maxY ) {
 					this.y = maxY;
 				}
 				break;
 				case 'space':
-				for ( let i = 0; i < state.playerBattleMonster.abilities.length; i++ ) {
+				for ( let i = 0; i < state.battle.playerBattleMonster.abilities.length; i++ ) {
 					if ( this.y === 350 + ( i * 40 ) ) {
-						state.playerBattleMonster.abilities[i].func( state.playerBattleMonster.controller );
+						state.battle.playerBattleMonster.abilities[i].func( state.battle.playerBattleMonster.controller );
 						if ( state.battle.enemy.currentHp > 0 ) {
 							abilityUsed( state.battle.enemy );
 							player.x = battleTopLeftSelector.x;
 							player.y = battleTopLeftSelector.y;
-							state.battleState = 'playerMove';
+							state.battle.battleState = 'playerMove';
 						} else {
-							state.battleState = 'battleMonsterDie';
+							state.battle.battleState = 'battleMonsterDie';
 						}
 					}
 				}
 				break;
 			}
-		} else if ( state.battleState === 'battleWinText' ) {
+		} else if ( state.battle.battleState === 'battleWinText' ) {
 			switch ( key ) {
 				case 'space':
 				state.currentLevel = state.prevLevel;
 				this.x = state.locX;
 				this.y = state.locY;
-				state.battleState = 0;
+				state.battle.battleState = 0;
 				break;
 			}
 		} // End of Battle controls
@@ -601,9 +601,9 @@ var items = {
 		func: function () {
 			//checks to see if the potion is used in a battle
 			if ( state.currentLevel === 'battleLevel' ) {
-				state.playerBattleMonster.currentHp += 10;
-				if ( state.playerBattleMonster.currentHp > state.playerBattleMonster.hp) {
-					state.playerBattleMonster.currentHp = state.playerBattleMonster.hp;
+				state.battle.playerBattleMonster.currentHp += 10;
+				if ( state.battle.playerBattleMonster.currentHp > state.battle.playerBattleMonster.hp) {
+					state.battle.playerBattleMonster.currentHp = state.battle.playerBattleMonster.hp;
 				}
 			} else { // if not used in a battle the potion is used in the invMenu
 				monsterInventory[0].currentHp += 10;
@@ -617,8 +617,8 @@ var items = {
 		name:'Elixir',
 		func: function () {
 			//must remove ailments
-			if ( state.playerBattleMonster.condition != 'healthy' ) {
-				state.playerBattleMonster.condition = 'healthy';
+			if ( state.battle.playerBattleMonster.condition != 'healthy' ) {
+				state.battle.playerBattleMonster.condition = 'healthy';
 			}
 		}
 	},
@@ -632,14 +632,14 @@ var items = {
 
 				var catchMonster = function () {
 					if ( monsterInventory[0].name === 'PlayerMon' ) {
-						state.playerBattleMonster.player = 0;
+						state.battle.playerBattleMonster.player = 0;
 						monsterInventory.pop();
 					}
 
 					state.battle.enemy.controller = 'player';
 					monsterInventory.push( state.battle.enemy );
 
-					state.battleState = 'caughtMonster';
+					state.battle.battleState = 'caughtMonster';
 				};
 
 				// Probability of successfully catching a monster increases with decreasing monster health %
@@ -647,19 +647,19 @@ var items = {
 					if ( randomNum >= 0.8 ) {
 						catchMonster();
 					}
-					state.battleState = 'failedCatch';
+					state.battle.battleState = 'failedCatch';
 					return;
 				} else if ( hpPercent >= 0.6 ) {
 					if ( randomNum >= 0.5 ) {
 						catchMonster();
 					}
-					state.battleState = 'failedCatch';
+					state.battle.battleState = 'failedCatch';
 					return;
 				} else if ( hpPercent >= 0.3 ) {
 					if ( randomNum >= 0.25 ) {
 						catchMonster();
 					}
-					state.battleState = 'failedCatch';
+					state.battle.battleState = 'failedCatch';
 					return;
 				} else {
 					catchMonster();
