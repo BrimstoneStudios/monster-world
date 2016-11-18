@@ -39,12 +39,13 @@ var runFromBattle = function () {
 };
 
 // Item drop
+// refactor so that only certain enemies have certain items to drop
 var itemDrop = function () {
   if ( rng() <= 0.8 ) {
     itemInventory.push( items.net );
-    state.droppedItem = 'net';
+    state.battle.droppedItem = 'net';
   } else {
     itemInventory.push( items.potion );
-    state.droppedItem = 'potion';
+    state.battle.droppedItem = 'potion';
   }
 };
