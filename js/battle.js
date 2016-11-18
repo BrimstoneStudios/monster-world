@@ -1,4 +1,14 @@
 // ---------------- BATTLE ----------------
+// state.battle {
+//    battleState: 'string',
+//    enemy: object,
+//    enemyAttackUsed: object,
+//    enemyDamageMod: 'string',
+//    playerBattleMonster: object,
+//    playerAttackUsed: object,
+//    playerDamageMod: 'string',
+//    itemDrop: object
+// }
 var battleEvent = function () {
   if ( rng() <= 0.1 ) {
     // Save the pre-battle state
