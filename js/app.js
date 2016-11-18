@@ -317,6 +317,7 @@ Player.prototype.handleInput = function ( key ) {
 					player.x = battleTopLeftSelector.x;
 					player.y = battleTopLeftSelector.y;
 					state.battle.playerDamageMod = 'none';
+					abilityUsed( state.battle.enemy );
 					state.battle.battleState = 'AI';
 					break;
 				}
@@ -480,12 +481,12 @@ Player.prototype.handleInput = function ( key ) {
 				case 'space':
 				for ( let i = 0; i < state.battle.playerBattleMonster.abilities.length; i++ ) {
 					if ( this.y === 350 + ( i * 40 ) ) {
-						state.battle.playerBattleMonster.abilities[i].func( state.battle.playerBattleMonster.controller );
+						state.battle.abilityUsed = state.battle.playerBattleMonster.abilities[i]
+						abilityUsed( state.battle.playerBattleMonster );
 						if ( state.battle.enemy.currentHp > 0 ) {
-							abilityUsed( state.battle.enemy );
+							state.battle.battleState = 'playerMove';
 							player.x = battleTopLeftSelector.x;
 							player.y = battleTopLeftSelector.y;
-							state.battle.battleState = 'playerMove';
 						} else {
 							state.battle.battleState = 'battleMonsterDie';
 						}

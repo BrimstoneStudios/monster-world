@@ -98,7 +98,7 @@ Menu.prototype.renderBattleText = function () {
     ctx.fillText( 'Monsters', 350, 455 );
     ctx.fillText( 'Run', 580, 455 );
   } else if ( state.battle.battleState === 'playerMove' ) {
-    ctx.fillText( 'You hit enemy ' + enemy.name + ' with ' + state.battle.playerAttackUsed.name, battleLeftCol, battleTopRow );
+    ctx.fillText( 'You hit enemy ' + enemy.name + ' with ' + state.battle.abilityUsed.name, battleLeftCol, battleTopRow );
     // Additional text if not very or super effective
     if ( state.battle.playerDamageMod === 'super' ) {
       ctx.fillText( 'It was super effective!', battleLeftCol, battleTopRow + 50 );
@@ -106,7 +106,7 @@ Menu.prototype.renderBattleText = function () {
       ctx.fillText( 'It was not very effective', battleLeftCol, battleTopRow + 50 );
     }
   } else if ( state.battle.battleState === 'AI' ) {
-    ctx.fillText( enemy.name + ' hit you with ' + state.battle.enemyAttackUsed.name, battleLeftCol, battleTopRow );
+    ctx.fillText( enemy.name + ' hit you with ' + state.battle.abilityUsed.name, battleLeftCol, battleTopRow );
     if ( state.battle.enemyDamageMod === 'super' ) {
       ctx.fillText( 'It was super effective!', battleLeftCol, battleTopRow + 50 );
     } else if ( state.battle.enemyDamageMod === 'notVery' ) {
