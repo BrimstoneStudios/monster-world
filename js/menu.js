@@ -100,16 +100,16 @@ Menu.prototype.renderBattleText = function () {
   } else if ( state.battle.battleState === 'playerMove' ) {
     ctx.fillText( 'You hit enemy ' + enemy.name + ' with ' + state.battle.abilityUsed.name, battleLeftCol, battleTopRow );
     // Additional text if not very or super effective
-    if ( state.battle.playerDamageMod === 'super' ) {
+    if ( state.battle.abilityUsed.damageMod === 'super' ) {
       ctx.fillText( 'It was super effective!', battleLeftCol, battleTopRow + 50 );
-    } else if ( state.battle.playerDamageMod === 'notVery' ) {
+    } else if ( state.battle.abilityUsed.damageMod === 'notVery' ) {
       ctx.fillText( 'It was not very effective', battleLeftCol, battleTopRow + 50 );
     }
   } else if ( state.battle.battleState === 'AI' ) {
     ctx.fillText( enemy.name + ' hit you with ' + state.battle.abilityUsed.name, battleLeftCol, battleTopRow );
-    if ( state.battle.enemyDamageMod === 'super' ) {
+    if ( state.battle.abilityUsed.damageMod === 'super' ) {
       ctx.fillText( 'It was super effective!', battleLeftCol, battleTopRow + 50 );
-    } else if ( state.battle.enemyDamageMod === 'notVery' ) {
+    } else if ( state.battle.abilityUsed.damageMod === 'notVery' ) {
       ctx.fillText( 'It was not very effective', battleLeftCol, battleTopRow + 50 );
     }
   } else if ( state.battle.battleState === 'potionUsed' ) {

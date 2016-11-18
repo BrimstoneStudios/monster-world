@@ -2,11 +2,8 @@
 // state.battle {
 //    battleState: 'string',
 //    enemy: object,
-//    enemyAttackUsed: object,
-//    enemyDamageMod: 'string',
 //    playerBattleMonster: object,
-//    playerAttackUsed: object,
-//    playerDamageMod: 'string',
+//    abilityUsed: object
 // }
 
 var battleEvent = function () {

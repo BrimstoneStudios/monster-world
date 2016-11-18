@@ -316,7 +316,6 @@ Player.prototype.handleInput = function ( key ) {
 					case 'space':
 					player.x = battleTopLeftSelector.x;
 					player.y = battleTopLeftSelector.y;
-					state.battle.playerDamageMod = 'none';
 					abilityUsed( state.battle.enemy );
 					state.battle.battleState = 'AI';
 					break;
@@ -326,7 +325,6 @@ Player.prototype.handleInput = function ( key ) {
 					case 'space':
 					this.x = 300;
 					this.y = 350;
-					state.battle.enemyDamageMod = 'none';
 					if ( state.battle.playerBattleMonster.currentHp === 0 ) {
 						player.x = battleTopLeftSelector.x;
 						player.y = battleTopLeftSelector.y;
