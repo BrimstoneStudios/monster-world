@@ -1,5 +1,9 @@
+var rng = function() {
+  return Math.random();
+}
+
 var gameOver = function () {
-  state.battleState = 0;
+  state.battle.battleState = 0;
   state.currentLevel = 'gameOver';
   player.x = 0;
   player.y = 0;
@@ -13,29 +17,29 @@ var checkFightWinCondition = function ( defender ) {
       if ( defender instanceof PlayerMon ) {
         gameOver();
       } else {
-        state.battleState = 'battleMonsterDie';
+        state.battle.battleState = 'battleMonsterDie';
       }
     } else {
       // Return your stats to original state
-      state.playerBattleMonster.attack = state.playerBattleMonsterAttack;
-      state.playerBattleMonster.defense = state.playerBattleMonsterDefense;
-      state.playerBattleMonster.spAttack = state.playerBattleMonsterSpAttack;
-      state.playerBattleMonster.spDefense = state.playerBattleMonsterSpDefense;
+      // state.playerBattleMonster.attack = state.playerBattleMonsterAttack;
+      // state.playerBattleMonster.defense = state.playerBattleMonsterDefense;
+      // state.playerBattleMonster.spAttack = state.playerBattleMonsterSpAttack;
+      // state.playerBattleMonster.spDefense = state.playerBattleMonsterSpDefense;
       // Gain exp
-      state.playerBattleMonster.expGain();
+      state.battle.playerBattleMonster.expGain();
     }
   }
 };
 
 var checkTypeEffectiveness = function ( ability, defender ) {
   if ( type[ability.type].super.indexOf( defender.type ) >= 0 ) {
-    state.enemyDamageMod = 'super';
+    state.battle.abilityUsed.damageMod = 'super';
     damageModifier = 1.5;
   } else if ( type[ability.type].notVery.indexOf( defender.type ) >= 0) {
-    state.enemyDamageMod = 'notVery';
+    state.battle.abilityUsed.damageMod = 'notVery';
     damageModifier = 0.5;
   } else {
-    state.enemyDamageMod = 'none';
+    state.battle.abilityUsed.damageMod = 'none';
     damageModifier = 1;
   }
   return damageModifier;
