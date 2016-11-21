@@ -588,6 +588,7 @@ Player.prototype.handleInput = function ( key ) {
 	} //End of else
 };
 
+// default inventory items
 itemInventory.push( items.net );
 itemInventory.push( items.potion );
 
