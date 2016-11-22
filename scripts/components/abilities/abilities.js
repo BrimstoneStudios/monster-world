@@ -3,7 +3,6 @@
 // Power: range from 10-???,  status moves have 0 power
 // Accuracy: Range from 0.5-1
 // Effect: A description of the special effects on some abilities
-
 // Ability type effectiveness data
 var type = {
 	normal: {
@@ -43,7 +42,6 @@ var type = {
 		notVery: ['psychic'],
 	}
 };
-
 
 // Attack function
 var abilityUsed = function ( attacker ) {
