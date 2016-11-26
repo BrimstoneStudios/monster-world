@@ -131,7 +131,9 @@ Menu.prototype.renderBattleText = function () {
       }
     }
   } else if ( state.battle.battleState === 'itemDrop' ) {
-    ctx.fillText( enemy.name + ' dropped a ' + state.battle.droppedItem + '!', battleLeftCol, battleTopRow );
+    for ( let i = 0, j = 0; i < state.battle.itemsDropped.length; i++, j += 40 ) {
+      ctx.fillText( enemy.name + ' dropped a ' + state.battle.itemsDropped[i] + '!', battleLeftCol, battleTopRow + j );
+    }
   } else if ( state.battle.battleState === 'battleMenuFight' ) {
     for ( let i = 0, j = 0; i < state.battle.playerBattleMonster.abilities.length; i++, j = j + 40 ) {
       ctx.fillText( state.battle.playerBattleMonster.abilities[i].name, 50, 385 + j );

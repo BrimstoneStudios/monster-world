@@ -33,10 +33,6 @@ var checkFightWinCondition = function ( defender ) {
         }
       }
     } else {
-        if ( rng() <= 0.5 ) {
-          itemDrop();
-          battleState = 'itemDrop';
-        }
       // Return your stats to original state
       // state.playerBattleMonster.attack = state.playerBattleMonsterAttack;
       // state.playerBattleMonster.defense = state.playerBattleMonsterDefense;

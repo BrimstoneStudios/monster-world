@@ -122,6 +122,15 @@ GiantRat.prototype.spAttackMult = 1;
 GiantRat.prototype.spDefenseMult = 1;
 GiantRat.prototype.speedMult = 3;
 GiantRat.prototype.abilities = [abilities.scratch, abilities.growl];
+GiantRat.prototype.items = [
+  {
+   item: items.net,
+   dropProbablity: 1
+  }, {
+   item: items.potion,
+   dropProbablity: 1
+  }
+];
 
 // Bat monster - subclass of NormalType
 var Bat =  function ( lvl, char ) {
@@ -140,6 +149,15 @@ Bat.prototype.spAttackMult = 1;
 Bat.prototype.spDefenseMult = 1;
 Bat.prototype.speedMult = 3;
 Bat.prototype.abilities = [abilities.bite, abilities.stare];
+Bat.prototype.items = [
+  {
+   item: items.net,
+   dropProbablity: 1
+  }, {
+   item: items.potion,
+   dropProbablity: 1
+  }
+];
 
 // Munchkin monster - subclass of NormalType
 var Munchkin = function ( lvl, char ) {
@@ -158,7 +176,15 @@ Munchkin.prototype.spAttackMult = 1;
 Munchkin.prototype.spDefenseMult = 1;
 Munchkin.prototype.speedMult = 3;
 Munchkin.prototype.abilities = [abilities.bite, abilities.stare];
-
+Munchkin.prototype.items = [
+  {
+   item: items.net,
+   dropProbablity: 1
+  }, {
+   item: items.potion,
+   dropProbablity: 1
+  }
+];
 // ----------------------------
 
 // Fire type - subclass of Monster

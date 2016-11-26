@@ -15,14 +15,14 @@ var battleControls = function ( key, player ) {
 
     case 'battleMonsterDie':
     if ( key === 'space' ) {
-      // Return to pre-fight level and location
-      state.currentLevel = state.prevLevel;
-      player.x = state.locX;
-      player.y = state.locY;
-
-      // Reset battle states
-      state.levelUp = 0;
-      battleState = 'battleMenuMain';
+      if ( state.battle.enemy.currentHp === 0 ) {
+        battleState = 'battleWinText';
+      } else {
+        state.currentLevel = state.prevLevel;
+        player.x = state.locX;
+        player.y = state.locY;
+        battleState = 0;
+      }
     }
     break;
 
@@ -159,6 +159,20 @@ var battleControls = function ( key, player ) {
     break
 
     case 'battleWinText':
+    if ( key === 'space' ) {
+      itemDrop();
+      if ( state.battle.itemsDropped.length > 0 ) {
+        battleState = 'itemDrop';
+      } else {
+        state.currentLevel = state.prevLevel;
+        player.x = state.locX;
+        player.y = state.locY;
+        battleState = 0;
+      }
+    }
+    break;
+
+    case 'itemDrop':
     if ( key === 'space' ) {
       state.currentLevel = state.prevLevel;
       player.x = state.locX;
