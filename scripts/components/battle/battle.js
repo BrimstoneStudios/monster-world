@@ -29,12 +29,10 @@ var randomEnemy = function ( prevLevel ) {
 
 //function to run from battle when run is selected in the menu
 var runFromBattle = function () {
-  player.x = battleTopLeftSelector.x;
-  player.y = battleTopLeftSelector.y;
   if ( rng() <= 0.5 ) {
-    state.battle.battleState = 'battleRunAway';
+    return true;
   } else {
-    state.battle.battleState = 'battleFailedRunAway';
+    return false;
   }
 };
 

@@ -51,7 +51,12 @@ var abilityUsed = function ( attacker ) {
 
 	if ( attacker.controller === 'player' ) {
 		defender = state.battle.enemy;
-		ability = state.battle.abilityUsed;
+
+		for ( let i = 0; i < state.battle.playerBattleMonster.abilities.length; i++ ) {
+			if ( player.y === 350 + ( i * 40 ) ) {
+				ability = state.battle.abilityUsed = state.battle.playerBattleMonster.abilities[i];
+			}
+		}
 	} else {
 		defender = state.battle.playerBattleMonster;
 		var randomAttack = Math.floor( Math.random() * state.battle.enemy.abilities.length );

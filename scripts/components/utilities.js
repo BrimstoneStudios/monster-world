@@ -18,8 +18,25 @@ var checkFightWinCondition = function ( defender ) {
         gameOver();
       } else {
         state.battle.battleState = 'battleMonsterDie';
+        monsterInventory.splice( 0, 1 );
+         // If there are no more monsters left, create new PlayerMon
+        if ( monsterInventory.length === 0 ) {
+          var playerMon;
+          if ( state.sprite === 'images/characters/monk.gif' ) {
+            playerMon = new PlayerMon( 2, 'monk' );
+          } else {
+            playerMon = new PlayerMon( 2, 'deathCaster' );
+          }
+          playerMon.controller = 'player';
+          monsterInventory.push( playerMon );
+          state.playerMonster = 1;
+        }
       }
     } else {
+        if ( rng() <= 0.5 ) {
+          itemDrop();
+          battleState = 'itemDrop';
+        }
       // Return your stats to original state
       // state.playerBattleMonster.attack = state.playerBattleMonsterAttack;
       // state.playerBattleMonster.defense = state.playerBattleMonsterDefense;
