@@ -130,37 +130,42 @@ var battleControls = function ( key, player ) {
       if ( key === 'up' || key === 'down' ) {
         moveSelector( key );
       }
-    } else if ( key === 'space' ) {
-      useItem();
     }
+    if ( key === 'space' ) {
+      battleState = useItem();
+    } else if ( key === 'shift' ) {
+      battleState = 'battleMenuMain';
+      player.x = 300;
+      player.y = 350;
+    }
+    break
 
+    case 'caughtMonster':
+    if ( key === 'space' ) {
+      state.currentLevel = state.prevLevel;
+      player.x = state.locX;
+      player.y = state.locY;
+      battleState = 0;
+    }
+    break
 
-      }
-    } else {
-//       switch ( key ) {
-//         case 'space':
-//         battleState = 'battleMenuMain';
-//         break;
-//       }
-//     }
-//     switch ( key ) {
-//       case 'shift':
-//       battleState = 'battleMenuMain';
-//       break;
-//     }
-//   }
+    case 'failedCatch':
+    case 'potionUsed':
+    if ( key === 'space' ) {
+      battleState = 'battleMenuMain';
+      player.x = 300;
+      player.y = 350;
+    }
+    break
+
+    case 'battleWinText':
+    if ( key === 'space' ) {
+      state.currentLevel = state.prevLevel;
+      player.x = state.locX;
+      player.y = state.locY;
+      battleState = 0;
+    }
+    break;
   } // end of switch
   state.battle.battleState = battleState;
 }
-
-//   } else if ( battleState === 'battleWinText' ) {
-//     switch ( key ) {
-//       case 'space':
-//       state.currentLevel = state.prevLevel;
-//       player.x = state.locX;
-//       player.y = state.locY;
-//       battleState = 0;
-//       break;
-//     }
-//   } // End of Battle controls
-// };

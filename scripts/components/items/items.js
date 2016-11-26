@@ -3,6 +3,7 @@ var items = {
   potion:{
     name:'Potion',
     singleUse: true,
+    battleState: 'potionUsed',
     func: function () {
       //checks to see if the potion is used in a battle
       if ( state.currentLevel === 'battleLevel' ) {
@@ -11,8 +12,8 @@ var items = {
         if ( monster.currentHp > monster.hp ) {
           monster.currentHp = monster.hp;
         }
-        state.battle.battleState = 'potionUsed';
-      } else { // if not used in a battle the potion is used in the invMenu
+      } else {
+        // if not used in a battle the potion is used in the invMenu
         monsterInventory[0].currentHp += 10;
         if ( monsterInventory[0].currentHp > monsterInventory.hp) {
           monsterInventory[0].currentHp = monsterInventory[0].hp;
@@ -28,6 +29,7 @@ var items = {
   },
   net:{
     name:'Net',
+    singleUse: false,
     func: function () {
       var battle = state.battle,
           enemy = battle.enemy;
@@ -44,16 +46,15 @@ var items = {
 
             enemy.controller = 'player';
             monsterInventory.push( enemy );
-            battle.battleState = 'caughtMonster';
+            items.net.battleState = 'caughtMonster';
           } else {
-            battle.battleState = 'failedCatch';
-            return;
+            items.net.battleState = 'failedCatch';
           }
         };
 
         // Probability of successfully catching a monster increases with decreasing monster health %
         if ( hpPercent >= 0.9 ) {
-          catchMonster( 0.2 );
+          catchMonster( 0.25 );
         } else if ( hpPercent >= 0.6 ) {
           catchMonster( 0.5 );
         } else if ( hpPercent >= 0.3 ) {
@@ -69,13 +70,17 @@ var items = {
 var useItem = function () {
   for ( let i = 0; i < itemInventory.length; i++ ) {
     if ( player.y === 350 + ( i * 40 ) ) {
-      itemInventory[i].func();
+      var itemUsed = itemInventory[i];
+      itemUsed.func();
 
-      if ( itemInventory[i].singleUse ) {
+      if ( itemUsed.singleUse ) {
         itemInventory.splice( i, 1 );
       }
 
       player.y = battleTopLeftSelector.y;
+      if ( state.currentLevel === 'battleLevel' ) {
+        return itemUsed.battleState;
+      }
     }
   }
 }
