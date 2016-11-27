@@ -79,10 +79,15 @@ var battleControls = function ( key, player ) {
     break;
 
     case 'monsterInvMenu':
-    if ( key === 'space' || key === 'shift' ) {
+    if ( key === 'space' ) {
+      battleState = swapMonsters();
+    } else if ( key === 'shift' ) {
       battleState = 'battleMenuMain';
+    } else if ( key === 'up' || key === 'down' ) {
+      moveSelector( key );
     }
     break;
+
     case 'battleRunAway':
     if ( key === 'space' ) {
       battleState = 0;

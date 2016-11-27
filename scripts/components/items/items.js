@@ -54,7 +54,7 @@ var items = {
 
         // Probability of successfully catching a monster increases with decreasing monster health %
         if ( hpPercent >= 0.9 ) {
-          catchMonster( 0.25 );
+          catchMonster( 1 );
         } else if ( hpPercent >= 0.6 ) {
           catchMonster( 0.5 );
         } else if ( hpPercent >= 0.3 ) {

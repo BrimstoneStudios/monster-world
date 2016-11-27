@@ -57,3 +57,17 @@ var runFromBattle = function () {
   }
 };
 
+var swapMonsters = function () {
+  for ( let i = 0; i < monsterInventory.length; i++ ) {
+    if ( player.y === state.battle.coordinates.selectorTopRow + ( i * 40 ) ) {
+      if ( state.battle.playerBattleMonster === monsterInventory[i] ) {
+        return 'battleMenuMain';
+      } else {
+        state.battle.playerBattleMonster = monsterInventory[i];
+        abilityUsed( state.battle.enemy );
+        return 'AI'
+      }
+    }
+  }
+}
+
