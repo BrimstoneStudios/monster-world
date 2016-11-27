@@ -17,8 +17,9 @@ var battleControls = function ( key, player ) {
       if ( state.battle.enemy.currentHp === 0 ) {
         battleState = 'battleWinText';
       } else {
-        state.currentLevel = state.prevLevel;
-        battleState = 0;
+        checkFightWinCondition( state.playerBattleMonster );
+        battleState = 'battleMenuMain';
+        debugger
       }
     }
     break;

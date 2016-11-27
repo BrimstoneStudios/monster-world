@@ -69,5 +69,39 @@ var swapMonsters = function () {
       }
     }
   }
-}
+};
+
+var checkFightWinCondition = function ( defender ) {
+  if ( defender.currentHp <= 0 ) {
+    defender.currentHp = 0;
+
+    if ( defender.controller === 'player' ) {
+      if ( defender instanceof PlayerMon ) {
+        gameOver();
+        return 0;
+      } else {
+        for ( let i = 0; i <= monsterInventory.length; i++ ) {
+          if ( monsterInventory[i] === defender ) {
+            monsterInventory.splice( i, 1 );
+          }
+        }
+         // If there are no more monsters left, create new PlayerMon
+        if ( monsterInventory.length === 0 ) {
+          var playerMon;
+          if ( state.sprite === 'images/characters/monk.gif' ) {
+            playerMon = new PlayerMon( 2, 'monk' );
+          } else {
+            playerMon = new PlayerMon( 2, 'deathCaster' );
+          }
+          playerMon.controller = 'player';
+          monsterInventory.push( playerMon );
+        }
+        state.battle.playerBattleMonster = monsterInventory[0];
+      }
+    } else {
+      // Gain exp
+      state.battle.playerBattleMonster.expGain();
+    }
+  }
+};
 

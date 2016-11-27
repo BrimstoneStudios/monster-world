@@ -3,46 +3,11 @@ var rng = function() {
 }
 
 var gameOver = function () {
-  state.battle.battleState = 0;
   state.currentLevel = 'gameOver';
   player.x = 0;
   player.y = 0;
 }
 
-var checkFightWinCondition = function ( defender ) {
-  if ( defender.currentHp <= 0 ) {
-    defender.currentHp = 0;
-
-    if ( defender.controller === 'player' ) {
-      if ( defender instanceof PlayerMon ) {
-        gameOver();
-      } else {
-        state.battle.battleState = 'battleMonsterDie';
-        monsterInventory.splice( 0, 1 );
-         // If there are no more monsters left, create new PlayerMon
-        if ( monsterInventory.length === 0 ) {
-          var playerMon;
-          if ( state.sprite === 'images/characters/monk.gif' ) {
-            playerMon = new PlayerMon( 2, 'monk' );
-          } else {
-            playerMon = new PlayerMon( 2, 'deathCaster' );
-          }
-          playerMon.controller = 'player';
-          monsterInventory.push( playerMon );
-          state.playerMonster = 1;
-        }
-      }
-    } else {
-      // Return your stats to original state
-      // state.playerBattleMonster.attack = state.playerBattleMonsterAttack;
-      // state.playerBattleMonster.defense = state.playerBattleMonsterDefense;
-      // state.playerBattleMonster.spAttack = state.playerBattleMonsterSpAttack;
-      // state.playerBattleMonster.spDefense = state.playerBattleMonsterSpDefense;
-      // Gain exp
-      state.battle.playerBattleMonster.expGain();
-    }
-  }
-};
 
 var checkTypeEffectiveness = function ( ability, defender ) {
   if ( type[ability.type].super.indexOf( defender.type ) >= 0 ) {
