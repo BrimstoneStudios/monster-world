@@ -67,7 +67,7 @@ var abilities = {
     accuracy: 1,
     effect: '',
     func: function () {
-      abilityUsed.call( this, state.battle.playerBattleMonster );
+      abilityUsed.call( this, battle.playerBattleMonster );
     }
   },
   bite: {
@@ -78,7 +78,7 @@ var abilities = {
     accuracy: 0.9,
     effect: '',
     func: function () {
-      abilityUsed.call( this, state.battle.playerBattleMonster );
+      abilityUsed.call( this, battle.playerBattleMonster );
     }
   },
   growl: {
@@ -92,7 +92,7 @@ var abilities = {
     accuracy: 1,
     effect: 'Decrease opponent attack damage',
     func: function () {
-      abilityUsed.call( this, state.battle.playerBattleMonster );
+      abilityUsed.call( this, battle.playerBattleMonster );
     }
   },
   stare: {
@@ -106,7 +106,7 @@ var abilities = {
     accuracy: 1,
     effect: 'Decrease opponent defense',
     func: function () {
-      abilityUsed.call( this, state.battle.playerBattleMonster );
+      abilityUsed.call( this, battle.playerBattleMonster );
     }
   },
   fireBreath: {
@@ -121,7 +121,7 @@ var abilities = {
     accuracy: 0.9,
     effect: 'Chance of burn',
     func: function () {
-      abilityUsed.call( this, state.battle.playerBattleMonster );
+      abilityUsed.call( this, battle.playerBattleMonster );
     }
   },
   fireBlast: {
@@ -136,7 +136,7 @@ var abilities = {
     accuracy: 0.9,
     effect: 'Chance of burn',
     func: function () {
-      abilityUsed.call( this, state.battle.playerBattleMonster );
+      abilityUsed.call( this, battle.playerBattleMonster );
     }
   },
   razorLeaf: {
@@ -151,7 +151,7 @@ var abilities = {
     accuracy: 0.9,
     effect: 'Reduces defending monster defense',
     func: function () {
-      abilityUsed.call( this, state.battle.playerBattleMonster );
+      abilityUsed.call( this, battle.playerBattleMonster );
     }
   },
   waterBlast: {
@@ -165,7 +165,7 @@ var abilities = {
     accuracy: 0.9,
     effect: 'Reduces defending monsters attack',
     func: function () {
-      abilityUsed.call( this, state.battle.playerBattleMonster );
+      abilityUsed.call( this, battle.playerBattleMonster );
     }
   }
 };

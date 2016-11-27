@@ -30,41 +30,7 @@ var allWhite = [
   [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
 ];
 
-var allLevels = {
-  startScreen:{
-    levelName : 'startScreen',
-    tiles : allWhite,
-  },
-  charSelectLevel: {
-    levelName : 'charSelectLevel',
-    tiles : [
-      [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
-      [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
-      [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
-      [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
-      [Wh, Wh, Wh, Wh, Wh, dT, Wh, Wh, mT, Wh, Wh, Wh, Wh, Wh],
-      [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
-      [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
-      [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
-      [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
-      [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
-    ]
-  },
-  monsterSelectLevel: {
-    levelName : 'monsterSelectLevel',
-    tiles : [
-      [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
-      [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
-      [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
-      [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
-      [Wh, Wh, Wh, Wh, s1, Wh, s2, Wh, s3, Wh, Wh, Wh, Wh, Wh],
-      [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
-      [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
-      [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
-      [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
-      [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
-    ]
-  },
+alevels = {
   battleLevel: {
     levelName :  'battleLevel',
     tiles :  [
@@ -79,10 +45,6 @@ var allLevels = {
       [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
       [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh]
     ]
-  },
-  mainMenu:{
-    levelName : 'mainMenu',
-    tiles : allWhite,
   },
   itemsInv:{
     levelName : 'itemsInv',
@@ -100,80 +62,41 @@ var allLevels = {
     levelName: 'gameOver',
     tiles: allWhite,
   },
-  firstLevel:{
-    levelName : 'firstLevel',
-    tiles : [
-      [Di, Di, Di, Gr, Gr, Gr, Di, Di, Di, Di, Di, Di, Di, Gr],
-      [Di, Di, Di, Gr, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di],
-      [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-      [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-      [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-      [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-      [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-      [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-      [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-      [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di]
-    ],
-    monsters: {
-      minLevel: 1,
-      maxLevel: 2,
-      monster: [Bat, GiantRat, Munchkin]
-    }
-  },
-  secondLevel:{
-    levelName : 'secondLevel',
-    tiles : [
-      [Di, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-      [Di, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-      [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-      [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-      [Gr, Gr, Gr, Gr, Gr, Gr, Gr, Gr, Gr, Gr, Gr, Gr, Gr, Gr],
-      [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-      [Di, Di, Di, Gr, Di, Di, Di, Di, Gr, Di, Di, Di, Di, Di],
-      [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-      [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-      [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di]
-    ],
-    monsters: {
-      minLevel: 3,
-      maxLevel: 5,
-      monster: [Bat, GiantRat, Munchkin]
-    }
-  },
-  fireLevel: {
-    levelName: 'fireLevel',
-    tiles : [
-      [La, La, La, La, Ro, Ro, La, Ro, Ro, Ro, Ro, Ro, Ro, Ro],
-      [La, La, La, Ro, Ro, La, La, La, Ro, Ro, Ro, Ro, Ro, Ro],
-      [La, La, La, Ro, Ro, La, La, La, Ro, Ro, Ro, Ro, Ro, Ro],
-      [La, Ro, Ro, Ro, Ro, Ro, La, Ro, Ro, Ro, Ro, Ro, Ro, Ro],
-      [Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, La, La, La, La],
-      [Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, La, Ro, Ro, Ro],
-      [Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, La, Ro, Ro],
-      [Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, La, Ro],
-      [Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, La],
-      [Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro],
-    ],
-    monsters: {
-      minLevel: 2,
-      maxLevel: 3,
-      monster: [LavaOgre, Ignis, Phoenix]
-    }
-  },
-  waterLevel: {
-    levelName: 'waterLevel',
-    tiles : [
-      [Wa, Wa, Wa, Wa, Wa, Wa, Wa, Wa, Wa, Sa, Sa, Sa, Sa, Sa],
-      [Wa, Wa, Wa, Wa, Wa, Wa, Wa, Wa, Sa, Sa, Sa, Sa, Sa, Sa],
-      [Wa, Wa, Wa, Wa, Wa, Wa, Wa, Sa, Sa, Sa, Sa, Sa, Sa, Sa],
-      [Wa, Wa, Wa, Wa, Wa, Wa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa],
-      [Wa, Wa, Wa, Wa, Wa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa],
-      [Wa, Wa, Wa, Wa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa],
-      [Wa, Wa, Wa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa],
-      [Wa, Wa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa],
-      [Wa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa],
-      [Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa],
-    ],
-  }
+
+  // secondLevel:{
+  //   levelName : 'secondLevel',
+  //   tiles : [
+  //     [Di, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
+  //     [Di, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
+  //     [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
+  //     [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
+  //     [Gr, Gr, Gr, Gr, Gr, Gr, Gr, Gr, Gr, Gr, Gr, Gr, Gr, Gr],
+  //     [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
+  //     [Di, Di, Di, Gr, Di, Di, Di, Di, Gr, Di, Di, Di, Di, Di],
+  //     [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
+  //     [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
+  //     [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di]
+  //   ],
+  //   monsters: {
+  //     minLevel: 3,
+  //     maxLevel: 5,
+  //     monster: [Bat, GiantRat, Munchkin]
+  //   }
+  // },
+  // waterLevel: {
+  //   levelName: 'waterLevel',
+  //   tiles : [
+  //     [Wa, Wa, Wa, Wa, Wa, Wa, Wa, Wa, Wa, Sa, Sa, Sa, Sa, Sa],
+  //     [Wa, Wa, Wa, Wa, Wa, Wa, Wa, Wa, Sa, Sa, Sa, Sa, Sa, Sa],
+  //     [Wa, Wa, Wa, Wa, Wa, Wa, Wa, Sa, Sa, Sa, Sa, Sa, Sa, Sa],
+  //     [Wa, Wa, Wa, Wa, Wa, Wa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa],
+  //     [Wa, Wa, Wa, Wa, Wa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa],
+  //     [Wa, Wa, Wa, Wa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa],
+  //     [Wa, Wa, Wa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa],
+  //     [Wa, Wa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa],
+  //     [Wa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa],
+  //     [Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa],
+  //   ],
+  // }
 };
 

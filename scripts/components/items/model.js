@@ -6,8 +6,8 @@ var items = {
     battleState: 'potionUsed',
     func: function () {
       //checks to see if the potion is used in a battle
-      if ( state.currentLevel === 'battleLevel' ) {
-        monster = state.battle.playerBattleMonster;
+      if ( levels.currentLevel === 'battleLevel' ) {
+        monster = battle.playerBattleMonster;
         monster.currentHp += 10;
         if ( monster.currentHp > monster.hp ) {
           monster.currentHp = monster.hp;
@@ -24,17 +24,17 @@ var items = {
   elixir:{
     name:'Elixir',
     func: function () {
-      state.battle.playerBattleMonster.condition = 'healthy';
+      battle.playerBattleMonster.condition = 'healthy';
     }
   },
   net:{
     name:'Net',
     singleUse: false,
     func: function () {
-      var battle = state.battle,
+      var battle = battle,
           enemy = battle.enemy;
 
-      if ( state.currentLevel === 'battleLevel' ) {
+      if ( levels.currentLevel === 'battleLevel' ) {
         var hpPercent = enemy.currentHp / enemy.hp;
 
         var catchMonster = function ( probability ) {
@@ -44,7 +44,7 @@ var items = {
               monsterInventory.pop();
             }
 
-            enemy.controller = 'player';
+            enemy.controller = player;
             monsterInventory.push( enemy );
             items.net.battleState = 'caughtMonster';
           } else {

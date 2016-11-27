@@ -4,25 +4,8 @@ var Menu = function () {
 
 var maxY;
 
-Menu.prototype.renderCharSelect = function () {
-  ctx.font='50px Arial';
-  ctx.fillText( 'Choose a character', 140, 380 );
-};
-
-Menu.prototype.renderMonsterSelect = function () {
-  ctx.font='50px Arial';
-  ctx.fillText( 'Choose a starting monster', 50, 380 );
-};
-
-// Main menu
-Menu.prototype.renderMain = function () {
-  ctx.font='50px Arial';
-  ctx.fillText( 'Items', 280, 200 );
-  ctx.fillText( 'Monsters', 245, 290 );
-};
-
 Menu.prototype.renderItemsInv = function () {
-  ctx.font='50px Arial';
+  ctx.font = '50px Arial';
   if ( itemInventory.length > 0 ) {
     for ( let i = 0, j = 0; i < itemInventory.length; i++, j = j + 50 ) {
       ctx.fillText( itemInventory[i].name, 155, 85 + j );
@@ -34,7 +17,7 @@ Menu.prototype.renderItemsInv = function () {
 
 // Monster Inventory Menu
 Menu.prototype.renderMonsterInv = function () {
-  ctx.font='50px Arial';
+  ctx.font = '50px Arial';
   for ( let i = 0, j = 0; i < monsterInventory.length; i++, j = j + 50 ) {
     ctx.drawImage( Resources.get( monsterInventory[i].sprite ), 85, 50 + j );
     ctx.fillText( monsterInventory[i].name, 155, 85 + j );
@@ -43,7 +26,7 @@ Menu.prototype.renderMonsterInv = function () {
 
 // Monster Stats display
 Menu.prototype.renderMonsterStat = function ( monster ) {
-  ctx.font='25px Arial';
+  ctx.font = '25px Arial';
   ctx.fillText( 'Level:', 430, 65 );
   ctx.fillText( monsterInventory[monster].level, 620, 65 );
   ctx.fillText( 'HP:', 430, 105 );

@@ -108,7 +108,7 @@ var Engine = ( function ( global ) {
         //       * so that we get the benefits of caching these images, since
         //       * we're using them over and over.
         //       */
-        ctx.drawImage( Resources.get( allLevels[state.currentLevel].tiles[row][col] ), col * 50, row * 50 );
+        ctx.drawImage( Resources.get( levels.currentLevel.tiles[row][col] ), col * 50, row * 50 );
       }
     }
 
@@ -118,36 +118,35 @@ var Engine = ( function ( global ) {
 
   /* This function is called by the render function and is called on each game
   * tick. It's purpose is to then call the render functions you have defined
-  * on your NPC and player entities within app.js
   */
   function renderEntities () {
     /* Loop through all of the objects within the allNPC array and call
     * the render function you have defined.
     */
     allNPC.forEach( function ( npc ) {
-      if ( state.currentLevel === npc.level ) {
+      if ( levels.currentLevel === npc.level ) {
          npc.render();
       }
     });
 
-    if ( state.currentLevel === 'charSelectLevel' ) {
-      menu.renderCharSelect();
-    } else if ( state.currentLevel === 'monsterSelectLevel' ) {
+    if ( levels.currentLevel === levels.characterSelect ) {
+      menu.renderCharacterSelect();
+    } else if ( levels.currentLevel === levels.monsterSelect ) {
       menu.renderMonsterSelect();
-    } else if ( state.currentLevel === 'mainMenu' ) {
-      menu.renderMain();
-    } else if ( state.currentLevel === 'itemsInv' ) {
+    } else if ( levels.currentLevel === levels.mainMenu ) {
+      menu.renderMainMenu();
+    } else if ( levels.currentLevel === 'itemsInv' ) {
       menu.renderItemsInv();
-    } else if ( state.currentLevel === 'monsterInventory' ) {
+    } else if ( levels.currentLevel === 'monsterInventory' ) {
       menu.renderMonsterInv();
       if ( state.monsterStatCurrent === 1 ) {
         menu.renderMonsterStat( state.monsterStatID );
       }
-    } else if ( state.currentLevel === 'battleLevel' ) {
-      state.battle.playerBattleMonster.render( 50, 200 );
-      state.battle.playerBattleMonster.renderBtlMonStats( 'player' );
-      state.battle.enemy.render( 550, 40 );
-      state.battle.enemy.renderBtlMonStats( 'enemy' );
+    } else if ( levels.currentLevel === 'battleLevel' ) {
+      battle.playerBattleMonster.render( 50, 200 );
+      battle.playerBattleMonster.renderBtlMonStats( 'player' );
+      battle.enemy.render( 550, 40 );
+      battle.enemy.renderBtlMonStats( 'enemy' );
       menu.renderBattleText();
     }
 

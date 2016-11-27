@@ -1,12 +1,11 @@
 // Global variable objects
 var state = {};
+var battle = {};
+var player = {};
+var levels = {};
 var monsterInventory = [];
 var itemInventory = [];
 
-// ------Global State Variables -------
-// Set the initial level
-state.currentLevel = 'startScreen';
-state.sprite = null;
 
 // Where we will store our level and location when entering a battle/menu so we can return after
 state.prevLevel = null;
@@ -20,7 +19,7 @@ state.monsterStatCurrent = 0;
 state.monsterStatID = null;
 
 // Battle states
-state.battle = {};
+battle = {};
 
 
 

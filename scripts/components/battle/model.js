@@ -1,5 +1,5 @@
 // ---------------- BATTLE ----------------
-// state.battle {
+// battle {
 //    battleState: 'string',
 //    enemy: object,
 //    playerBattleMonster: object,
@@ -10,7 +10,7 @@
 
 var initBattleModel = function () {
   // initialize battle
-  state.battle = {
+  battle = {
     battleState: 'wildIntroText',
     enemy: randomEnemy( state.prevLevel ),
     playerBattleMonster: monsterInventory[ 0 ],
