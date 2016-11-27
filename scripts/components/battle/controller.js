@@ -1,40 +1,11 @@
-// ---------------- BATTLE ----------------
-// state.battle {
-//    battleState: 'string',
-//    enemy: object,
-//    playerBattleMonster: object,
-//    abilityUsed: object,
-//    itemsDropped: array
-// }
-
 var battleEvent = function () {
-  if ( rng() <= 1 ) {
+  if ( rng() <= 0 ) {
     // Save the pre-battle state
-    var prevLevel = state.prevLevel = state.currentLevel;
+    state.prevLevel = state.prevLevel = state.currentLevel;
     state.currentLevel = 'battleLevel';
     state.locX = player.x;
     state.locY = player.y;
-    // initialize battle
-    state.battle = {
-      battleState: 'wildIntroText',
-      enemy: randomEnemy(prevLevel),
-      playerBattleMonster: monsterInventory[0],
-      itemsDropped: [],
-      coordinates: {
-        leftColumn: 80,
-        middleColumn: 260,
-        rightColumn: 440,
-        topRow: 385,
-        middleRow: 425,
-        bottomRow: 465,
-        selectorLeftColumn: 30,
-        selectorMiddleColumn: 210,
-        selectorRightColumn: 390,
-        selectorTopRow: 350,
-        selectorMiddleRow: 390,
-        selectorBottomRow: 430
-      }
-    };
+    initBattleModel();
     player.x = state.battle.coordinates.selectorLeftColumn;
     player.y = state.battle.coordinates.selectorTopRow;
   }

@@ -6,19 +6,19 @@ var maxY;
 
 Menu.prototype.renderCharSelect = function () {
   ctx.font='50px Arial';
-  ctx.fillText( 'Choose a character',140,380 );
+  ctx.fillText( 'Choose a character', 140, 380 );
 };
 
 Menu.prototype.renderMonsterSelect = function () {
   ctx.font='50px Arial';
-  ctx.fillText( 'Choose a starting monster',50,380 );
+  ctx.fillText( 'Choose a starting monster', 50, 380 );
 };
 
 // Main menu
 Menu.prototype.renderMain = function () {
   ctx.font='50px Arial';
-  ctx.fillText( 'Items',280,200 );
-  ctx.fillText( 'Monsters',245,290 );
+  ctx.fillText( 'Items', 280, 200 );
+  ctx.fillText( 'Monsters', 245, 290 );
 };
 
 Menu.prototype.renderItemsInv = function () {
