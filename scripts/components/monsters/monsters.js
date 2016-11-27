@@ -92,14 +92,15 @@ var PlayerMon = function ( lvl, char ) {
     this.sprite = 'images/characters/deathCaster.gif';
   }
 };
+
 PlayerMon.prototype = Object.create( NormalType.prototype );
 PlayerMon.prototype.constructor = PlayerMon;
 PlayerMon.prototype.sprite = state.sprite;
 PlayerMon.prototype.name = 'PlayerMon';
 PlayerMon.prototype.player = 1;
-PlayerMon.prototype.hpMult = 3;
+PlayerMon.prototype.hpMult = 0;
 PlayerMon.prototype.attackMult = 3;
-PlayerMon.prototype.defenseMult = 1;
+PlayerMon.prototype.defenseMult = 0;
 PlayerMon.prototype.spAttackMult = 2;
 PlayerMon.prototype.spDefenseMult = 1;
 PlayerMon.prototype.speedMult = 3;

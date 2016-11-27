@@ -14,7 +14,7 @@ var battleEvent = function () {
     state.currentLevel = 'battleLevel';
     state.locX = player.x;
     state.locY = player.y;
-
+    // initialize battle
     state.battle = {
       battleState: 'wildIntroText',
       enemy: randomEnemy(prevLevel),

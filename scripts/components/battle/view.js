@@ -1,4 +1,5 @@
 var moveSelector = function ( keyPressed ) {
+  var battleState = state.battle.battleState;
   var bottomLimit = 0;
 
   var offsetSelector = {
@@ -6,13 +7,13 @@ var moveSelector = function ( keyPressed ) {
     y: state.battle.coordinates.middleRow - state.battle.coordinates.topRow
   };
 
-  if ( state.battle.battleState === 'battleMenuMain' ) {
+  if ( battleState === 'battleMenuMain' ) {
     bottomLimit = state.battle.coordinates.selectorMiddleRow;
-  } else if ( state.battle.battleState === 'battleMenuFight' ) {
+  } else if ( battleState === 'battleMenuFight' ) {
     bottomLimit = ( 350 + ( ( state.battle.playerBattleMonster.abilities.length - 1 ) * 40 ) );
-  } else if ( state.battle.battleState === 'invMenu' ) {
+  } else if ( battleState === 'invMenu' ) {
     bottomLimit = ( 350 + ( ( itemInventory.length - 1 ) * 40 ) );
-  } else if  ( state.battle.battleState === 'monsterInvMenu' ) {
+  } else if  ( battleState === 'monsterInvMenu' ) {
     bottomLimit = ( 350 + ( ( monsterInventory.length - 1 ) * 40 ) );
   }
 
