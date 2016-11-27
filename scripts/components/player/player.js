@@ -19,12 +19,6 @@ Player.prototype.update = function () {
   } else {
     this.sprite = state.sprite;
   }
-
-  // Remove player from the screen
-  if ( state.battle.battleState === 'wildIntroText' ) {
-    this.x = -100;
-    this.y = -100;
-  }
 };
 
 // Renders the character on the screen based on it's sprite, x and  y location

@@ -77,7 +77,7 @@ var useItem = function () {
         itemInventory.splice( i, 1 );
       }
 
-      player.y = battleTopLeftSelector.y;
+      player.y = 350;
       if ( state.currentLevel === 'battleLevel' ) {
         return itemUsed.battleState;
       }
