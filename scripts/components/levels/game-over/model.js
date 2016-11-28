@@ -12,4 +12,4 @@ levels.gameOver = {
   levelName: 'gameOver',
   tiles: allWhite,
   sprite: 'images/characters/gameOver.png'
-}
+};

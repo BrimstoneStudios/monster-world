@@ -9,7 +9,7 @@ var gulp = require ( 'gulp' ),
 
 // gulp-babel
 // vinyl-source-stream
-livereload({ start: true });
+// livereload({ start: true });
 
 gulp.task( 'styles', function () {
   return gulp.src ( 'styles/style.scss' )
@@ -20,10 +20,9 @@ gulp.task( 'styles', function () {
 } );
 
 gulp.task( 'js', function () {
-  return gulp.src( 'js/*.js' )
+  return gulp.src( 'scripts/**/*.js' )
   .pipe( jshint() )
   .pipe( jshint.reporter( 'default' ) )
-  .pipe(livereload());
 } );
 
 gulp.task( 'watch', function () {

@@ -7,22 +7,22 @@ Player.prototype.handleInput = function ( key ) {
     case levels.startScreen:
         startScreenControls( key, player );
         this.locationSetter( key );
-    break
+    break;
 
     case levels.characterSelect:
         characterSelectControls( key, player );
         this.locationSetter( key );
-    break
+    break;
 
     case levels.monsterSelect:
         monsterSelectControls( key, player );
         this.locationSetter( key );
-    break
+    break;
 
     case levels.battleLevel:
         battleControls( key, player );
         this.locationSetter( key );
-    break
+    break;
 
     case levels.firstLevel:
     case levels.fireLevel:
@@ -32,25 +32,25 @@ Player.prototype.handleInput = function ( key ) {
         if ( key === 'left' || key === 'up' || key === 'right' || key === 'down' ) {
             battleEvent();
         }
-    break
+    break;
 
     case levels.mainMenu:
         mainMenuControls( key, player );
         this.locationSetter( key );
-    break
+    break;
 
     case levels.inventoryMenu:
         inventoryMenuControls( key, player );
         this.locationSetter( key );
-    break
+    break;
 
     case levels.monsterInventory:
         monsterInventoryMenuControls( key, player );
         this.locationSetter( key );
-    break
+    break;
 
     case levels.gameOver:
         gameOverControls( key, player );
-    break
+    break;
   }
 };

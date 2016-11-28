@@ -4,7 +4,7 @@ var characterSelectControls = function ( key, player ) {
       player.savedAttributes.sprite = 'images/characters/monk.gif';
     } else {
       player.savedAttributes.sprite = 'images/characters/deathCaster.gif';
-    };
+    }
 
     levels.currentLevel = levels.monsterSelect;
     player.initLocation();

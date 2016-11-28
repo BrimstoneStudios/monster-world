@@ -13,7 +13,7 @@ var Player = function () {
       y: 0
     },
     lastLevel: null
-  }
+  };
 };
 
 player = new Player();

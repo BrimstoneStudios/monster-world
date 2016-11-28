@@ -10,7 +10,7 @@ var items = {
         monster = battle.playerBattleMonster;
       } else {
         monster = player.monsterInventory[0];
-      };
+      }
 
       monster.currentHp += 10;
 

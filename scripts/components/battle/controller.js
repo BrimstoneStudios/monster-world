@@ -34,7 +34,7 @@ var swapMonsters = function () {
       } else {
         battle.playerBattleMonster = player.monsterInventory[i];
         abilityUsed( battle.enemy );
-        return 'AI'
+        return 'AI';
       }
     }
   }
@@ -186,58 +186,58 @@ var battleControls = function ( key, player ) {
     break;
 
     case 'battleRunAway':
-    if ( key === 'space' ) {
-      battleState = 0;
-      levels.currentLevel = player.savedAttributes.lastLevel;
-    }
+      if ( key === 'space' ) {
+        battleState = 0;
+        levels.currentLevel = player.savedAttributes.lastLevel;
+      }
     break;
 
     case 'battleFailedRunAway':
-    if ( key === 'space' ) {
-      battleState = 'AI';
-      abilityUsed( enemy );
-    }
+      if ( key === 'space' ) {
+        battleState = 'AI';
+        abilityUsed( enemy );
+      }
     break;
 
     case 'invMenu':
-    if ( key === 'space' ) {
-      battleState = useItem();
-    } else if ( key === 'shift' ) {
-      battleState = 'battleMenuMain';
-    }
-    break
+      if ( key === 'space' ) {
+        battleState = useItem();
+      } else if ( key === 'shift' ) {
+        battleState = 'battleMenuMain';
+      }
+    break;
 
     case 'caughtMonster':
-    if ( key === 'space' ) {
-      levels.currentLevel = player.savedAttributes.lastLevel;
-      battleState = 0;
-    }
-    break
-
-    case 'failedCatch':
-    case 'potionUsed':
-    if ( key === 'space' ) {
-      battleState = 'battleMenuMain';
-    }
-    break
-
-    case 'battleWinText':
-    if ( key === 'space' ) {
-      itemDrop();
-      if ( battle.itemsDropped.length > 0 ) {
-        battleState = 'itemDrop';
-      } else {
+      if ( key === 'space' ) {
         levels.currentLevel = player.savedAttributes.lastLevel;
         battleState = 0;
       }
-    }
+    break;
+
+    case 'failedCatch':
+    case 'potionUsed':
+      if ( key === 'space' ) {
+        battleState = 'battleMenuMain';
+      }
+    break;
+
+    case 'battleWinText':
+      if ( key === 'space' ) {
+        itemDrop();
+        if ( battle.itemsDropped.length > 0 ) {
+          battleState = 'itemDrop';
+        } else {
+          levels.currentLevel = player.savedAttributes.lastLevel;
+          battleState = 0;
+        }
+      }
     break;
 
     case 'itemDrop':
-    if ( key === 'space' ) {
-      levels.currentLevel = player.savedAttributes.lastLevel;
-      battleState = 0;
-    }
+      if ( key === 'space' ) {
+        levels.currentLevel = player.savedAttributes.lastLevel;
+        battleState = 0;
+      }
     break;
   } // end of switch
   if ( battleState !== battle.state ) {

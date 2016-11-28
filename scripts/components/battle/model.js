@@ -14,5 +14,5 @@ var initBattleModel = function () {
       middleRow: 425,
       bottomRow: 465
     }
-  }
+  };
 };

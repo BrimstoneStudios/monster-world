@@ -7,6 +7,6 @@ var startScreenControls = function ( key, player ) {
 
 var initStartScreen = function () {
   levels.currentLevel = levels.startScreen;
-}
+};
 
 initStartScreen();

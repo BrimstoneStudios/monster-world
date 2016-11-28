@@ -22,7 +22,7 @@ var abilityUsed = function ( attacker ) {
 		attributeModification( ability, attacker, defender );
 	}
 
-	var damageModifier = checkTypeEffectiveness( ability, defender )
+	var damageModifier = checkTypeEffectiveness( ability, defender );
 	dealDamage( attacker, ability, damageModifier, defender );
 	checkFightWinCondition( defender );
 };
@@ -51,7 +51,7 @@ var dealDamage = function ( attacker, ability, damageModifier, defender ) {
 		damage = ( ( ( ( ability.power * ( attacker.spAttack * 1.5 ) ) * 0.04 ) / defender.spDefense ) * damageModifier );
 	}
 
-	if ( damage != null ) {
+	if ( damage !== null ) {
 		defender.currentHp = Math.round( defender.currentHp - damage );
 	}
 };

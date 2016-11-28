@@ -27,7 +27,7 @@ Player.prototype.initBorderTransitionLocation = function ( coordinates ) {
   if ( typeof coordinates.y !== 'undefined' ) {
     this.location.y = coordinates.y;
   }
-}
+};
 
 Player.prototype.locationSetter = function ( key ) {
   var borderedLevels;
@@ -35,7 +35,7 @@ Player.prototype.locationSetter = function ( key ) {
     borderedLevels =  levels.currentLevel.borderedLevels;
   } else {
     borderedLevels = false;
-  };
+  }
 
   var boundaries = levels.currentLevel.boundaries;
   var movement = levels.currentLevel.movement;
@@ -77,4 +77,4 @@ Player.prototype.locationSetter = function ( key ) {
       }
     }
   }
-}
+};
