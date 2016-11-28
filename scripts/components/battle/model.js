@@ -1,13 +1,4 @@
 // ---------------- BATTLE ----------------
-// battle {
-//    battleState: 'string',
-//    enemy: object,
-//    playerBattleMonster: object,
-//    abilityUsed: object,
-//    itemsDropped: array,
-//    coordinates: object
-// }
-
 var initBattleModel = function () {
   // initialize battle
   battle = {

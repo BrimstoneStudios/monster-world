@@ -14,8 +14,6 @@ var useItem = function () {
   }
 };
 
-// Item drop
-// refactor so that only certain enemies have certain items to drop
 var itemDrop = function () {
   var possibleItems = battle.enemy.items;
 

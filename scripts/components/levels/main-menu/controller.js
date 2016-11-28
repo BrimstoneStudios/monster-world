@@ -9,6 +9,7 @@ var mainMenuControls = function ( key, player ) {
     case 'space':
       if ( player.location.y === 247 ) {
         levels.currentLevel = levels.monsterInventory;
+        setMonsterInventoryLevelBoundaries();
       } else {
         levels.currentLevel = levels.inventoryMenu;
         setInventoryLevelBoundaries();

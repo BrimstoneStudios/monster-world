@@ -1,6 +1,6 @@
 var setMonsterInventoryLevelBoundaries = function () {
   levels.monsterInventory.boundaries.bottom = levels.monsterInventory.boundaries.top;
-  levels.monsterInventory.boundaries.bottom += ( ( player.inventory.length - 1 ) * levels.monsterInventory.movement.y );
+  levels.monsterInventory.boundaries.bottom += ( ( player.monsterInventory.length - 1 ) * levels.monsterInventory.movement.y );
 };
 
 var monsterInventoryMenuControls = function ( key, player ) {
@@ -13,7 +13,7 @@ var monsterInventoryMenuControls = function ( key, player ) {
 
     case 'space':
       levels.monsterInventory.displayStats = !levels.monsterInventory.displayStats;
-      levels.monsterInventory.displayMonsterIndex = ( levels.monsterInventory.initLocation.y - player.location.y ) / levels.monsterInventory.movement.y;
+      levels.monsterInventory.displayMonsterIndex = ( player.location.y - levels.monsterInventory.initLocation.y ) / levels.monsterInventory.movement.y;
     break;
   }
 };

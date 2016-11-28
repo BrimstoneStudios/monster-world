@@ -5,12 +5,6 @@ var player = {};
 var levels = {};
 var monsterInventory = [];
 
-// Battle states
-battle = {};
-
-
-
-
-
-
-
+// ---------------- MENU ----------------
+var Menu = function () {
+};

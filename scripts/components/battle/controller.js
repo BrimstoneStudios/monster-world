@@ -18,7 +18,6 @@ var randomEnemy = function ( prevLevel ) {
   return enemy;
 };
 
-//function to run from battle when run is selected in the menu
 var runFromBattle = function () {
   if ( rng() <= 0.5 ) {
     return true;
@@ -101,7 +100,6 @@ var setBattleBoundaries = function ( keyPressed ) {
   levels.battleLevel.boundaries.right = rightLimit;
 };
 
-// Controls for the battle system
 var battleControls = function ( key, player ) {
   var battleState = battle.state;
   var playerBattleMonster = battle.playerBattleMonster;

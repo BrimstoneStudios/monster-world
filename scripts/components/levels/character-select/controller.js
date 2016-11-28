@@ -1,6 +1,6 @@
 var characterSelectControls = function ( key, player ) {
   if ( key === 'space' ) {
-    if ( player.location.x === 400 ) {
+    if ( player.location.x === levels.characterSelect.boundaries.right ) {
       player.savedAttributes.sprite = 'images/characters/monk.gif';
     } else {
       player.savedAttributes.sprite = 'images/characters/deathCaster.gif';
