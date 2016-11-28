@@ -31,10 +31,6 @@ var allWhite = [
 ];
 
 alevels = {
-  monsterInventory:{
-    levelName : 'monsterInventory',
-    tiles : allWhite
-  },
   monsterStats:{
     levelName : 'monsterStats',
     tiles : allWhite

@@ -43,6 +43,11 @@ Player.prototype.handleInput = function ( key ) {
         inventoryMenuControls( key, player );
         this.locationSetter( key );
     break
+
+    case levels.monsterInventory:
+        monsterInventoryMenuControls( key, player );
+        this.locationSetter( key );
+    break
   }
 };
 

@@ -16,7 +16,7 @@ Menu.prototype.renderInventoryMenu = function () {
 };
 
 // Monster Inventory Menu
-Menu.prototype.renderMonsterInv = function () {
+Menu.prototype.renderMonsterInventory = function () {
   ctx.font = '50px Arial';
   for ( let i = 0, j = 0; i < player.monsterInventory.length; i++, j = j + 50 ) {
     ctx.drawImage( Resources.get( player.monsterInventory[i].sprite ), 85, 50 + j );

@@ -137,10 +137,10 @@ var Engine = ( function ( global ) {
       menu.renderMainMenu();
     } else if ( levels.currentLevel === levels.inventoryMenu ) {
       menu.renderInventoryMenu();
-    } else if ( levels.currentLevel === 'monsterInventory' ) {
-      menu.renderMonsterInv();
-      if ( state.monsterStatCurrent === 1 ) {
-        menu.renderMonsterStat( state.monsterStatID );
+    } else if ( levels.currentLevel === levels.monsterInventory ) {
+      menu.renderMonsterInventory();
+      if ( levels.currentLevel.displayStats ) {
+        menu.renderMonsterStat( levels.currentLevel.displayMonsterIndex );
       }
     } else if ( levels.currentLevel === levels.battleLevel ) {
       battle.playerBattleMonster.render( 50, 200 );
