@@ -11,9 +11,9 @@
 var initBattleModel = function () {
   // initialize battle
   battle = {
-    battleState: 'wildIntroText',
-    enemy: randomEnemy( state.prevLevel ),
-    playerBattleMonster: monsterInventory[ 0 ],
+    state: 'wildIntroText',
+    enemy: randomEnemy( player.savedAttributes.lastLevel.monsters ),
+    playerBattleMonster: player.monsterInventory[ 0 ],
     itemsDropped: [],
     coordinates: {
       leftColumn: 80,
@@ -21,13 +21,7 @@ var initBattleModel = function () {
       rightColumn: 440,
       topRow: 385,
       middleRow: 425,
-      bottomRow: 465,
-      selectorLeftColumn: 30,
-      selectorMiddleColumn: 210,
-      selectorRightColumn: 390,
-      selectorTopRow: 350,
-      selectorMiddleRow: 390,
-      selectorBottomRow: 430
+      bottomRow: 465
     }
   }
 };

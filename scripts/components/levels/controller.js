@@ -10,7 +10,7 @@ var worldControls = function ( key, player ) {
 
     case 'space':
       if ( this.x === healer.x && this.y === healer.y ) {
-        monsterInventory.forEach( function ( monster ) {
+        player.monsterInventory.forEach( function ( monster ) {
           monster.currentHp = monster.hp;
         } );
       }

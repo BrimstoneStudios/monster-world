@@ -1,58 +1,3 @@
-var moveSelector = function ( keyPressed ) {
-  var battleState = battle.battleState;
-  var bottomLimit = 0;
-
-  var offsetSelector = {
-    x: battle.coordinates.middleColumn - battle.coordinates.leftColumn,
-    y: battle.coordinates.middleRow - battle.coordinates.topRow
-  };
-
-  if ( battleState === 'battleMenuMain' ) {
-    bottomLimit = battle.coordinates.selectorMiddleRow;
-  } else if ( battleState === 'battleMenuFight' ) {
-    bottomLimit = ( 350 + ( ( battle.playerBattleMonster.abilities.length - 1 ) * 40 ) );
-  } else if ( battleState === 'invMenu' ) {
-    bottomLimit = ( 350 + ( ( itemInventory.length - 1 ) * 40 ) );
-  } else if  ( battleState === 'monsterInvMenu' ) {
-    bottomLimit = ( 350 + ( ( monsterInventory.length - 1 ) * 40 ) );
-  }
-
-  if ( keyPressed === 'left' ) {
-    player.location.x -= offsetSelector.x;
-    if ( player.location.x < battle.coordinates.selectorLeftColumn ) {
-      player.location.x = battle.coordinates.selectorLeftColumn;
-    }
-  } else if ( keyPressed === 'up' ) {
-    player.location.y -= offsetSelector.y;
-    if ( player.location.y < battle.coordinates.selectorTopRow ) {
-      player.location.y = battle.coordinates.selectorTopRow;
-    }
-  } else if ( keyPressed === 'right' ) {
-    player.location.x += offsetSelector.x;
-    if ( player.location.x > battle.coordinates.selectorMiddleColumn ) {
-      player.location.x = battle.coordinates.selectorMiddleColumn;
-    }
-  } else if ( keyPressed === 'down' ) {
-    player.location.y += offsetSelector.y;
-    if ( player.location.y > bottomLimit ) {
-      player.location.y = bottomLimit;
-    }
-  }
-};
-
-var playerLocation = function () {
-  var battleState = battle.battleState;
-  var coordinates = battle.coordinates;
-
-  if ( battleState === 0 ) {
-    player.location.x = state.locX;
-    player.location.y = state.locY;
-  } else if ( battleState ) {
-    player.location.x = coordinates.selectorLeftColumn;
-    player.location.y = coordinates.selectorTopRow;
-  }
-}
-
 // Battle Coordinates based off
 //  | Top Left           |   Top Middle-col           |  Top Right
 //  | Middle-row Left    |   Middle-row Middle-col    |  Middle-row Right
@@ -61,7 +6,7 @@ var playerLocation = function () {
 
 Menu.prototype.renderBattleText = function () {
   var enemy = battle.enemy;
-  var battleState = battle.battleState;
+  var battleState = battle.state;
   var coordinates = battle.coordinates;
 
   ctx.font='30px Arial';
@@ -115,8 +60,8 @@ Menu.prototype.renderBattleText = function () {
       ctx.fillText( battle.playerBattleMonster.abilities[i].name, coordinates.leftColumn, coordinates.topRow + j );
     }
   } else if ( battleState === 'monsterInvMenu' ) {
-    for ( let i = 0, j = 0; i < monsterInventory.length; i++, j = j + 40 ) {
-      ctx.fillText( monsterInventory[i].name, coordinates.leftColumn, coordinates.topRow + j );
+    for ( let i = 0, j = 0; i < player.monsterInventory.length; i++, j = j + 40 ) {
+      ctx.fillText( player.monsterInventory[i].name, coordinates.leftColumn, coordinates.topRow + j );
     }
   } else if ( battleState === 'invMenu' ) {
     if ( itemInventory.length > 0 ) {

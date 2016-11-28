@@ -11,7 +11,6 @@ var monsterSelectControls = function ( key, player ) {
     monsterSelected.controller = player;
     player.monsterInventory.push( monsterSelected );
     levels.currentLevel = levels.firstLevel;
-    player.location.x = 10;
-    player.location.y = 10;
+    player.initLocation();
   }
 };

@@ -95,7 +95,6 @@ var PlayerMon = function ( lvl, char ) {
 
 PlayerMon.prototype = Object.create( NormalType.prototype );
 PlayerMon.prototype.constructor = PlayerMon;
-PlayerMon.prototype.sprite = state.sprite;
 PlayerMon.prototype.name = 'PlayerMon';
 PlayerMon.prototype.player = 1;
 PlayerMon.prototype.hpMult = 0;
@@ -113,7 +112,6 @@ var GiantRat = function ( lvl, char ) {
 };
 GiantRat.prototype = Object.create( NormalType.prototype );
 GiantRat.prototype.constructor = GiantRat;
-GiantRat.prototype.sprite = state.sprite;
 GiantRat.prototype.name = 'Giant Rat';
 GiantRat.prototype.player = 1;
 GiantRat.prototype.hpMult = 3;
@@ -140,7 +138,6 @@ var Bat =  function ( lvl, char ) {
 };
 Bat.prototype = Object.create( NormalType.prototype );
 Bat.prototype.constructor = Bat;
-Bat.prototype.sprite = state.sprite;
 Bat.prototype.name = 'Bat';
 Bat.prototype.player = 1;
 Bat.prototype.hpMult = 2;
@@ -167,7 +164,6 @@ var Munchkin = function ( lvl, char ) {
 };
 Munchkin.prototype = Object.create( NormalType.prototype );
 Munchkin.prototype.constructor = Munchkin;
-Munchkin.prototype.sprite = state.sprite;
 Munchkin.prototype.name = 'Munchkin';
 Munchkin.prototype.player = 1;
 Munchkin.prototype.hpMult = 3;

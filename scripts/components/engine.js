@@ -142,7 +142,7 @@ var Engine = ( function ( global ) {
       if ( state.monsterStatCurrent === 1 ) {
         menu.renderMonsterStat( state.monsterStatID );
       }
-    } else if ( levels.currentLevel === 'battleLevel' ) {
+    } else if ( levels.currentLevel === levels.battleLevel ) {
       battle.playerBattleMonster.render( 50, 200 );
       battle.playerBattleMonster.renderBtlMonStats( 'player' );
       battle.enemy.render( 550, 40 );

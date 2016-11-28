@@ -6,7 +6,7 @@ var items = {
     battleState: 'potionUsed',
     func: function () {
       //checks to see if the potion is used in a battle
-      if ( levels.currentLevel === 'battleLevel' ) {
+      if ( levels.currentLevel === levels.battleLevel ) {
         monster = battle.playerBattleMonster;
         monster.currentHp += 10;
         if ( monster.currentHp > monster.hp ) {
@@ -14,9 +14,9 @@ var items = {
         }
       } else {
         // if not used in a battle the potion is used in the invMenu
-        monsterInventory[0].currentHp += 10;
-        if ( monsterInventory[0].currentHp > monsterInventory.hp) {
-          monsterInventory[0].currentHp = monsterInventory[0].hp;
+        player.monsterInventory[0].currentHp += 10;
+        if ( player.monsterInventory[0].currentHp > player.monsterInventory.hp) {
+          player.monsterInventory[0].currentHp = player.monsterInventory[0].hp;
         }
       }
     }
@@ -31,21 +31,20 @@ var items = {
     name:'Net',
     singleUse: false,
     func: function () {
-      var battle = battle,
-          enemy = battle.enemy;
+      var enemy = battle.enemy;
 
-      if ( levels.currentLevel === 'battleLevel' ) {
+      if ( levels.currentLevel === levels.battleLevel ) {
         var hpPercent = enemy.currentHp / enemy.hp;
 
         var catchMonster = function ( probability ) {
           if ( rng() <= probability ) {
-            if ( monsterInventory[0].name === 'PlayerMon' ) {
+            if ( player.monsterInventory[0].name === 'PlayerMon' ) {
               battle.playerBattleMonster.player = 0;
-              monsterInventory.pop();
+              player.monsterInventory.pop();
             }
 
             enemy.controller = player;
-            monsterInventory.push( enemy );
+            player.monsterInventory.push( enemy );
             items.net.battleState = 'caughtMonster';
           } else {
             items.net.battleState = 'failedCatch';

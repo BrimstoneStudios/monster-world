@@ -7,8 +7,9 @@ var abilityUsed = function ( attacker ) {
 		defender = battle.enemy;
 
 		for ( let i = 0; i < battle.playerBattleMonster.abilities.length; i++ ) {
-			if ( player.location.y === battle.coordinates.selectorTopRow + ( i * 40 ) ) {
+			if ( player.location.y === levels.battleLevel.boundaries.top + ( i * levels.battleLevel.movement.y ) ) {
 				ability = battle.abilityUsed = battle.playerBattleMonster.abilities[i];
+				break;
 			}
 		}
 	} else {

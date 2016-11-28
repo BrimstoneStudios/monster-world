@@ -1,13 +1,12 @@
 var battleEvent = function () {
-  if ( rng() <= 0 ) {
+  if ( rng() <= 1 ) {
     // Save the pre-battle state
     player.savedAttributes.lastLevel = levels.currentLevel;
-    levels.currentLevel = levels.battleLevel;
     player.savedAttributes.location.x = player.location.x;
     player.savedAttributes.location.y = player.location.y;
+    levels.currentLevel = levels.battleLevel;
     initBattleModel();
-    player.location.x = battle.coordinates.selectorLeftColumn;
-    player.location.y = battle.coordinates.selectorTopRow;
+    player.initLocation();
   }
 };
 
@@ -29,12 +28,12 @@ var runFromBattle = function () {
 };
 
 var swapMonsters = function () {
-  for ( let i = 0; i < monsterInventory.length; i++ ) {
-    if ( player.location.y === battle.coordinates.selectorTopRow + ( i * 40 ) ) {
-      if ( battle.playerBattleMonster === monsterInventory[i] ) {
+  for ( let i = 0; i < player.monsterInventory.length; i++ ) {
+    if ( player.location.y === levels.battleLevel.boundaries.top + ( i * levels.battleLevel.movement.y ) ) {
+      if ( battle.playerBattleMonster === player.monsterInventory[i] ) {
         return 'battleMenuMain';
       } else {
-        battle.playerBattleMonster = monsterInventory[i];
+        battle.playerBattleMonster = player.monsterInventory[i];
         abilityUsed( battle.enemy );
         return 'AI'
       }
@@ -51,23 +50,23 @@ var checkFightWinCondition = function ( defender ) {
         gameOver();
         return 0;
       } else {
-        for ( let i = 0; i <= monsterInventory.length; i++ ) {
-          if ( monsterInventory[i] === defender ) {
-            monsterInventory.splice( i, 1 );
+        for ( let i = 0; i <= player.monsterInventory.length; i++ ) {
+          if ( player.monsterInventory[i] === defender ) {
+            player.monsterInventory.splice( i, 1 );
           }
         }
          // If there are no more monsters left, create new PlayerMon
-        if ( monsterInventory.length === 0 ) {
+        if ( player.monsterInventory.length === 0 ) {
           var playerMon;
-          if ( state.sprite === 'images/characters/monk.gif' ) {
+          if ( player.savedAttributes.sprite === 'images/characters/monk.gif' ) {
             playerMon = new PlayerMon( 2, 'monk' );
           } else {
             playerMon = new PlayerMon( 2, 'deathCaster' );
           }
           playerMon.controller = player;
-          monsterInventory.push( playerMon );
+          player.monsterInventory.push( playerMon );
         }
-        battle.playerBattleMonster = monsterInventory[0];
+        battle.playerBattleMonster = player.monsterInventory[0];
       }
     } else {
       // Gain exp
@@ -76,76 +75,100 @@ var checkFightWinCondition = function ( defender ) {
   }
 };
 
+var setBattleBoundaries = function ( keyPressed ) {
+  var battleState = battle.state;
+  var bottomLimit = levels.battleLevel.boundaries.bottom;
+  var rightLimit = levels.battleLevel.boundaries.right;
+
+  if ( battleState === 'battleMenuMain' ) {
+    bottomLimit = 390;
+    rightLimit = 210;
+  } else if ( battleState === 'battleMenuFight' ) {
+    bottomLimit = ( levels.battleLevel.boundaries.top + ( ( battle.playerBattleMonster.abilities.length - 1 ) * levels.battleLevel.movement.y ) );
+    rightLimit = levels.battleLevel.boundaries.left;
+  } else if ( battleState === 'invMenu' ) {
+    bottomLimit = ( 350 + ( ( itemInventory.length - 1 ) * levels.battleLevel.movement.y ) );
+    rightLimit = levels.battleLevel.boundaries.left;
+  } else if  ( battleState === 'monsterInvMenu' ) {
+    bottomLimit = ( 350 + ( ( player.monsterInventory.length - 1 ) * levels.battleLevel.movement.y ) );
+    rightLimit = levels.battleLevel.boundaries.left;
+  } else if ( battleState === 'wildIntroText' ) {
+    bottomLimit = levels.battleLevel.boundaries.top;
+    rightLimit = levels.battleLevel.boundaries.left;
+  }
+
+  levels.battleLevel.boundaries.bottom = bottomLimit;
+  levels.battleLevel.boundaries.right = rightLimit;
+};
+
 // Controls for the battle system
 var battleControls = function ( key, player ) {
-  var battleState = battle.battleState;
+  var battleState = battle.state;
   var playerBattleMonster = battle.playerBattleMonster;
   var enemy = battle.enemy;
   var coordinates = battle.coordinates;
 
+  setBattleBoundaries( key );
+
   switch ( battleState ) {
     case 'wildIntroText':
-    if ( key === 'space' ) {
-      battleState = 'battleMenuMain';
-    }
+      if ( key === 'space' ) {
+        battleState = 'battleMenuMain';
+      }
     break;
 
     case 'battleMonsterDie':
-    if ( key === 'space' ) {
-      if ( battle.enemy.currentHp === 0 ) {
-        battleState = 'battleWinText';
-      } else {
-        checkFightWinCondition( state.playerBattleMonster );
-        battleState = 'battleMenuMain';
+      if ( key === 'space' ) {
+        if ( battle.enemy.currentHp === 0 ) {
+          battleState = 'battleWinText';
+        } else {
+          checkFightWinCondition( battle.playerBattleMonster );
+          battleState = 'battleMenuMain';
+        }
       }
-    }
     break;
 
     case 'playerMove':
-    if ( key === 'space' ) {
-      abilityUsed( enemy );
-      battleState = 'AI';
-    }
+      if ( key === 'space' ) {
+        abilityUsed( enemy );
+        battleState = 'AI';
+      }
     break;
 
     case 'AI':
-    if ( key === 'space' ) {
-      if ( playerBattleMonster.currentHp === 0 ) {
-        battleState = 'battleMonsterDie';
-      } else {
-        battleState = 'battleMenuMain';
+      if ( key === 'space' ) {
+        if ( playerBattleMonster.currentHp === 0 ) {
+          battleState = 'battleMonsterDie';
+        } else {
+          battleState = 'battleMenuMain';
+        }
       }
-    }
     break;
 
     case 'battleMenuMain':
-    if ( key === 'left' || key === 'up' || key === 'right' || key === 'down' ) {
-      moveSelector( key );
-    } else if ( key === 'space' ) {
-      if ( player.location.x === coordinates.selectorLeftColumn && player.location.y === coordinates.selectorTopRow ) {
-        battleState = 'battleMenuFight';
-      } else if ( player.location.x === coordinates.selectorLeftColumn && player.location.y === coordinates.selectorMiddleRow ) {
-        //Monsters inventory in battleMenuMain
-        battleState = 'monsterInvMenu';
-      } else if ( player.location.x === coordinates.selectorMiddleColumn && player.location.y === coordinates.selectorMiddleRow ) {
-        //Run in battleMenuMain
-        if ( runFromBattle() ) {
-          battleState = 'battleRunAway';
+      if ( key === 'space' ) {
+        if ( player.location.x === levels.battleLevel.boundaries.left && player.location.y === levels.battleLevel.boundaries.top ) {
+          battleState = 'battleMenuFight';
+        } else if ( player.location.x === levels.battleLevel.boundaries.left && player.location.y === levels.battleLevel.boundaries.bottom ) {
+          //Monsters inventory in battleMenuMain
+          battleState = 'monsterInvMenu';
+        } else if ( player.location.x === levels.battleLevel.boundaries.right && player.location.y === levels.battleLevel.boundaries.bottom ) {
+          //Run in battleMenuMain
+          if ( runFromBattle() ) {
+            battleState = 'battleRunAway';
+          } else {
+            battleState = 'battleFailedRunAway';
+          }
         } else {
-          battleState = 'battleFailedRunAway';
+          // Inventory in battleMenuMain
+          battleState = 'invMenu';
         }
-      } else {
-        // Inventory in battleMenuMain
-        battleState = 'invMenu';
       }
-    }
     break;
 
     case 'battleMenuFight':
     if ( key === 'shift' ) {
       battleState = 'battleMenuMain';
-    } else if ( key === 'up' || key === 'down' ) {
-      moveSelector( key );
     } else if ( key === 'space' ) {
       abilityUsed( battle.playerBattleMonster );
       if ( enemy.currentHp > 0 ) {
@@ -161,15 +184,13 @@ var battleControls = function ( key, player ) {
       battleState = swapMonsters();
     } else if ( key === 'shift' ) {
       battleState = 'battleMenuMain';
-    } else if ( key === 'up' || key === 'down' ) {
-      moveSelector( key );
     }
     break;
 
     case 'battleRunAway':
     if ( key === 'space' ) {
       battleState = 0;
-      levels.currentLevel = state.prevLevel;
+      levels.currentLevel = player.savedAttributes.lastLevel;
     }
     break;
 
@@ -181,11 +202,6 @@ var battleControls = function ( key, player ) {
     break;
 
     case 'invMenu':
-    if ( itemInventory.length > 0 ) {
-      if ( key === 'up' || key === 'down' ) {
-        moveSelector( key );
-      }
-    }
     if ( key === 'space' ) {
       battleState = useItem();
     } else if ( key === 'shift' ) {
@@ -195,7 +211,7 @@ var battleControls = function ( key, player ) {
 
     case 'caughtMonster':
     if ( key === 'space' ) {
-      levels.currentLevel = state.prevLevel;
+      levels.currentLevel = player.savedAttributes.lastLevel;
       battleState = 0;
     }
     break
@@ -213,7 +229,7 @@ var battleControls = function ( key, player ) {
       if ( battle.itemsDropped.length > 0 ) {
         battleState = 'itemDrop';
       } else {
-        levels.currentLevel = state.prevLevel;
+        levels.currentLevel = player.savedAttributes.lastLevel;
         battleState = 0;
       }
     }
@@ -221,14 +237,18 @@ var battleControls = function ( key, player ) {
 
     case 'itemDrop':
     if ( key === 'space' ) {
-      levels.currentLevel = state.prevLevel;
+      levels.currentLevel = player.savedAttributes.lastLevel;
       battleState = 0;
     }
     break;
   } // end of switch
-  battle.battleState = battleState;
+  if ( battleState !== battle.state ) {
+    player.initLocation();
+  }
+  battle.state = battleState;
 
-  if ( key === 'space' || key === 'shift' ) {
-    selectorLocation();
+  if ( battleState === 0 ) {
+    player.location.x = player.savedAttributes.location.x;
+    player.location.y = player.savedAttributes.location.y;
   }
 };

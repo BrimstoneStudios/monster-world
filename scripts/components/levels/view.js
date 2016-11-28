@@ -31,72 +31,21 @@ var allWhite = [
 ];
 
 alevels = {
-  battleLevel: {
-    levelName :  'battleLevel',
-    tiles :  [
-      [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
-      [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
-      [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
-      [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
-      [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
-      [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
-      [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
-      [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
-      [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
-      [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh]
-    ]
-  },
   itemsInv:{
     levelName : 'itemsInv',
-    tiles : allWhite,
+    tiles : allWhite
   },
   monsterInventory:{
     levelName : 'monsterInventory',
-    tiles : allWhite,
+    tiles : allWhite
   },
   monsterStats:{
     levelName : 'monsterStats',
-    tiles : allWhite,
+    tiles : allWhite
   },
   gameOver:{
     levelName: 'gameOver',
-    tiles: allWhite,
-  },
-
-  // secondLevel:{
-  //   levelName : 'secondLevel',
-  //   tiles : [
-  //     [Di, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-  //     [Di, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-  //     [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-  //     [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-  //     [Gr, Gr, Gr, Gr, Gr, Gr, Gr, Gr, Gr, Gr, Gr, Gr, Gr, Gr],
-  //     [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-  //     [Di, Di, Di, Gr, Di, Di, Di, Di, Gr, Di, Di, Di, Di, Di],
-  //     [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-  //     [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-  //     [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di]
-  //   ],
-  //   monsters: {
-  //     minLevel: 3,
-  //     maxLevel: 5,
-  //     monster: [Bat, GiantRat, Munchkin]
-  //   }
-  // },
-  // waterLevel: {
-  //   levelName: 'waterLevel',
-  //   tiles : [
-  //     [Wa, Wa, Wa, Wa, Wa, Wa, Wa, Wa, Wa, Sa, Sa, Sa, Sa, Sa],
-  //     [Wa, Wa, Wa, Wa, Wa, Wa, Wa, Wa, Sa, Sa, Sa, Sa, Sa, Sa],
-  //     [Wa, Wa, Wa, Wa, Wa, Wa, Wa, Sa, Sa, Sa, Sa, Sa, Sa, Sa],
-  //     [Wa, Wa, Wa, Wa, Wa, Wa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa],
-  //     [Wa, Wa, Wa, Wa, Wa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa],
-  //     [Wa, Wa, Wa, Wa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa],
-  //     [Wa, Wa, Wa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa],
-  //     [Wa, Wa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa],
-  //     [Wa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa],
-  //     [Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa],
-  //   ],
-  // }
+    tiles: allWhite
+  }
 };
 

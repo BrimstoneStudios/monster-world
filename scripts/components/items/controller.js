@@ -1,7 +1,7 @@
 var useItem = function () {
   for ( let i = 0; i < itemInventory.length; i++ ) {
-    if ( levels.currentLevel === 'battleLevel' ) {
-      if ( player.location.y === battle.coordinates.selectorTopRow + ( i * 40 ) ) {
+    if ( levels.currentLevel === levels.battleLevel ) {
+      if ( player.location.y === levels.battleLevel.boundaries.top + ( i * 40 ) ) {
         var itemUsed = itemInventory[i];
         itemUsed.func();
 

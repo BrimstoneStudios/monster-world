@@ -1,13 +1,17 @@
 levels.firstLevel = {
   borderedLevels: {
-    left: levels.waterLevel,
+    left: {
+      levelName: 'waterLevel',
+      initLocation: {
+        x: 660
+      }
+    },
     top: {
       levelName: 'fireLevel',
       initLocation: {
         y: 460
       }
-    },
-    right: levels.secondLevel
+    }
   },
   boundaries: {
     left: -40,

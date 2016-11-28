@@ -45,8 +45,8 @@ Player.prototype.locationSetter = function ( key ) {
     if ( this.location.x <= boundaries.left ) {
       this.location.x = boundaries.left;
       if ( typeof borderedLevels.left !== 'undefined' ) {
-        levels.currentLevel = levels[borderedLevels.left];
-        this.initLocation();
+         this.initBorderTransitionLocation( borderedLevels.left.initLocation );
+        levels.currentLevel = levels[borderedLevels.left.levelName];
       }
     }
   } else if ( key === 'up' ) {
@@ -63,8 +63,8 @@ Player.prototype.locationSetter = function ( key ) {
     if ( this.location.x >= boundaries.right ) {
       this.location.x = boundaries.right;
       if ( typeof borderedLevels.right !== 'undefined' ) {
-        levels.currentLevel = levels[borderedLevels.right];
-        this.initLocation();
+         this.initBorderTransitionLocation( borderedLevels.right.initLocation );
+        levels.currentLevel = levels[borderedLevels.right.levelName];
       }
     }
   } else if ( key === 'down' ) {
