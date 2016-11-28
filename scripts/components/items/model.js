@@ -5,19 +5,17 @@ var items = {
     singleUse: true,
     battleState: 'potionUsed',
     func: function () {
-      //checks to see if the potion is used in a battle
+
       if ( levels.currentLevel === levels.battleLevel ) {
         monster = battle.playerBattleMonster;
-        monster.currentHp += 10;
-        if ( monster.currentHp > monster.hp ) {
-          monster.currentHp = monster.hp;
-        }
       } else {
-        // if not used in a battle the potion is used in the invMenu
-        player.monsterInventory[0].currentHp += 10;
-        if ( player.monsterInventory[0].currentHp > player.monsterInventory.hp) {
-          player.monsterInventory[0].currentHp = player.monsterInventory[0].hp;
-        }
+        monster = player.monsterInventory[0];
+      };
+
+      monster.currentHp += 10;
+
+      if ( monster.currentHp > monster.hp ) {
+          monster.currentHp = monster.hp;
       }
     }
   },
