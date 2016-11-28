@@ -1,18 +1,18 @@
 var useItem = function () {
-  for ( let i = 0; i < itemInventory.length; i++ ) {
-    if ( levels.currentLevel === levels.battleLevel ) {
-      if ( player.location.y === levels.battleLevel.boundaries.top + ( i * 40 ) ) {
-        var itemUsed = itemInventory[i];
-        itemUsed.func();
+  for ( let i = 0; i < player.inventory.length; i++ ) {
+    if ( player.location.y === levels.currentLevel.boundaries.top + ( i * levels.currentLevel.movement.y ) ) {
+      var itemUsed = player.inventory[i];
+      itemUsed.func();
 
-        if ( itemUsed.singleUse ) {
-          itemInventory.splice( i, 1 );
-        }
+      if ( itemUsed.singleUse ) {
+        player.inventory.splice( i, 1 );
+      }
+      if ( levels.currentLevel === levels.battleLevel ) {
         return itemUsed.battleState;
       }
     }
   }
-}
+};
 
 // Item drop
 // refactor so that only certain enemies have certain items to drop
@@ -21,7 +21,7 @@ var itemDrop = function () {
 
   for ( let i = 0; i < possibleItems.length; i++ ) {
     if ( rng() <= possibleItems[i].dropProbablity ) {
-      itemInventory.push( possibleItems[i].item )
+      player.inventory.push( possibleItems[i].item )
       battle.itemsDropped.push( possibleItems[i].item.name )
     }
   }

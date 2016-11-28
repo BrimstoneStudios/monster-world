@@ -135,8 +135,8 @@ var Engine = ( function ( global ) {
       menu.renderMonsterSelect();
     } else if ( levels.currentLevel === levels.mainMenu ) {
       menu.renderMainMenu();
-    } else if ( levels.currentLevel === 'itemsInv' ) {
-      menu.renderItemsInv();
+    } else if ( levels.currentLevel === levels.inventoryMenu ) {
+      menu.renderInventoryMenu();
     } else if ( levels.currentLevel === 'monsterInventory' ) {
       menu.renderMonsterInv();
       if ( state.monsterStatCurrent === 1 ) {

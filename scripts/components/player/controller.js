@@ -2,7 +2,6 @@
 // Handles the player input, called on every key press
 Player.prototype.handleInput = function ( key ) {
   this.render();
-  var player = this;
 
   switch ( levels.currentLevel ) {
     case levels.startScreen:
@@ -37,6 +36,11 @@ Player.prototype.handleInput = function ( key ) {
 
     case levels.mainMenu:
         mainMenuControls( key, player );
+        this.locationSetter( key );
+    break
+
+    case levels.inventoryMenu:
+        inventoryMenuControls( key, player );
         this.locationSetter( key );
     break
   }

@@ -10,10 +10,10 @@ var mainMenuControls = function ( key, player ) {
       if ( player.location.y === 247 ) {
         levels.currentLevel = levels.monsterInventory;
       } else {
-        levels.currentLevel = levels.itemsInventory;
+        levels.currentLevel = levels.inventoryMenu;
+        setInventoryLevelBoundaries();
       }
-      player.location.x = 15;
-      player.location.y = 42;
+      player.initLocation();
     break;
   }
 };

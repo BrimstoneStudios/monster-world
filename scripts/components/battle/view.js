@@ -64,9 +64,9 @@ Menu.prototype.renderBattleText = function () {
       ctx.fillText( player.monsterInventory[i].name, coordinates.leftColumn, coordinates.topRow + j );
     }
   } else if ( battleState === 'invMenu' ) {
-    if ( itemInventory.length > 0 ) {
-      for ( let i = 0, j = 0; i < itemInventory.length; i++, j = j + 40 ) {
-        ctx.fillText( itemInventory[i].name, coordinates.leftColumn, coordinates.topRow + j );
+    if ( player.inventory.length > 0 ) {
+      for ( let i = 0, j = 0; i < player.inventory.length; i++, j = j + 40 ) {
+        ctx.fillText( player.inventory[i].name, coordinates.leftColumn, coordinates.topRow + j );
       }
     } else {
       ctx.fillText( 'You have no items to use!', coordinates.leftColumn, coordinates.topRow );

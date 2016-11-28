@@ -87,7 +87,7 @@ var setBattleBoundaries = function ( keyPressed ) {
     bottomLimit = ( levels.battleLevel.boundaries.top + ( ( battle.playerBattleMonster.abilities.length - 1 ) * levels.battleLevel.movement.y ) );
     rightLimit = levels.battleLevel.boundaries.left;
   } else if ( battleState === 'invMenu' ) {
-    bottomLimit = ( 350 + ( ( itemInventory.length - 1 ) * levels.battleLevel.movement.y ) );
+    bottomLimit = ( 350 + ( ( player.inventory.length - 1 ) * levels.battleLevel.movement.y ) );
     rightLimit = levels.battleLevel.boundaries.left;
   } else if  ( battleState === 'monsterInvMenu' ) {
     bottomLimit = ( 350 + ( ( player.monsterInventory.length - 1 ) * levels.battleLevel.movement.y ) );

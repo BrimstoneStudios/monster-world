@@ -3,8 +3,8 @@ HealerNPC.prototype.constructor = HealerNPC;
 HealerNPC.prototype.level = 0;
 
 // default inventory items
-itemInventory.push( items.net );
-itemInventory.push( items.potion );
+player.inventory.push( items.net );
+player.inventory.push( items.potion );
 
 var healer = new HealerNPC( 60, 60, 'firstLevel' );
 
