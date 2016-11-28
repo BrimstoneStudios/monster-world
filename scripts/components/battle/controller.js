@@ -92,7 +92,7 @@ var setBattleBoundaries = function ( keyPressed ) {
   } else if  ( battleState === 'monsterInvMenu' ) {
     bottomLimit = ( 350 + ( ( player.monsterInventory.length - 1 ) * levels.battleLevel.movement.y ) );
     rightLimit = levels.battleLevel.boundaries.left;
-  } else if ( battleState === 'wildIntroText' ) {
+  } else {
     bottomLimit = levels.battleLevel.boundaries.top;
     rightLimit = levels.battleLevel.boundaries.left;
   }
