@@ -48,13 +48,9 @@ Player.prototype.handleInput = function ( key ) {
         monsterInventoryMenuControls( key, player );
         this.locationSetter( key );
     break
+
+    case levels.gameOver:
+        gameOverControls( key, player );
+    break
   }
 };
-
-// }  else if ( levels.currentLevel === 'gameOver' ) {
-//   switch ( key ) {
-//     case 'space':
-//     location.reload();
-//     break;
-//   }
-// }

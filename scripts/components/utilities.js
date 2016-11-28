@@ -3,7 +3,6 @@ var rng = function() {
 }
 
 var gameOver = function () {
-  levels.currentLevel = 'gameOver';
-  player.location.x = 0;
-  player.location.y = 0;
+  levels.currentLevel = levels.gameOver;
+  player.initLocation();
 };

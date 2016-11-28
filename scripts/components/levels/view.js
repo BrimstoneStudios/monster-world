@@ -29,15 +29,3 @@ var allWhite = [
   [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
   [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
 ];
-
-alevels = {
-  monsterStats:{
-    levelName : 'monsterStats',
-    tiles : allWhite
-  },
-  gameOver:{
-    levelName: 'gameOver',
-    tiles: allWhite
-  }
-};
-
