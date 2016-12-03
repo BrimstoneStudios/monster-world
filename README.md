@@ -1,17 +1,13 @@
 # Monster World
 ## Game Instructions
-
 Choose a starting character and a starting monster. Roam around the world defeating and catching other monsters in random monster encounter fights.
 
 Use the Monster net to catch a wild monsters. Damaging monsters increases the chance of a successful catch.
 
-Controls:
-
-Movement = arrows
-
-Space = select
-
-Shift = open/close menu
+### Controls:
+- Movement = arrows
+- Space = select
+- Shift = open/close menu
 
 ## Style Guide
 Javascript style guide used: http://javascript.crockford.com/code.html
@@ -24,7 +20,6 @@ Navigate to `localhost:8080`
 ## Other Useful Commands
 - To lint your javascript: `npm run lint`
 - Running webpack `webpack --progress --colors`
-`gulp watch`
 
 ## Architecture
 
