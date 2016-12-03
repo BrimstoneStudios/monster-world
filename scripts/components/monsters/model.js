@@ -28,7 +28,7 @@ Monster.prototype.render = function ( x, y ) {
 
 // Gain exp upon defeating an enemy monster
 Monster.prototype.expGain = function () {
-  this.currentExp += state.enemyToBattle.expReward;
+  this.currentExp += battle.enemy.expReward;
   if ( this.currentExp >= this.expToLevel ) {
     this.levelUp();
   }
@@ -36,9 +36,9 @@ Monster.prototype.expGain = function () {
 
 // Level up method to update stats based on current level
 Monster.prototype.levelUp = function () {
-  state.levelUp = 1;
+  battle.levelUp = 1;
   this.level++;
-  this.hp = 10 + ( this.level * this.hpMult );
+  this.hp = 1 + ( this.level * this.hpMult );
   this.currentHp = this.currentHp + 5;
   this.attack = ( ( ( ( 5 + this.attackMult ) * 11 ) * this.level ) / 100 ) + 2;
   this.defense = ( ( ( ( 5 + this.defenseMult ) * 11 ) * this.level ) / 100 ) + 2;
@@ -92,14 +92,14 @@ var PlayerMon = function ( lvl, char ) {
     this.sprite = 'images/characters/deathCaster.gif';
   }
 };
+
 PlayerMon.prototype = Object.create( NormalType.prototype );
 PlayerMon.prototype.constructor = PlayerMon;
-PlayerMon.prototype.sprite = state.sprite;
 PlayerMon.prototype.name = 'PlayerMon';
 PlayerMon.prototype.player = 1;
-PlayerMon.prototype.hpMult = 3;
+PlayerMon.prototype.hpMult = 0;
 PlayerMon.prototype.attackMult = 3;
-PlayerMon.prototype.defenseMult = 1;
+PlayerMon.prototype.defenseMult = 0;
 PlayerMon.prototype.spAttackMult = 2;
 PlayerMon.prototype.spDefenseMult = 1;
 PlayerMon.prototype.speedMult = 3;
@@ -112,7 +112,6 @@ var GiantRat = function ( lvl, char ) {
 };
 GiantRat.prototype = Object.create( NormalType.prototype );
 GiantRat.prototype.constructor = GiantRat;
-GiantRat.prototype.sprite = state.sprite;
 GiantRat.prototype.name = 'Giant Rat';
 GiantRat.prototype.player = 1;
 GiantRat.prototype.hpMult = 3;
@@ -122,6 +121,15 @@ GiantRat.prototype.spAttackMult = 1;
 GiantRat.prototype.spDefenseMult = 1;
 GiantRat.prototype.speedMult = 3;
 GiantRat.prototype.abilities = [abilities.scratch, abilities.growl];
+GiantRat.prototype.items = [
+  {
+   item: items.net,
+   dropProbablity: 1
+  }, {
+   item: items.potion,
+   dropProbablity: 1
+  }
+];
 
 // Bat monster - subclass of NormalType
 var Bat =  function ( lvl, char ) {
@@ -130,7 +138,6 @@ var Bat =  function ( lvl, char ) {
 };
 Bat.prototype = Object.create( NormalType.prototype );
 Bat.prototype.constructor = Bat;
-Bat.prototype.sprite = state.sprite;
 Bat.prototype.name = 'Bat';
 Bat.prototype.player = 1;
 Bat.prototype.hpMult = 2;
@@ -140,6 +147,15 @@ Bat.prototype.spAttackMult = 1;
 Bat.prototype.spDefenseMult = 1;
 Bat.prototype.speedMult = 3;
 Bat.prototype.abilities = [abilities.bite, abilities.stare];
+Bat.prototype.items = [
+  {
+   item: items.net,
+   dropProbablity: 1
+  }, {
+   item: items.potion,
+   dropProbablity: 1
+  }
+];
 
 // Munchkin monster - subclass of NormalType
 var Munchkin = function ( lvl, char ) {
@@ -148,7 +164,6 @@ var Munchkin = function ( lvl, char ) {
 };
 Munchkin.prototype = Object.create( NormalType.prototype );
 Munchkin.prototype.constructor = Munchkin;
-Munchkin.prototype.sprite = state.sprite;
 Munchkin.prototype.name = 'Munchkin';
 Munchkin.prototype.player = 1;
 Munchkin.prototype.hpMult = 3;
@@ -158,7 +173,15 @@ Munchkin.prototype.spAttackMult = 1;
 Munchkin.prototype.spDefenseMult = 1;
 Munchkin.prototype.speedMult = 3;
 Munchkin.prototype.abilities = [abilities.bite, abilities.stare];
-
+Munchkin.prototype.items = [
+  {
+   item: items.net,
+   dropProbablity: 1
+  }, {
+   item: items.potion,
+   dropProbablity: 1
+  }
+];
 // ----------------------------
 
 // Fire type - subclass of Monster
@@ -180,9 +203,9 @@ Drag1.prototype.constructor = Drag1;
 Drag1.prototype.sprite = 'images/monsters/drag1.gif';
 Drag1.prototype.name = 'Drag1';
 Drag1.prototype.evolve = 7;
-Drag1.prototype.hpMult = 3;
+Drag1.prototype.hpMult = 1;
 Drag1.prototype.attackMult = 2;
-Drag1.prototype.defenseMult = 1;
+Drag1.prototype.defenseMult = 0;
 Drag1.prototype.spAttackMult = 3;
 Drag1.prototype.spDefenseMult = 1;
 Drag1.prototype.speedMult = 3;
