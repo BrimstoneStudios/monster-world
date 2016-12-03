@@ -124,8 +124,10 @@ var Engine = ( function ( global ) {
     * the render function you have defined.
     */
     allNPC.forEach( function ( npc ) {
-      if ( levels.currentLevel === npc.level ) {
-         npc.render();
+      for (let i = 0; i < npc.location.level.length; i++) {
+        if ( npc.location.level[i] === levels.currentLevel ) {
+           npc.render();
+        }
       }
     });
 

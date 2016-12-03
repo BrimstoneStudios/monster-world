@@ -3,6 +3,7 @@
 Player.prototype.handleInput = function ( key ) {
   this.render();
 
+
   switch ( levels.currentLevel ) {
     case levels.startScreen:
         startScreenControls( key, player );
@@ -31,6 +32,9 @@ Player.prototype.handleInput = function ( key ) {
         this.locationSetter( key );
         if ( key === 'left' || key === 'up' || key === 'right' || key === 'down' ) {
             battleEvent();
+        };
+        if ( key === 'space' ) {
+            npcControls( player );
         }
     break;
 

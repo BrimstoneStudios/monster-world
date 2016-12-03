@@ -1,5 +1,5 @@
 var battleEvent = function () {
-  if ( rng() <= 1 ) {
+  if ( rng() <= 0.5 ) {
     // Save the pre-battle state
     player.savedAttributes.lastLevel = levels.currentLevel;
     player.savedAttributes.location.x = player.location.x;
