@@ -37,4 +37,31 @@ Defines the playerLocation method.
 Controls the text and location of cursor's on the player's monitor.
 The player's sprite is managed here.
 
+## Abilities
+All abilities are built using the following scheme.
 
+```
+scratch: {
+  name: 'Scratch',
+  type: 'normal',
+  category: 'physical',
+  power: 40,
+  accuracy: 1,
+  effect: '',
+  func: function () {
+    abilityUsed.call( this, battle.playerBattleMonster );
+  }
+}
+```
+
+## Battle
+
+## Items
+
+## Levels
+
+## Monsters
+
+## NPCS
+
+## Player
