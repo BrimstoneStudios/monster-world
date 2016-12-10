@@ -5,13 +5,12 @@ Javascript style guide used: http://javascript.crockford.com/code.html
 
 ## Run Locally
 
-Run the local server `gulp server`
+Run the local server `nmp start` OR `webpack-dev-server`
 Navigate to `localhost:8080`
 
-## Other Gulp commands
-
-`gulp styles`
-`gulp js`
+## Other Useful Commands
+- To lint your javascript: `npm run lint`
+- Running webpack `webpack --progress --colors`
 `gulp watch`
 
 ## Architecture
