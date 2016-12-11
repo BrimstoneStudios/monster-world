@@ -41,7 +41,8 @@ module.exports = {
             {
                 test: /\.js$/,
                 loader: 'eslint-loader',
-                include: __dirname + 'scripts',
+                path: __dirname,
+                filename: './scripts',
                 exclude: /node_modules/,
             }
         ],
