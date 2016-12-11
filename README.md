@@ -23,7 +23,6 @@ Navigate to `localhost:8080`
 - To lint your javascript: `npm run lint`
 - Running webpack `webpack --progress --colors`
 
-
 ## Architecture
 ### model.js:
 Init the compontent's object
