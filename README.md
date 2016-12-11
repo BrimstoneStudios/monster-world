@@ -1,6 +1,17 @@
 # Monster World
-# =============
+Live demo - http://brimstonestudios.github.io/monster-world/
 
+## Game Instructions
+Choose a starting character and a starting monster. Roam around the world defeating and catching other monsters in random monster encounter fights.
+
+Use the Monster net to catch a wild monsters. Damaging monsters increases the chance of a successful catch.
+
+### Controls:
+- Movement = arrow keys
+- Select/Action = space key
+- Open/Close Main Menu or Back = shift key
+
+## Style Guide
 Javascript style guide used: http://javascript.crockford.com/code.html
 
 ## Run Locally
@@ -11,33 +22,45 @@ Navigate to `localhost:8080`
 ## Other Useful Commands
 - To lint your javascript: `npm run lint`
 - Running webpack `webpack --progress --colors`
-`gulp watch`
 
 ## Architecture
-
-# model.js:
+### model.js:
 Init the compontent's object
 
-# controller.js:
+### controller.js:
 Defines any method that changes the state.
 Speaks to view.js through a `playerLocation()` method call.
 
-# view.js
+### view.js
 Defines the playerLocation method.
 Controls the text and location of cursor's on the player's monitor.
 The player's sprite is managed here.
 
-Choose a starting character and a starting monster. Roam around the world defeating and catching other monsters in random monster encounter fights.
+## Abilities
+All abilities are built using the following scheme.
 
-Use the Monster net to catch a wild monsters. Damaging monsters increases the chance of a successful catch.
+```
+scratch: {
+  name: 'Scratch',
+  type: 'normal',
+  category: 'physical',
+  power: 40,
+  accuracy: 1,
+  effect: '',
+  func: function () {
+    abilityUsed.call( this, battle.playerBattleMonster );
+  }
+}
+```
 
-Controls:
+## Battle
 
-Movement = arrows
+## Items
 
-Space = select
+## Levels
 
-Shift = open/close menu
+## Monsters
 
+## NPCS
 
-Live demo - http://abkendal.github.io/monster-world
+## Player
