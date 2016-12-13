@@ -29,6 +29,7 @@ We are running using ES6 modules. Each file is a single module that the app runs
 
 rng.js
 `export default function () {...};`
+
 app.js
 `import rng from './rng'`
 
