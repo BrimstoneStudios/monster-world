@@ -1,44 +1,66 @@
 # Monster World
-# =============
+Live demo - http://brimstonestudios.github.io/monster-world/
 
-Javascript style guide used: http://javascript.crockford.com/code.html
-
-## Run Locally
-
-Run the local server `gulp server`
-Navigate to `localhost:8080`
-
-## Other Gulp commands
-
-`gulp styles`
-`gulp js`
-`gulp watch`
-
-## Architecture
-
-# model.js:
-Init the compontent's object
-
-# controller.js:
-Defines any method that changes the state.
-Speaks to view.js through a `playerLocation()` method call.
-
-# view.js
-Defines the playerLocation method.
-Controls the text and location of cursor's on the player's monitor.
-The player's sprite is managed here.
-
+## Game Instructions
 Choose a starting character and a starting monster. Roam around the world defeating and catching other monsters in random monster encounter fights.
 
 Use the Monster net to catch a wild monsters. Damaging monsters increases the chance of a successful catch.
 
-Controls:
+### Controls:
+- Movement = arrow keys
+- Select/Action = space key
+- Open/Close Main Menu or Back = shift key
 
-Movement = arrows
+## Style Guide
+Javascript style guide used: http://javascript.crockford.com/code.html
 
-Space = select
+## Run Locally
 
-Shift = open/close menu
+Run the local server `nmp start` OR `webpack-dev-server`
+Navigate to `localhost:8080`
 
+## Other Useful Commands
+- To lint your javascript: `npm run lint`
+- Running webpack `webpack --progress --colors`
 
-Live demo - http://abkendal.github.io/monster-world
+## Architecture
+### model.js:
+Init the compontent's object
+
+### controller.js:
+Defines any method that changes the state.
+Speaks to view.js through a `playerLocation()` method call.
+
+### view.js
+Defines the playerLocation method.
+Controls the text and location of cursor's on the player's monitor.
+The player's sprite is managed here.
+
+## Abilities
+All abilities are built using the following scheme.
+
+```
+scratch: {
+  name: 'Scratch',
+  type: 'normal',
+  category: 'physical',
+  power: 40,
+  accuracy: 1,
+  effect: '',
+  func: function () {
+    abilityUsed.call( this, battle.playerBattleMonster );
+  }
+}
+```
+
+## Battle
+
+## Items
+
+## Levels
+
+## Monsters
+
+## NPCS
+
+## Player

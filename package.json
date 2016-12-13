@@ -2,29 +2,40 @@
   "name": "monster-world",
   "version": "1.0.0",
   "description": "JS Browser Video Game",
-  "main": "index.js",
+  "main": "index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint ./scripts --ext .js --cache",
+    "start": "webpack-dev-server"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/francislanglois/monster-world.git"
+    "url": "git+https://github.com/BrimstoneStudios/monster-world.git"
   },
   "author": "Brimestone Studios",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/francislanglois/monster-world/issues"
+    "url": "https://github.com/BrimstoneStudios/monster-world/issues"
   },
-  "homepage": "https://github.com/francislanglois/monster-world#readme",
+  "homepage": "https://github.com/BrimstoneStudios/monster-world#readme",
   "devDependencies": {
     "babel": "^5.8.23",
-    "gulp": "^3.9.0",
-    "gulp-autoprefixer": "^3.0.1",
-    "gulp-concat": "^2.6.0",
-    "gulp-jshint": "^1.11.2",
-    "gulp-livereload": "^3.8.1",
-    "gulp-sass": "^2.0.4",
-    "gulp-serve": "^1.4.0",
-    "gulp-watch": "^4.3.5"
+    "babel-core": "^6.18.2",
+    "babel-eslint": "^7.1.1",
+    "babel-loader": "^6.2.8",
+    "babel-preset-es2015": "^6.18.0",
+    "eslint": "^3.11.1",
+    "eslint-loader": "^1.6.1",
+    "jasmine-core": "^2.5.2",
+    "karma": "^1.3.0",
+    "karma-babel-preprocessor": "^6.0.1",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-jasmine": "^1.1.0",
+    "karma-webpack": "^1.8.0",
+    "webpack-uglify-js-plugin": "^1.1.9"
+  },
+  "dependencies": {
+    "webpack": "^1.13.3",
+    "webpack-dev-server": "^1.16.2"
   }
 }

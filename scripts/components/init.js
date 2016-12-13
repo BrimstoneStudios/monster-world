@@ -1,5 +1,4 @@
 // Global variable objects
-var state = {};
 var battle = {};
 var player = {};
 var levels = {};
