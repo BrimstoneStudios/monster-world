@@ -1,7 +1,3 @@
-// default inventory items
-player.inventory.push( items.net );
-player.inventory.push( items.potion );
-
 // Instantiate objects
 var allNPC = [healer];
 var menu = new Menu();

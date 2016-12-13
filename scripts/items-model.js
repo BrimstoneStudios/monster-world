@@ -1,5 +1,6 @@
+import rng from './rng';
 // ------ ITEMS -------
-var items = {
+export const items = {
   potion:{
     name:'Potion',
     singleUse: true,
