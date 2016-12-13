@@ -1,6 +1,6 @@
 import rng from './rng';
 // ------ ITEMS -------
-export const items = {
+export default {
   potion:{
     name:'Potion',
     singleUse: true,
