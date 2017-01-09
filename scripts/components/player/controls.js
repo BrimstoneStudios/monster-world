@@ -12,7 +12,7 @@ export default function ( key ) {
     break;
 
     case allLevels.characterSelect:
-        characterSelectControls( key, player );
+        allLevels.characterSelect.controls( key, player );
         this.locationSetter( key );
     break;
 

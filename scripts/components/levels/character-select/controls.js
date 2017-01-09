@@ -1,3 +1,5 @@
+import allLevels from './../all-levels';
+
 export default function ( key, player ) {
   if ( key === 'space' ) {
     if ( player.location.x === allLevels.characterSelect.boundaries.right ) {
