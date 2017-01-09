@@ -1,6 +1,7 @@
 import Salamander from './../../monsters/salamander';
 import Hydra from './../../monsters/hydra';
 import GiantAnt from './../../monsters/giant-ant';
+import allLevels from './../all-levels';
 
 export default function ( key, player ) {
   if ( key === 'space' ) {
@@ -14,7 +15,7 @@ export default function ( key, player ) {
     }
     monsterSelected.controller = player;
     player.monsterInventory.push( monsterSelected );
-    levels.currentLevel = levels.firstLevel;
+    currentLevel = allLevels.firstLevel;
     player.initLocation();
   }
 }
