@@ -64,3 +64,4 @@ Monster.prototype.renderBtlMonStats = function ( player ) {
   }
 };
 
+export default Monster;

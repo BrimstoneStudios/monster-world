@@ -1,3 +1,5 @@
+import Monster from './monsters';
+
 var FireType = function ( lvl ) {
   Monster.call( this, lvl );
 };
@@ -5,3 +7,5 @@ var FireType = function ( lvl ) {
 FireType.prototype = Object.create( Monster.prototype );
 FireType.prototype.constructor = FireType;
 FireType.prototype.type = 'fire';
+
+export default FireType;

@@ -8,7 +8,7 @@ export class Player {
       x: 0,
       y: 0
     }
-
+    this.monsterInventory = []
     this.savedAttributes = {}
   }
 
