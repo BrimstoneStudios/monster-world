@@ -1,4 +1,5 @@
 import controls from './controls';
+import renderText from './rendered-text';
 import tiles from './../world-tiles.js';
 
 var Wh = tiles.Wh;
@@ -35,4 +36,5 @@ export default {
     ],
   sprite:  'images/characters/selector.png',
   controls: controls,
+  renderText: renderText,
 }

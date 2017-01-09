@@ -129,7 +129,9 @@ var Engine = ( function ( global ) {
     //     }
     //   }
     // });
-
+    if (typeof currentLevel.renderText !== 'undefined') {
+      currentLevel.renderText();
+    }
     // if ( currentLevel === characterSelect ) {
     //   menu.renderCharacterSelect();
     // } else if ( currentLevel === monsterSelect ) {
