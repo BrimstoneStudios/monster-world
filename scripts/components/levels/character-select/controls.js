@@ -1,12 +1,12 @@
-var characterSelectControls = function ( key, player ) {
+export default function ( key, player ) {
   if ( key === 'space' ) {
-    if ( player.location.x === levels.characterSelect.boundaries.right ) {
+    if ( player.location.x === allLevels.characterSelect.boundaries.right ) {
       player.savedAttributes.sprite = 'images/characters/monk.gif';
     } else {
       player.savedAttributes.sprite = 'images/characters/deathCaster.gif';
     }
 
-    levels.currentLevel = levels.monsterSelect;
+    currentLevel = allLevels.monsterSelect;
     player.initLocation();
   }
 };

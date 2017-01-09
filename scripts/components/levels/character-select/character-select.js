@@ -1,4 +1,11 @@
-levels.characterSelect = {
+import controls from './controls';
+import tiles from './../world-tiles.js';
+
+var Wh = tiles.Wh;
+var dT = tiles.dT;
+var mT = tiles.mT;
+
+export default {
   boundaries: {
     left: 250,
     top: 200,
@@ -26,5 +33,6 @@ levels.characterSelect = {
       [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
       [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
     ],
-  sprite:  'images/characters/selector.png'
-};
+  sprite:  'images/characters/selector.png',
+  controls: controls,
+}
