@@ -1,6 +1,6 @@
 import allWhite from './../all-white';
 import controls from './controls';
-// import renderText from './rendered-text';
+import renderText from './rendered-text';
 
 export default {
   boundaries: {
@@ -21,6 +21,6 @@ export default {
   tiles : allWhite,
   sprite: 'images/characters/menuSelector.png',
   controls: controls,
-  // renderText: renderText,
+  renderText: renderText,
 }
 
