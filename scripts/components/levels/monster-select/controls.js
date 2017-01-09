@@ -1,4 +1,4 @@
-var monsterSelectControls = function ( key, player ) {
+export default function ( key, player ) {
   if ( key === 'space' ) {
     var monsterSelected;
     if ( player.location.x === 200 ) {
@@ -13,4 +13,4 @@ var monsterSelectControls = function ( key, player ) {
     levels.currentLevel = levels.firstLevel;
     player.initLocation();
   }
-};
+}

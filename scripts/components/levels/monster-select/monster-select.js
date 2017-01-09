@@ -1,4 +1,13 @@
-levels.monsterSelect = {
+import controls from './controls';
+import renderText from './rendered-text';
+import tiles from './../world-tiles.js';
+
+var Wh = tiles.Wh;
+var s1 = tiles.s1;
+var s2 = tiles.s2;
+var s3 = tiles.s3;
+
+export default {
   boundaries: {
     left: 200,
     top: 200,
@@ -26,5 +35,7 @@ levels.monsterSelect = {
       [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
       [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
     ],
-  sprite:  'images/characters/selector.png'
-};
+  sprite:  'images/characters/selector.png',
+  controls: controls,
+  renderText: renderText,
+}
