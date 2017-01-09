@@ -7,7 +7,7 @@ var monsterInventoryMenuControls = function ( key, player ) {
   switch ( key ) {
     case 'shift':
       levels.monsterInventory.displayStats = false;
-      levels.currentLevel = levels.mainMenu;
+      currentLevel = levels.mainMenu;
       player.initLocation();
     break;
 

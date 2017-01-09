@@ -6,7 +6,7 @@ var setInventoryLevelBoundaries = function () {
 var inventoryMenuControls = function ( key, player ) {
   switch ( key ) {
     case 'shift':
-      levels.currentLevel = levels.mainMenu;
+      currentLevel = levels.mainMenu;
       player.initLocation();
     break;
 

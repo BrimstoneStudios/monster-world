@@ -1,4 +1,4 @@
 export default function () {
-  levels.currentLevel = levels.gameOver;
+  currentLevel = levels.gameOver;
   player.initLocation();
 }
