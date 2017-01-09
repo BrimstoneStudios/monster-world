@@ -1,4 +1,4 @@
-var worldControls = function ( key, player ) {
+export default function ( key, player ) {
   switch ( key ) {
     case 'shift':
       player.savedAttributes.lastLevel = levels.currentLevel;
@@ -16,4 +16,4 @@ var worldControls = function ( key, player ) {
       }
     break;
   }
-};
+}

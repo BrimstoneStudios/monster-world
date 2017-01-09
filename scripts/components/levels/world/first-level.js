@@ -1,5 +1,5 @@
 import tiles from './../world-tiles.js';
-import worldControls from './controls';
+import controls from './controls';
 
 var Di = tiles.Di;
 var Gr = tiles.Gr;
@@ -50,5 +50,7 @@ export default {
     minLevel: 1,
     maxLevel: 2,
     // monster: [Bat, GiantRat, Munchkin]
-  }
+  },
+  controls: controls,
+  // renderText: renderText,
 };
