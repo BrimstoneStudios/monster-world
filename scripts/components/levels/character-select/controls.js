@@ -11,4 +11,4 @@ export default function ( key, player ) {
     currentLevel = allLevels.monsterSelect;
     player.initLocation();
   }
-};
+}
