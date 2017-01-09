@@ -1,17 +1,23 @@
-levels.firstLevel = {
+import tiles from './../world-tiles.js';
+import worldControls from './controls';
+
+var Di = tiles.Di;
+var Gr = tiles.Gr;
+
+export default {
   borderedLevels: {
-    left: {
-      levelName: 'waterLevel',
-      initLocation: {
-        x: 660
-      }
-    },
-    top: {
-      levelName: 'fireLevel',
-      initLocation: {
-        y: 460
-      }
-    }
+    // left: {
+    //   levelName: 'waterLevel',
+    //   initLocation: {
+    //     x: 660
+    //   }
+    // },
+    // top: {
+    //   levelName: 'fireLevel',
+    //   initLocation: {
+    //     y: 460
+    //   }
+    // }
   },
   boundaries: {
     left: -40,
@@ -43,6 +49,6 @@ levels.firstLevel = {
   monsters: {
     minLevel: 1,
     maxLevel: 2,
-    monster: [Bat, GiantRat, Munchkin]
+    // monster: [Bat, GiantRat, Munchkin]
   }
 };
