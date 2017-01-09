@@ -1,14 +1,5 @@
-import rng from './rng';
-// ------ ITEMS -------
 export default {
-  elixir:{
-    name:'Elixir',
-    func: function () {
-      battle.playerBattleMonster.condition = 'healthy';
-    }
-  },
-  net:{
-    name:'Net',
+  name:'Net',
     singleUse: false,
     func: function () {
       var enemy = battle.enemy;
@@ -44,4 +35,4 @@ export default {
       }
     }
   }
-};
+}
