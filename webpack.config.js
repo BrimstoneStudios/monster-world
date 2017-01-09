@@ -5,7 +5,7 @@ module.exports = {
     entry: {
         monsterWorld:
         [
-            'webpack-dev-server/client?http://localhost:8080',
+            'webpack-dev-server/client?http://localhost:8000',
             './scripts/app.js',
         ]
     },

@@ -27,11 +27,11 @@ Navigate to `localhost:8080`
 ## Architecture
 We are running using ES6 modules. Each file is a single module that the app runs when necessary. When you create new functionality you can export that module using ES6 default export. When you need to use a module simply import it using ES6 imports. EX:
 
-```
+```js
 /* rng.js */
 export default function () {...};
 ```
-```
+```js
 /* app.js */
 import rng from './rng'
 ```
@@ -51,7 +51,7 @@ The player's sprite is managed here.
 ## Abilities
 All abilities are built using the following scheme.
 
-```
+```js
 scratch: {
   name: 'Scratch',
   type: 'normal',

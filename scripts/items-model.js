@@ -1,25 +1,6 @@
 import rng from './rng';
 // ------ ITEMS -------
 export default {
-  potion:{
-    name:'Potion',
-    singleUse: true,
-    battleState: 'potionUsed',
-    func: function () {
-
-      if ( levels.currentLevel === levels.battleLevel ) {
-        monster = battle.playerBattleMonster;
-      } else {
-        monster = player.monsterInventory[0];
-      }
-
-      monster.currentHp += 10;
-
-      if ( monster.currentHp > monster.hp ) {
-          monster.currentHp = monster.hp;
-      }
-    }
-  },
   elixir:{
     name:'Elixir',
     func: function () {

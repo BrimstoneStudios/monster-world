@@ -3,7 +3,8 @@ var gameOver = function () {
   player.initLocation();
 };
 import items from './items-model';
-console.log(items);
+import potions from './components/items/potion';
+
 // default inventory items
 player.inventory.push( items.net );
 player.inventory.push( items.potion );
