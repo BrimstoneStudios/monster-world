@@ -1,33 +1,34 @@
-// if ( levels.currentLevel != 'battleLevel') {
+import allLevels from './../levels/all-levels';
+// if ( currentLevel != 'battleLevel') {
 // Handles the player input, called on every key press
-Player.prototype.handleInput = function ( key ) {
+export default function ( key ) {
+
   this.render();
 
-
-  switch ( levels.currentLevel ) {
-    case levels.startScreen:
-        startScreenControls( key, player );
+  switch ( currentLevel ) {
+    case allLevels.startScreen:
+        allLevels.startScreen.controls( key, player );
         this.locationSetter( key );
     break;
 
-    case levels.characterSelect:
+    case allLevels.characterSelect:
         characterSelectControls( key, player );
         this.locationSetter( key );
     break;
 
-    case levels.monsterSelect:
+    case allLevels.monsterSelect:
         monsterSelectControls( key, player );
         this.locationSetter( key );
     break;
 
-    case levels.battleLevel:
+    case allLevels.battleLevel:
         battleControls( key, player );
         this.locationSetter( key );
     break;
 
-    case levels.firstLevel:
-    case levels.fireLevel:
-    case levels.waterLevel:
+    case allLevels.firstLevel:
+    case allLevels.fireLevel:
+    case allLevels.waterLevel:
         worldControls( key, player );
         this.locationSetter( key );
         if ( key === 'left' || key === 'up' || key === 'right' || key === 'down' ) {
@@ -38,22 +39,22 @@ Player.prototype.handleInput = function ( key ) {
         }
     break;
 
-    case levels.mainMenu:
+    case allLevels.mainMenu:
         mainMenuControls( key, player );
         this.locationSetter( key );
     break;
 
-    case levels.inventoryMenu:
+    case allLevels.inventoryMenu:
         inventoryMenuControls( key, player );
         this.locationSetter( key );
     break;
 
-    case levels.monsterInventory:
+    case allLevels.monsterInventory:
         monsterInventoryMenuControls( key, player );
         this.locationSetter( key );
     break;
 
-    case levels.gameOver:
+    case allLevels.gameOver:
         gameOverControls( key, player );
     break;
   }

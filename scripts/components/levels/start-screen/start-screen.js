@@ -1,5 +1,5 @@
-import currentLevel from './../current-level';
 import allWhite from './../all-white';
+import controls from './controls';
 
 export default {
   boundaries: {
@@ -15,4 +15,5 @@ export default {
   },
   tiles: allWhite,
   sprite:  'images/terrain/start-screen.png',
+  controls: controls,
 }

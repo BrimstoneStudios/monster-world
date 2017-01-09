@@ -1,4 +1,8 @@
-export default class {
+import controls from './controls';
+import initLocation from './init-location';
+import locationSetter from './set-location';
+
+export class Player {
   constructor () {
     this.location = {
       x: 0,
@@ -18,6 +22,10 @@ export default class {
     ctx.drawImage( Resources.get( this.sprite ), this.location.x, this.location.y );
   }
 }
+
+Player.prototype.handleInput = controls;
+Player.prototype.initLocation = initLocation;
+Player.prototype.locationSetter = locationSetter;
 
 // PlayerMon.prototype = Object.create( NormalType.prototype );
 // PlayerMon.prototype.constructor = PlayerMon;
