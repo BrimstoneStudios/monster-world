@@ -1,5 +1,7 @@
+import startScreen from './components/levels/start-screen/start-screen';
+import Player from './components/player/player';
+var currentLevel = window.currentLevel = startScreen;
+var player = window.player = new Player();
 
-
-// if (module.hot) {
-//   module.hot.accept();
-// }
+currentLevel = startScreen;
+player.init();

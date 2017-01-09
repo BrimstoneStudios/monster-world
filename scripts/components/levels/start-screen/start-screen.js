@@ -1,4 +1,7 @@
-levels.startScreen = {
+import currentLevel from './../current-level';
+import allWhite from './../all-white';
+
+export default {
   boundaries: {
     left: 0,
     top: 0,
@@ -11,5 +14,5 @@ levels.startScreen = {
     y: 0
   },
   tiles: allWhite,
-  sprite:  'images/terrain/start-screen.png'
-};
+  sprite:  'images/terrain/start-screen.png',
+}

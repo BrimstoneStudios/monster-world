@@ -4,9 +4,3 @@ var startScreenControls = function ( key, player ) {
     player.initLocation();
   }
 };
-
-var initStartScreen = function () {
-  levels.currentLevel = levels.startScreen;
-};
-
-initStartScreen();

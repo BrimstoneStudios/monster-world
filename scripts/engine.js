@@ -9,7 +9,6 @@
 
 * Adapted from the Udacity frontend nanodegree arcade game
 * https://github.com/udacity/frontend-nanodegree-arcade-game
-
 */
 
 var Engine = ( function ( global ) {
@@ -78,9 +77,9 @@ var Engine = ( function ( global ) {
   * player object.
   */
   function updateEntities ( dt ) {
-    allNPC.forEach( function ( npc ) {
-      npc.update();
-    } );
+    // allNPC.forEach( function ( npc ) {
+    //   npc.update();
+    // } );
     player.update();
   }
 
@@ -108,7 +107,7 @@ var Engine = ( function ( global ) {
         //       * so that we get the benefits of caching these images, since
         //       * we're using them over and over.
         //       */
-        ctx.drawImage( Resources.get( levels.currentLevel.tiles[row][col] ), col * 50, row * 50 );
+        ctx.drawImage( Resources.get( currentLevel.tiles[row][col] ), col * 50, row * 50 );
       }
     }
 
@@ -123,34 +122,34 @@ var Engine = ( function ( global ) {
     /* Loop through all of the objects within the allNPC array and call
     * the render function you have defined.
     */
-    allNPC.forEach( function ( npc ) {
-      for (let i = 0; i < npc.location.level.length; i++) {
-        if ( npc.location.level[i] === levels.currentLevel ) {
-           npc.render();
-        }
-      }
-    });
+    // allNPC.forEach( function ( npc ) {
+    //   for (let i = 0; i < npc.location.level.length; i++) {
+    //     if ( npc.location.level[i] === currentLevel ) {
+    //        npc.render();
+    //     }
+    //   }
+    // });
 
-    if ( levels.currentLevel === levels.characterSelect ) {
-      menu.renderCharacterSelect();
-    } else if ( levels.currentLevel === levels.monsterSelect ) {
-      menu.renderMonsterSelect();
-    } else if ( levels.currentLevel === levels.mainMenu ) {
-      menu.renderMainMenu();
-    } else if ( levels.currentLevel === levels.inventoryMenu ) {
-      menu.renderInventoryMenu();
-    } else if ( levels.currentLevel === levels.monsterInventory ) {
-      menu.renderMonsterInventory();
-      if ( levels.currentLevel.displayStats ) {
-        menu.renderMonsterStat( levels.currentLevel.displayMonsterIndex );
-      }
-    } else if ( levels.currentLevel === levels.battleLevel ) {
-      battle.playerBattleMonster.render( 50, 200 );
-      battle.playerBattleMonster.renderBtlMonStats( 'player' );
-      battle.enemy.render( 550, 40 );
-      battle.enemy.renderBtlMonStats( 'enemy' );
-      menu.renderBattleText();
-    }
+    // if ( currentLevel === characterSelect ) {
+    //   menu.renderCharacterSelect();
+    // } else if ( currentLevel === monsterSelect ) {
+    //   menu.renderMonsterSelect();
+    // } else if ( currentLevel === mainMenu ) {
+    //   menu.renderMainMenu();
+    // } else if ( currentLevel === inventoryMenu ) {
+    //   menu.renderInventoryMenu();
+    // } else if ( currentLevel === monsterInventory ) {
+    //   menu.renderMonsterInventory();
+    //   if ( currentLevel.displayStats ) {
+    //     menu.renderMonsterStat( currentLevel.displayMonsterIndex );
+    //   }
+    // } else if ( currentLevel === battleLevel ) {
+    //   battle.playerBattleMonster.render( 50, 200 );
+    //   battle.playerBattleMonster.renderBtlMonStats( 'player' );
+    //   battle.enemy.render( 550, 40 );
+    //   battle.enemy.renderBtlMonStats( 'enemy' );
+    //   menu.renderBattleText();
+    // }
 
     player.render();
   }
@@ -193,7 +192,7 @@ var Engine = ( function ( global ) {
     'images/monsters/hydra1.png',
     'images/monsters/hydra2.png',
     'images/monsters/hydra3.png',
-    'images/monsters/drag1.gif',
+    'images/monsters/salmandar.gif',
     'images/monsters/drag2.gif',
     'images/monsters/drag3.gif',
     'images/monsters/wormy1.gif',

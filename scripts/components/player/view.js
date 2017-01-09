@@ -1,17 +1,6 @@
-// Update Player based on state
-Player.prototype.update = function () {
-  // Update the sprite based on the level
-  if ( typeof levels.currentLevel.sprite !== 'undefined' ) {
-    this.sprite = levels.currentLevel.sprite;
-  } else {
-    this.sprite = this.savedAttributes.sprite;
-  }
-};
 
-// Renders the character on the screen based on it's sprite, x and  y location
-Player.prototype.render = function () {
-  ctx.drawImage( Resources.get( this.sprite ), this.location.x, this.location.y );
-};
+
+
 
 Player.prototype.initLocation = function () {
   if ( typeof levels.currentLevel.initLocation !== 'undefined' ) {
