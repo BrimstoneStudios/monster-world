@@ -1,4 +1,4 @@
-var mainMenuControls = function ( key, player ) {
+export default function ( key, player ) {
   switch ( key ) {
     case 'shift':
       currentLevel = player.savedAttributes.lastLevel;
@@ -17,4 +17,4 @@ var mainMenuControls = function ( key, player ) {
       player.initLocation();
     break;
   }
-};
+}

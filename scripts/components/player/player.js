@@ -9,7 +9,12 @@ export class Player {
       y: 0
     }
     this.monsterInventory = []
-    this.savedAttributes = {}
+    this.savedAttributes = {
+      location: {
+        x: 0,
+        y: 0
+      }
+    }
   }
 
   update () {
