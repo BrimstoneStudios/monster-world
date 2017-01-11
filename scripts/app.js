@@ -1,4 +1,3 @@
-// import startScreen from './components/levels/start-screen/start-screen';
 import {Player} from './components/player/player';
 import allLevels from './components/levels/all-levels';
 import allItems from './components/items/items';
@@ -6,6 +5,8 @@ import allItems from './components/items/items';
 var currentLevel = window.currentLevel = allLevels.startScreen;
 var player = window.player = new Player();
 var items = window.items = allItems;
+console.log(allLevels[0])
+// var allNPC = [healer];
 
 player.inventory.push( items.net );
 player.inventory.push( items.potion );

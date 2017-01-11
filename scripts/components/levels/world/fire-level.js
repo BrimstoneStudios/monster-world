@@ -1,11 +1,18 @@
-levels.fireLevel = {
+import tiles from './../world-tiles.js';
+import allLevels from './../all-levels.js';
+import controls from './controls';
+
+var La = tiles.La
+var Ro = tiles.Ro
+
+export default {
   borderedLevels: {
-    bottom: {
-      levelName: 'firstLevel',
-      initLocation: {
-        y: 10
-      }
-    }
+    // bottom: {
+    //   levelName: 'firstLevel',
+    //   initLocation: {
+    //     y: 10
+    //   }
+    // }
   },
   boundaries: {
     left: -40,
@@ -33,9 +40,10 @@ levels.fireLevel = {
     [Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, La],
     [Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro, Ro],
   ],
-  monsters: {
-    minLevel: 2,
-    maxLevel: 23,
-    monster: [LavaOgre, Ignis, Phoenix]
-  }
-};
+  // monsters: {
+  //   minLevel: 2,
+  //   maxLevel: 23,
+  //   monster: [LavaOgre, Ignis, Phoenix]
+  // },
+  controls: controls,
+}

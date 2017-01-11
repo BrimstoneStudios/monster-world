@@ -1,23 +1,17 @@
 import tiles from './../world-tiles.js';
+import allLevels from './../all-levels.js';
 import controls from './controls';
 
 var Di = tiles.Di;
 var Gr = tiles.Gr;
 
+
+
+
 export default {
   borderedLevels: {
-    // left: {
-    //   levelName: 'waterLevel',
-    //   initLocation: {
-    //     x: 660
-    //   }
-    // },
-    // top: {
-    //   levelName: 'fireLevel',
-    //   initLocation: {
-    //     y: 460
-    //   }
-    // }
+    left: 'waterLevel',
+    top: 'fireLevel',
   },
   boundaries: {
     left: -40,
