@@ -1,4 +1,4 @@
-import Monster from './monsters';
+import {Monster} from './monster';
 
 var WaterType = function ( lvl ) {
   Monster.call( this, lvl );

@@ -1,4 +1,4 @@
-import Monster from './monsters';
+import {Monster} from './monster';
 
 var FireType = function ( lvl ) {
   Monster.call( this, lvl );

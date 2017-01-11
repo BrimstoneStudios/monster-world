@@ -1,19 +1,20 @@
-// TODO: refactor into tiny little test components CODE BROKEN
 // Monster class determines the initial stats of the monster based on the level and the multiplier
 // Multipliers defined later on individual monsters.
-var Monster = function ( lvl ) {
-  this.level = lvl;
-  this.hp = 10 + ( this.level * this.hpMult );
-  this.currentHp = this.hp;
-  this.condition = 'healthy';
-  this.attack = ( ( ( ( 5 + this.attackMult ) * 11 ) * this.level ) / 100 ) + 2;
-  this.defense = ( ( ( ( 5 + this.defenseMult ) * 11 ) * this.level ) / 100 ) + 2;
-  this.spAttack = ( ( ( ( 5 + this.spAttackMult ) * 11 ) * this.level ) / 100 ) + 2;
-  this.spDefense = ( ( ( ( 5 + this.spDefenseMult ) * 11 ) * this.level ) / 100 ) + 2;
-  this.speed = ( ( ( ( 5 + this.speedMult ) * 11 ) * this.level ) / 100 ) + 2;
-  this.currentExp = 0;
-  this.expToLevel = 10 + ( 3 * this.level );
-  this.expReward = 5 + ( 3 * this.level );
+export class Monster {
+  constructor(lvl) {
+    this.level = lvl;
+    this.hp = 10 + ( this.level * this.hpMult );
+    this.currentHp = this.hp;
+    this.condition = 'healthy';
+    this.attack = ( ( ( ( 5 + this.attackMult ) * 11 ) * this.level ) / 100 ) + 2;
+    this.defense = ( ( ( ( 5 + this.defenseMult ) * 11 ) * this.level ) / 100 ) + 2;
+    this.spAttack = ( ( ( ( 5 + this.spAttackMult ) * 11 ) * this.level ) / 100 ) + 2;
+    this.spDefense = ( ( ( ( 5 + this.spDefenseMult ) * 11 ) * this.level ) / 100 ) + 2;
+    this.speed = ( ( ( ( 5 + this.speedMult ) * 11 ) * this.level ) / 100 ) + 2;
+    this.currentExp = 0;
+    this.expToLevel = 10 + ( 3 * this.level );
+    this.expReward = 5 + ( 3 * this.level );
+  }
 };
 Monster.prototype.controller = 'computer';
 
@@ -24,8 +25,6 @@ Monster.prototype.update = function () {
 Monster.prototype.render = function ( x, y ) {
   ctx.drawImage( Resources.get( this.sprite ), x, y, 100, 100 );
 };
-
-
 
 // Level up method to update stats based on current level
 Monster.prototype.levelUp = function () {
@@ -64,4 +63,3 @@ Monster.prototype.renderBtlMonStats = function ( player ) {
   }
 };
 
-export default Monster;

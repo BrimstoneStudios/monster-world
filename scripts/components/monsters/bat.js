@@ -1,3 +1,6 @@
+import {NormalType} from './type-normal';
+import items from './../items/items';
+
 var Bat =  function ( lvl, char ) {
   NormalType.call( this, lvl );
   this.sprite = 'images/monsters/bat.gif';
@@ -12,7 +15,7 @@ Bat.prototype.defenseMult = 1;
 Bat.prototype.spAttackMult = 1;
 Bat.prototype.spDefenseMult = 1;
 Bat.prototype.speedMult = 3;
-Bat.prototype.abilities = [abilities.bite, abilities.stare];
+// Bat.prototype.abilities = [abilities.bite, abilities.stare];
 Bat.prototype.items = [
   {
    item: items.net,
@@ -22,3 +25,5 @@ Bat.prototype.items = [
    dropProbablity: 1
   }
 ];
+
+export default Bat;

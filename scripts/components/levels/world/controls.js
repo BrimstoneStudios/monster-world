@@ -17,5 +17,16 @@ export default function ( key, player ) {
         } );
       }
     break;
+
+    case 'left':
+    case 'up':
+    case 'right':
+    case 'down':
+    // this.locationSetter( key );
+      // battleEvent();
+    break;
+    // case 'space':
+      // npcControls( player );
+    // break;
   }
 }
