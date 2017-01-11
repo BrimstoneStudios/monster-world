@@ -5,7 +5,7 @@ var Salamander = function ( lvl ) {
 };
 Salamander.prototype = Object.create( FireType.prototype );
 Salamander.prototype.constructor = Salamander;
-Salamander.prototype.sprite = 'images/monsters/salamander.gif';
+Salamander.prototype.sprite = 'images/monsters/salamander.jpg';
 Salamander.prototype.name = 'Salamander';
 Salamander.prototype.evolve = 7;
 Salamander.prototype.hpMult = 1;

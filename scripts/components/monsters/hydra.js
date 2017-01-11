@@ -5,7 +5,7 @@ var Hydra = function ( lvl ) {
 };
 Hydra.prototype = Object.create( WaterType.prototype );
 Hydra.prototype.constructor = Hydra;
-Hydra.prototype.sprite = 'images/monsters/hydra.png';
+Hydra.prototype.sprite = 'images/monsters/hydra1.jpg';
 Hydra.prototype.name = 'Hydra';
 Hydra.prototype.evolve = 6;
 Hydra.prototype.hpMult = 4;

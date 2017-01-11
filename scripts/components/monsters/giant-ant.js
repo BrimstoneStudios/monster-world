@@ -6,7 +6,7 @@ var GiantAnt = function ( lvl ) {
 
 GiantAnt.prototype = Object.create( GrassType.prototype );
 GiantAnt.prototype.constructor = GiantAnt;
-GiantAnt.prototype.sprite = 'images/monsters/giant-ant.gif';
+GiantAnt.prototype.sprite = 'images/monsters/giant-ant.jpg';
 GiantAnt.prototype.name = 'Giant Ant';
 GiantAnt.prototype.evolve = 6;
 GiantAnt.prototype.hpMult = 4;
