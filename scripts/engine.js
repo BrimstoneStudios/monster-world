@@ -107,7 +107,7 @@ var Engine = ( function ( global ) {
         //       * so that we get the benefits of caching these images, since
         //       * we're using them over and over.
         //       */
-        ctx.drawImage( Resources.get( currentLevel.tiles[row][col] ), col * 50, row * 50 );
+        ctx.drawImage( Resources.get( currentMap.tiles[row][col] ), col * 50, row * 50 );
       }
     }
 
@@ -124,18 +124,18 @@ var Engine = ( function ( global ) {
     */
     // allNPC.forEach( function ( npc ) {
     //   for (let i = 0; i < npc.location.level.length; i++) {
-    //     if ( npc.location.level[i] === currentLevel ) {
+    //     if ( npc.location.level[i] === currentMap ) {
     //        npc.render();
     //     }
     //   }
     // });
-    if (typeof currentLevel.renderText !== 'undefined') {
-      currentLevel.renderText();
+    if (typeof currentMap.renderText !== 'undefined') {
+      currentMap.renderText();
     }
 
-    // } else if ( currentLevel === inventoryMenu ) {
+    // } else if ( currentMap === inventoryMenu ) {
     //   menu.renderInventoryMenu();
-    // } else if ( currentLevel === battleLevel ) {
+    // } else if ( currentMap === battleLevel ) {
     //   battle.playerBattleMonster.render( 50, 200 );
     //   battle.playerBattleMonster.renderBtlMonStats( 'player' );
     //   battle.enemy.render( 550, 40 );

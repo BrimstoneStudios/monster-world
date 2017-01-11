@@ -1,12 +1,13 @@
-import allLevels from './../all-levels';
+import allMaps from './../all-maps';
+import resolveBattleEvent from './../../battle/resolve-battle-event';
 
 export default function ( key, player ) {
   switch ( key ) {
     case 'shift':
-      player.savedAttributes.lastLevel = currentLevel;
+      player.savedAttributes.lastLevel = currentMap;
       player.savedAttributes.location.x = player.location.x;
       player.savedAttributes.location.y = player.location.y;
-      currentLevel = allLevels.mainMenu;
+      currentMap = allMaps.mainMenu;
       player.initLocation();
     break;
 
@@ -23,7 +24,7 @@ export default function ( key, player ) {
     case 'right':
     case 'down':
     // this.locationSetter( key );
-      // battleEvent();
+      resolveBattleEvent();
     break;
     // case 'space':
       // npcControls( player );

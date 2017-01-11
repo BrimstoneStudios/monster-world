@@ -1,14 +1,18 @@
-import allLevels from './../levels/all-levels';
+import allMaps from './../maps/all-maps';
 
 export default function ( key ) {
   var borderedLevels;
-  var boundaries = currentLevel.boundaries;
-  var movement = currentLevel.movement;
+  var boundaries = currentMap
+.boundaries;
+  var movement = currentMap
+.movement;
   var locX = this.location.x;
   var locY = this.location.y;
 
-  if ( typeof currentLevel.borderedLevels !== 'undefined' ) {
-    borderedLevels =  currentLevel.borderedLevels;
+  if ( typeof currentMap
+.borderedLevels !== 'undefined' ) {
+    borderedLevels =  currentMap
+.borderedLevels;
   } else {
     borderedLevels = false;
   }
@@ -17,25 +21,29 @@ export default function ( key ) {
     this.location.x -= movement.x;
     if ( this.location.x <= boundaries.left ) {
       this.location.x = boundaries.left;
-      allLevels.borders();
+      allMaps
+.borders();
     }
   } else if ( key === 'up' ) {
     this.location.y -= movement.y;
     if ( this.location.y <= boundaries.top ) {
       this.location.y = boundaries.top;
-      allLevels.borders();
+      allMaps
+.borders();
     }
   } else if ( key === 'right' ) {
     this.location.x += movement.x;
     if ( this.location.x >= boundaries.right ) {
       this.location.x = boundaries.right;
-      allLevels.borders();
+      allMaps
+.borders();
     }
   } else if ( key === 'down' ) {
     this.location.y += movement.y;
     if ( this.location.y >= boundaries.bottom ) {
       this.location.y = boundaries.bottom;
-      allLevels.borders();
+      allMaps
+.borders();
     }
   }
 }

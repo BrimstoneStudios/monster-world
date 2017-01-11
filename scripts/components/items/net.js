@@ -4,7 +4,8 @@ export default {
   func: function () {
     var enemy = battle.enemy;
 
-    if ( currentLevel === levels.battleLevel ) {
+    if ( currentMap
+ === levels.battleLevel ) {
       var hpPercent = enemy.currentHp / enemy.hp;
 
       var catchMonster = function ( probability ) {

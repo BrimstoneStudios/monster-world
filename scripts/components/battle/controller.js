@@ -104,7 +104,8 @@ var battleControls = function ( key, player ) {
     case 'battleRunAway':
       if ( key === 'space' ) {
         battleState = 0;
-        currentLevel = player.savedAttributes.lastLevel;
+        currentMap
+ = player.savedAttributes.lastLevel;
       }
     break;
 
@@ -125,7 +126,8 @@ var battleControls = function ( key, player ) {
 
     case 'caughtMonster':
       if ( key === 'space' ) {
-        currentLevel = player.savedAttributes.lastLevel;
+        currentMap
+ = player.savedAttributes.lastLevel;
         battleState = 0;
       }
     break;
@@ -143,7 +145,8 @@ var battleControls = function ( key, player ) {
         if ( battle.itemsDropped.length > 0 ) {
           battleState = 'itemDrop';
         } else {
-          currentLevel = player.savedAttributes.lastLevel;
+          currentMap
+ = player.savedAttributes.lastLevel;
           battleState = 0;
         }
       }
@@ -151,7 +154,8 @@ var battleControls = function ( key, player ) {
 
     case 'itemDrop':
       if ( key === 'space' ) {
-        currentLevel = player.savedAttributes.lastLevel;
+        currentMap
+ = player.savedAttributes.lastLevel;
         battleState = 0;
       }
     break;

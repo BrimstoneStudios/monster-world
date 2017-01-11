@@ -1,5 +1,4 @@
 import tiles from './../world-tiles.js';
-import allLevels from './../all-levels.js';
 import controls from './controls';
 
 var Wa = tiles.Wa;

@@ -1,4 +1,5 @@
 export default function () {
-  currentLevel = levels.gameOver;
+  currentMap
+ = levels.gameOver;
   player.initLocation();
 }

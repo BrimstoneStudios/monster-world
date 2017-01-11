@@ -4,8 +4,10 @@ export default function () {
     ctx.drawImage( Resources.get( player.monsterInventory[i].sprite ), 85, 50 + j );
     ctx.fillText( player.monsterInventory[i].name, 155, 85 + j );
 
-    if ( currentLevel.displayStats ) {
-      let monster = currentLevel.displayMonsterIndex;
+    if ( currentMap
+.displayStats ) {
+      let monster = currentMap
+.displayMonsterIndex;
 
       ctx.font = '25px Arial';
       ctx.fillText( 'Level:', 430, 65 );

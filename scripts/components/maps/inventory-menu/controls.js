@@ -1,15 +1,15 @@
-import allLevels from './../all-levels';
+import allMaps from './../all-maps';
 
 export default function ( key, player ) {
   switch ( key ) {
     case 'shift':
-      currentLevel = allLevels.mainMenu;
+      currentMap = allMaps.mainMenu;
       player.initLocation();
     break;
 
     case 'space':
       useItem();
-      currentLevel.setBoundaries();
+      currentMap.setBoundaries();
       player.initLocation();
     break;
   }

@@ -36,7 +36,7 @@ export default {
   monsters: {
     minLevel: 1,
     maxLevel: 2,
-    monster: [Bat, GiantRat, Munchkin]
+    monster: [Bat]//, GiantRat, Munchkin]
   },
   controls: controls,
 };

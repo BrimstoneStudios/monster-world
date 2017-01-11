@@ -1,8 +1,10 @@
 import {Player} from './components/player/player';
-import allLevels from './components/levels/all-levels';
+import startScreen from './components/maps/start-screen/start-screen';
 import allItems from './components/items/items';
 
-var currentLevel = window.currentLevel = allLevels.startScreen;
+var currentMap
+ = window.currentMap
+ = startScreen;
 var player = window.player = new Player();
 var items = window.items = allItems;
 // var allNPC = [healer];

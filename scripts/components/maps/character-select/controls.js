@@ -1,14 +1,14 @@
-import allLevels from './../all-levels';
+import allMaps from './../all-maps';
 
 export default function ( key, player ) {
   if ( key === 'space' ) {
-    if ( player.location.x === allLevels.characterSelect.boundaries.right ) {
+    if ( player.location.x === currentMap.boundaries.right ) {
       player.savedAttributes.sprite = 'images/characters/monk.gif';
     } else {
       player.savedAttributes.sprite = 'images/characters/deathCaster.gif';
     }
 
-    currentLevel = allLevels.monsterSelect;
+    currentMap = allMaps.monsterSelect;
     player.initLocation();
   }
 }
