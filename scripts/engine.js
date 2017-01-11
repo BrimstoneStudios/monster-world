@@ -132,19 +132,9 @@ var Engine = ( function ( global ) {
     if (typeof currentLevel.renderText !== 'undefined') {
       currentLevel.renderText();
     }
-    // if ( currentLevel === characterSelect ) {
-    //   menu.renderCharacterSelect();
-    // } else if ( currentLevel === monsterSelect ) {
-    //   menu.renderMonsterSelect();
-    // } else if ( currentLevel === mainMenu ) {
-    //   menu.renderMainMenu();
+
     // } else if ( currentLevel === inventoryMenu ) {
     //   menu.renderInventoryMenu();
-    // } else if ( currentLevel === monsterInventory ) {
-    //   menu.renderMonsterInventory();
-    //   if ( currentLevel.displayStats ) {
-    //     menu.renderMonsterStat( currentLevel.displayMonsterIndex );
-    //   }
     // } else if ( currentLevel === battleLevel ) {
     //   battle.playerBattleMonster.render( 50, 200 );
     //   battle.playerBattleMonster.renderBtlMonStats( 'player' );

@@ -1,5 +1,5 @@
 import controls from './controls';
-import renderText from './rendered-text';
+import renderText from './render-text';
 import tiles from './../world-tiles.js';
 
 var Wh = tiles.Wh;

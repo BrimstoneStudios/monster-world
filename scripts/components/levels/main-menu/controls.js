@@ -11,11 +11,10 @@ export default function ( key, player ) {
     case 'space':
       if ( player.location.y === 247 ) {
         currentLevel = allLevels.monsterInventoryMenu;
-        currentLevel.setBoundaries();
       } else {
-        currentLevel = allLevels.itemInventory;
-        // setInventoryLevelBoundaries();
+        currentLevel = allLevels.inventoryMenu;
       }
+      currentLevel.setBoundaries();
       player.initLocation();
     break;
   }
