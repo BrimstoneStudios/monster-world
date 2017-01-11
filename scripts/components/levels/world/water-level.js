@@ -1,12 +1,11 @@
-levels.waterLevel = {
-  borderedLevels: {
-    right: {
-      levelName: 'firstLevel',
-      initLocation: {
-        x: 10
-      }
-    }
-  },
+import tiles from './../world-tiles.js';
+import allLevels from './../all-levels.js';
+import controls from './controls';
+
+var Wa = tiles.Wa;
+var Sa = tiles.Sa;
+
+export default {
   boundaries: {
     left: -40,
     top: -40,
@@ -34,9 +33,10 @@ levels.waterLevel = {
     [Wa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa],
     [Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa],
   ],
-  monsters: {
-    minLevel: 1,
-    maxLevel: 2,
-    monster: [Bat, GiantRat, Munchkin]
-  }
-};
+  // monsters: {
+  //   minLevel: 1,
+  //   maxLevel: 2,
+  //   monster: [Bat, GiantRat, Munchkin]
+  // }
+  controls: controls,
+}

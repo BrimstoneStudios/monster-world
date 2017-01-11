@@ -1,5 +1,4 @@
 import allLevels from './../levels/all-levels';
-console.log(allLevels.borders)
 
 export default function ( key ) {
   var borderedLevels;
@@ -13,7 +12,6 @@ export default function ( key ) {
   } else {
     borderedLevels = false;
   }
-
 
   if ( key === 'left' ) {
     this.location.x -= movement.x;

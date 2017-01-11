@@ -1,19 +1,10 @@
 import tiles from './../world-tiles.js';
-import allLevels from './../all-levels.js';
 import controls from './controls';
 
 var La = tiles.La
 var Ro = tiles.Ro
 
 export default {
-  borderedLevels: {
-    // bottom: {
-    //   levelName: 'firstLevel',
-    //   initLocation: {
-    //     y: 10
-    //   }
-    // }
-  },
   boundaries: {
     left: -40,
     top: -40,

@@ -1,18 +1,10 @@
 import tiles from './../world-tiles.js';
-import allLevels from './../all-levels.js';
 import controls from './controls';
 
 var Di = tiles.Di;
 var Gr = tiles.Gr;
 
-
-
-
 export default {
-  borderedLevels: {
-    left: 'waterLevel',
-    top: 'fireLevel',
-  },
   boundaries: {
     left: -40,
     top: -40,
@@ -46,5 +38,4 @@ export default {
     // monster: [Bat, GiantRat, Munchkin]
   },
   controls: controls,
-  // renderText: renderText,
 };
