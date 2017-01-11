@@ -23,4 +23,3 @@ export default {
   controls: controls,
   renderText: renderText,
 }
-

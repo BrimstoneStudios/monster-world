@@ -1,4 +1,7 @@
-levels.monsterInventory = {
+import allWhite from './../all-white';
+import setBoundaries from './set-boundaries';
+
+export default {
   boundaries: {
     left: 20,
     top: 42,
@@ -17,5 +20,7 @@ levels.monsterInventory = {
     y: 50
   },
   tiles : allWhite,
-  sprite: 'images/characters/menuSelector.png'
-};
+  sprite: 'images/characters/menuSelector.png',
+  setBoundaries: setBoundaries,
+}
+

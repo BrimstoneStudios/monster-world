@@ -23,3 +23,4 @@ var setBattleBoundaries = function ( keyPressed ) {
   levels.battleLevel.boundaries.bottom = bottomLimit;
   levels.battleLevel.boundaries.right = rightLimit;
 }
+

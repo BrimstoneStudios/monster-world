@@ -1,3 +1,5 @@
+import allLevels from './../all-levels';
+
 export default function ( key, player ) {
   switch ( key ) {
     case 'shift':
@@ -8,11 +10,11 @@ export default function ( key, player ) {
 
     case 'space':
       if ( player.location.y === 247 ) {
-        currentLevel = levels.monsterInventory;
-        setMonsterInventoryLevelBoundaries();
+        currentLevel = allLevels.monsterInventoryMenu;
+        currentLevel.setBoundaries();
       } else {
-        currentLevel = levels.inventoryMenu;
-        setInventoryLevelBoundaries();
+        currentLevel = allLevels.itemInventory;
+        // setInventoryLevelBoundaries();
       }
       player.initLocation();
     break;

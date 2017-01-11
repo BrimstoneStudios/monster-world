@@ -1,8 +1,3 @@
-var setMonsterInventoryLevelBoundaries = function () {
-  levels.monsterInventory.boundaries.bottom = levels.monsterInventory.boundaries.top;
-  levels.monsterInventory.boundaries.bottom += ( ( player.monsterInventory.length - 1 ) * levels.monsterInventory.movement.y );
-};
-
 var monsterInventoryMenuControls = function ( key, player ) {
   switch ( key ) {
     case 'shift':
