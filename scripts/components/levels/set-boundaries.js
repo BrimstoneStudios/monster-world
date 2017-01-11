@@ -1,3 +1,4 @@
+
 var setBattleBoundaries = function ( keyPressed ) {
   var battleState = battle.state;
   var bottomLimit = levels.battleLevel.boundaries.bottom;

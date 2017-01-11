@@ -7,25 +7,19 @@ import mainMenu from './main-menu/main-menu';
 import firstLevel from './world/first-level';
 import fireLevel from './world/fire-level';
 
-
-var borders function () {
-  firstLevel.borders = {
-    top: fireLevel,
-    // left: waterLevel,
+var borders = function () {
+  if (currentLevel === firstLevel) {
+    if (player.location.y === currentLevel.boundaries.top) {
+      currentLevel = fireLevel;
+      player.location.y = currentLevel.boundaries.bottom - currentLevel.movement.y;
+    }
+  } else if (currentLevel === fireLevel) {
+    if (player.location.y === currentLevel.boundaries.bottom) {
+      currentLevel = firstLevel;
+      player.location.y = currentLevel.boundaries.top + currentLevel.movement.y;
+    }
   }
 };
-
-var checkBorders function () {
-  if ( player.location.x === currentLevel.boundaries.right ) {
-    currentLevel = currentLevel.boundaries.right;
-  } else if ( player.location.x === currentLevel.boundaries.left ) {
-    currentLevel = currentLevel.boundaries.left;
-  } else if ( player.location.y === currentLevel.boundaries.top ) {
-    currentLevel = currentLevel.boundaries.top;
-  } else if ( player.location.y === currentLevel.boundaries.bottom ) {
-    currentLevel = currentLevel.boundaries.bottom;
-  }
-}
 
 export default {
   startScreen: startScreen,
@@ -36,4 +30,5 @@ export default {
   inventoryMenu: inventoryMenu,
   firstLevel: firstLevel,
   fireLevel: fireLevel,
+  borders: borders,
 }
