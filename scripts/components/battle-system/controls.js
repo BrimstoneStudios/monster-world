@@ -75,13 +75,6 @@ export default function ( key, player ) {
     }
     break;
 
-    case 'battleFailedRunAway':
-      if ( key === 'space' ) {
-        battleState = 'AI';
-        abilityUsed( enemy );
-      }
-    break;
-
     case 'caughtMonster':
       if ( key === 'space' ) {
         currentMap = player.savedAttributes.lastLevel;

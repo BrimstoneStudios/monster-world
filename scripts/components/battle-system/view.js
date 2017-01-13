@@ -51,8 +51,6 @@ Menu.prototype.renderBattleText = function () {
     for ( let i = 0, j = 0; i < player.monsterInventory.length; i++, j = j + 40 ) {
       ctx.fillText( player.monsterInventory[i].name, coordinates.leftColumn, coordinates.topRow + j );
     }
-  } else if ( battleState === 'battleFailedRunAway' ) {
-    ctx.fillText( 'Escape failed. FIGHT!', coordinates.leftColumn, coordinates.topRow );
   } else if ( battleState === 'battleWinText' ) {
     ctx.fillText( 'You have defeated ' + enemy.name + '!', coordinates.leftColumn, coordinates.topRow );
   }
