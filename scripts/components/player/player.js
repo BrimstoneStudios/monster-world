@@ -19,10 +19,8 @@ export class Player {
   }
 
   update () {
-    if ( typeof currentMap
-.sprite !== 'undefined' ) {
-      this.sprite = currentMap
-.sprite;
+    if ( typeof currentMap.sprite !== 'undefined' ) {
+      this.sprite = currentMap.sprite;
     } else {
       this.sprite = this.savedAttributes.sprite;
     }

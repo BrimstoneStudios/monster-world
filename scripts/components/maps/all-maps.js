@@ -4,6 +4,7 @@ import monsterSelect from './monster-select/monster-select';
 import monsterInventoryMenu from './monster-inventory-menu/monster-inventory-menu';
 import inventoryMenu from './inventory-menu/inventory-menu';
 import mainMenu from './main-menu/main-menu';
+import battle from './battle/battle';
 import firstMap from './world/first-map';
 import fireMap from './world/fire-map';
 import waterMap from './world/water-map';
@@ -54,6 +55,7 @@ export default {
   mainMenu: mainMenu,
   monsterInventoryMenu: monsterInventoryMenu,
   inventoryMenu: inventoryMenu,
+  battle: battle,
   firstMap: firstMap,
   fireMap: fireMap,
   waterMap: waterMap,

@@ -5,7 +5,7 @@ export default {
   func: function () {
 
     if ( currentMap
- === levels.battleLevel ) {
+ === levels.battleMap ) {
       monster = battle.playerBattleMonster;
     } else {
       monster = player.monsterInventory[0];

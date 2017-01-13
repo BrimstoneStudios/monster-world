@@ -10,15 +10,7 @@ Menu.prototype.renderBattleText = function () {
   var coordinates = battle.coordinates;
 
   ctx.font='30px Arial';
-
-  if ( battleState === 'wildIntroText' ) {
-    ctx.fillText( 'A wild ' + enemy.name + ' has appeared!', coordinates.leftColumn, coordinates.topRow );
-  } else if ( battleState === 'battleMenuMain' ) {
-    ctx.fillText( 'Fight', coordinates.leftColumn, coordinates.topRow );
-    ctx.fillText( 'Bag', coordinates.middleColumn, coordinates.topRow );
-    ctx.fillText( 'Monsters', coordinates.leftColumn, coordinates.middleRow );
-    ctx.fillText( 'Run', coordinates.middleColumn, coordinates.middleRow );
-  } else if ( battleState === 'playerMove' ) {
+ else if ( battleState === 'playerMove' ) {
     ctx.fillText( 'You hit enemy ' + enemy.name + ' with ' + battle.abilityUsed.name, coordinates.leftColumn, coordinates.topRow );
     // Additional text if not very or super effective
     if ( battle.abilityUsed.damageMod === 'super' ) {
@@ -55,26 +47,12 @@ Menu.prototype.renderBattleText = function () {
     for ( let i = 0, j = 0; i < battle.itemsDropped.length; i++, j += 40 ) {
       ctx.fillText( enemy.name + ' dropped a ' + battle.itemsDropped[i] + '!', coordinates.leftColumn, coordinates.topRow + j );
     }
-  } else if ( battleState === 'battleMenuFight' ) {
-    for ( let i = 0, j = 0; i < battle.playerBattleMonster.abilities.length; i++, j = j + 40 ) {
-      ctx.fillText( battle.playerBattleMonster.abilities[i].name, coordinates.leftColumn, coordinates.topRow + j );
-    }
   } else if ( battleState === 'monsterInvMenu' ) {
     for ( let i = 0, j = 0; i < player.monsterInventory.length; i++, j = j + 40 ) {
       ctx.fillText( player.monsterInventory[i].name, coordinates.leftColumn, coordinates.topRow + j );
     }
-  } else if ( battleState === 'invMenu' ) {
-    if ( player.inventory.length > 0 ) {
-      for ( let i = 0, j = 0; i < player.inventory.length; i++, j = j + 40 ) {
-        ctx.fillText( player.inventory[i].name, coordinates.leftColumn, coordinates.topRow + j );
-      }
-    } else {
-      ctx.fillText( 'You have no items to use!', coordinates.leftColumn, coordinates.topRow );
-    }
   } else if ( battleState === 'battleFailedRunAway' ) {
     ctx.fillText( 'Escape failed. FIGHT!', coordinates.leftColumn, coordinates.topRow );
-  } else if ( battleState === 'battleRunAway' ) {
-    ctx.fillText( 'You ran away!? You wimp...', coordinates.leftColumn, coordinates.topRow );
   } else if ( battleState === 'battleWinText' ) {
     ctx.fillText( 'You have defeated ' + enemy.name + '!', coordinates.leftColumn, coordinates.topRow );
   }

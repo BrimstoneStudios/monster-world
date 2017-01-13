@@ -1,5 +1,5 @@
 import allMaps from './../all-maps';
-import resolveBattleEvent from './../../battle/resolve-battle-event';
+import resolveBattleEvent from './../battle/resolve-battle-event';
 
 export default function ( key, player ) {
   switch ( key ) {

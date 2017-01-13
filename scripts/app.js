@@ -1,11 +1,9 @@
 import {Player} from './components/player/player';
-import startScreen from './components/maps/start-screen/start-screen';
+import allMaps from './components/maps/all-maps';
 import allItems from './components/items/items';
 
-var currentMap
- = window.currentMap
- = startScreen;
 var player = window.player = new Player();
+var currentMap = window.currentMap = allMaps.startScreen;
 var items = window.items = allItems;
 // var allNPC = [healer];
 

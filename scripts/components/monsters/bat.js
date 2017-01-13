@@ -1,10 +1,13 @@
 import {NormalType} from './type-normal';
 import items from './../items/items';
 
-var Bat =  function ( lvl, char ) {
-  NormalType.call( this, lvl );
-  this.sprite = 'images/monsters/bat.gif';
-};
+export class Bat {
+  constructor(lvl) {
+    NormalType.call( this, lvl );
+    this.sprite = 'images/monsters/bat.gif';
+  }
+}
+
 Bat.prototype = Object.create( NormalType.prototype );
 Bat.prototype.constructor = Bat;
 Bat.prototype.name = 'Bat';
@@ -25,5 +28,3 @@ Bat.prototype.items = [
    dropProbablity: 1
   }
 ];
-
-export default Bat;

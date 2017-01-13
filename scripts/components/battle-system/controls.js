@@ -2,21 +2,21 @@
   // bottomLimit = 390;
   // rightLimit = 210;
 // }  else if ( battleState === 'battleMenuFight' ) {
-//   bottomLimit = ( levels.battleLevel.boundaries.top + ( ( battle.playerBattleMonster.abilities.length - 1 ) * levels.battleLevel.movement.y ) );
-//   rightLimit = levels.battleLevel.boundaries.left;
+//   bottomLimit = ( levels.battleMap.boundaries.top + ( ( battle.playerBattleMonster.abilities.length - 1 ) * levels.battleMap.movement.y ) );
+//   rightLimit = levels.battleMap.boundaries.left;
 // } else if ( battleState === 'invMenu' ) {
-//   bottomLimit = ( 350 + ( ( player.inventory.length - 1 ) * levels.battleLevel.movement.y ) );
-//   rightLimit = levels.battleLevel.boundaries.left;
+//   bottomLimit = ( 350 + ( ( player.inventory.length - 1 ) * levels.battleMap.movement.y ) );
+//   rightLimit = levels.battleMap.boundaries.left;
 // } else if  ( battleState === 'monsterInvMenu' ) {
-//   bottomLimit = ( 350 + ( ( player.monsterInventory.length - 1 ) * levels.battleLevel.movement.y ) );
-//   rightLimit = levels.battleLevel.boundaries.left;
+//   bottomLimit = ( 350 + ( ( player.monsterInventory.length - 1 ) * levels.battleMap.movement.y ) );
+//   rightLimit = levels.battleMap.boundaries.left;
 // } else {
-//   bottomLimit = levels.battleLevel.boundaries.top;
-//   rightLimit = levels.battleLevel.boundaries.left;
+//   bottomLimit = levels.battleMap.boundaries.top;
+//   rightLimit = levels.battleMap.boundaries.left;
 // }
 
 
-var battleControls = function ( key, player ) {
+export default function ( key, player ) {
   var battleState = battle.state;
   var playerBattleMonster = battle.playerBattleMonster;
   var enemy = battle.enemy;
@@ -25,11 +25,6 @@ var battleControls = function ( key, player ) {
   setBattleBoundaries( key );
 
   switch ( battleState ) {
-    case 'wildIntroText':
-      if ( key === 'space' ) {
-        battleState = 'battleMenuMain';
-      }
-    break;
 
     case 'battleMonsterDie':
       if ( key === 'space' ) {
@@ -59,27 +54,6 @@ var battleControls = function ( key, player ) {
       }
     break;
 
-    case 'battleMenuMain':
-      if ( key === 'space' ) {
-        if ( player.location.x === levels.battleLevel.boundaries.left && player.location.y === levels.battleLevel.boundaries.top ) {
-          battleState = 'battleMenuFight';
-        } else if ( player.location.x === levels.battleLevel.boundaries.left && player.location.y === levels.battleLevel.boundaries.bottom ) {
-          //Monsters inventory in battleMenuMain
-          battleState = 'monsterInvMenu';
-        } else if ( player.location.x === levels.battleLevel.boundaries.right && player.location.y === levels.battleLevel.boundaries.bottom ) {
-          //Run in battleMenuMain
-          if ( runFromBattle() ) {
-            battleState = 'battleRunAway';
-          } else {
-            battleState = 'battleFailedRunAway';
-          }
-        } else {
-          // Inventory in battleMenuMain
-          battleState = 'invMenu';
-        }
-      }
-    break;
-
     case 'battleMenuFight':
     if ( key === 'shift' ) {
       battleState = 'battleMenuMain';
@@ -101,14 +75,6 @@ var battleControls = function ( key, player ) {
     }
     break;
 
-    case 'battleRunAway':
-      if ( key === 'space' ) {
-        battleState = 0;
-        currentMap
- = player.savedAttributes.lastLevel;
-      }
-    break;
-
     case 'battleFailedRunAway':
       if ( key === 'space' ) {
         battleState = 'AI';
@@ -116,18 +82,9 @@ var battleControls = function ( key, player ) {
       }
     break;
 
-    case 'invMenu':
-      if ( key === 'space' ) {
-        battleState = useItem();
-      } else if ( key === 'shift' ) {
-        battleState = 'battleMenuMain';
-      }
-    break;
-
     case 'caughtMonster':
       if ( key === 'space' ) {
-        currentMap
- = player.savedAttributes.lastLevel;
+        currentMap = player.savedAttributes.lastLevel;
         battleState = 0;
       }
     break;
@@ -145,8 +102,7 @@ var battleControls = function ( key, player ) {
         if ( battle.itemsDropped.length > 0 ) {
           battleState = 'itemDrop';
         } else {
-          currentMap
- = player.savedAttributes.lastLevel;
+          currentMap = player.savedAttributes.lastLevel;
           battleState = 0;
         }
       }
@@ -154,8 +110,7 @@ var battleControls = function ( key, player ) {
 
     case 'itemDrop':
       if ( key === 'space' ) {
-        currentMap
- = player.savedAttributes.lastLevel;
+        currentMap = player.savedAttributes.lastLevel;
         battleState = 0;
       }
     break;
@@ -166,7 +121,7 @@ var battleControls = function ( key, player ) {
   battle.state = battleState;
 
   if ( battleState === 0 ) {
-    player.location.x = player.savedAttributes.location.x;
-    player.location.y = player.savedAttributes.location.y;
+    // player.location.x = player.savedAttributes.location.x;
+    // player.location.y = player.savedAttributes.location.y;
   }
-};
+}

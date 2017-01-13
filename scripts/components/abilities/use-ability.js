@@ -6,7 +6,7 @@ export default function ( attacker ) {
 		defender = battle.enemy;
 
 		for ( let i = 0; i < battle.playerBattleMonster.abilities.length; i++ ) {
-			if ( player.location.y === levels.battleLevel.boundaries.top + ( i * levels.battleLevel.movement.y ) ) {
+			if ( player.location.y === levels.battleMap.boundaries.top + ( i * levels.battleMap.movement.y ) ) {
 				ability = battle.abilityUsed = battle.playerBattleMonster.abilities[i];
 				break;
 			}

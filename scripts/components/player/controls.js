@@ -1,4 +1,4 @@
-// if ( currentMap != 'battleLevel') {
+// if ( currentMap != 'battleMap') {
 // Handles the player input, called on every key press
 export default function ( key ) {
     this.render();

@@ -132,16 +132,12 @@ var Engine = ( function ( global ) {
     if (typeof currentMap.renderText !== 'undefined') {
       currentMap.renderText();
     }
-
-    // } else if ( currentMap === inventoryMenu ) {
-    //   menu.renderInventoryMenu();
-    // } else if ( currentMap === battleLevel ) {
-    //   battle.playerBattleMonster.render( 50, 200 );
-    //   battle.playerBattleMonster.renderBtlMonStats( 'player' );
-    //   battle.enemy.render( 550, 40 );
-    //   battle.enemy.renderBtlMonStats( 'enemy' );
-    //   menu.renderBattleText();
-    // }
+    if (typeof currentMap.battleSystem !== 'undefined' ) {
+      currentMap.battleSystem.playerBattleMonster.render( 50, 200 );
+      currentMap.battleSystem.playerBattleMonster.renderBtlMonStats( 'player' );
+      currentMap.battleSystem.enemy.render( 550, 40 );
+      currentMap.battleSystem.enemy.renderBtlMonStats( 'enemy' );
+    }
 
     player.render();
   }

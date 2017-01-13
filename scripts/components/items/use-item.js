@@ -10,7 +10,7 @@ export default function () {
         player.inventory.splice( i, 1 );
       }
       if ( currentMap
- === levels.battleLevel ) {
+ === levels.battleMap ) {
         return itemUsed.battleState;
       }
     }
