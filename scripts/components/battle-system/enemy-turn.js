@@ -16,7 +16,6 @@ export default {
   },
   controls: function ( key ) {
     if ( key === 'space' ) {
-      abilities.useAbility( currentMap.battleSystem.enemy );
       checkWinCondition( currentMap.battleSystem.playerBattleMonster );
       if ( currentMap.battleSystem. playerBattleMonster.currentHp === 0 ) {
         // changeBattleState( playerMonsterDies );
