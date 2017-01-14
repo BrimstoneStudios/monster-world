@@ -1,6 +1,12 @@
-var LavaOgre = function ( lvl ) {
-  FireType.call( this, lvl );
-};
+import {FireType} from './type-fire';
+import items from './../items/items';
+
+export class LavaOgre {
+  constructor(lvl) {
+    FireType.call( this, lvl );
+  }
+}
+
 LavaOgre.prototype = Object.create( FireType.prototype );
 LavaOgre.prototype.constructor = LavaOgre;
 LavaOgre.prototype.sprite = 'images/monsters/lavaogre.gif';
@@ -12,4 +18,4 @@ LavaOgre.prototype.defenseMult = 1;
 LavaOgre.prototype.spAttackMult = 2;
 LavaOgre.prototype.spDefenseMult = 2;
 LavaOgre.prototype.speedMult = 3;
-LavaOgre.prototype.abilities = [abilities.scratch, abilities.stare, abilities.fireBreath];
+// LavaOgre.prototype.abilities = [abilities.scratch, abilities.stare, abilities.fireBreath];

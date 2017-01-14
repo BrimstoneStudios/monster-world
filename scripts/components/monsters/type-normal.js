@@ -4,7 +4,8 @@ export class NormalType {
   constructor(lvl) {
     Monster.call( this, lvl );
   }
-};
+}
+
 NormalType.prototype = Object.create( Monster.prototype );
 NormalType.prototype.constructor = NormalType;
 NormalType.prototype.type = 'normal';

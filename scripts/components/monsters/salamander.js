@@ -1,4 +1,4 @@
-import FireType from './type-fire';
+import {FireType} from './type-fire';
 
 var Salamander = function ( lvl ) {
   FireType.call( this, lvl );

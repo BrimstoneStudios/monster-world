@@ -1,11 +1,11 @@
 import {Monster} from './monster';
 
-var FireType = function ( lvl ) {
-  Monster.call( this, lvl );
-};
+export class FireType {
+  constructor(lvl) {
+    Monster.call( this, lvl );
+  }
+}
 
 FireType.prototype = Object.create( Monster.prototype );
 FireType.prototype.constructor = FireType;
 FireType.prototype.type = 'fire';
-
-export default FireType;
