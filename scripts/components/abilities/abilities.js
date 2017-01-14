@@ -1,4 +1,6 @@
 import checkTypeEffectiveness from './check-type-effectiveness';
+import types from './../type/types';
+
 var allAbilities = {
     useAbility: function ( attacker ) {
         var ability;
@@ -47,37 +49,37 @@ class Abilities {
 // Ability type effectiveness data
 // allAbilities.this = new Abilities('name', accuracy, 'category', power, 'type');
 
-allAbilities.bite = new Abilities('Bite', 0.9, 'physical', 45, 'normal');
+allAbilities.bite = new Abilities('Bite', 0.9, 'physical', 45, types.normal);
 allAbilities.growl = new Abilities('Growl', 1, 'physical', 0, 'status');
     // attribute: 'attack',
     // effect: 'Decrease opponent attack damage',
     // modifier: 0.8,
     // targetSelf: false,
-allAbilities.scratch = new Abilities('Scratch', 1, 'physical', 40, 'normal');
-allAbilities.stare = new Abilities('Stare', 1, 'status', 1, 'normal');
+allAbilities.scratch = new Abilities('Scratch', 1, 'physical', 40, types.normal);
+allAbilities.stare = new Abilities('Stare', 1, 'status', 1, types.normal);
     // attribute: 'defense',
     // effect: 'Decrease opponent defense',
     // modifier: 0.9,
     // targetSelf: false,
-allAbilities.fireBreath = new Abilities('Fire Breath', 0.9, 'special', 50, 'fire');
+allAbilities.fireBreath = new Abilities('Fire Breath', 0.9, 'special', 50, types.fire);
     // attribute: 'condition',
     // conditionApplied: 'burn',
     // effect: 'Chance of burn',
     // modifier: 0.1,
     // targetSelf: false,
-allAbilities.fireBlast = new Abilities('Fire Blast', 0.9, 'special', 80, 'fire');
+allAbilities.fireBlast = new Abilities('Fire Blast', 0.9, 'special', 80, types.fire);
     // attribute: 'condition',
     // conditionApplied: 'burn',
     // effect: 'Chance of burn',
     // modifier: 0.1,
     // targetSelf: false,
-allAbilities.razorLeaf = new Abilities('Razor Leaf', 0.9, 'special', 50000, 'grass');
+allAbilities.razorLeaf = new Abilities('Razor Leaf', 0.9, 'special', 50000, types.grass);
     // attribute: 'defense',
     // conditionApplied: 'burn',
     // effect: 'Reduces defending monster defense',
     // modifier: 0.9,
     // targetSelf: false,
-allAbilities.waterBlast = new Abilities('Water Blast', 0.9, 'special', 50, 'water');
+allAbilities.waterBlast = new Abilities('Water Blast', 0.9, 'special', 50, types.water);
     // attribute: 'attack',
     // category: 'special',
     // effect: 'Reduces defending monsters attack',

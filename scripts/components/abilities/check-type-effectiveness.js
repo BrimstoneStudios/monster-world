@@ -1,5 +1,6 @@
 export default function ( ability, defender ) {
-  console.log(ability)
+  var damageModifier;
+
   if ( ability.type.effective.indexOf( defender.type ) >= 0 ) {
     currentMap.battleSystem.abilityUsed.damageMod = 'super';
     damageModifier = 1.5;
