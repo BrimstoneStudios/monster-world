@@ -68,11 +68,11 @@ export default function ( key, player ) {
     break;
 
     case 'monsterInvMenu':
-    if ( key === 'space' ) {
-      battleState = swapMonsters();
-    } else if ( key === 'shift' ) {
-      battleState = 'battleMenuMain';
-    }
+      if ( key === 'space' ) {
+        battleState = swapMonsters();
+      } else if ( key === 'shift' ) {
+        battleState = 'battleMenuMain';
+      }
     break;
 
     case 'caughtMonster':

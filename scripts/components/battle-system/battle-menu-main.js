@@ -21,7 +21,7 @@ export default {
         // changeBattleState(monsterInvMenu);
       } else if ( player.location.x === currentMap.boundaries.right && player.location.y === currentMap.boundaries.bottom ) {
         //Run in battleMenuMain
-        runFromBattle();
+        changeBattleState(runFromBattle);
       } else {
         // Inventory in battleMenuMain
         changeBattleState(inventoryMenu);
