@@ -1,6 +1,8 @@
 import tiles from './../world-tiles.js';
 import controls from './controls';
 import {Bat} from './../../monsters/bat';
+import {GiantRat} from './../../monsters/giant-rat';
+import {Munchkin} from './../../monsters/munchkin';
 
 var Di = tiles.Di;
 var Gr = tiles.Gr;
@@ -36,7 +38,7 @@ export default {
   monsters: {
     minLevel: 1,
     maxLevel: 2,
-    monster: [Bat]//, GiantRat, Munchkin]
+    monster: [Bat, GiantRat, Munchkin],
   },
   controls: controls,
-};
+}
