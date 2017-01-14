@@ -25,38 +25,38 @@ class Abilities {
 allAbilities.bite = new Abilities('Bite', 0.9, 'physical', 45, 'normal');
 allAbilities.growl = new Abilities('Growl', 1, 'physical', 0, 'status');
     // attribute: 'attack',
+    // effect: 'Decrease opponent attack damage',
     // modifier: 0.8,
     // targetSelf: false,
-    // effect: 'Decrease opponent attack damage',
 allAbilities.scratch = new Abilities('Scratch', 1, 'physical', 40, 'normal');
 allAbilities.stare = new Abilities('Stare', 1, 'status', 1, 'normal');
     // attribute: 'defense',
+    // effect: 'Decrease opponent defense',
     // modifier: 0.9,
     // targetSelf: false,
-    // effect: 'Decrease opponent defense',
 allAbilities.fireBreath = new Abilities('Fire Breath', 0.9, 'special', 50, 'fire');
     // attribute: 'condition',
-    // modifier: 0.1,
-    // targetSelf: false,
     // conditionApplied: 'burn',
     // effect: 'Chance of burn',
+    // modifier: 0.1,
+    // targetSelf: false,
 allAbilities.fireBlast = new Abilities('Fire Blast', 0.9, 'special', 80, 'fire');
     // attribute: 'condition',
-    // modifier: 0.1,
-    // targetSelf: false,
     // conditionApplied: 'burn',
     // effect: 'Chance of burn',
+    // modifier: 0.1,
+    // targetSelf: false,
 allAbilities.razorLeaf = new Abilities('Razor Leaf', 0.9, 'special', 50000, 'grass');
     // attribute: 'defense',
-    // modifier: 0.9,
-    // targetSelf: false,
     // conditionApplied: 'burn',
     // effect: 'Reduces defending monster defense',
-allAbilities.waterBlast = new Abilities('Water Blast', 0.9, 'special', 50, 'water');
-    // category: 'special',
-    // attribute: 'attack',
     // modifier: 0.9,
     // targetSelf: false,
+allAbilities.waterBlast = new Abilities('Water Blast', 0.9, 'special', 50, 'water');
+    // attribute: 'attack',
+    // category: 'special',
     // effect: 'Reduces defending monsters attack',
+    // modifier: 0.9,
+    // targetSelf: false,
 
 export default allAbilities;
