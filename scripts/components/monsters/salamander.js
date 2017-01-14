@@ -1,4 +1,5 @@
 import {FireType} from './type-fire';
+import abilities from './../abilities/abilities';
 
 var Salamander = function ( lvl ) {
   FireType.call( this, lvl );
@@ -14,5 +15,6 @@ Salamander.prototype.defenseMult = 0;
 Salamander.prototype.spAttackMult = 3;
 Salamander.prototype.spDefenseMult = 1;
 Salamander.prototype.speedMult = 3;
-// Salamander.prototype.abilities = [abilities.scratch, abilities.stare, abilities.fireBreath];
+Salamander.prototype.abilities = [abilities.bite]//, abilities.stare, abilities.fireBreath];
+
 export default Salamander;

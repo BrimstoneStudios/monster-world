@@ -70,17 +70,6 @@ var abilities = {
       abilityUsed.call( this, battle.playerBattleMonster );
     }
   },
-  bite: {
-    name: 'Bite',
-    type: 'normal',
-    category:'physical',
-    power: 45,
-    accuracy: 0.9,
-    effect: '',
-    func: function () {
-      abilityUsed.call( this, battle.playerBattleMonster );
-    }
-  },
   growl: {
     name: 'Growl',
     type: 'normal',
