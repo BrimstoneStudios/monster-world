@@ -1,4 +1,4 @@
-import WaterType from './type-water';
+import {WaterType} from './type-water';
 
 var Hydra = function ( lvl ) {
   WaterType.call( this, lvl );
