@@ -1,5 +1,6 @@
 import {NormalType} from './../type/normal';
 import items from './../items/items';
+import abilities from './../abilities/abilities';
 
 export class Bat {
   constructor(lvl) {
@@ -18,7 +19,7 @@ Bat.prototype.defenseMult = 1;
 Bat.prototype.spAttackMult = 1;
 Bat.prototype.spDefenseMult = 1;
 Bat.prototype.speedMult = 3;
-// Bat.prototype.abilities = [abilities.bite, abilities.stare];
+Bat.prototype.abilities = [abilities.bite, abilities.stare];
 Bat.prototype.items = [
   {
    item: items.net,

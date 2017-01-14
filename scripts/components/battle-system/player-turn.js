@@ -5,20 +5,18 @@ import enemyTurn from './enemy-turn';
 export default {
   renderText: function () {
     ctx.font = '30px Arial';
-    ctx.fillText( 'You hit enemy ' + enemy.name + ' with ' + battle.abilityUsed.name, coordinates.leftColumn, coordinates.topRow );
-      // Additional text if not very or super effective
-      if ( battle.abilityUsed.damageMod === 'super' ) {
-        ctx.fillText( 'It was super effective!', coordinates.leftColumn, coordinates.middleRow );
-      } else if ( battle.abilityUsed.damageMod === 'notVery' ) {
-        ctx.fillText( 'It was not very effective', coordinates.leftColumn, coordinates.middleRow );
-      }
+    ctx.fillText( 'You hit enemy ' + currentMap.battleSystem.enemy.name + ' with ' + currentMap.battleSystem.abilityUsed.name, currentMap.battleSystem.coordinates.leftColumn, currentMap.battleSystem.coordinates.topRow );
+    // Additional text if not very or super effective
+    if ( currentMap.battleSystem.abilityUsed.damageMod === 'super' ) {
+      ctx.fillText( 'It was super effective!', currentMap.battleSystem.coordinates.leftColumn, currentMap.battleSystem.coordinates.middleRow );
+    } else if ( currentMap.battleSystem.abilityUsed.damageMod === 'notVery' ) {
+      ctx.fillText( 'It was not very effective', currentMap.battleSystem.coordinates.leftColumn, currentMap.battleSystem.coordinates.middleRow );
     }
   },
   controls: function ( key ) {
     if ( key === 'space' ) {
-        abilityUsed( currentMap.battleSystem.enemy );
-        changeBattleState( enemyTurn );
-      }
+      abilities.useAbility( currentMap.battleSystem.enemy );
+      changeBattleState( enemyTurn );
     }
   },
   movement: {

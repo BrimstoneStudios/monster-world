@@ -1,5 +1,6 @@
 import {NormalType} from './../type/normal';
 import items from './../items/items';
+import abilities from './../abilities/abilities';
 
 export class Munchkin {
   constructor(lvl) {
@@ -18,7 +19,7 @@ Munchkin.prototype.defenseMult = 1;
 Munchkin.prototype.spAttackMult = 1;
 Munchkin.prototype.spDefenseMult = 1;
 Munchkin.prototype.speedMult = 3;
-// Munchkin.prototype.abilities = [abilities.bite, abilities.stare];
+Munchkin.prototype.abilities = [abilities.bite, abilities.stare];
 Munchkin.prototype.items = [
   {
    item: items.net,

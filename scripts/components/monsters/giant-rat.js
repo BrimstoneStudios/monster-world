@@ -1,5 +1,6 @@
 import {NormalType} from './../type/normal';
 import items from './../items/items';
+import abilities from './../abilities/abilities';
 
 export class GiantRat {
   constructor(lvl) {
@@ -18,7 +19,7 @@ GiantRat.prototype.defenseMult = 2;
 GiantRat.prototype.spAttackMult = 1;
 GiantRat.prototype.spDefenseMult = 1;
 GiantRat.prototype.speedMult = 3;
-// GiantRat.prototype.abilities = [abilities.scratch, abilities.growl];
+GiantRat.prototype.abilities = [abilities.scratch, abilities.growl];
 GiantRat.prototype.items = [
   {
    item: items.net,

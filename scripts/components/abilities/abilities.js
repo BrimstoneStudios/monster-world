@@ -1,6 +1,7 @@
 import checkTypeEffectiveness from './check-type-effectiveness';
 import types from './../type/types';
 import dealDamage from './deal-damage';
+import checkFightWinCondition from './../battle-system/check-win-condition';
 
 var allAbilities = {
     useAbility: function ( attacker ) {
@@ -9,17 +10,17 @@ var allAbilities = {
         var defender;
 
         if ( attacker.controller === player ) {
-            defender = battle.enemy;
-            for ( let i = 0; i < battle.playerBattleMonster.abilities.length; i++ ) {
+            defender = currentMap.battleSystem.enemy;
+            for ( let i = 0; i < currentMap.battleSystem.playerBattleMonster.abilities.length; i++ ) {
                 if ( player.location.y === currentMap.boundaries.top + ( i * currentMap.movement.y ) ) {
-                    ability = battle.abilityUsed = battle.playerBattleMonster.abilities[i];
-                    break;
+                    ability = currentMap.battleSystem.abilityUsed = currentMap.battleSystem.playerBattleMonster.abilities[i];
+                break;
                 }
             }
         } else {
-            defender = battle.playerBattleMonster;
-            var randomAttack = Math.floor( Math.random() * battle.enemy.abilities.length );
-            ability = battle.abilityUsed = battle.enemy.abilities[randomAttack];
+            defender = currentMap.battleSystem.playerBattleMonster;
+            var randomAttack = Math.floor( Math.random() * currentMap.battleSystem.enemy.abilities.length );
+            ability = currentMap.battleSystem.abilityUsed = currentMap.battleSystem.enemy.abilities[randomAttack];
         }
 
         if ( ability.category === 'status' || ability.category === 'special' ) {

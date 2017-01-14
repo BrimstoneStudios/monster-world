@@ -1,6 +1,6 @@
 import abilities from './../abilities/abilities';
 import changeBattleState from './change-battle-state';
-import playerMonsterDies from './player-monster-dies';
+import checkWinCondition from './check-win-condition';
 import battleMenuMain from './battle-menu-main';
 
 export default {
@@ -15,12 +15,12 @@ export default {
   },
   controls: function ( key ) {
     if ( key === 'space' ) {
-        abilityUsed( currentMap.battleSystem.enemy );
-        if ( playerBattleMonster.currentHp === 0 ) {
-          changeBattleState( playerMonsterDies );
-        } else {
-          changeBattleState( battleMenuMain );
-        }
+      abilities.useAbility( currentMap.battleSystem.enemy );
+      checkWinCondition();
+      if ( playerBattleMonster.currentHp === 0 ) {
+        // changeBattleState( playerMonsterDies );
+      } else {
+        changeBattleState( battleMenuMain );
       }
     }
   },
