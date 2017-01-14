@@ -3,21 +3,22 @@ import changeBattleState from './change-battle-state';
 import checkWinCondition from './check-win-condition';
 import battleMenuMain from './battle-menu-main';
 
+
 export default {
   renderText: function () {
     ctx.font = '30px Arial';
-    ctx.fillText( enemy.name + ' hit you with ' + battle.abilityUsed.name, coordinates.leftColumn, coordinates.topRow );
-    if ( battle.abilityUsed.damageMod === 'super' ) {
-      ctx.fillText( 'It was super effective!', coordinates.leftColumn, coordinates.middleRow );
-    } else if ( battle.abilityUsed.damageMod === 'notVery' ) {
-      ctx.fillText( 'It was not very effective', coordinates.leftColumn, coordinates.middleRow );
+    ctx.fillText( currentMap.battleSystem.enemy.name + ' hit you with ' + currentMap.battleSystem.abilityUsed.name, currentMap.battleSystem.coordinates.leftColumn, currentMap.battleSystem.coordinates.topRow );
+    if ( currentMap.battleSystem.abilityUsed.damageMod === 'super' ) {
+      ctx.fillText( 'It was super effective!', currentMap.battleSystem.coordinates.leftColumn, currentMap.battleSystem.coordinates.middleRow );
+    } else if ( currentMap.battleSystem.abilityUsed.damageMod === 'notVery' ) {
+      ctx.fillText( 'It was not very effective', currentMap.battleSystem.coordinates.leftColumn, currentMap.battleSystem.coordinates.middleRow );
     }
   },
   controls: function ( key ) {
     if ( key === 'space' ) {
       abilities.useAbility( currentMap.battleSystem.enemy );
-      checkWinCondition();
-      if ( playerBattleMonster.currentHp === 0 ) {
+      checkWinCondition( currentMap.battleSystem.playerBattleMonster );
+      if ( currentMap.battleSystem. playerBattleMonster.currentHp === 0 ) {
         // changeBattleState( playerMonsterDies );
       } else {
         changeBattleState( battleMenuMain );

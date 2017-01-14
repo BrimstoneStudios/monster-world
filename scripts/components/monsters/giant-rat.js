@@ -1,6 +1,7 @@
 import {NormalType} from './../type/normal';
 import items from './../items/items';
 import abilities from './../abilities/abilities';
+import types from './../type/types';
 
 export class GiantRat {
   constructor(lvl) {

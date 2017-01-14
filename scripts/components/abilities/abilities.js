@@ -1,6 +1,7 @@
 import checkTypeEffectiveness from './check-type-effectiveness';
-import types from './../type/types';
 import dealDamage from './deal-damage';
+import modifyAbility from './modify-ability';
+import types from './../type/types';
 import checkFightWinCondition from './../battle-system/check-win-condition';
 
 var allAbilities = {
@@ -24,7 +25,7 @@ var allAbilities = {
         }
 
         if ( ability.category === 'status' || ability.category === 'special' ) {
-            attributeModification( ability, attacker, defender );
+            modifyAbility( ability, attacker, defender );
         }
 
         let damageModifier = checkTypeEffectiveness( ability, defender );
@@ -34,14 +35,24 @@ var allAbilities = {
 };
 
 class Abilities {
-  constructor(name, accuracy, category, power, type) {
+  constructor( name, accuracy, category, power, type ) {
     this.name = name;
     this.accuracy = accuracy;
     this.category = category;
     this.power = power;
     this.type = type;
   }
-}
+};
+
+class SpecialAbilities extends Abilities {
+    constructor( name, accuracy, category, power, type, attribute, effect, modifier, targetSelf ) {
+        super( name, accuracy, category, power, type );
+        this.attribute = attribute;
+        this.effect = effect;
+        this.modifier = modifier;
+        this.targetSelf = targetSelf;
+    }
+};
 
 // Types: normal, fire, water, grass, etc..
 // Categories: physical, special, status
@@ -52,17 +63,9 @@ class Abilities {
 // allAbilities.this = new Abilities('name', accuracy, 'category', power, 'type');
 
 allAbilities.bite = new Abilities('Bite', 0.9, 'physical', 45, types.normal);
-allAbilities.growl = new Abilities('Growl', 1, 'physical', 0, 'status');
-    // attribute: 'attack',
-    // effect: 'Decrease opponent attack damage',
-    // modifier: 0.8,
-    // targetSelf: false,
 allAbilities.scratch = new Abilities('Scratch', 1, 'physical', 40, types.normal);
-allAbilities.stare = new Abilities('Stare', 1, 'status', 1, types.normal);
-    // attribute: 'defense',
-    // effect: 'Decrease opponent defense',
-    // modifier: 0.9,
-    // targetSelf: false,
+allAbilities.growl = new SpecialAbilities('Growl', 1, 'status', 0, 'status', 'attack', 'Decrease opponent attack damage', 0.8, false);
+allAbilities.stare = new SpecialAbilities('Stare', 1, 'status', 0, types.normal, 'defense', 'Decrease opponent defense', 0.9, false);
 allAbilities.fireBreath = new Abilities('Fire Breath', 0.9, 'special', 50, types.fire);
     // attribute: 'condition',
     // conditionApplied: 'burn',

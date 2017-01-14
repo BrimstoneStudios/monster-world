@@ -8,7 +8,7 @@ export default function ( attacker, ability, damageModifier, defender ) {
     damage = ( ( ( ( ability.power * ( attacker.spAttack * 1.5 ) ) * 0.04 ) / defender.spDefense ) * damageModifier );
   }
 
-  if ( damage !== null ) {
+  if (typeof damage !== 'undefined' ) {
     defender.currentHp = Math.round( defender.currentHp - damage );
   }
 }
