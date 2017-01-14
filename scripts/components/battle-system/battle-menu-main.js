@@ -2,6 +2,7 @@ import abilitiesMenu from './abilities-menu';
 import inventoryMenu from './inventory-menu';
 import changeBattleState from './change-battle-state';
 import runFromBattle from './run-away';
+import monsterInventory from './monster-inventory';
 
 
 export default {
@@ -18,7 +19,7 @@ export default {
           changeBattleState(abilitiesMenu);
       } else if ( player.location.x === currentMap.boundaries.left && player.location.y === currentMap.boundaries.bottom ) {
         //Monsters inventory in battleMenuMain
-        // changeBattleState(monsterInvMenu);
+        changeBattleState(monsterInventory);
       } else if ( player.location.x === currentMap.boundaries.right && player.location.y === currentMap.boundaries.bottom ) {
         //Run in battleMenuMain
         changeBattleState(runFromBattle);

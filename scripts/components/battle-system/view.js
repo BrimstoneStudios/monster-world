@@ -47,10 +47,6 @@ Menu.prototype.renderBattleText = function () {
     for ( let i = 0, j = 0; i < battle.itemsDropped.length; i++, j += 40 ) {
       ctx.fillText( enemy.name + ' dropped a ' + battle.itemsDropped[i] + '!', coordinates.leftColumn, coordinates.topRow + j );
     }
-  } else if ( battleState === 'monsterInvMenu' ) {
-    for ( let i = 0, j = 0; i < player.monsterInventory.length; i++, j = j + 40 ) {
-      ctx.fillText( player.monsterInventory[i].name, coordinates.leftColumn, coordinates.topRow + j );
-    }
   } else if ( battleState === 'battleWinText' ) {
     ctx.fillText( 'You have defeated ' + enemy.name + '!', coordinates.leftColumn, coordinates.topRow );
   }
