@@ -1,5 +1,6 @@
 import checkTypeEffectiveness from './check-type-effectiveness';
 import types from './../type/types';
+import dealDamage from './deal-damage';
 
 var allAbilities = {
     useAbility: function ( attacker ) {
@@ -25,7 +26,7 @@ var allAbilities = {
             attributeModification( ability, attacker, defender );
         }
 
-        var damageModifier = checkTypeEffectiveness( ability, defender );
+        let damageModifier = checkTypeEffectiveness( ability, defender );
         dealDamage( attacker, ability, damageModifier, defender );
         checkFightWinCondition( defender );
     }
