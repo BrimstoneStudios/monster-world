@@ -10,22 +10,7 @@ Menu.prototype.renderBattleText = function () {
   var coordinates = battle.coordinates;
 
   ctx.font='30px Arial';
- else if ( battleState === 'playerMove' ) {
-    ctx.fillText( 'You hit enemy ' + enemy.name + ' with ' + battle.abilityUsed.name, coordinates.leftColumn, coordinates.topRow );
-    // Additional text if not very or super effective
-    if ( battle.abilityUsed.damageMod === 'super' ) {
-      ctx.fillText( 'It was super effective!', coordinates.leftColumn, coordinates.middleRow );
-    } else if ( battle.abilityUsed.damageMod === 'notVery' ) {
-      ctx.fillText( 'It was not very effective', coordinates.leftColumn, coordinates.middleRow );
-    }
-  } else if ( battleState === 'AI' ) {
-    ctx.fillText( enemy.name + ' hit you with ' + battle.abilityUsed.name, coordinates.leftColumn, coordinates.topRow );
-    if ( battle.abilityUsed.damageMod === 'super' ) {
-      ctx.fillText( 'It was super effective!', coordinates.leftColumn, coordinates.middleRow );
-    } else if ( battle.abilityUsed.damageMod === 'notVery' ) {
-      ctx.fillText( 'It was not very effective', coordinates.leftColumn, coordinates.middleRow );
-    }
-  } else if ( battleState === 'potionUsed' ) {
+ else if ( battleState === 'potionUsed' ) {
     ctx.fillText( 'You used a potion!', coordinates.leftColumn, coordinates.topRow );
   } else if ( battleState === 'caughtMonster' ) {
     ctx.fillText( 'You caught ' + enemy.name + '!', coordinates.leftColumn, coordinates.topRow );

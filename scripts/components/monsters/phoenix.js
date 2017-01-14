@@ -1,4 +1,4 @@
-import {FireType} from './type-fire';
+import {FireType} from './../type/fire';
 import items from './../items/items';
 
 export class Phoenix {

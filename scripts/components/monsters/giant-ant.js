@@ -1,4 +1,4 @@
-import GrassType from './type-grass';
+import GrassType from './../type/grass';
 
 var GiantAnt = function ( lvl ) {
   GrassType.call( this, lvl );

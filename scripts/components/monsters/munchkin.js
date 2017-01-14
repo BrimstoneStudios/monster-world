@@ -1,4 +1,4 @@
-import {NormalType} from './type-normal';
+import {NormalType} from './../type/normal';
 import items from './../items/items';
 
 export class Munchkin {

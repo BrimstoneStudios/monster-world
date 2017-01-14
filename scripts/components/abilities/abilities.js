@@ -1,4 +1,33 @@
-var allAbilities = {};
+import checkTypeEffectiveness from './check-type-effectiveness';
+var allAbilities = {
+    useAbility: function ( attacker ) {
+        var ability;
+        var battle = currentMap.battleSystem;
+        var defender;
+
+        if ( attacker.controller === player ) {
+            defender = battle.enemy;
+            for ( let i = 0; i < battle.playerBattleMonster.abilities.length; i++ ) {
+                if ( player.location.y === currentMap.boundaries.top + ( i * currentMap.movement.y ) ) {
+                    ability = battle.abilityUsed = battle.playerBattleMonster.abilities[i];
+                    break;
+                }
+            }
+        } else {
+            defender = battle.playerBattleMonster;
+            var randomAttack = Math.floor( Math.random() * battle.enemy.abilities.length );
+            ability = battle.abilityUsed = battle.enemy.abilities[randomAttack];
+        }
+
+        if ( ability.category === 'status' || ability.category === 'special' ) {
+            attributeModification( ability, attacker, defender );
+        }
+
+        var damageModifier = checkTypeEffectiveness( ability, defender );
+        dealDamage( attacker, ability, damageModifier, defender );
+        checkFightWinCondition( defender );
+    }
+};
 
 class Abilities {
   constructor(name, accuracy, category, power, type) {
@@ -7,10 +36,6 @@ class Abilities {
     this.category = category;
     this.power = power;
     this.type = type;
-  }
-
-  useAbility () {
-    abilityUsed.call( this, currentMap.battleSystem.playerBattleMonster );
   }
 }
 

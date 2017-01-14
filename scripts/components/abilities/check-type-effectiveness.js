@@ -1,12 +1,13 @@
 export default function ( ability, defender ) {
-  if ( type[ability.type].super.indexOf( defender.type ) >= 0 ) {
-    battle.abilityUsed.damageMod = 'super';
+  console.log(ability)
+  if ( ability.type.effective.indexOf( defender.type ) >= 0 ) {
+    currentMap.battleSystem.abilityUsed.damageMod = 'super';
     damageModifier = 1.5;
-  } else if ( type[ability.type].notVery.indexOf( defender.type ) >= 0) {
-    battle.abilityUsed.damageMod = 'notVery';
+  } else if ( ability.type.ineffective.indexOf( defender.type ) >= 0) {
+    currentMap.battleSystem.abilityUsed.damageMod = 'notVery';
     damageModifier = 0.5;
   } else {
-    battle.abilityUsed.damageMod = 'none';
+    currentMap.battleSystem.abilityUsed.damageMod = 'none';
     damageModifier = 1;
   }
   return damageModifier;

@@ -37,13 +37,6 @@ export default function ( key, player ) {
       }
     break;
 
-    case 'playerMove':
-      if ( key === 'space' ) {
-        abilityUsed( enemy );
-        battleState = 'AI';
-      }
-    break;
-
     case 'AI':
       if ( key === 'space' ) {
         if ( playerBattleMonster.currentHp === 0 ) {
@@ -52,19 +45,6 @@ export default function ( key, player ) {
           battleState = 'battleMenuMain';
         }
       }
-    break;
-
-    case 'battleMenuFight':
-    if ( key === 'shift' ) {
-      battleState = 'battleMenuMain';
-    } else if ( key === 'space' ) {
-      abilityUsed( battle.playerBattleMonster );
-      if ( enemy.currentHp > 0 ) {
-        battleState = 'playerMove';
-      } else {
-        battleState = 'battleMonsterDie';
-      }
-    }
     break;
 
     case 'caughtMonster':

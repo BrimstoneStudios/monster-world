@@ -1,4 +1,4 @@
-import {Monster} from './monster';
+import {Monster} from './../monsters/monster';
 
 export class FireType {
   constructor(lvl) {

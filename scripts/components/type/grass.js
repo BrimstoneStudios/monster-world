@@ -1,4 +1,4 @@
-import {Monster} from './monster';
+import {Monster} from './../monsters/monster';
 
 var GrassType = function ( lvl ) {
   Monster.call( this, lvl );

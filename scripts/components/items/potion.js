@@ -4,8 +4,7 @@ export default {
   battleState: 'potionUsed',
   func: function () {
 
-    if ( currentMap
- === levels.battleMap ) {
+    if ( currentMap === levels.battleMap ) {
       monster = battle.playerBattleMonster;
     } else {
       monster = player.monsterInventory[0];
