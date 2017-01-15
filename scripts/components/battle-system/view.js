@@ -10,14 +10,7 @@ Menu.prototype.renderBattleText = function () {
   var coordinates = battle.coordinates;
 
   ctx.font='30px Arial';
- else if ( battleState === 'potionUsed' ) {
-    ctx.fillText( 'You used a potion!', coordinates.leftColumn, coordinates.topRow );
-  } else if ( battleState === 'caughtMonster' ) {
-    ctx.fillText( 'You caught ' + enemy.name + '!', coordinates.leftColumn, coordinates.topRow );
-  } else if ( battleState === 'failedCatch' ) {
-    ctx.fillText( 'You failed to catch ' + enemy.name + '!', coordinates.leftColumn, coordinates.topRow );
-    ctx.fillText( 'Try dealing more damage next time.', coordinates.leftColumn, coordinates.middleRow );
-  } else if ( battleState === 'battleMonsterDie' ) {
+ else if ( battleState === 'battleMonsterDie' ) {
     if ( battle.playerBattleMonster.currentHp === 0 ) {
       ctx.fillText( battle.playerBattleMonster.name + ' has died!', coordinates.leftColumn, coordinates.topRow );
     }

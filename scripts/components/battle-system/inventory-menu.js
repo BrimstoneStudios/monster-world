@@ -1,5 +1,6 @@
 import changeBattleState from './change-battle-state';
 import battleMenuMain from './battle-menu-main';
+import itemUsed from './item-used';
 import items from './../items/items';
 
 export default {
@@ -16,6 +17,7 @@ export default {
   controls: function ( key ) {
     if ( key === 'space' ) {
       items.useItem();
+      changeBattleState( itemUsed );
     } else if ( key === 'shift' ) {
       changeBattleState( battleMenuMain );
     }

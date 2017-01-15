@@ -17,5 +17,8 @@ export default {
     if ( monster.currentHp > monster.hp ) {
         monster.currentHp = monster.hp;
     }
-  }
+  },
+  renderBattleText: function () {
+    ctx.fillText( currentMap.battleSystem.playerBattleMonster.name + ' healed for ' + 10 + ' hp.', currentMap.battleSystem.coordinates.leftColumn, currentMap.battleSystem.coordinates.topRow );
+  },
 }

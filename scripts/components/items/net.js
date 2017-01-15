@@ -18,10 +18,11 @@ export default {
 
           enemy.controller = player;
           player.monsterInventory.push( enemy );
-          items.net.battleState = 'caughtMonster';
+          currentMap.battleSystem.caughtMonster = true;
         } else {
-          items.net.battleState = 'failedCatch';
+          currentMap.battleSystem.caughtMonster = false;
         }
+        console.log(currentMap.battleSystem.caughtMonster);
       };
 
       // Probability of successfully catching a monster increases with decreasing monster health %
@@ -35,5 +36,16 @@ export default {
         catchMonster( 1 );
       }
     }
-  }
+  },
+  renderBattleText: function () {
+    var enemy = currentMap.battleSystem.enemy;
+    var coordinates = currentMap.battleSystem.coordinates;
+
+    if ( currentMap.battleSystem.caughtMonster ) {
+      ctx.fillText( 'You caught ' + enemy.name + '!', coordinates.leftColumn, coordinates.topRow );
+    } else {
+      ctx.fillText( 'You failed to catch ' + enemy.name + '!', coordinates.leftColumn, coordinates.topRow );
+      ctx.fillText( 'Try dealing more damage next time.', coordinates.leftColumn, coordinates.middleRow );
+    }
+  },
 }

@@ -15,8 +15,9 @@ export default {
         if ( itemUsed.singleUse ) {
           player.inventory.splice( i, 1 );
         }
+
         if ( currentMap === allMaps.battle ) {
-          return itemUsed.battleState;
+          currentMap.battleSystem.itemUsed = itemUsed;
         }
         break;
       }
