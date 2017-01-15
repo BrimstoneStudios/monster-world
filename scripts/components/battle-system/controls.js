@@ -1,20 +1,3 @@
-//  if ( battleState === 'battleMenuMain' ) {
-  // bottomLimit = 390;
-  // rightLimit = 210;
-// }  else if ( battleState === 'battleMenuFight' ) {
-//   bottomLimit = ( levels.battleMap.boundaries.top + ( ( battle.playerBattleMonster.abilities.length - 1 ) * levels.battleMap.movement.y ) );
-//   rightLimit = levels.battleMap.boundaries.left;
-// } else if ( battleState === 'invMenu' ) {
-//   bottomLimit = ( 350 + ( ( player.inventory.length - 1 ) * levels.battleMap.movement.y ) );
-//   rightLimit = levels.battleMap.boundaries.left;
-// } else if  ( battleState === 'monsterInvMenu' ) {
-//   bottomLimit = ( 350 + ( ( player.monsterInventory.length - 1 ) * levels.battleMap.movement.y ) );
-//   rightLimit = levels.battleMap.boundaries.left;
-// } else {
-//   bottomLimit = levels.battleMap.boundaries.top;
-//   rightLimit = levels.battleMap.boundaries.left;
-// }
-
 export default function ( key, player ) {
   var battleState = battle.state;
   var playerBattleMonster = battle.playerBattleMonster;

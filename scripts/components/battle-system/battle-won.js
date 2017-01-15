@@ -21,6 +21,14 @@ let battleWon = {
     x: 0,
     y: 0
   },
+  boundaries: function () {
+    return {
+      left: 30,
+      top: 350,
+      right: 210,
+      bottom: 390,
+    }
+  }
 }
 
 export { battleWon as default };

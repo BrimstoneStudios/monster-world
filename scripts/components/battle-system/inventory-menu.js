@@ -26,4 +26,12 @@ export default {
     x: 0,
     y: 40,
   },
+  boundaries: function () {
+    return {
+      left: 30,
+      top: 350,
+      right: 210,
+      bottom: ( 350 + ( ( player.inventory.length - 1 ) * currentMap.movement.y ) ),
+    }
+  }
 }

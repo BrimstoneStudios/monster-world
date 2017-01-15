@@ -2,12 +2,7 @@ import allWhite from './../all-white';
 import battleSystem from './../../battle-system/battle-system';
 
 export default {
-  boundaries: {
-    left: 30,
-    top: 350,
-    right: 210,
-    bottom: 390,
-  },
+  boundaries: battleSystem.state.boundaries(),
   initLocation: {
     x: 30,
     y: 350,
