@@ -11,6 +11,7 @@ let battleWon = {
   },
   controls: function ( key ) {
     if ( key === 'space' ) {
+      currentMap.battleSystem.levelUp = false;
       currentMap = player.savedAttributes.lastLevel;
       player.location.x = player.savedAttributes.location.x;
       player.location.y = player.savedAttributes.location.y;

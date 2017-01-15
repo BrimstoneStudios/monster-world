@@ -15,4 +15,5 @@ export default {
     bottomRow: 465
   },
   initEnemy: initEnemy,
+  levelUp: false,
 }
