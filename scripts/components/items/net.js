@@ -22,7 +22,6 @@ export default {
         } else {
           currentMap.battleSystem.caughtMonster = false;
         }
-        console.log(currentMap.battleSystem.caughtMonster);
       };
 
       // Probability of successfully catching a monster increases with decreasing monster health %

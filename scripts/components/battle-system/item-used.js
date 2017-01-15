@@ -1,4 +1,5 @@
 import battleMenuMain from './battle-menu-main';
+import battleWon from './battle-won';
 import changeBattleState from './change-battle-state';
 
 export default {
@@ -8,7 +9,11 @@ export default {
   },
   controls: function ( key ) {
     if ( key === 'space' ) {
-      changeBattleState( battleMenuMain );
+      if ( currentMap.battleSystem.caughtMonster ) {
+        changeBattleState( battleWon );
+      } else {
+        changeBattleState( battleMenuMain );
+      }
     }
   },
   movement: {
