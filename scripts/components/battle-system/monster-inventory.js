@@ -1,5 +1,8 @@
 import changeBattleState from './change-battle-state';
 import battleMenuMain from './battle-menu-main';
+import enemyTurn from './enemy-turn';
+import swapMonsters from './swap-monsters';
+import abilities from './../abilities/abilities';
 
 export default {
   renderText: function () {
@@ -10,7 +13,9 @@ export default {
   },
   controls: function ( key ) {
     if ( key === 'space' ) {
-      // battleState = swapMonsters();
+      swapMonsters();
+      abilities.useAbility( currentMap.battleSystem.enemy );
+      changeBattleState( enemyTurn );
     } else if ( key === 'shift' ) {
       changeBattleState( battleMenuMain );
     }
