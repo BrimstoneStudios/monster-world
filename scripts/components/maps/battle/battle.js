@@ -22,4 +22,5 @@ export default {
   battleSystem: battleSystem,
   renderText: battleSystem.state.renderText,
   controls: battleSystem.state.controls,
+  multipleRenderTextCounter: battleSystem.state.multipleRenderTextCounter,
 }

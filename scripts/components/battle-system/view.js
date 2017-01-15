@@ -20,19 +20,10 @@ Menu.prototype.renderBattleText = function () {
   } else if ( battleState === 'battleMonsterDie' ) {
     if ( battle.playerBattleMonster.currentHp === 0 ) {
       ctx.fillText( battle.playerBattleMonster.name + ' has died!', coordinates.leftColumn, coordinates.topRow );
-    } else {
-      if ( battle.levelUp === 1 ) {
-        ctx.fillText( enemy.name + ' has died!', coordinates.leftColumn, coordinates.topRow );
-        ctx.fillText( battle.playerBattleMonster.name + ' has gained a level!', coordinates.leftColumn, coordinates.middleRow );
-      } else {
-        ctx.fillText( enemy.name + ' has died!', coordinates.leftColumn, coordinates.topRow );
-      }
     }
   } else if ( battleState === 'itemDrop' ) {
     for ( let i = 0, j = 0; i < battle.itemsDropped.length; i++, j += 40 ) {
       ctx.fillText( enemy.name + ' dropped a ' + battle.itemsDropped[i] + '!', coordinates.leftColumn, coordinates.topRow + j );
     }
-  } else if ( battleState === 'battleWinText' ) {
-    ctx.fillText( 'You have defeated ' + enemy.name + '!', coordinates.leftColumn, coordinates.topRow );
   }
 };

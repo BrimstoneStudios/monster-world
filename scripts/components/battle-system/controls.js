@@ -15,7 +15,6 @@
 //   rightLimit = levels.battleMap.boundaries.left;
 // }
 
-
 export default function ( key, player ) {
   var battleState = battle.state;
   var playerBattleMonster = battle.playerBattleMonster;
@@ -61,17 +60,7 @@ export default function ( key, player ) {
       }
     break;
 
-    case 'battleWinText':
-      if ( key === 'space' ) {
-        itemDrop();
-        if ( battle.itemsDropped.length > 0 ) {
-          battleState = 'itemDrop';
-        } else {
-          currentMap = player.savedAttributes.lastLevel;
-          battleState = 0;
-        }
-      }
-    break;
+
 
     case 'itemDrop':
       if ( key === 'space' ) {

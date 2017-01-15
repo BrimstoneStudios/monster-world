@@ -1,3 +1,5 @@
+import changeBattleState from './change-battle-state';
+
 export default function  ( defender ) {
   if ( defender.currentHp <= 0 ) {
     defender.currentHp = 0;
@@ -23,11 +25,11 @@ export default function  ( defender ) {
           playerMon.controller = player;
           player.monsterInventory.push( playerMon );
         }
-        battle.playerBattleMonster = player.monsterInventory[0];
+        currentMap.battleSystem.playerBattleMonster = player.monsterInventory[0];
       }
     } else {
       // Gain exp
-      battle.playerBattleMonster.expGain();
+      return true;
     }
   }
 }

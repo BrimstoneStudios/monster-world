@@ -15,6 +15,27 @@ export class Monster {
     this.expToLevel = 10 + ( 3 * this.level );
     this.expReward = 5 + ( 3 * this.level );
   }
+
+  gainExp() {
+    this.currentExp += currentMap.battleSystem.enemy.expReward;
+    if ( this.currentExp >= this.expToLevel ) {
+      this.levelUp();
+    }
+  }
+
+  levelUp() {
+    currentMap.battleSystem.levelUp = true;
+    this.level++;
+    this.hp = 1 + ( this.level * this.hpMult );
+    this.currentHp = this.hp;
+    this.attack = ( ( ( ( 5 + this.attackMult ) * 11 ) * this.level ) / 100 ) + 2;
+    this.defense = ( ( ( ( 5 + this.defenseMult ) * 11 ) * this.level ) / 100 ) + 2;
+    this.spAttack = ( ( ( ( 5 + this.spAttackMult ) * 11 ) * this.level ) / 100 ) + 2;
+    this.spDefense = ( ( ( ( 5 + this.spDefenseMult ) * 11 ) * this.level ) / 100 ) + 2;
+    this.speed = ( ( ( ( 5 + this.speedMult ) * 11 ) * this.level ) / 100 ) + 2;
+    this.currentExp = 0;
+    this.expToLevel = 10 + ( 4 * this.level );
+  }
 };
 Monster.prototype.controller = 'computer';
 
@@ -24,21 +45,6 @@ Monster.prototype.update = function () {
 // Render the monster onto the screen
 Monster.prototype.render = function ( x, y ) {
   ctx.drawImage( Resources.get( this.sprite ), x, y, 100, 100 );
-};
-
-// Level up method to update stats based on current level
-Monster.prototype.levelUp = function () {
-  battle.levelUp = 1;
-  this.level++;
-  this.hp = 1 + ( this.level * this.hpMult );
-  this.currentHp = this.currentHp + 5;
-  this.attack = ( ( ( ( 5 + this.attackMult ) * 11 ) * this.level ) / 100 ) + 2;
-  this.defense = ( ( ( ( 5 + this.defenseMult ) * 11 ) * this.level ) / 100 ) + 2;
-  this.spAttack = ( ( ( ( 5 + this.spAttackMult ) * 11 ) * this.level ) / 100 ) + 2;
-  this.spDefense = ( ( ( ( 5 + this.spDefenseMult ) * 11 ) * this.level ) / 100 ) + 2;
-  this.speed = ( ( ( ( 5 + this.speedMult ) * 11 ) * this.level ) / 100 ) + 2;
-  this.currentExp = 0;
-  this.expToLevel = 10 + ( 4 * this.level );
 };
 
 // Show player and enemy monster stats on the screen during a battle

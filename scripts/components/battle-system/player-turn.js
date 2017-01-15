@@ -1,6 +1,8 @@
 import abilities from './../abilities/abilities';
 import changeBattleState from './change-battle-state';
 import enemyTurn from './enemy-turn';
+import checkWinCondition from './check-win-condition';
+import battleWon from './battle-won';
 
 export default {
   renderText: function () {
@@ -15,8 +17,13 @@ export default {
   },
   controls: function ( key ) {
     if ( key === 'space' ) {
-      abilities.useAbility( currentMap.battleSystem.enemy );
-      changeBattleState( enemyTurn );
+      if ( checkWinCondition( currentMap.battleSystem.enemy ) ) {
+        currentMap.battleSystem.playerBattleMonster.gainExp();
+        changeBattleState( battleWon );
+      } else {
+        abilities.useAbility( currentMap.battleSystem.enemy );
+        changeBattleState( enemyTurn );
+      }
     }
   },
   movement: {
