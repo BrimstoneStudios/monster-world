@@ -1,13 +1,11 @@
 export default function () {
-  ctx.font = '50px Arial';
   for ( let i = 0, j = 0; i < player.monsterInventory.length; i++, j = j + 50 ) {
+    ctx.font = '30px Arial';
     ctx.drawImage( Resources.get( player.monsterInventory[i].sprite ), 85, 50 + j );
     ctx.fillText( player.monsterInventory[i].name, 155, 85 + j );
 
-    if ( currentMap
-.displayStats ) {
-      let monster = currentMap
-.displayMonsterIndex;
+    if ( currentMap.displayStats ) {
+      let monster = currentMap.displayMonsterIndex;
 
       ctx.font = '25px Arial';
       ctx.fillText( 'Level:', 430, 65 );
