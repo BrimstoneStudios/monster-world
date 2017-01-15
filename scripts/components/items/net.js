@@ -1,4 +1,5 @@
 import allMaps from './../maps/all-maps';
+import rng from './../rng';
 
 export default {
   name:'Net',

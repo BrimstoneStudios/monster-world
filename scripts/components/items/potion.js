@@ -7,7 +7,7 @@ export default {
   func: function () {
     var monster;
     if ( currentMap === allMaps.battle ) {
-      monster = battle.playerBattleMonster;
+      monster = currentMap.battleSystem.playerBattleMonster;
     } else {
       monster = player.monsterInventory[0];
     }
