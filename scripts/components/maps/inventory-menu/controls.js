@@ -1,4 +1,5 @@
 import allMaps from './../all-maps';
+import items from './../../items/items';
 
 export default function ( key, player ) {
   switch ( key ) {
@@ -8,7 +9,7 @@ export default function ( key, player ) {
     break;
 
     case 'space':
-      useItem();
+      items.useItem();
       currentMap.setBoundaries();
       player.initLocation();
     break;

@@ -1,10 +1,12 @@
+import allMaps from './../maps/all-maps';
+
 export default {
   name:'Potion',
   singleUse: true,
   battleState: 'potionUsed',
   func: function () {
-
-    if ( currentMap === levels.battleMap ) {
+    var monster;
+    if ( currentMap === allMaps.battle ) {
       monster = battle.playerBattleMonster;
     } else {
       monster = player.monsterInventory[0];

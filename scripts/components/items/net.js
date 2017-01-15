@@ -1,17 +1,17 @@
+import allMaps from './../maps/all-maps';
+
 export default {
   name:'Net',
   singleUse: false,
   func: function () {
-    var enemy = battle.enemy;
-
-    if ( currentMap
- === levels.battleMap ) {
+    if ( currentMap === allMaps.battle ) {
+      var enemy = currentMap.battleSystem.enemy;
       var hpPercent = enemy.currentHp / enemy.hp;
 
       var catchMonster = function ( probability ) {
         if ( rng() <= probability ) {
           if ( player.monsterInventory[0].name === 'PlayerMon' ) {
-            battle.playerBattleMonster.player = 0;
+            currentMap.battleSystem.playerBattleMonster.player = 0;
             player.monsterInventory.pop();
           }
 
