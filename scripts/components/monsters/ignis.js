@@ -11,20 +11,31 @@ const spDefenseMultiplier = 1;
 const speedMultiplier = 2;
 
 export class Ignis extends Monster {
-  constructor( lvl ) {
-    super( lvl, hpMultiplier, attackMultiplier, defenseMultiplier, spAttackMultiplier, spDefenseMultiplier, speedMultiplier );
+  constructor(lvl) {
+    super(
+      lvl,
+      hpMultiplier,
+      attackMultiplier,
+      defenseMultiplier,
+      spAttackMultiplier,
+      spDefenseMultiplier,
+      speedMultiplier
+    );
+
     this.abilities = [
       abilities.fireBreath,
     ];
+
     this.items = [
       {
-       item: items.net,
-       dropProbablity: 1
+        dropProbablity: 1,
+        item: items.net,
       }, {
-       item: items.potion,
-       dropProbablity: 1
+        dropProbablity: 1,
+        item: items.potion,
       },
     ];
+
     this.name = 'Ignis';
     this.sprite = 'images/monsters/ignis.gif';
     this.type = types.fire;
