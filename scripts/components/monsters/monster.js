@@ -68,6 +68,4 @@ export class Monster {
       ctx.fillText( this.hp, 210, 100 );
     }
   }
-
-  update () {}
-};
+}
