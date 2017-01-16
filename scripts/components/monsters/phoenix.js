@@ -11,21 +11,32 @@ const spDefenseMultiplier = 2;
 const speedMultiplier = 3;
 
 export class Phoenix extends Monster {
-  constructor( lvl ) {
-    super( lvl, hpMultiplier, attackMultiplier, defenseMultiplier, spAttackMultiplier, spDefenseMultiplier, speedMultiplier );
+  constructor(lvl) {
+    super(
+      lvl,
+      hpMultiplier,
+      attackMultiplier,
+      defenseMultiplier,
+      spAttackMultiplier,
+      spDefenseMultiplier,
+      speedMultiplier
+    );
+
     this.abilities = [
       abilities.fireBlast,
       abilities.stare,
     ];
+
     this.items = [
       {
-       item: items.net,
-       dropProbablity: 1
+        dropProbablity: 1,
+        item: items.net,
       }, {
-       item: items.potion,
-       dropProbablity: 1
+        dropProbablity: 1,
+        item: items.potion,
       },
     ];
+
     this.name = 'Phoenix';
     this.sprite = 'images/monsters/phoenix.gif';
     this.type = types.fire;
