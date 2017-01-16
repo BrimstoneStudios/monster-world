@@ -1,5 +1,4 @@
 import {Monster} from './monster';
-import items from './../items/items';
 import abilities from './../abilities/abilities';
 import types from './../type/types';
 
