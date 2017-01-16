@@ -1,32 +1,41 @@
-import {NormalType} from './../type/normal';
+import {Monster} from './monster';
 import items from './../items/items';
 import abilities from './../abilities/abilities';
 import types from './../type/types';
 
-export class GiantRat {
+const hpMultiplier = 1;
+const attackMultiplier = 3;
+const defenseMultiplier = 1;
+const spAttackMultiplier = 2;
+const spDefenseMultiplier = 1;
+const speedMultiplier = 3;
+
+export class GiantRat extends Monster {
   constructor(lvl) {
-    NormalType.call( this, lvl );
-    this.sprite = 'images/monsters/giantRat.gif';
+    super(
+      lvl,
+      hpMultiplier,
+      attackMultiplier,
+      defenseMultiplier,
+      spAttackMultiplier,
+      spDefenseMultiplier,
+      speedMultiplier
+    );
+    this.abilities = [
+      abilities.scratch,
+      abilities.growl,
+    ];
+    this.items = [
+      {
+        dropProbablity: 1,
+        item: items.net,
+      }, {
+        dropProbablity: 1,
+        item: items.potion,
+      },
+    ];
+    this.name = 'Giant Rat';
+    this.sprite = 'images/monsters/giant-rat.gif';
+    this.type = types.normal;
   }
 }
-
-GiantRat.prototype = Object.create( NormalType.prototype );
-GiantRat.prototype.constructor = GiantRat;
-GiantRat.prototype.name = 'Giant Rat';
-GiantRat.prototype.player = 1;
-GiantRat.prototype.hpMult = 3;
-GiantRat.prototype.attackMult = 1;
-GiantRat.prototype.defenseMult = 2;
-GiantRat.prototype.spAttackMult = 1;
-GiantRat.prototype.spDefenseMult = 1;
-GiantRat.prototype.speedMult = 3;
-GiantRat.prototype.abilities = [abilities.scratch, abilities.growl];
-GiantRat.prototype.items = [
-  {
-   item: items.net,
-   dropProbablity: 1
-  }, {
-   item: items.potion,
-   dropProbablity: 1
-  }
-];
