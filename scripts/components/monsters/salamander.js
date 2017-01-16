@@ -3,9 +3,9 @@ import items from './../items/items';
 import abilities from './../abilities/abilities';
 import types from './../type/types';
 
-const hpMultiplier = 0;
+const hpMultiplier = 1;
 const attackMultiplier = 500;
-const defenseMultiplier = 0;
+const defenseMultiplier = 1;
 const spAttackMultiplier = 1;
 const spDefenseMultiplier = 1;
 const speedMultiplier = 3;

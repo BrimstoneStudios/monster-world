@@ -3,7 +3,14 @@
 export class Monster {
   constructor( lvl, hpMult, attackMult, defenseMult, spAttackMult, spDefenseMult, speedMult ) {
     this.level = lvl;
-    this.hp = 10 + ( this.level * hpMult );
+    this.hpMult = hpMult;
+    this.attackMult = attackMult;
+    this.defenseMult = defenseMult;
+    this.spAttackMult = spAttackMult;
+    this.spDefenseMult = spDefenseMult;
+    this.speedMult = speedMult;
+
+    this.hp = ( 10 * hpMult ) * this.level;
     this.currentHp = this.hp;
     this.condition = 'healthy';
     this.attack = ( ( ( ( 5 + attackMult ) * 11 ) * this.level ) / 100 ) + 2;
@@ -26,7 +33,7 @@ export class Monster {
   levelUp() {
     currentMap.battleSystem.levelUp = true;
     this.level++;
-    this.hp = 1 + ( this.level * this.hpMult );
+    this.hp = ( 10 * this.hpMult ) * this.level;
     this.currentHp = this.hp;
     this.attack = ( ( ( ( 5 + this.attackMult ) * 11 ) * this.level ) / 100 ) + 2;
     this.defense = ( ( ( ( 5 + this.defenseMult ) * 11 ) * this.level ) / 100 ) + 2;
@@ -64,4 +71,3 @@ export class Monster {
 
   update () {}
 };
-Monster.prototype.controller = 'computer';
