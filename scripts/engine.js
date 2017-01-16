@@ -77,9 +77,6 @@ var Engine = ( function ( global ) {
   * player object.
   */
   function updateEntities ( dt ) {
-    // allNPC.forEach( function ( npc ) {
-    //   npc.update();
-    // } );
     player.update();
   }
 
@@ -124,14 +121,16 @@ var Engine = ( function ( global ) {
     */
     // allNPC.forEach( function ( npc ) {
     //   for (let i = 0; i < npc.location.level.length; i++) {
-    //     if ( npc.location.level[i] === currentMap ) {
-    //        npc.render();
-    //     }
-    //   }
-    // });
+    if ( typeof currentMap.npcs !== 'undefined' ) {
+      currentMap.npcs.forEach( function ( npc ) {
+        npc.render();
+      } )
+    }
+
     if (typeof currentMap.renderText !== 'undefined') {
       currentMap.renderText();
     }
+
     if (typeof currentMap.battleSystem !== 'undefined' ) {
       currentMap.battleSystem.playerBattleMonster.render( 50, 200 );
       currentMap.battleSystem.playerBattleMonster.renderBtlMonStats( 'player' );

@@ -3,9 +3,12 @@ import controls from './controls';
 import {Bat} from './../../monsters/bat';
 import {GiantRat} from './../../monsters/giant-rat';
 import {Munchkin} from './../../monsters/munchkin';
+import HealerNPC from './../../npcs/healer';
 
 var Di = tiles.Di;
 var Gr = tiles.Gr;
+var wZ = tiles.wZ;
+var healer = new HealerNPC('Flo', wZ, 60, 60);
 
 export default {
   boundaries: {
@@ -41,4 +44,7 @@ export default {
     monster: [Bat, GiantRat, Munchkin],
   },
   controls: controls,
+  npcs: [
+    healer,
+  ]
 }

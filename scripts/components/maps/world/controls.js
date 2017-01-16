@@ -1,5 +1,6 @@
 import allMaps from './../all-maps';
 import resolveBattleEvent from './../battle/resolve-battle-event';
+import initNPC from './../../npcs/init-npc';
 
 export default function ( key, player ) {
   switch ( key ) {
@@ -12,11 +13,7 @@ export default function ( key, player ) {
     break;
 
     case 'space':
-      if ( this.x === healer.x && this.y === healer.y ) {
-        player.monsterInventory.forEach( function ( monster ) {
-          monster.currentHp = monster.hp;
-        } );
-      }
+      initNPC();
     break;
 
     case 'left':
