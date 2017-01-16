@@ -1,20 +1,34 @@
-import {WaterType} from './../type/water';
+import {Monster} from './monster';
+import items from './../items/items';
 import abilities from './../abilities/abilities';
+import types from './../type/types';
 
-var Hydra = function ( lvl ) {
-  WaterType.call( this, lvl );
-};
-Hydra.prototype = Object.create( WaterType.prototype );
-Hydra.prototype.constructor = Hydra;
-Hydra.prototype.sprite = 'images/monsters/hydra1.jpg';
-Hydra.prototype.name = 'Hydra';
-Hydra.prototype.evolve = 6;
-Hydra.prototype.hpMult = 4;
-Hydra.prototype.attackMult = 1;
-Hydra.prototype.defenseMult = 3;
-Hydra.prototype.spAttackMult = 1;
-Hydra.prototype.spDefenseMult = 2;
-Hydra.prototype.speedMult = 1;
-Hydra.prototype.abilities = [abilities.bite, abilities.growl, abilities.waterBlast];
+const hpMultiplier = 6;
+const attackMultiplier = 4;
+const defenseMultiplier = 1;
+const spAttackMultiplier = 3;
+const spDefenseMultiplier = 1;
+const speedMultiplier = 3;
 
-export default Hydra;
+export class Hydra extends Monster {
+  constructor( lvl ) {
+    super( lvl, hpMultiplier, attackMultiplier, defenseMultiplier, spAttackMultiplier, spDefenseMultiplier, speedMultiplier );
+    this.abilities = [
+      abilities.bite,
+      abilities.growl,
+      abilities.waterBlast,
+    ];
+    this.items = [
+      {
+       item: items.net,
+       dropProbablity: 1
+      }, {
+       item: items.potion,
+       dropProbablity: 1
+      },
+    ];
+    this.name = 'Hydra';
+    this.sprite = 'images/monsters/hydra1.jpg';
+    this.type = types.water;
+  }
+}
