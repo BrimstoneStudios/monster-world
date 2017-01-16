@@ -42,7 +42,7 @@ export default {
   monsters: {
     minLevel: 1,
     maxLevel: 2,
-    monster: [LavaOgre]//, Bat, GiantRat, Munchkin],
+    monster: [Munchkin]//, Bat, GiantRat, Munchkin],
   },
   controls: controls,
   npcs: [
