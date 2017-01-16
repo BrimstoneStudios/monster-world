@@ -1,7 +1,7 @@
 import checkTypeEffectiveness from './check-type-effectiveness';
 import dealDamage from './deal-damage';
 import modifyAbility from './modify-ability';
-import types from './../type/types';
+import elementalTypes from './../elemental-types';
 
 var allAbilities = {
     useAbility: function ( attacker ) {
@@ -52,7 +52,7 @@ class SpecialAbilities extends Abilities {
     }
 };
 
-// Types: normal, fire, water, grass, etc..
+// elementalTypes: normal, fire, water, grass, etc..
 // Categories: physical, special, status
 // Power: range from 10-???,  status moves have 0 power
 // Accuracy: Range from 0.5-1
@@ -60,29 +60,29 @@ class SpecialAbilities extends Abilities {
 // Ability type effectiveness data
 // allAbilities.this = new Abilities('name', accuracy, 'category', power, 'type');
 
-allAbilities.bite = new Abilities('Bite', 0.9, 'physical', 45, types.normal);
-allAbilities.scratch = new Abilities('Scratch', 1, 'physical', 40, types.normal);
-allAbilities.growl = new SpecialAbilities('Growl', 1, 'status', 0, types.normal, 'attack', 'Decrease opponent attack damage', 0.8, false);
-allAbilities.stare = new SpecialAbilities('Stare', 1, 'status', 0, types.normal, 'defense', 'Decrease opponent defense', 0.9, false);
-allAbilities.fireBreath = new Abilities('Fire Breath', 0.9, 'special', 50, types.fire);
+allAbilities.bite = new Abilities('Bite', 0.9, 'physical', 45, elementalTypes.normal);
+allAbilities.scratch = new Abilities('Scratch', 1, 'physical', 40, elementalTypes.normal);
+allAbilities.growl = new SpecialAbilities('Growl', 1, 'status', 0, elementalTypes.normal, 'attack', 'Decrease opponent attack damage', 0.8, false);
+allAbilities.stare = new SpecialAbilities('Stare', 1, 'status', 0, elementalTypes.normal, 'defense', 'Decrease opponent defense', 0.9, false);
+allAbilities.fireBreath = new Abilities('Fire Breath', 0.9, 'special', 50, elementalTypes.fire);
     // attribute: 'condition',
     // conditionApplied: 'burn',
     // effect: 'Chance of burn',
     // modifier: 0.1,
     // targetSelf: false,
-allAbilities.fireBlast = new Abilities('Fire Blast', 0.9, 'special', 80, types.fire);
+allAbilities.fireBlast = new Abilities('Fire Blast', 0.9, 'special', 80, elementalTypes.fire);
     // attribute: 'condition',
     // conditionApplied: 'burn',
     // effect: 'Chance of burn',
     // modifier: 0.1,
     // targetSelf: false,
-allAbilities.razorLeaf = new Abilities('Razor Leaf', 0.9, 'special', 50000, types.grass);
+allAbilities.razorLeaf = new Abilities('Razor Leaf', 0.9, 'special', 50000, elementalTypes.grass);
     // attribute: 'defense',
     // conditionApplied: 'burn',
     // effect: 'Reduces defending monster defense',
     // modifier: 0.9,
     // targetSelf: false,
-allAbilities.waterBlast = new Abilities('Water Blast', 0.9, 'special', 50, types.water);
+allAbilities.waterBlast = new Abilities('Water Blast', 0.9, 'special', 50, elementalTypes.water);
     // attribute: 'attack',
     // category: 'special',
     // effect: 'Reduces defending monsters attack',

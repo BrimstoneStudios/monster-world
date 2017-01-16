@@ -1,7 +1,7 @@
 import {Monster} from './monster';
 import items from './../items/items';
 import abilities from './../abilities/abilities';
-import types from './../type/types';
+import elementalTypes from './../elemental-types';
 
 const hpMultiplier = 3;
 const attackMultiplier = 2;
@@ -39,6 +39,6 @@ export class Munchkin extends Monster {
 
     this.name = 'Munchkin';
     this.sprite = 'images/monsters/munchkin.gif';
-    this.type = types.normal;
+    this.type = elementalTypes.normal;
   }
 }

@@ -1,7 +1,7 @@
 import {Monster} from './monster';
 import items from './../items/items';
 import abilities from './../abilities/abilities';
-import types from './../type/types';
+import elementalTypes from './../elemental-types';
 
 const hpMultiplier = 3;
 const attackMultiplier = 1;
@@ -38,6 +38,6 @@ export class Ignis extends Monster {
 
     this.name = 'Ignis';
     this.sprite = 'images/monsters/ignis.gif';
-    this.type = types.fire;
+    this.type = elementalTypes.fire;
   }
 }
