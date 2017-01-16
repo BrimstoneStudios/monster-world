@@ -11,12 +11,22 @@ const spDefenseMultiplier = 1;
 const speedMultiplier = 3;
 
 export class PlayerMonster extends Monster {
-  constructor( lvl ) {
-    super( lvl, hpMultiplier, attackMultiplier, defenseMultiplier, spAttackMultiplier, spDefenseMultiplier, speedMultiplier );
+  constructor(lvl) {
+    super(
+      lvl,
+      hpMultiplier,
+      attackMultiplier,
+      defenseMultiplier,
+      spAttackMultiplier,
+      spDefenseMultiplier,
+      speedMultiplier
+    );
+
     this.abilities = [
       abilities.scratch,
       abilities.stare,
     ];
+
     this.name = 'PlayerMonster';
     this.type = types.normal;
   }
