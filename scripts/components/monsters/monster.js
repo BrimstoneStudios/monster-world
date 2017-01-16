@@ -10,17 +10,17 @@ export class Monster {
     this.spDefenseMult = spDefenseMult;
     this.speedMult = speedMult;
 
-    this.hp = (10 * hpMult) * this.level;
+    this.hp = 10 * hpMult * this.level;
     this.currentHp = this.hp;
     this.condition = 'healthy';
-    this.attack = ((((5 + attackMult) * 11) * this.level) / 100) + 2;
-    this.defense = ((((5 + defenseMult) * 11) * this.level) / 100) + 2;
-    this.spAttack = ((((5 + spAttackMult) * 11) * this.level) / 100) + 2;
-    this.spDefense = ((((5 + spDefenseMult) * 11) * this.level) / 100) + 2;
-    this.speed = ((((5 + speedMult) * 11) * this.level) / 100) + 2;
+    this.attack = (5 + attackMult) * 11 * this.level / 100 + 2;
+    this.defense = (5 + defenseMult) * 11 * this.level / 100 + 2;
+    this.spAttack = (5 + spAttackMult) * 11 * this.level / 100 + 2;
+    this.spDefense = (5 + spDefenseMult) * 11 * this.level / 100 + 2;
+    this.speed = (5 + speedMult) * 11 * this.level / 100 + 2;
     this.currentExp = 0;
-    this.expToLevel = 10 + (3 * this.level);
-    this.expReward = 5 + (3 * this.level);
+    this.expToLevel = 10 + 3 * this.level;
+    this.expReward = 5 + 3 * this.level;
   }
 
   gainExp() {
@@ -33,15 +33,15 @@ export class Monster {
   levelUp() {
     currentMap.battleSystem.levelUp = true;
     this.level++;
-    this.hp = (10 * this.hpMult) * this.level;
+    this.hp = 10 * this.hpMult * this.level;
     this.currentHp = this.hp;
-    this.attack = ((((5 + this.attackMult) * 11) * this.level) / 100) + 2;
-    this.defense = ((((5 + this.defenseMult) * 11) * this.level) / 100) + 2;
-    this.spAttack = ((((5 + this.spAttackMult) * 11) * this.level) / 100) + 2;
-    this.spDefense = ((((5 + this.spDefenseMult) * 11) * this.level) / 100) + 2;
-    this.speed = ((((5 + this.speedMult) * 11) * this.level) / 100) + 2;
+    this.attack = (5 + this.attackMult) * 11 * this.level / 100 + 2;
+    this.defense = (5 + this.defenseMult) * 11 * this.level / 100 + 2;
+    this.spAttack = (5 + this.spAttackMult) * 11 * this.level / 100 + 2;
+    this.spDefense = (5 + this.spDefenseMult) * 11 * this.level / 100 + 2;
+    this.speed = (5 + this.speedMult) * 11 * this.level / 100 + 2;
     this.currentExp = 0;
-    this.expToLevel = 10 + (4 * this.level);
+    this.expToLevel = 10 + 4 * this.level;
   }
 
   render(x, y) {
