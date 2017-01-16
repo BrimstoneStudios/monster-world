@@ -1,6 +1,6 @@
 import {Monster} from './monster';
 import abilities from './../abilities/abilities';
-import types from './../type/types';
+import elementalTypes from './../elemental-types';
 
 const hpMultiplier = 6;
 const attackMultiplier = 4;
@@ -29,6 +29,6 @@ export class GiantAnt extends Monster {
 
     this.name = 'Giant Ant';
     this.sprite = 'images/monsters/giant-ant.jpg';
-    this.type = types.grass;
+    this.type = elementalTypes.grass;
   }
 }

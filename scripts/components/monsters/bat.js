@@ -1,7 +1,7 @@
 import {Monster} from './monster';
 import items from './../items/items';
 import abilities from './../abilities/abilities';
-import types from './../type/types';
+import elementalTypes from './../elemental-types';
 
 const hpMultiplier = 2;
 const attackMultiplier = 2;
@@ -39,6 +39,6 @@ export class Bat extends Monster {
 
     this.name = 'Bat';
     this.sprite = 'images/monsters/bat.gif';
-    this.type = types.normal;
+    this.type = elementalTypes.normal;
   }
 }
