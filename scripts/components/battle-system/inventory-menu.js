@@ -16,6 +16,7 @@ export default {
   },
   controls: function ( key ) {
     if ( key === 'space' ) {
+      currentMap.battleSystem.caughtMonster = false;
       items.useItem();
       changeBattleState( itemUsed );
     } else if ( key === 'shift' ) {

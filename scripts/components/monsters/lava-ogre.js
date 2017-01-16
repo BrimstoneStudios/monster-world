@@ -1,5 +1,6 @@
 import {FireType} from './../type/fire';
 import items from './../items/items';
+import abilities from './../abilities/abilities';
 
 export class LavaOgre {
   constructor(lvl) {
@@ -18,4 +19,4 @@ LavaOgre.prototype.defenseMult = 1;
 LavaOgre.prototype.spAttackMult = 2;
 LavaOgre.prototype.spDefenseMult = 2;
 LavaOgre.prototype.speedMult = 3;
-// LavaOgre.prototype.abilities = [abilities.scratch, abilities.stare, abilities.fireBreath];
+LavaOgre.prototype.abilities = [abilities.scratch, abilities.stare, abilities.fireBreath];

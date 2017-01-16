@@ -19,8 +19,6 @@ export default {
           enemy.controller = player;
           player.monsterInventory.push( enemy );
           currentMap.battleSystem.caughtMonster = true;
-        } else {
-          currentMap.battleSystem.caughtMonster = false;
         }
       };
 

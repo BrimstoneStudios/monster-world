@@ -1,5 +1,6 @@
 import {FireType} from './../type/fire';
 import items from './../items/items';
+import abilities from './../abilities/abilities';
 
 export class Ignis {
   constructor(lvl) {
@@ -18,4 +19,4 @@ Ignis.prototype.defenseMult = 1;
 Ignis.prototype.spAttackMult = 2;
 Ignis.prototype.spDefenseMult = 1;
 Ignis.prototype.speedMult = 2;
-// Ignis.prototype.abilities = [abilities.fireBreath];
+Ignis.prototype.abilities = [abilities.fireBreath];

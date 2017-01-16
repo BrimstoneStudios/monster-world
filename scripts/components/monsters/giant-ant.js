@@ -1,4 +1,5 @@
 import GrassType from './../type/grass';
+import abilities from './../abilities/abilities';
 
 var GiantAnt = function ( lvl ) {
   GrassType.call( this, lvl );
@@ -15,6 +16,6 @@ GiantAnt.prototype.defenseMult = 2;
 GiantAnt.prototype.spAttackMult = 2;
 GiantAnt.prototype.spDefenseMult = 2;
 GiantAnt.prototype.speedMult = 2;
-// GiantAnt.prototype.abilities = [abilities.bite, abilities.growl, abilities.razorLeaf];
+GiantAnt.prototype.abilities = [abilities.bite, abilities.growl, abilities.razorLeaf];
 
 export default GiantAnt;

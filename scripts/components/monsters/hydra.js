@@ -1,4 +1,5 @@
 import {WaterType} from './../type/water';
+import abilities from './../abilities/abilities';
 
 var Hydra = function ( lvl ) {
   WaterType.call( this, lvl );
@@ -14,6 +15,6 @@ Hydra.prototype.defenseMult = 3;
 Hydra.prototype.spAttackMult = 1;
 Hydra.prototype.spDefenseMult = 2;
 Hydra.prototype.speedMult = 1;
-// Hydra.prototype.abilities = [abilities.bite, abilities.growl, abilities.waterBlast];
+Hydra.prototype.abilities = [abilities.bite, abilities.growl, abilities.waterBlast];
 
 export default Hydra;

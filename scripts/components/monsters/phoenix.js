@@ -1,5 +1,6 @@
 import {FireType} from './../type/fire';
 import items from './../items/items';
+import abilities from './../abilities/abilities';
 
 export class Phoenix {
   constructor(lvl) {
@@ -18,4 +19,4 @@ Phoenix.prototype.defenseMult = 1;
 Phoenix.prototype.spAttackMult = 2;
 Phoenix.prototype.spDefenseMult = 2;
 Phoenix.prototype.speedMult = 3;
-// Phoenix.prototype.abilities = [abilities.stare, abilities.fireBlast];
+Phoenix.prototype.abilities = [abilities.stare, abilities.fireBlast];

@@ -22,5 +22,6 @@ export default {
       right: 210,
       bottom: 390,
     }
-  }
+  },
+  caughtMonster: false,
 }
