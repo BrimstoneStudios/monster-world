@@ -11,21 +11,32 @@ const spDefenseMultiplier = 1;
 const speedMultiplier = 3;
 
 export class Munchkin extends Monster {
-  constructor( lvl ) {
-    super( lvl, hpMultiplier, attackMultiplier, defenseMultiplier, spAttackMultiplier, spDefenseMultiplier, speedMultiplier );
+  constructor(lvl) {
+    super(
+      lvl,
+      hpMultiplier,
+      attackMultiplier,
+      defenseMultiplier,
+      spAttackMultiplier,
+      spDefenseMultiplier,
+      speedMultiplier
+    );
+
     this.abilities = [
       abilities.bite,
       abilities.stare,
     ];
+
     this.items = [
       {
-       item: items.net,
-       dropProbablity: 1
+        dropProbablity: 1,
+        item: items.net,
       }, {
-       item: items.potion,
-       dropProbablity: 1
+        dropProbablity: 1,
+        item: items.potion,
       },
     ];
+
     this.name = 'Munchkin';
     this.sprite = 'images/monsters/munchkin.gif';
     this.type = types.normal;
