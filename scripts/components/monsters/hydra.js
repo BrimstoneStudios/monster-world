@@ -1,7 +1,7 @@
 import {Monster} from './monster';
 import items from './../items/items';
 import abilities from './../abilities/abilities';
-import types from './../type/types';
+import elementalTypes from './../elemental-types';
 
 const hpMultiplier = 6;
 const attackMultiplier = 4;
@@ -39,6 +39,6 @@ export class Hydra extends Monster {
 
     this.name = 'Hydra';
     this.sprite = 'images/monsters/hydra1.jpg';
-    this.type = types.water;
+    this.type = elementalTypes.water;
   }
 }

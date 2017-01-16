@@ -1,7 +1,7 @@
 import {Monster} from './monster';
 import items from './../items/items';
 import abilities from './../abilities/abilities';
-import types from './../type/types';
+import elementalTypes from './../elemental-types';
 
 const hpMultiplier = 3;
 const attackMultiplier = 2;
@@ -39,6 +39,6 @@ export class Phoenix extends Monster {
 
     this.name = 'Phoenix';
     this.sprite = 'images/monsters/phoenix.gif';
-    this.type = types.fire;
+    this.type = elementalTypes.fire;
   }
 }

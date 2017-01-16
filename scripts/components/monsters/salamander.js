@@ -1,6 +1,6 @@
 import {Monster} from './monster';
 import abilities from './../abilities/abilities';
-import types from './../type/types';
+import elementalTypes from './../elemental-types';
 
 const hpMultiplier = 1;
 const attackMultiplier = 500;
@@ -29,6 +29,6 @@ export class Salamander extends Monster {
 
     this.name = 'Salamander';
     this.sprite = 'images/monsters/salamander.gif';
-    this.type = types.fire;
+    this.type = elementalTypes.fire;
   }
 }

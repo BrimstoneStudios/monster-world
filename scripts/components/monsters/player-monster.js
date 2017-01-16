@@ -1,6 +1,6 @@
 import {Monster} from './monster';
 import abilities from './../abilities/abilities';
-import types from './../type/types';
+import elementalTypes from './../elemental-types';
 
 const hpMultiplier = 0;
 const attackMultiplier = 3;
@@ -27,6 +27,6 @@ export class PlayerMonster extends Monster {
     ];
 
     this.name = 'PlayerMonster';
-    this.type = types.normal;
+    this.type = elementalTypes.normal;
   }
 }

@@ -1,7 +1,7 @@
 import {Monster} from './monster';
 import items from './../items/items';
 import abilities from './../abilities/abilities';
-import types from './../type/types';
+import elementalTypes from './../elemental-types';
 
 const hpMultiplier = 1;
 const attackMultiplier = 3;
@@ -36,6 +36,6 @@ export class GiantRat extends Monster {
     ];
     this.name = 'Giant Rat';
     this.sprite = 'images/monsters/giant-rat.gif';
-    this.type = types.normal;
+    this.type = elementalTypes.normal;
   }
 }
