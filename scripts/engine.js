@@ -188,7 +188,7 @@ var Engine = ( function ( global ) {
     'images/monsters/giant-rat.gif',
     'images/monsters/bat.gif',
     'images/monsters/munchkin.gif',
-    'images/monsters/lavaogre.gif',
+    'images/monsters/lava-ogre.gif',
     'images/monsters/firehead.gif',
     'images/monsters/ignis.gif',
     'images/monsters/phoenix.gif',
