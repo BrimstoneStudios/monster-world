@@ -1,11 +1,11 @@
 import changeBattleState from './change-battle-state';
+import PlayerMonster from './../monsters/player-monster';
 
 export default function  ( defender ) {
   if ( defender.currentHp <= 0 ) {
-    defender.currentHp = 0;
 
     if ( defender.controller === player ) {
-      if ( defender instanceof PlayerMon ) {
+      if ( defender instanceof PlayerMonster ) {
         gameOver();
         return 0;
       } else {
@@ -14,16 +14,16 @@ export default function  ( defender ) {
             player.monsterInventory.splice( i, 1 );
           }
         }
-         // If there are no more monsters left, create new PlayerMon
+         // If there are no more monsters left, create new PlayerMonster
         if ( player.monsterInventory.length === 0 ) {
-          var playerMon;
+          var playerMonster = new PlayerMonster( 2 );
           if ( player.savedAttributes.sprite === 'images/characters/monk.gif' ) {
-            playerMon = new PlayerMon( 2, 'monk' );
+            playerMonster.sprite = 'images/characters/monk.gif'
           } else {
-            playerMon = new PlayerMon( 2, 'deathCaster' );
+            playerMonster.sprite = 'images/characters/deathCaster.gif'
           }
-          playerMon.controller = player;
-          player.monsterInventory.push( playerMon );
+          playerMonster.controller = player;
+          player.monsterInventory.push( playerMonster );
         }
         currentMap.battleSystem.playerBattleMonster = player.monsterInventory[0];
       }

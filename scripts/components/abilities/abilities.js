@@ -91,4 +91,4 @@ allAbilities.waterBlast = new Abilities('Water Blast', 0.9, 'special', 50, types
     // modifier: 0.9,
     // targetSelf: false,
 
-export default allAbilities;
+export { allAbilities as default };

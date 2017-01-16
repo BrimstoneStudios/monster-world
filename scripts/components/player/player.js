@@ -34,15 +34,3 @@ export class Player {
 Player.prototype.handleInput = controls;
 Player.prototype.initLocation = initLocation;
 Player.prototype.locationSetter = locationSetter;
-
-// PlayerMon.prototype = Object.create( NormalType.prototype );
-// PlayerMon.prototype.constructor = PlayerMon;
-// PlayerMon.prototype.name = 'PlayerMon';
-// PlayerMon.prototype.player = 1;
-// PlayerMon.prototype.hpMult = 0;
-// PlayerMon.prototype.attackMult = 3;
-// PlayerMon.prototype.defenseMult = 0;
-// PlayerMon.prototype.spAttackMult = 2;
-// PlayerMon.prototype.spDefenseMult = 1;
-// PlayerMon.prototype.speedMult = 3;
-// PlayerMon.prototype.abilities = [abilities.scratch, abilities.stare];
