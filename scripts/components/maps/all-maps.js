@@ -4,6 +4,7 @@ import monsterSelect from './monster-select/monster-select';
 import monsterInventoryMenu from './monster-inventory-menu/monster-inventory-menu';
 import inventoryMenu from './inventory-menu/inventory-menu';
 import mainMenu from './main-menu/main-menu';
+import gameOver from './game-over/game-over';
 import battle from './battle/battle';
 import firstMap from './world/first-map';
 import fireMap from './world/fire-map';
@@ -53,6 +54,7 @@ export default {
   characterSelect: characterSelect,
   monsterSelect: monsterSelect,
   mainMenu: mainMenu,
+  gameOver: gameOver,
   monsterInventoryMenu: monsterInventoryMenu,
   inventoryMenu: inventoryMenu,
   battle: battle,

@@ -1,8 +1,6 @@
 import {NormalType} from './../type/normal';
 import abilities from './../abilities/abilities';
 
-console.log(abilities)
-
 var PlayerMonster = function ( lvl ) {
   NormalType.call( this, lvl );
 };

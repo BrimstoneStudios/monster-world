@@ -1,13 +1,14 @@
-import changeBattleState from './change-battle-state';
 import PlayerMonster from './../monsters/player-monster';
+import allMaps from './../maps/all-maps';
 
 export default function  ( defender ) {
   if ( defender.currentHp <= 0 ) {
 
     if ( defender.controller === player ) {
       if ( defender instanceof PlayerMonster ) {
-        gameOver();
-        return 0;
+        currentMap = allMaps.gameOver;
+        player.initLocation();
+        return false;
       } else {
         for ( let i = 0; i <= player.monsterInventory.length; i++ ) {
           if ( player.monsterInventory[i] === defender ) {
