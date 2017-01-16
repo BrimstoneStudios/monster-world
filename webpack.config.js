@@ -5,7 +5,7 @@ module.exports = {
     entry: {
         monsterWorld:
         [
-            'webpack-dev-server/client?http://localhost:8080',
+            'webpack-dev-server/client?http://0.0.0.0:8080/',
             './scripts/app.js',
         ]
     },
@@ -49,8 +49,8 @@ module.exports = {
         loaders: [
             {
                 test: /\.js$/,
-                exclude: /node_modules/,
                 loader: 'babel',
+                exclude: /node_modules/,
                 query: {
                     presets: ['es2015']
                 }
