@@ -1,38 +1,38 @@
 export default {
-  normal: {
-    effective: [],
-    ineffective: ['ghost', 'rock'],
+  electric: {
+    effective: ['water'],
+    ineffective: ['rock', 'electric'],
+  },
+  fighting: {
+    effective: ['normal'],
+    ineffective: ['psychic'],
   },
   fire: {
     effective: ['grass'],
     ineffective: ['water', 'fire'],
   },
-  water: {
-    effective: ['fire', 'rock'],
-    ineffective: ['grass', 'water'],
+  ghost: {
+    effective: ['ghost', 'psychic'],
+    ineffective: ['normal'],
   },
   grass: {
     effective: ['water', 'rock'],
     ineffective: ['fire', 'grass'],
   },
-  electric: {
-    effective: ['water'],
-    ineffective: ['rock', 'electric'],
-  },
-  rock: {
-    effective: ['electric'],
-    ineffective: ['rock'],
-  },
-  ghost: {
-    effective: ['ghost', 'psychic'],
-    ineffective: ['normal'],
+  normal: {
+    effective: [],
+    ineffective: ['ghost', 'rock'],
   },
   psychic: {
     effective: ['fighting'],
     ineffective: ['psychic', 'ghost'],
   },
-  fighting: {
-    effective: ['normal'],
-    ineffective: ['psychic'],
+  rock: {
+    effective: ['electric'],
+    ineffective: ['rock'],
+  },
+  water: {
+    effective: ['fire', 'rock'],
+    ineffective: ['grass', 'water'],
   },
 }
