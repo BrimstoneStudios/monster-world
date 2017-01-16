@@ -1,22 +1,45 @@
-import {FireType} from './../type/fire';
+import {Monster} from './monster';
 import items from './../items/items';
 import abilities from './../abilities/abilities';
+import types from './../type/types';
 
-export class LavaOgre {
+const hpMultiplier = 3;
+const attackMultiplier = 2;
+const defenseMultiplier = 1;
+const spAttackMultiplier = 2;
+const spDefenseMultiplier = 2;
+const speedMultiplier = 3;
+
+export class LavaOgre extends Monster {
   constructor(lvl) {
-    FireType.call( this, lvl );
+    super(
+      lvl,
+      hpMultiplier,
+      attackMultiplier,
+      defenseMultiplier,
+      spAttackMultiplier,
+      spDefenseMultiplier,
+      speedMultiplier
+    );
+
+    this.abilities = [
+      abilities.scratch,
+      abilities.stare,
+      abilities.fireBreath,
+    ];
+
+    this.items = [
+      {
+        dropProbablity: 1,
+        item: items.net,
+      }, {
+        dropProbablity: 1,
+        item: items.potion,
+      },
+    ];
+
+    this.name = 'Lava Ogre';
+    this.sprite = 'images/monsters/lava-ogre.gif';
+    this.type = types.fire;
   }
 }
-
-LavaOgre.prototype = Object.create( FireType.prototype );
-LavaOgre.prototype.constructor = LavaOgre;
-LavaOgre.prototype.sprite = 'images/monsters/lavaogre.gif';
-LavaOgre.prototype.name = 'LavaOgre';
-LavaOgre.prototype.evolve = 7;
-LavaOgre.prototype.hpMult = 3;
-LavaOgre.prototype.attackMult = 2;
-LavaOgre.prototype.defenseMult = 1;
-LavaOgre.prototype.spAttackMult = 2;
-LavaOgre.prototype.spDefenseMult = 2;
-LavaOgre.prototype.speedMult = 3;
-LavaOgre.prototype.abilities = [abilities.scratch, abilities.stare, abilities.fireBreath];

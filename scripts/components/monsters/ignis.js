@@ -1,22 +1,43 @@
-import {FireType} from './../type/fire';
+import {Monster} from './monster';
 import items from './../items/items';
 import abilities from './../abilities/abilities';
+import types from './../type/types';
 
-export class Ignis {
+const hpMultiplier = 3;
+const attackMultiplier = 1;
+const defenseMultiplier = 1;
+const spAttackMultiplier = 2;
+const spDefenseMultiplier = 1;
+const speedMultiplier = 2;
+
+export class Ignis extends Monster {
   constructor(lvl) {
-    FireType.call( this, lvl );
+    super(
+      lvl,
+      hpMultiplier,
+      attackMultiplier,
+      defenseMultiplier,
+      spAttackMultiplier,
+      spDefenseMultiplier,
+      speedMultiplier
+    );
+
+    this.abilities = [
+      abilities.fireBreath,
+    ];
+
+    this.items = [
+      {
+        dropProbablity: 1,
+        item: items.net,
+      }, {
+        dropProbablity: 1,
+        item: items.potion,
+      },
+    ];
+
+    this.name = 'Ignis';
+    this.sprite = 'images/monsters/ignis.gif';
+    this.type = types.fire;
   }
 }
-
-Ignis.prototype = Object.create( FireType.prototype );
-Ignis.prototype.constructor = Ignis;
-Ignis.prototype.sprite = 'images/monsters/ignis.gif';
-Ignis.prototype.name = 'Ignis';
-Ignis.prototype.evolve = 7;
-Ignis.prototype.hpMult = 3;
-Ignis.prototype.attackMult = 1;
-Ignis.prototype.defenseMult = 1;
-Ignis.prototype.spAttackMult = 2;
-Ignis.prototype.spDefenseMult = 1;
-Ignis.prototype.speedMult = 2;
-Ignis.prototype.abilities = [abilities.fireBreath];

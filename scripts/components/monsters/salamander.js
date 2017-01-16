@@ -1,20 +1,34 @@
-import {FireType} from './../type/fire';
+import {Monster} from './monster';
 import abilities from './../abilities/abilities';
+import types from './../type/types';
 
-var Salamander = function ( lvl ) {
-  FireType.call( this, lvl );
-};
-Salamander.prototype = Object.create( FireType.prototype );
-Salamander.prototype.constructor = Salamander;
-Salamander.prototype.sprite = 'images/monsters/salamander.jpg';
-Salamander.prototype.name = 'Salamander';
-Salamander.prototype.evolve = 7;
-Salamander.prototype.hpMult = 0;
-Salamander.prototype.attackMult = 502;
-Salamander.prototype.defenseMult = 0;
-Salamander.prototype.spAttackMult = 3;
-Salamander.prototype.spDefenseMult = 1;
-Salamander.prototype.speedMult = 3;
-Salamander.prototype.abilities = [abilities.bite, abilities.stare, abilities.fireBreath];
+const hpMultiplier = 1;
+const attackMultiplier = 500;
+const defenseMultiplier = 1;
+const spAttackMultiplier = 1;
+const spDefenseMultiplier = 1;
+const speedMultiplier = 3;
 
-export default Salamander;
+export class Salamander extends Monster {
+  constructor(lvl) {
+    super(
+      lvl,
+      hpMultiplier,
+      attackMultiplier,
+      defenseMultiplier,
+      spAttackMultiplier,
+      spDefenseMultiplier,
+      speedMultiplier
+    );
+
+    this.abilities = [
+      abilities.bite,
+      abilities.stare,
+      abilities.fireBreath,
+    ];
+
+    this.name = 'Salamander';
+    this.sprite = 'images/monsters/salamander.gif';
+    this.type = types.fire;
+  }
+}

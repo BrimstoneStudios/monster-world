@@ -1,20 +1,32 @@
-import {NormalType} from './../type/normal';
+import {Monster} from './monster';
 import abilities from './../abilities/abilities';
+import types from './../type/types';
 
-var PlayerMonster = function ( lvl ) {
-  NormalType.call( this, lvl );
-};
+const hpMultiplier = 0;
+const attackMultiplier = 3;
+const defenseMultiplier = 0;
+const spAttackMultiplier = 2;
+const spDefenseMultiplier = 1;
+const speedMultiplier = 3;
 
-PlayerMonster.prototype = Object.create( NormalType.prototype );
-PlayerMonster.prototype.constructor = PlayerMonster;
-PlayerMonster.prototype.name = 'PlayerMonster';
-PlayerMonster.prototype.player = 1;
-PlayerMonster.prototype.hpMult = 0;
-PlayerMonster.prototype.attackMult = 3;
-PlayerMonster.prototype.defenseMult = 0;
-PlayerMonster.prototype.spAttackMult = 2;
-PlayerMonster.prototype.spDefenseMult = 1;
-PlayerMonster.prototype.speedMult = 3;
-PlayerMonster.prototype.abilities = [abilities.scratch, abilities.stare];
+export class PlayerMonster extends Monster {
+  constructor(lvl) {
+    super(
+      lvl,
+      hpMultiplier,
+      attackMultiplier,
+      defenseMultiplier,
+      spAttackMultiplier,
+      spDefenseMultiplier,
+      speedMultiplier
+    );
 
-export default PlayerMonster;
+    this.abilities = [
+      abilities.scratch,
+      abilities.stare,
+    ];
+
+    this.name = 'PlayerMonster';
+    this.type = types.normal;
+  }
+}

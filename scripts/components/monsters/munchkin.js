@@ -1,31 +1,44 @@
-import {NormalType} from './../type/normal';
+import {Monster} from './monster';
 import items from './../items/items';
 import abilities from './../abilities/abilities';
+import types from './../type/types';
 
-export class Munchkin {
+const hpMultiplier = 3;
+const attackMultiplier = 2;
+const defenseMultiplier = 1;
+const spAttackMultiplier = 1;
+const spDefenseMultiplier = 1;
+const speedMultiplier = 3;
+
+export class Munchkin extends Monster {
   constructor(lvl) {
-    NormalType.call( this, lvl );
+    super(
+      lvl,
+      hpMultiplier,
+      attackMultiplier,
+      defenseMultiplier,
+      spAttackMultiplier,
+      spDefenseMultiplier,
+      speedMultiplier
+    );
+
+    this.abilities = [
+      abilities.bite,
+      abilities.stare,
+    ];
+
+    this.items = [
+      {
+        dropProbablity: 1,
+        item: items.net,
+      }, {
+        dropProbablity: 1,
+        item: items.potion,
+      },
+    ];
+
+    this.name = 'Munchkin';
     this.sprite = 'images/monsters/munchkin.gif';
+    this.type = types.normal;
   }
 }
-
-Munchkin.prototype = Object.create( NormalType.prototype );
-Munchkin.prototype.constructor = Munchkin;
-Munchkin.prototype.name = 'Munchkin';
-Munchkin.prototype.player = 1;
-Munchkin.prototype.hpMult = 3;
-Munchkin.prototype.attackMult = 2;
-Munchkin.prototype.defenseMult = 1;
-Munchkin.prototype.spAttackMult = 1;
-Munchkin.prototype.spDefenseMult = 1;
-Munchkin.prototype.speedMult = 3;
-Munchkin.prototype.abilities = [abilities.bite, abilities.stare];
-Munchkin.prototype.items = [
-  {
-   item: items.net,
-   dropProbablity: 1
-  }, {
-   item: items.potion,
-   dropProbablity: 1
-  }
-];
