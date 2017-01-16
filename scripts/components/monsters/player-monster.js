@@ -15,6 +15,6 @@ PlayerMonster.prototype.defenseMult = 0;
 PlayerMonster.prototype.spAttackMult = 2;
 PlayerMonster.prototype.spDefenseMult = 1;
 PlayerMonster.prototype.speedMult = 3;
-// PlayerMonster.prototype.abilities = [abilities.scratch, abilities.stare];
+PlayerMonster.prototype.abilities = [abilities.scratch, abilities.stare];
 
 export default PlayerMonster;

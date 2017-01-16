@@ -3,6 +3,7 @@ import changeBattleState from './change-battle-state';
 import enemyTurn from './enemy-turn';
 import checkWinCondition from './check-win-condition';
 import battleWon from './battle-won';
+import checkFightWinCondition from './check-win-condition';
 
 export default {
   renderText: function () {
@@ -22,6 +23,7 @@ export default {
         changeBattleState( battleWon );
       } else {
         abilities.useAbility( currentMap.battleSystem.enemy );
+        checkFightWinCondition( currentMap.battleSystem.playerBattleMonster );
         changeBattleState( enemyTurn );
       }
     }

@@ -2,6 +2,7 @@ import abilities from './../abilities/abilities';
 import changeBattleState from './change-battle-state';
 import playerTurn from './player-turn';
 import battleMenuMain from './battle-menu-main';
+import checkFightWinCondition from './check-win-condition';
 
 export default {
   renderText: function () {
@@ -15,6 +16,7 @@ export default {
       changeBattleState( battleMenuMain );
     } else if ( key === 'space' ) {
       abilities.useAbility( currentMap.battleSystem.playerBattleMonster );
+      checkFightWinCondition( currentMap.battleSystem.enemy );
       changeBattleState( playerTurn );
     }
   },

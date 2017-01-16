@@ -2,7 +2,6 @@ import checkTypeEffectiveness from './check-type-effectiveness';
 import dealDamage from './deal-damage';
 import modifyAbility from './modify-ability';
 import types from './../type/types';
-import checkFightWinCondition from './../battle-system/check-win-condition';
 
 var allAbilities = {
     useAbility: function ( attacker ) {
@@ -30,7 +29,6 @@ var allAbilities = {
 
         let damageModifier = checkTypeEffectiveness( ability, defender );
         dealDamage( attacker, ability, damageModifier, defender );
-        checkFightWinCondition( defender );
     }
 };
 

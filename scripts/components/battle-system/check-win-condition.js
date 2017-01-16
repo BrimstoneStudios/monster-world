@@ -3,6 +3,7 @@ import allMaps from './../maps/all-maps';
 
 export default function  ( defender ) {
   if ( defender.currentHp <= 0 ) {
+    defender.currentHp = 0;
 
     if ( defender.controller === player ) {
       if ( defender instanceof PlayerMonster ) {

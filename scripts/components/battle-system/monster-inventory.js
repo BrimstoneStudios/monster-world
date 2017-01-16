@@ -3,6 +3,7 @@ import battleMenuMain from './battle-menu-main';
 import enemyTurn from './enemy-turn';
 import swapMonsters from './swap-monsters';
 import abilities from './../abilities/abilities';
+import checkFightWinCondition from './check-win-condition';
 
 export default {
   renderText: function () {
@@ -15,6 +16,7 @@ export default {
     if ( key === 'space' ) {
       swapMonsters();
       abilities.useAbility( currentMap.battleSystem.enemy );
+      checkFightWinCondition( currentMap.battleSystem.playerBattleMonster );
       changeBattleState( enemyTurn );
     } else if ( key === 'shift' ) {
       changeBattleState( battleMenuMain );
