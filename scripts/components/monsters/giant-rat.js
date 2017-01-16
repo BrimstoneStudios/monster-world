@@ -11,19 +11,27 @@ const spDefenseMultiplier = 1;
 const speedMultiplier = 3;
 
 export class GiantRat extends Monster {
-  constructor( lvl ) {
-    super( lvl, hpMultiplier, attackMultiplier, defenseMultiplier, spAttackMultiplier, spDefenseMultiplier, speedMultiplier );
+  constructor(lvl) {
+    super(
+      lvl,
+      hpMultiplier,
+      attackMultiplier,
+      defenseMultiplier,
+      spAttackMultiplier,
+      spDefenseMultiplier,
+      speedMultiplier
+    );
     this.abilities = [
       abilities.scratch,
       abilities.growl,
     ];
     this.items = [
       {
-       item: items.net,
-       dropProbablity: 1
+        dropProbablity: 1,
+        item: items.net,
       }, {
-       item: items.potion,
-       dropProbablity: 1
+        dropProbablity: 1,
+        item: items.potion,
       },
     ];
     this.name = 'Giant Rat';
