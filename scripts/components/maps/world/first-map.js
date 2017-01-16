@@ -4,6 +4,7 @@ import {Bat} from './../../monsters/bat';
 import {GiantRat} from './../../monsters/giant-rat';
 import {Munchkin} from './../../monsters/munchkin';
 import HealerNPC from './../../npcs/healer';
+import {GiantAnt} from './../../monsters/giant-ant';
 
 var Di = tiles.Di;
 var Gr = tiles.Gr;
@@ -41,7 +42,7 @@ export default {
   monsters: {
     minLevel: 1,
     maxLevel: 2,
-    monster: [Bat]//, Bat, GiantRat, Munchkin],
+    monster: [GiantAnt]//, Bat, GiantRat, Munchkin],
   },
   controls: controls,
   npcs: [

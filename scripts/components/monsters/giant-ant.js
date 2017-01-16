@@ -1,21 +1,33 @@
-import GrassType from './../type/grass';
+import {Monster} from './monster';
 import abilities from './../abilities/abilities';
+import types from './../type/types';
 
-var GiantAnt = function ( lvl ) {
-  GrassType.call( this, lvl );
-};
+const hpMultiplier = 6;
+const attackMultiplier = 4;
+const defenseMultiplier = 1;
+const spAttackMultiplier = 2;
+const spDefenseMultiplier = 2;
+const speedMultiplier = 2;
 
-GiantAnt.prototype = Object.create( GrassType.prototype );
-GiantAnt.prototype.constructor = GiantAnt;
-GiantAnt.prototype.sprite = 'images/monsters/giant-ant.jpg';
-GiantAnt.prototype.name = 'Giant Ant';
-GiantAnt.prototype.evolve = 6;
-GiantAnt.prototype.hpMult = 4;
-GiantAnt.prototype.attackMult = 1;
-GiantAnt.prototype.defenseMult = 2;
-GiantAnt.prototype.spAttackMult = 2;
-GiantAnt.prototype.spDefenseMult = 2;
-GiantAnt.prototype.speedMult = 2;
-GiantAnt.prototype.abilities = [abilities.bite, abilities.growl, abilities.razorLeaf];
-
-export default GiantAnt;
+export class  GiantAnt extends Monster {
+  constructor( lvl ) {
+    super( lvl, hpMultiplier, attackMultiplier, defenseMultiplier, spAttackMultiplier, spDefenseMultiplier, speedMultiplier );
+    this.abilities = [
+      abilities.bite,
+      abilities.growl,
+     abilities.razorLeaf,
+    ];
+    this.items = [
+      {
+       item: items.net,
+       dropProbablity: 1
+      }, {
+       item: items.potion,
+       dropProbablity: 1
+      },
+    ];
+    this.name = 'Giant Ant';
+    this.sprite = 'images/monsters/giant-ant.jpg';
+    this.type = types.grass;
+  }
+}
