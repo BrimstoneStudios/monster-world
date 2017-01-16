@@ -1,31 +1,33 @@
-import {NormalType} from './../type/normal';
+import {Monster} from './monster';
 import items from './../items/items';
 import abilities from './../abilities/abilities';
+import types from './../type/types';
 
-export class Bat {
-  constructor(lvl) {
-    NormalType.call( this, lvl );
+const hpMultiplier = 2;
+const attackMultiplier = 2;
+const defenseMultiplier = 1;
+const spAttackMultiplier = 1;
+const spDefenseMultiplier = 1;
+const speedMultiplier = 3;
+
+export class Bat extends Monster {
+  constructor( lvl ) {
+    super( lvl, hpMultiplier, attackMultiplier, defenseMultiplier, spAttackMultiplier, spDefenseMultiplier, speedMultiplier );
+    this.abilities = [
+      abilities.bite,
+      abilities.stare,
+    ];
+    this.items = [
+      {
+       item: items.net,
+       dropProbablity: 1
+      }, {
+       item: items.potion,
+       dropProbablity: 1
+      },
+    ];
+    this.name = 'Bat';
     this.sprite = 'images/monsters/bat.gif';
+    this.type = types.normal;
   }
 }
-
-Bat.prototype = Object.create( NormalType.prototype );
-Bat.prototype.constructor = Bat;
-Bat.prototype.name = 'Bat';
-Bat.prototype.player = 1;
-Bat.prototype.hpMult = 2;
-Bat.prototype.attackMult = 2;
-Bat.prototype.defenseMult = 1;
-Bat.prototype.spAttackMult = 1;
-Bat.prototype.spDefenseMult = 1;
-Bat.prototype.speedMult = 3;
-Bat.prototype.abilities = [abilities.bite, abilities.stare];
-Bat.prototype.items = [
-  {
-   item: items.net,
-   dropProbablity: 1
-  }, {
-   item: items.potion,
-   dropProbablity: 1
-  }
-];
