@@ -1,6 +1,6 @@
-import Salamander from './../../monsters/salamander';
-import Hydra from './../../monsters/hydra';
-import GiantAnt from './../../monsters/giant-ant';
+import {Salamander} from './../../monsters/salamander';
+import {Hydra} from './../../monsters/hydra';
+import {GiantAnt} from './../../monsters/giant-ant';
 import allMaps from './../all-maps';
 
 export default function ( key, player ) {
