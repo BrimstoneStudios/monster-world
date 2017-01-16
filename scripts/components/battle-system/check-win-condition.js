@@ -1,4 +1,4 @@
-import PlayerMonster from './../monsters/player-monster';
+import {PlayerMonster} from './../monsters/player-monster';
 import allMaps from './../maps/all-maps';
 
 export default function  ( defender ) {
