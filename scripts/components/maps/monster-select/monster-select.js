@@ -12,16 +12,16 @@ export default {
     left: 200,
     top: 200,
     right: 400,
-    bottom: 200
+    bottom: 200,
   },
   initLocation: {
     x: 200,
-    y: 200
+    y: 200,
   },
   levelName: 'monsterSelect',
   movement: {
     x: 100,
-    y: 0
+    y: 0,
   },
   tiles: [
       [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
@@ -34,8 +34,8 @@ export default {
       [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
       [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
       [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
-    ],
-  sprite:  'images/characters/selector.png',
+  ],
+  sprite: 'images/characters/selector.png',
   controls: controls,
   renderText: renderText,
 }

@@ -18,12 +18,12 @@ export default {
     x: 10,
     y: 10,
   },
-  levelName : 'waterLevel',
+  levelName: 'waterLevel',
   movement: {
     x: 50,
     y: 50,
   },
-  tiles : [
+  tiles: [
     [Wa, Wa, Wa, Wa, Wa, Wa, Wa, Wa, Wa, Sa, Sa, Sa, Sa, Sa],
     [Wa, Wa, Wa, Wa, Wa, Wa, Wa, Wa, Sa, Sa, Sa, Sa, Sa, Sa],
     [Wa, Wa, Wa, Wa, Wa, Wa, Wa, Sa, Sa, Sa, Sa, Sa, Sa, Sa],

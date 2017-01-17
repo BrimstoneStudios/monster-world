@@ -7,18 +7,18 @@ export default {
     left: 180,
     top: 157,
     right: 180,
-    bottom: 247
+    bottom: 247,
   },
   initLocation: {
     x: 180,
-    y: 157
+    y: 157,
   },
-  levelName : 'mainMenu',
+  levelName: 'mainMenu',
   movement: {
     x: 0,
-    y: 90
+    y: 90,
   },
-  tiles : allWhite,
+  tiles: allWhite,
   sprite: 'images/characters/menuSelector.png',
   controls: controls,
   renderText: renderText,

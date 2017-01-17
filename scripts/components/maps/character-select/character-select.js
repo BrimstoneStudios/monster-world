@@ -11,16 +11,16 @@ export default {
     left: 250,
     top: 200,
     right: 400,
-    bottom: 200
+    bottom: 200,
   },
   initLocation: {
     x: 250,
-    y: 200
+    y: 200,
   },
   levelName: 'characterSelect',
   movement: {
     x: 150,
-    y: 0
+    y: 0,
   },
   tiles: [
       [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
@@ -33,8 +33,8 @@ export default {
       [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
       [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
       [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
-    ],
-  sprite:  'images/characters/selector.png',
+  ],
+  sprite: 'images/characters/selector.png',
   controls: controls,
   renderText: renderText,
 }

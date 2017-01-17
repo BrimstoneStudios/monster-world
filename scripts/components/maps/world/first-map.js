@@ -15,18 +15,18 @@ export default {
     left: -40,
     top: -40,
     right: 710,
-    bottom: 510
+    bottom: 510,
   },
   initLocation: {
     x: 10,
-    y: 10
+    y: 10,
   },
-  levelName : 'firstLevel',
+  levelName: 'firstLevel',
   movement: {
     x: 50,
-    y: 50
+    y: 50,
   },
-  tiles : [
+  tiles: [
     [Di, Di, Di, Gr, Gr, Gr, Di, Di, Di, Di, Di, Di, Di, Gr],
     [Di, Di, Di, Gr, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di],
     [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
@@ -36,15 +36,15 @@ export default {
     [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
     [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
     [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-    [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di]
+    [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
   ],
   monsters: {
     minLevel: 1,
     maxLevel: 2,
-    monster: [ Bat, GiantRat, Munchkin, ],
+    monster: [Bat, GiantRat, Munchkin, ],
   },
   controls: controls,
   npcs: [
     healer,
-  ]
+  ],
 }

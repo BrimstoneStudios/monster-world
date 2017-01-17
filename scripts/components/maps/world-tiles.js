@@ -14,5 +14,5 @@ export default {
   dC: 'images/characters/deathCaster.gif',
   mK: 'images/characters/monk.gif',
   wZ: 'images/characters/wizard.gif',
-  mo: '' //first monster in monsterInventory array. This var is defined during the battle event function
+  mo: '', // first monster in monsterInventory array. This var is defined during the battle event function
 }

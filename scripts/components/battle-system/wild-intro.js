@@ -4,10 +4,10 @@ import changeBattleState from './change-battle-state';
 export default {
   renderText: function () {
     ctx.font = '30px Arial';
-    ctx.fillText( 'A wild ' + currentMap.battleSystem.enemy.name + ' has appeared!', currentMap.battleSystem.coordinates.leftColumn, currentMap.battleSystem.coordinates.topRow );
+    ctx.fillText('A wild ' + currentMap.battleSystem.enemy.name + ' has appeared!', currentMap.battleSystem.coordinates.leftColumn, currentMap.battleSystem.coordinates.topRow);
   },
-  controls: function ( key ) {
-    if ( key === 'space' ) {
+  controls: function (key) {
+    if (key === 'space') {
       changeBattleState(battleMenuMain);
     }
   },

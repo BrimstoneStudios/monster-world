@@ -12,7 +12,7 @@ export default {
     rightColumn: 440,
     topRow: 385,
     middleRow: 425,
-    bottomRow: 465
+    bottomRow: 465,
   },
   initEnemy: initEnemy,
   levelUp: false,
