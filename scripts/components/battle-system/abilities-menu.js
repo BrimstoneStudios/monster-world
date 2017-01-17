@@ -1,13 +1,21 @@
-import abilities from './../abilities/abilities';
+// import abilities from './../abilities/abilities';
 import changeBattleState from './change-battle-state';
 import playerTurn from './player-turn';
 import battleMenuMain from './battle-menu-main';
 import checkFightWinCondition from './check-win-condition';
 
+var determineAbilityCast = function () {
+  for (let i = 0, j = 0; i < currentMap.battleSystem.playerBattleMonster.abilities.length; i++, j += currentMap.movement.y) {
+    if (player.location.y === currentMap.boundaries.top + j) {
+      return currentMap.battleSystem.playerBattleMonster.abilities[i];
+    }
+  }
+};
+
 export default {
   renderText: function () {
     ctx.font = '30px Arial';
-    for (let i = 0, j = 0; i < currentMap.battleSystem.playerBattleMonster.abilities.length; i++, j += 40) {
+    for (let i = 0, j = 0; i < currentMap.battleSystem.playerBattleMonster.abilities.length; i++, j += currentMap.movement.y) {
       ctx.fillText(currentMap.battleSystem.playerBattleMonster.abilities[i].name, currentMap.battleSystem.coordinates.leftColumn, currentMap.battleSystem.coordinates.topRow + j);
     }
   },
@@ -15,8 +23,9 @@ export default {
     if (key === 'shift') {
       changeBattleState(battleMenuMain);
     } else if (key === 'space') {
-      abilities.useAbility(currentMap.battleSystem.playerBattleMonster);
-      checkFightWinCondition(currentMap.battleSystem.enemy);
+      const abilityCast = determineAbilityCast();
+      abilityCast.useAbility(currentMap.battleSystem.playerBattleMonster);
+      checkFightWinCondition( currentMap.battleSystem.enemy);
       changeBattleState(playerTurn);
     }
   },

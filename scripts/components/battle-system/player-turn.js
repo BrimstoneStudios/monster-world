@@ -5,6 +5,11 @@ import checkWinCondition from './check-win-condition';
 import battleWon from './battle-won';
 import checkFightWinCondition from './check-win-condition';
 
+var determineAbilityCast = function () {
+  const randomAbility = Math.floor( Math.random() * currentMap.battleSystem.enemy.abilities.length );
+  return currentMap.battleSystem.enemy.abilities[randomAbility];
+};
+
 export default {
   renderText: function () {
     ctx.font = '30px Arial';
@@ -23,9 +28,11 @@ export default {
         currentMap.battleSystem.playerBattleMonster.gainExp();
         changeBattleState(battleWon);
       } else {
-        abilities.useAbility(currentMap.battleSystem.enemy);
-        checkFightWinCondition(currentMap.battleSystem.playerBattleMonster);
+        const abilityCast = determineAbilityCast();
+        abilityCast.useAbility(currentMap.battleSystem.enemy);
+        // checkFightWinCondition( currentMap.battleSystem.playerBattleMonster );
         changeBattleState(enemyTurn);
+
       }
     }
   },
