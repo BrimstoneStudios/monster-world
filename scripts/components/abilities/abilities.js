@@ -3,35 +3,7 @@ import dealDamage from './deal-damage';
 import modifyAbility from './modify-ability';
 import elementalTypes from './../elemental-types';
 
-var allAbilities = {
-  useAbility: function (attacker) {
-    var ability;
-    var battle = currentMap.battleSystem;
-    var defender;
-
-    if (attacker.controller === player) {
-      defender = currentMap.battleSystem.enemy;
-      for (let i = 0; i < currentMap.battleSystem.playerBattleMonster.abilities.length; i++) {
-        if (player.location.y === currentMap.boundaries.top + i * currentMap.movement.y) {
-          ability = currentMap.battleSystem.abilityUsed = currentMap.battleSystem.playerBattleMonster.abilities[i];
-          break;
-        }
-      }
-    } else {
-      defender = currentMap.battleSystem.playerBattleMonster;
-      var randomAttack = Math.floor(Math.random() * currentMap.battleSystem.enemy.abilities.length);
-
-      ability = currentMap.battleSystem.abilityUsed = currentMap.battleSystem.enemy.abilities[randomAttack];
-    }
-
-    if (ability.category === 'status' || ability.category === 'special') {
-      modifyAbility(ability, attacker, defender);
-    }
-
-    let damageModifier = checkTypeEffectiveness(ability, defender);
-
-    dealDamage(attacker, ability, damageModifier, defender);
-  },
+let allAbilities = {
 };
 
 class Abilities {
@@ -42,17 +14,38 @@ class Abilities {
     this.power = power;
     this.type = type;
   }
-}
+    useAbility(attacker) {
+        const ability = this;
+        const battle = currentMap.battleSystem;
+        let defender;
+        let damageModifier;
+
+        currentMap.battleSystem.abilityUsed = ability;
+
+        if (attacker.controller === player) {
+            defender = currentMap.battleSystem.enemy;
+        } else {
+            defender = currentMap.battleSystem.playerBattleMonster;
+        }
+
+        if (ability.category === 'status' || ability.category === 'special') {
+            modifyAbility(ability, attacker, defender);
+        }
+
+        damageModifier = checkTypeEffectiveness(ability, defender);
+        dealDamage(attacker, ability, damageModifier, defender);
+    }
+};
 
 class SpecialAbilities extends Abilities {
-  constructor(name, accuracy, category, power, type, attribute, effect, modifier, targetSelf) {
-    super(name, accuracy, category, power, type);
-    this.attribute = attribute;
-    this.effect = effect;
-    this.modifier = modifier;
-    this.targetSelf = targetSelf;
-  }
-}
+    constructor(name, accuracy, category, power, type, attribute, effect, modifier, targetSelf) {
+        super(name, accuracy, category, power, type);
+        this.attribute = attribute;
+        this.effect = effect;
+        this.modifier = modifier;
+        this.targetSelf = targetSelf;
+    }
+};
 
 // elementalTypes: normal, fire, water, grass, etc..
 // Categories: physical, special, status
