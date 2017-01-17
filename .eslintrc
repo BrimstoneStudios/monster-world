@@ -6,9 +6,10 @@
   "globals": {
     "ctx": true,
     "currentMap": true,
+    "Image": true,
+    "player": true,
     "Resources": true,
-    "window": true,
-    "Image": true
+    "window": true
   },
   settings: {
     "import/parser": "babel-eslint",
@@ -110,7 +111,8 @@
     "no-shadow-restricted-names": "error",
     "no-shadow": ["error", {
       "builtinGlobals": true,
-      "hoist": "all"
+      "hoist": "all",
+      "allow":["ctx"]
     }],
     "no-undef-init": "error",
     "no-undef": "error",
