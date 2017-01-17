@@ -3,31 +3,31 @@ import initLocation from './init-location';
 import locationSetter from './set-location';
 
 export class Player {
-  constructor () {
+  constructor() {
     this.location = {
       x: 0,
-      y: 0
+      y: 0,
     }
     this.monsterInventory = []
     this.savedAttributes = {
       location: {
         x: 0,
-        y: 0
-      }
+        y: 0,
+      },
     },
     this.inventory = []
   }
 
-  update () {
-    if ( typeof currentMap.sprite !== 'undefined' ) {
+  update() {
+    if (typeof currentMap.sprite !== 'undefined') {
       this.sprite = currentMap.sprite;
     } else {
       this.sprite = this.savedAttributes.sprite;
     }
   }
 
-  render () {
-    ctx.drawImage( Resources.get( this.sprite ), this.location.x, this.location.y );
+  render() {
+    ctx.drawImage(Resources.get(this.sprite), this.location.x, this.location.y);
   }
 }
 

@@ -1,63 +1,62 @@
-export default function ( key, player ) {
+export default function (key, player) {
   var battleState = battle.state;
   var playerBattleMonster = battle.playerBattleMonster;
   var enemy = battle.enemy;
   var coordinates = battle.coordinates;
 
-  setBattleBoundaries( key );
+  setBattleBoundaries(key);
 
-  switch ( battleState ) {
+  switch (battleState) {
 
     case 'battleMonsterDie':
-      if ( key === 'space' ) {
-        if ( battle.enemy.currentHp === 0 ) {
+      if (key === 'space') {
+        if (battle.enemy.currentHp === 0) {
           battleState = 'battleWinText';
         } else {
-          checkFightWinCondition( battle.playerBattleMonster );
+          checkFightWinCondition(battle.playerBattleMonster);
           battleState = 'battleMenuMain';
         }
       }
-    break;
+      break;
 
     case 'AI':
-      if ( key === 'space' ) {
-        if ( playerBattleMonster.currentHp === 0 ) {
+      if (key === 'space') {
+        if (playerBattleMonster.currentHp === 0) {
           battleState = 'battleMonsterDie';
         } else {
           battleState = 'battleMenuMain';
         }
       }
-    break;
+      break;
 
     case 'caughtMonster':
-      if ( key === 'space' ) {
+      if (key === 'space') {
         currentMap = player.savedAttributes.lastLevel;
         battleState = 0;
       }
-    break;
+      break;
 
     case 'failedCatch':
     case 'potionUsed':
-      if ( key === 'space' ) {
+      if (key === 'space') {
         battleState = 'battleMenuMain';
       }
-    break;
-
+      break;
 
 
     case 'itemDrop':
-      if ( key === 'space' ) {
+      if (key === 'space') {
         currentMap = player.savedAttributes.lastLevel;
         battleState = 0;
       }
-    break;
+      break;
   } // end of switch
-  if ( battleState !== battle.state ) {
+  if (battleState !== battle.state) {
     player.initLocation();
   }
   battle.state = battleState;
 
-  if ( battleState === 0 ) {
+  if (battleState === 0) {
     // player.location.x = player.savedAttributes.location.x;
     // player.location.y = player.savedAttributes.location.y;
   }

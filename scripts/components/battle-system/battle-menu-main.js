@@ -8,20 +8,20 @@ import monsterInventory from './monster-inventory';
 export default {
   renderText: function () {
     ctx.font = '30px Arial';
-    ctx.fillText( 'Fight', currentMap.battleSystem.coordinates.leftColumn, currentMap.battleSystem.coordinates.topRow );
-    ctx.fillText( 'Bag', currentMap.battleSystem.coordinates.middleColumn, currentMap.battleSystem.coordinates.topRow );
-    ctx.fillText( 'Monsters', currentMap.battleSystem.coordinates.leftColumn, currentMap.battleSystem.coordinates.middleRow );
-    ctx.fillText( 'Run', currentMap.battleSystem.coordinates.middleColumn, currentMap.battleSystem.coordinates.middleRow );
+    ctx.fillText('Fight', currentMap.battleSystem.coordinates.leftColumn, currentMap.battleSystem.coordinates.topRow);
+    ctx.fillText('Bag', currentMap.battleSystem.coordinates.middleColumn, currentMap.battleSystem.coordinates.topRow);
+    ctx.fillText('Monsters', currentMap.battleSystem.coordinates.leftColumn, currentMap.battleSystem.coordinates.middleRow);
+    ctx.fillText('Run', currentMap.battleSystem.coordinates.middleColumn, currentMap.battleSystem.coordinates.middleRow);
   },
-  controls: function ( key ) {
-    if ( key === 'space' ) {
-      if ( player.location.x === currentMap.boundaries.left && player.location.y === currentMap.boundaries.top ) {
-          changeBattleState(abilitiesMenu);
-      } else if ( player.location.x === currentMap.boundaries.left && player.location.y === currentMap.boundaries.bottom ) {
-        //Monsters inventory in battleMenuMain
+  controls: function (key) {
+    if (key === 'space') {
+      if (player.location.x === currentMap.boundaries.left && player.location.y === currentMap.boundaries.top) {
+        changeBattleState(abilitiesMenu);
+      } else if (player.location.x === currentMap.boundaries.left && player.location.y === currentMap.boundaries.bottom) {
+        // Monsters inventory in battleMenuMain
         changeBattleState(monsterInventory);
-      } else if ( player.location.x === currentMap.boundaries.right && player.location.y === currentMap.boundaries.bottom ) {
-        //Run in battleMenuMain
+      } else if (player.location.x === currentMap.boundaries.right && player.location.y === currentMap.boundaries.bottom) {
+        // Run in battleMenuMain
         changeBattleState(runFromBattle);
       } else {
         // Inventory in battleMenuMain
@@ -40,5 +40,5 @@ export default {
       right: 210,
       bottom: 390,
     }
-  }
+  },
 }

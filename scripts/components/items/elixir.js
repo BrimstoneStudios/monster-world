@@ -1,6 +1,6 @@
 export default {
-  name:'Elixir',
+  name: 'Elixir',
   func: function () {
     battle.playerBattleMonster.condition = 'healthy';
-  }
+  },
 }

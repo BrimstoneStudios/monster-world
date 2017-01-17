@@ -7,12 +7,12 @@ export default {
     ctx.font = '30px Arial';
     currentMap.battleSystem.itemUsed.renderBattleText();
   },
-  controls: function ( key ) {
-    if ( key === 'space' ) {
-      if ( currentMap.battleSystem.caughtMonster ) {
-        changeBattleState( battleWon );
+  controls: function (key) {
+    if (key === 'space') {
+      if (currentMap.battleSystem.caughtMonster) {
+        changeBattleState(battleWon);
       } else {
-        changeBattleState( battleMenuMain );
+        changeBattleState(battleMenuMain);
       }
     }
   },
@@ -27,5 +27,5 @@ export default {
       right: 210,
       bottom: 390,
     }
-  }
+  },
 }
