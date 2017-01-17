@@ -5,7 +5,8 @@ export default function (attacker, ability, damageModifier, defender) {
 
   if (ability.category === 'physical') {
     damage = ability.power * (attacker.attack * 1.5) * 0.04 / defender.defense * damageModifier;
-  } else if (ability.category === 'special') { // Special attacks use the spAttack and spDefense attributes
+  } else if (ability.category === 'special') {
+    // Special attacks use the spAttack and spDefense attributes
     damage = ability.power * (attacker.spAttack * 1.5) * 0.04 / defender.spDefense * damageModifier;
   }
 
