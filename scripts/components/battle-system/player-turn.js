@@ -1,4 +1,3 @@
-import abilities from './../abilities/abilities';
 import changeBattleState from './change-battle-state';
 import enemyTurn from './enemy-turn';
 import checkWinCondition from './check-win-condition';
@@ -30,9 +29,8 @@ export default {
       } else {
         const abilityCast = determineAbilityCast();
         abilityCast.useAbility(currentMap.battleSystem.enemy);
-        // checkFightWinCondition( currentMap.battleSystem.playerBattleMonster );
+        checkFightWinCondition(currentMap.battleSystem.playerBattleMonster);
         changeBattleState(enemyTurn);
-
       }
     }
   },
