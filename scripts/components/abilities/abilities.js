@@ -14,38 +14,38 @@ class Abilities {
     this.power = power;
     this.type = type;
   }
-    useAbility(attacker) {
-        const ability = this;
-        const battle = currentMap.battleSystem;
-        let defender;
-        let damageModifier;
+  useAbility(attacker) {
+    const ability = this;
+    const battle = currentMap.battleSystem;
+    let defender;
+    let damageModifier;
 
-        currentMap.battleSystem.abilityUsed = ability;
+    battle.abilityUsed = ability;
 
-        if (attacker.controller === player) {
-            defender = currentMap.battleSystem.enemy;
-        } else {
-            defender = currentMap.battleSystem.playerBattleMonster;
-        }
-
-        if (ability.category === 'status' || ability.category === 'special') {
-            modifyAbility(ability, attacker, defender);
-        }
-
-        damageModifier = checkTypeEffectiveness(ability, defender);
-        dealDamage(attacker, ability, damageModifier, defender);
+    if (attacker.controller === player) {
+      defender = battle.enemy;
+    } else {
+      defender = battle.playerBattleMonster;
     }
-};
+
+    if (ability.category === 'status' || ability.category === 'special') {
+      modifyAbility(ability, attacker, defender);
+    }
+
+    damageModifier = checkTypeEffectiveness(ability, defender);
+    dealDamage(attacker, ability, damageModifier, defender);
+  }
+}
 
 class SpecialAbilities extends Abilities {
-    constructor(name, accuracy, category, power, type, attribute, effect, modifier, targetSelf) {
-        super(name, accuracy, category, power, type);
-        this.attribute = attribute;
-        this.effect = effect;
-        this.modifier = modifier;
-        this.targetSelf = targetSelf;
-    }
-};
+  constructor(name, accuracy, category, power, type, attribute, effect, modifier, targetSelf) {
+    super(name, accuracy, category, power, type);
+    this.attribute = attribute;
+    this.effect = effect;
+    this.modifier = modifier;
+    this.targetSelf = targetSelf;
+  }
+}
 
 // elementalTypes: normal, fire, water, grass, etc..
 // Categories: physical, special, status
@@ -57,8 +57,28 @@ class SpecialAbilities extends Abilities {
 
 allAbilities.bite = new Abilities('Bite', 0.9, 'physical', 45, elementalTypes.normal);
 allAbilities.scratch = new Abilities('Scratch', 1, 'physical', 40, elementalTypes.normal);
-allAbilities.growl = new SpecialAbilities('Growl', 1, 'status', 0, elementalTypes.normal, 'attack', 'Decrease opponent attack damage', 0.8, false);
-allAbilities.stare = new SpecialAbilities('Stare', 1, 'status', 0, elementalTypes.normal, 'defense', 'Decrease opponent defense', 0.9, false);
+allAbilities.growl = new SpecialAbilities(
+    'Growl',
+    1,
+    'status',
+    0,
+    elementalTypes.normal,
+    'attack',
+    'Decrease opponent attack damage',
+    0.8,
+    false
+);
+allAbilities.stare = new SpecialAbilities(
+    'Stare',
+    1,
+    'status',
+    0,
+    elementalTypes.normal,
+    'defense',
+    'Decrease opponent defense',
+    0.9,
+    false
+);
 allAbilities.fireBreath = new Abilities('Fire Breath', 0.9, 'special', 50, elementalTypes.fire);
 
     // attribute: 'condition',

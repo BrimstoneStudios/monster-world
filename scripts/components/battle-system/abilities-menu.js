@@ -24,8 +24,9 @@ export default {
       changeBattleState(battleMenuMain);
     } else if (key === 'space') {
       const abilityCast = determineAbilityCast();
+
       abilityCast.useAbility(currentMap.battleSystem.playerBattleMonster);
-      checkFightWinCondition( currentMap.battleSystem.enemy);
+      checkFightWinCondition(currentMap.battleSystem.enemy);
       changeBattleState(playerTurn);
     }
   },
