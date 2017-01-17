@@ -5,7 +5,8 @@ import battleWon from './battle-won';
 import checkFightWinCondition from './check-win-condition';
 
 var determineAbilityCast = function () {
-  const randomAbility = Math.floor( Math.random() * currentMap.battleSystem.enemy.abilities.length );
+  const randomAbility = Math.floor(Math.random() * currentMap.battleSystem.enemy.abilities.length);
+
   return currentMap.battleSystem.enemy.abilities[randomAbility];
 };
 
@@ -28,6 +29,7 @@ export default {
         changeBattleState(battleWon);
       } else {
         const abilityCast = determineAbilityCast();
+
         abilityCast.useAbility(currentMap.battleSystem.enemy);
         checkFightWinCondition(currentMap.battleSystem.playerBattleMonster);
         changeBattleState(enemyTurn);
