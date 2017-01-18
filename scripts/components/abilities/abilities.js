@@ -14,6 +14,7 @@ class Abilities {
     this.power = power;
     this.type = type;
   }
+
   useAbility(attacker) {
     const ability = this;
     const battle = currentMap.battleSystem;
@@ -47,16 +48,88 @@ class SpecialAbilities extends Abilities {
   }
 }
 
-// elementalTypes: normal, fire, water, grass, etc..
-// Categories: physical, special, status
-// Power: range from 10-???,  status moves have 0 power
-// Accuracy: Range from 0.5-1
-// Effect: A description of the special effects on some abilities
-// Ability type effectiveness data
-// allAbilities.this = new Abilities('name', accuracy, 'category', power, 'type');
+/*
+* ABILITIES:
+* name: 'ability Name'
+* accuracy: value between 0 and 1
+* categories: 'physical', 'special', 'status'
+* power: value greater than 0,  status moves have 0 power
+* type: elemental type
+*
+* allAbilities.this = new Abilities(
+*     'name',
+*     accuracy,
+*     'category',
+*     power,
+*     'type'
+* );
+*/
 
-allAbilities.bite = new Abilities('Bite', 0.9, 'physical', 45, elementalTypes.normal);
-allAbilities.scratch = new Abilities('Scratch', 1, 'physical', 40, elementalTypes.normal);
+allAbilities.bite = new Abilities(
+    'Bite',
+    0.9,
+    'physical',
+    45,
+    elementalTypes.normal,
+    /*
+    bite.useAbility()
+    // applies all of the following:
+    // deals 2 dmg
+    // decreases defense by 3%
+    // applies a status effect of "string"
+
+    Thinking...
+    add ability.something = [
+    [hp, 2, 1] ,
+    [def, 0, 0.97],
+    [status, 0, 1, status.burn],
+    ...
+    ]
+
+    or even better ability.something = [
+        {
+            statAffect: hp,
+            constant: 2,
+            multiplier: 1
+        },
+        ..
+    ]
+    */
+);
+allAbilities.scratch = new Abilities(
+    'Scratch',
+    1,
+    'physical',
+    40,
+    elementalTypes.normal
+);
+
+/*
+* SPECIAL ABILITIES:
+* name: 'ability Name'
+* accuracy: value between 0 and 1
+* categories: 'physical', 'special', 'status'
+* power: value greater than 0,  status moves have 0 power
+* type: elemental type
+* attribute: monster attribute that gets affected if set
+* to 'condition' then it applies a condition such as poison
+* effect: string that describes the ability
+* modifier: amount to affect the attribute
+* targetSelf: true or false
+*
+* allAbilities.this = new Abilities(
+*     'name',
+*     accuracy,
+*     'category',
+*     power,
+*     'type',
+*     attribute,
+*     effect,
+*     modifier,
+*     targetSelf
+* );
+*/
+
 allAbilities.growl = new SpecialAbilities(
     'Growl',
     1,
@@ -79,33 +152,58 @@ allAbilities.stare = new SpecialAbilities(
     0.9,
     false
 );
-allAbilities.fireBreath = new Abilities('Fire Breath', 0.9, 'special', 50, elementalTypes.fire);
+
+// attribute: 'condition',
+// conditionApplied: 'burn',
+// effect: 'Chance of burn',
+// modifier: 0.1,
+// targetSelf: false,
+allAbilities.fireBreath = new Abilities(
+    'Fire Breath',
+    0.9,
+    'special',
+    50,
+    elementalTypes.fire
+);
+
 
     // attribute: 'condition',
     // conditionApplied: 'burn',
     // effect: 'Chance of burn',
     // modifier: 0.1,
     // targetSelf: false,
-allAbilities.fireBlast = new Abilities('Fire Blast', 0.9, 'special', 80, elementalTypes.fire);
-
-    // attribute: 'condition',
-    // conditionApplied: 'burn',
-    // effect: 'Chance of burn',
-    // modifier: 0.1,
-    // targetSelf: false,
-allAbilities.razorLeaf = new Abilities('Razor Leaf', 0.9, 'special', 50000, elementalTypes.grass);
+allAbilities.fireBlast = new Abilities(
+    'Fire Blast',
+    0.9,
+    'special',
+    80,
+    elementalTypes.fire
+);
 
     // attribute: 'defense',
     // conditionApplied: 'burn',
     // effect: 'Reduces defending monster defense',
     // modifier: 0.9,
     // targetSelf: false,
-allAbilities.waterBlast = new Abilities('Water Blast', 0.9, 'special', 50, elementalTypes.water);
+allAbilities.razorLeaf = new Abilities(
+    'Razor Leaf',
+    0.9,
+    'special',
+    50000,
+    elementalTypes.grass
+);
 
     // attribute: 'attack',
     // category: 'special',
     // effect: 'Reduces defending monsters attack',
     // modifier: 0.9,
     // targetSelf: false,
+allAbilities.waterBlast = new Abilities(
+    'Water Blast',
+    0.9,
+    'special',
+    50,
+    elementalTypes.water
+);
 
 export { allAbilities as default };
