@@ -112,7 +112,7 @@
     "no-shadow": ["error", {
       "builtinGlobals": true,
       "hoist": "all",
-      "allow":["ctx"]
+      "allow":["ctx", "player"]
     }],
     "no-undef-init": "error",
     "no-undef": "error",
