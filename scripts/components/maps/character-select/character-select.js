@@ -3,9 +3,9 @@ import renderText from './render-text';
 import tiles from './../world-tiles.js';
 import {Maps} from './../maps';
 
-const Wh = tiles.Wh;
 const dT = tiles.dT;
 const mT = tiles.mT;
+const Wh = tiles.Wh;
 
 var characterSelect = new Maps(
   'characterSelect',
@@ -25,10 +25,10 @@ var characterSelect = new Maps(
 
 characterSelect.setMovement = {
   boundaries: {
-    left: 250,
-    top: 200,
-    right: 400,
     bottom: 200,
+    left: 250,
+    right: 400,
+    top: 200,
   },
   controls: controls,
   distancePerMove: {

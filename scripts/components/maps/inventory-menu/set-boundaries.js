@@ -1,6 +1,8 @@
 import allMaps from './../all-maps';
 
 export default function () {
-  allMaps.inventoryMenu.boundaries.bottom = allMaps.inventoryMenu.boundaries.top;
-  allMaps.inventoryMenu.boundaries.bottom += (player.inventory.length - 1) * allMaps.inventoryMenu.movement.y;
+  const menu = allMaps.inventoryMenu;
+
+  menu.boundaries.bottom = menu.boundaries.top;
+  menu.boundaries.bottom += (player.inventory.length - 1) * menu.movement.y;
 }

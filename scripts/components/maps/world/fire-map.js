@@ -24,10 +24,10 @@ var fireMap = new Maps('fireMap',
 
 fireMap.setMovement = {
   boundaries: {
-    left: -40,
-    top: -40,
-    right: 710,
     bottom: 510,
+    left: -40,
+    right: 710,
+    top: -40,
   },
   controls: controls,
   distancePerMove: {

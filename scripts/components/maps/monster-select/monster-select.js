@@ -26,10 +26,10 @@ var monsterSelect = new Maps(
 
 monsterSelect.setMovement = {
   boundaries: {
-    left: 200,
-    top: 200,
-    right: 400,
     bottom: 200,
+    left: 200,
+    right: 400,
+    top: 200,
   },
   controls: controls,
   distancePerMove: {

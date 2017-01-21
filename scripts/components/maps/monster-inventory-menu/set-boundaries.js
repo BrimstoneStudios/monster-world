@@ -1,6 +1,8 @@
 import allMaps from './../all-maps';
 
 export default function () {
-  allMaps.monsterInventoryMenu.boundaries.bottom = allMaps.monsterInventoryMenu.boundaries.top;
-  allMaps.monsterInventoryMenu.boundaries.bottom += (player.monsterInventory.length - 1) * allMaps.monsterInventoryMenu.movement.y;
+  const menu = allMaps.monsterInventoryMenu;
+
+  menu.boundaries.bottom = menu.boundaries.top;
+  menu.boundaries.bottom += (player.monsterInventory.length - 1) * menu.movement.y;
 }
