@@ -23,6 +23,10 @@ export class Maps {
     };
   }
 
+  set setBoundaries(boundariesToSet) {
+    this.dynamicBoundaries = boundariesToSet;
+  }
+
   set setRenderText(textToRender) {
     this.renderText = textToRender;
   }

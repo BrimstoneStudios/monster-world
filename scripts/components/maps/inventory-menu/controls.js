@@ -10,7 +10,7 @@ export default function (key, player) {
 
     case 'space':
       items.useItem();
-      currentMap.setBoundaries();
+      currentMap.dynamicBoundaries();
       player.initLocation();
       break;
   }

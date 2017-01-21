@@ -20,8 +20,8 @@ mainMenu.setMovement = {
 };
 
 mainMenu.setInitLocation = {
-    x: 180,
-    y: 157,
+  x: 180,
+  y: 157,
 };
 
 mainMenu.setRenderText = renderText;
