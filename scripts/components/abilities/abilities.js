@@ -12,7 +12,7 @@ var allAbilities = {
     if (attacker.controller === player) {
       defender = currentMap.battleSystem.enemy;
       for (let i = 0; i < currentMap.battleSystem.playerBattleMonster.abilities.length; i++) {
-        if (player.location.y === currentMap.movement.boundaries.top + i * currentMap.movement.y) {
+        if (player.location.y === currentMap.movement.boundaries.top + i * currentMap.movement.distance.y) {
           ability = currentMap.battleSystem.abilityUsed = currentMap.battleSystem.playerBattleMonster.abilities[i];
           break;
         }
