@@ -1,5 +1,5 @@
 import {Monster} from './monster';
-import abilities from './../abilities/abilities';
+import abilities from './../abilities/all-abilities';
 import elementalTypes from './../elemental-types';
 
 const hpMultiplier = 6;

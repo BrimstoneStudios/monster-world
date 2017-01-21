@@ -2,7 +2,7 @@ import changeBattleState from './change-battle-state';
 import battleMenuMain from './battle-menu-main';
 import enemyTurn from './enemy-turn';
 import swapMonsters from './swap-monsters';
-import abilities from './../abilities/abilities';
+import abilities from './../abilities/all-abilities';
 import checkFightWinCondition from './check-win-condition';
 
 export default {

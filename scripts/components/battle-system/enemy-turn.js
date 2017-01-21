@@ -1,4 +1,4 @@
-import abilities from './../abilities/abilities';
+import abilities from './../abilities/all-abilities';
 import changeBattleState from './change-battle-state';
 import checkWinCondition from './check-win-condition';
 import battleMenuMain from './battle-menu-main';
