@@ -44,7 +44,7 @@ export class Maps {
     this.movement = boundaries;
   }
 
-  borders() {
-
+  set setNPCs(npcs) {
+    this.npcs = npcs;
   }
 }

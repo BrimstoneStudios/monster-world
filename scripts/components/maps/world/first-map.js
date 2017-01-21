@@ -64,12 +64,8 @@ firstMap.setInitLocation = {
   y: 10,
 };
 
+firstMap.setNPCs = [
+  healer,
+];
+
 export {firstMap as default};
-
-// export default {
-//   npcs: [
-//     healer,
-//   ],
-// }
-
-
