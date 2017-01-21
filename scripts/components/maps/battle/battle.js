@@ -1,21 +1,28 @@
 import allWhite from './../all-white';
 import battleSystem from './../../battle-system/battle-system';
+import {Maps} from './../maps';
 
-export default {
+var battleMap = new Maps('battleMap', allWhite);
+
+battleMap.setBattleSystem = battleSystem;
+battleMap.setMovement = {
   boundaries: battleSystem.state.boundaries(),
-  initLocation: {
-    x: 30,
-    y: 350,
-  },
-  levelName: 'battleMap',
-  movement: {
+  controls: battleSystem.state.controls,
+  distance: {
     x: battleSystem.state.movement.x,
     y: battleSystem.state.movement.y,
   },
-  sprite: 'images/characters/menuSelector.png',
-  tiles: allWhite,
-  battleSystem: battleSystem,
-  renderText: battleSystem.state.renderText,
-  controls: battleSystem.state.controls,
-  multipleRenderTextCounter: battleSystem.state.multipleRenderTextCounter,
-}
+};
+
+battleMap.setInitLocation = {
+  x: 30,
+  y: 350,
+};
+
+battleMap.setRenderText = battleSystem.state.renderText;
+
+battleMap.setSprite = 'images/characters/menuSelector.png';
+
+
+export {battleMap as default};
+  // multipleRenderTextCounter: battleSystem.state.multipleRenderTextCounter,

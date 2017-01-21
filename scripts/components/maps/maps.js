@@ -50,4 +50,8 @@ export class Maps {
   set setNPCs(npcs) {
     this.npcs = npcs;
   }
+
+  set setBattleSystem(battleSystem) {
+    this.battleSystem = battleSystem;
+  }
 }
