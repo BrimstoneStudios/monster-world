@@ -3,27 +3,13 @@ import controls from './controls';
 import {Bat} from './../../monsters/bat';
 import {GiantRat} from './../../monsters/giant-rat';
 import {Munchkin} from './../../monsters/munchkin';
+import {Maps} from './../maps';
 
 var Wa = tiles.Wa;
 var Sa = tiles.Sa;
 
-export default {
-  boundaries: {
-    left: -40,
-    top: -40,
-    right: 710,
-    bottom: 510,
-  },
-  initLocation: {
-    x: 10,
-    y: 10,
-  },
-  levelName: 'waterLevel',
-  movement: {
-    x: 50,
-    y: 50,
-  },
-  tiles: [
+var waterMap = new Maps('waterMap',
+  [
     [Wa, Wa, Wa, Wa, Wa, Wa, Wa, Wa, Wa, Sa, Sa, Sa, Sa, Sa],
     [Wa, Wa, Wa, Wa, Wa, Wa, Wa, Wa, Sa, Sa, Sa, Sa, Sa, Sa],
     [Wa, Wa, Wa, Wa, Wa, Wa, Wa, Sa, Sa, Sa, Sa, Sa, Sa, Sa],
@@ -35,10 +21,44 @@ export default {
     [Wa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa],
     [Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa, Sa],
   ],
-  monsters: {
-    minLevel: 1,
-    maxLevel: 2,
-    monster: [Bat, GiantRat, Munchkin],
+);
+
+waterMap.setMovement = {
+  boundaries: {
+    left: -40,
+    top: -40,
+    right: 710,
+    bottom: 510,
   },
   controls: controls,
-}
+  distancePerMove: {
+    x: 50,
+    y: 50,
+  },
+};
+
+waterMap.setMonsters = [
+  {
+    initMonster: Bat,
+    maxLevel: 3,
+    minLevel: 1,
+    probability: 0.3,
+  }, {
+    initMonster: GiantRat,
+    maxLevel: 5,
+    minLevel: 2,
+    probability: 0.5,
+  }, {
+    initMonster: Munchkin,
+    maxLevel: 8,
+    minLevel: 5,
+    probability: 0.2,
+  },
+];
+
+waterMap.setInitLocation = {
+  x: 10,
+  y: 10,
+};
+
+export {waterMap as default};
