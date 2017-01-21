@@ -35,7 +35,7 @@ characterSelect.setMovement = {
     x: 150,
     y: 0,
   },
-}
+};
 
 characterSelect.setRenderText = renderText;
 characterSelect.setSprite = 'images/characters/selector.png';

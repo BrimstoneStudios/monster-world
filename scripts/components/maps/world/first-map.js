@@ -26,73 +26,47 @@ var firstMap = new Maps('firstMap',
   ]
 );
 
-firstMap.setMovement =
-{
+firstMap.setMovement = {
   boundaries: {
     left: -40,
     top: -40,
     right: 710,
     bottom: 510,
   },
-  movement: {
+  controls: controls,
+  distancePerMove: {
     x: 50,
     y: 50,
   },
-  controls: controls,
 };
 
 firstMap.setMonsters = [
   {
-    monster: Bat,
+    initMonster: Bat,
     maxLevel: 3,
     minLevel: 1,
+    probability: 0.3,
   }, {
-    monster: GiantRat,
+    initMonster: GiantRat,
     maxLevel: 5,
     minLevel: 2,
+    probability: 0.5,
   }, {
-    monster: Munchkin,
+    initMonster: Munchkin,
     maxLevel: 8,
     minLevel: 5,
+    probability: 0.2,
   },
 ];
+
+firstMap.setInitLocation = {
+  x: 10,
+  y: 10,
+};
 
 export {firstMap as default};
 
 // export default {
-//   boundaries: {
-//     left: -40,
-//     top: -40,
-//     right: 710,
-//     bottom: 510,
-//   },
-//   initLocation: {
-//     x: 10,
-//     y: 10,
-//   },
-//   levelName: 'firstMap',
-//   movement: {
-//     x: 50,
-//     y: 50,
-//   },
-//   tiles: [
-//     [Di, Di, Di, Gr, Gr, Gr, Di, Di, Di, Di, Di, Di, Di, Gr],
-//     [Di, Di, Di, Gr, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di],
-//     [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-//     [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-//     [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-//     [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-//     [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-//     [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-//     [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-//     [Di, Di, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di, Di, Di],
-//   ],
-//   monsters: {
-//     minLevel: 1,
-//     maxLevel: 2,
-//     monster: [Bat, GiantRat, Munchkin, ],
-//   },
-//   controls: controls,
 //   npcs: [
 //     healer,
 //   ],
