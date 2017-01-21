@@ -5,7 +5,7 @@ const defaultMovement = {
     right: 0,
     bottom: 0,
   },
-  movement: {
+  distancePerMove: {
     x: 0,
     y: 0,
   },
@@ -21,14 +21,18 @@ export class Maps {
     this.levelName = levelName;
     this.tiles = tiles;
     this.movement = defaultMovement;
+    this.display = {};
   }
 
-
-  set setSprite(image) {
-    this.sprite = image;
+  set setRenderText(whatToRender) {
+    this.renderText = whatToRender;
   }
 
-  set location(initLocation) {
+  set setSprite(sprite) {
+    this.sprite = sprite;
+  }
+
+  set setInitLocation(initLocation) {
     this.initLocation = initLocation;
   }
 

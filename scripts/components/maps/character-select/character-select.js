@@ -1,40 +1,47 @@
 import controls from './controls';
 import renderText from './render-text';
 import tiles from './../world-tiles.js';
+import {Maps} from './../maps';
 
-var Wh = tiles.Wh;
-var dT = tiles.dT;
-var mT = tiles.mT;
+const Wh = tiles.Wh;
+const dT = tiles.dT;
+const mT = tiles.mT;
 
-export default {
+var characterSelect = new Maps(
+  'characterSelect',
+  [
+    [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
+    [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
+    [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
+    [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
+    [Wh, Wh, Wh, Wh, Wh, dT, Wh, Wh, mT, Wh, Wh, Wh, Wh, Wh],
+    [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
+    [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
+    [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
+    [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
+    [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
+  ]
+);
+
+characterSelect.setMovement = {
   boundaries: {
     left: 250,
     top: 200,
     right: 400,
     bottom: 200,
   },
-  initLocation: {
-    x: 250,
-    y: 200,
-  },
-  levelName: 'characterSelect',
-  movement: {
+  controls: controls,
+  distancePerMove: {
     x: 150,
     y: 0,
   },
-  tiles: [
-      [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
-      [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
-      [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
-      [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
-      [Wh, Wh, Wh, Wh, Wh, dT, Wh, Wh, mT, Wh, Wh, Wh, Wh, Wh],
-      [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
-      [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
-      [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
-      [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
-      [Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh, Wh],
-  ],
-  sprite: 'images/characters/selector.png',
-  controls: controls,
-  renderText: renderText,
 }
+
+characterSelect.setRenderText = renderText;
+characterSelect.setSprite = 'images/characters/selector.png';
+characterSelect.setInitLocation = {
+  x: 250,
+  y: 200,
+};
+
+export {characterSelect as default};

@@ -15,12 +15,12 @@ export default {
   },
   controls: function (key) {
     if (key === 'space') {
-      if (player.location.x === currentMap.boundaries.left && player.location.y === currentMap.boundaries.top) {
+      if (player.location.x === currentMap.movement.boundaries.left && player.location.y === currentMap.movement.boundaries.top) {
         changeBattleState(abilitiesMenu);
-      } else if (player.location.x === currentMap.boundaries.left && player.location.y === currentMap.boundaries.bottom) {
+      } else if (player.location.x === currentMap.movement.boundaries.left && player.location.y === currentMap.movement.boundaries.bottom) {
         // Monsters inventory in battleMenuMain
         changeBattleState(monsterInventory);
-      } else if (player.location.x === currentMap.boundaries.right && player.location.y === currentMap.boundaries.bottom) {
+      } else if (player.location.x === currentMap.movement.boundaries.right && player.location.y === currentMap.movement.boundaries.bottom) {
         // Run in battleMenuMain
         changeBattleState(runFromBattle);
       } else {

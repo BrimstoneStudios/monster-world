@@ -54,8 +54,8 @@
       })
     }
 
-    if (typeof currentMap.renderText !== 'undefined') {
-      currentMap.renderText();
+    if (typeof currentMap.display.renderText !== 'undefined') {
+      currentMap.display.renderText();
     }
 
     if (typeof currentMap.battleSystem !== 'undefined') {

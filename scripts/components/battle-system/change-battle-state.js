@@ -6,7 +6,7 @@ export default function (newBattleState) {
   currentMap.controls = newBattleState.controls;
 
   if (typeof newBattleState.boundaries !== 'undefined') {
-    currentMap.boundaries = newBattleState.boundaries();
+    currentMap.movement.boundaries = newBattleState.boundaries();
   }
 
   player.initLocation();

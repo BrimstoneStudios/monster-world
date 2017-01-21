@@ -12,30 +12,30 @@ import waterMap from './world/water-map';
 
 var borders = function () {
   var setLeftBorder = function (mapToGoTo) {
-    if (player.location.x === currentMap.boundaries.left) {
+    if (player.location.x === currentMap.movement.boundaries.left) {
       currentMap = mapToGoTo;
-      player.location.x = currentMap.boundaries.right - currentMap.movement.x;
+      player.location.x = currentMap.movement.boundaries.right - currentMap.movement.x;
     }
   };
 
   var setTopBorder = function (mapToGoTo) {
-    if (player.location.y === currentMap.boundaries.top) {
+    if (player.location.y === currentMap.movement.boundaries.top) {
       currentMap = mapToGoTo;
-      player.location.y = currentMap.boundaries.bottom - currentMap.movement.y;
+      player.location.y = currentMap.movement.boundaries.bottom - currentMap.movement.y;
     }
   };
 
   var setRightBorder = function (mapToGoTo) {
-    if (player.location.x === currentMap.boundaries.right) {
+    if (player.location.x === currentMap.movement.boundaries.right) {
       currentMap = mapToGoTo;
-      player.location.x = currentMap.boundaries.left + currentMap.movement.x;
+      player.location.x = currentMap.movement.boundaries.left + currentMap.movement.x;
     }
   };
 
   var setBottomBorder = function (mapToGoTo) {
-    if (player.location.y === currentMap.boundaries.bottom) {
+    if (player.location.y === currentMap.movement.boundaries.bottom) {
       currentMap = mapToGoTo;
-      player.location.y = currentMap.boundaries.top + currentMap.movement.y;
+      player.location.y = currentMap.movement.boundaries.top + currentMap.movement.y;
     }
   };
 
