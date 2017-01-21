@@ -32,7 +32,7 @@ monsterSelect.setMovement = {
     top: 200,
   },
   controls: controls,
-  distancePerMove: {
+  distance: {
     x: 100,
     y: 0,
   },

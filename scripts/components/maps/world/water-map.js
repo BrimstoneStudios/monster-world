@@ -31,7 +31,7 @@ waterMap.setMovement = {
     top: -40,
   },
   controls: controls,
-  distancePerMove: {
+  distance: {
     x: 50,
     y: 50,
   },

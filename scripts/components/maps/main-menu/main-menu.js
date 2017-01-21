@@ -13,7 +13,7 @@ mainMenu.setMovement = {
     top: 157,
   },
   controls: controls,
-  distancePerMove: {
+  distance: {
     x: 0,
     y: 90,
   },

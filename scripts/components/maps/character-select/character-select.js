@@ -31,7 +31,7 @@ characterSelect.setMovement = {
     top: 200,
   },
   controls: controls,
-  distancePerMove: {
+  distance: {
     x: 150,
     y: 0,
   },

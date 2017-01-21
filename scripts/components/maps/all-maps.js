@@ -12,33 +12,33 @@ import waterMap from './world/water-map';
 
 function borders() {
   const boundaries = currentMap.movement.boundaries;
-  const distancePerMove = currentMap.movement.distancePerMove;
+  const distance = currentMap.movement.distance;
 
   function setLeftBorder(mapToGoTo) {
     if (player.location.x === boundaries.left) {
       currentMap = mapToGoTo;
-      player.location.x = boundaries.right - distancePerMove.x;
+      player.location.x = boundaries.right - distance.x;
     }
   }
 
   function setTopBorder(mapToGoTo) {
     if (player.location.y === boundaries.top) {
       currentMap = mapToGoTo;
-      player.location.y = boundaries.bottom - distancePerMove.y;
+      player.location.y = boundaries.bottom - distance.y;
     }
   }
 
   function setRightBorder(mapToGoTo) {
     if (player.location.x === boundaries.right) {
       currentMap = mapToGoTo;
-      player.location.x = boundaries.left + distancePerMove.x;
+      player.location.x = boundaries.left + distance.x;
     }
   }
 
   function setBottomBorder(mapToGoTo) {
     if (player.location.y === boundaries.bottom) {
       currentMap = mapToGoTo;
-      player.location.y = boundaries.top + distancePerMove.y;
+      player.location.y = boundaries.top + distance.y;
     }
   }
 

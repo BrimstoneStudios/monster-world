@@ -2,28 +2,35 @@ import allWhite from './../all-white';
 import setBoundaries from './set-boundaries';
 import renderText from './render-text';
 import controls from './controls';
+import {Maps} from './../maps';
 
-export default {
+var monsterInventoryMenu = new Maps('monsterInventoryMenu', allWhite);
+
+monsterInventoryMenu.setMovement = {
   boundaries: {
-    left: 20,
-    top: 42,
-    right: 20,
     bottom: 42,
+    left: 20,
+    right: 20,
+    top: 42,
   },
-  displayStats: false,
-  displayMonsterIndex: null,
-  initLocation: {
-    x: 20,
-    y: 42,
-  },
-  levelName: 'monsterInventory',
-  movement: {
-    x: 0,
-    y: 50,
-  },
-  tiles: allWhite,
-  sprite: 'images/characters/menuSelector.png',
-  setBoundaries: setBoundaries,
-  renderText: renderText,
   controls: controls,
-}
+  distance: {
+    x: 0,
+    y: 90,
+  },
+};
+
+monsterInventoryMenu.setInitLocation = {
+  x: 20,
+  y: 42,
+};
+
+monsterInventoryMenu.setRenderText = renderText;
+monsterInventoryMenu.setSprite = 'images/characters/menuSelector.png';
+monsterInventoryMenu.setBoundaries = setBoundaries;
+
+
+export {monsterInventoryMenu as default};
+
+  // displayStats: false,
+  // displayMonsterIndex: null,

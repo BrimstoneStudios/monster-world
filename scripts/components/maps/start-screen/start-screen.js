@@ -14,7 +14,7 @@ startScreen.setMovement = {
     top: 0,
   },
   controls: controls,
-  distancePerMove: {
+  distance: {
     x: 0,
     y: 0,
   },

@@ -15,7 +15,7 @@ inventoryMenu.setMovement = {
     top: 42,
   },
   controls: controls,
-  distancePerMove: {
+  distance: {
     x: 0,
     y: 50,
   },

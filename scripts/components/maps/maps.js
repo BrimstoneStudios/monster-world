@@ -8,7 +8,7 @@ const defaultMovement = {
   controls: function () {
     return false;
   },
-  distancePerMove: {
+  distance: {
     x: 0,
     y: 0,
   },
