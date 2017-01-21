@@ -16,7 +16,7 @@ monsterInventoryMenu.setMovement = {
   controls: controls,
   distance: {
     x: 0,
-    y: 90,
+    y: 60,
   },
 };
 

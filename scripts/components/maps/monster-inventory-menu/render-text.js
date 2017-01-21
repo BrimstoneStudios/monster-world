@@ -1,5 +1,5 @@
 export default function () {
-  for (let i = 0, j = 0; i < player.monsterInventory.length; i++, j += 50) {
+  for (let i = 0, j = 0; i < player.monsterInventory.length; i++, j += currentMap.movement.distance.y) {
     ctx.font = '30px Arial';
     ctx.drawImage(Resources.get(player.monsterInventory[i].sprite), 85, 50 + j);
     ctx.fillText(player.monsterInventory[i].name, 155, 85 + j);
