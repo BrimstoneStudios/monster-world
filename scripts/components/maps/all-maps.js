@@ -14,28 +14,28 @@ var borders = function () {
   var setLeftBorder = function (mapToGoTo) {
     if (player.location.x === currentMap.movement.boundaries.left) {
       currentMap = mapToGoTo;
-      player.location.x = currentMap.movement.boundaries.right - currentMap.movement.x;
+      player.location.x = currentMap.movement.boundaries.right - currentMap.movement.distancePerMove.x;
     }
   };
 
   var setTopBorder = function (mapToGoTo) {
     if (player.location.y === currentMap.movement.boundaries.top) {
       currentMap = mapToGoTo;
-      player.location.y = currentMap.movement.boundaries.bottom - currentMap.movement.y;
+      player.location.y = currentMap.movement.boundaries.bottom - currentMap.movement.distancePerMove.y;
     }
   };
 
   var setRightBorder = function (mapToGoTo) {
     if (player.location.x === currentMap.movement.boundaries.right) {
       currentMap = mapToGoTo;
-      player.location.x = currentMap.movement.boundaries.left + currentMap.movement.x;
+      player.location.x = currentMap.movement.boundaries.left + currentMap.movement.distancePerMove.x;
     }
   };
 
   var setBottomBorder = function (mapToGoTo) {
     if (player.location.y === currentMap.movement.boundaries.bottom) {
       currentMap = mapToGoTo;
-      player.location.y = currentMap.movement.boundaries.top + currentMap.movement.y;
+      player.location.y = currentMap.movement.boundaries.top + currentMap.movement.distancePerMove.y;
     }
   };
 
