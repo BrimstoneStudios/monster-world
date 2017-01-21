@@ -1,6 +1,6 @@
 import allMaps from './../all-maps';
 import resolveBattleEvent from './../battle/resolve-battle-event';
-import initNPC from './../../npcs/init-npc';
+import checkNPCActionable from './../check-npc-actionable';
 
 export default function (key, player) {
   switch (key) {
@@ -13,7 +13,7 @@ export default function (key, player) {
       break;
 
     case 'space':
-      initNPC();
+      checkNPCActionable();
       break;
 
     case 'left':
