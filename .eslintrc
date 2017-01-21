@@ -7,6 +7,7 @@
     "ctx": true,
     "currentMap": true,
     "Image": true,
+    "location": true,
     "player": true,
     "Resources": true,
     "window": true

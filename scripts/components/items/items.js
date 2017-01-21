@@ -11,6 +11,7 @@ export default {
     for (let i = 0; i <= player.inventory.length; i++) {
       if (player.location.y === currentMap.movement.boundaries.top + i * currentMap.movement.distance.y) {
         const itemUsed = player.inventory[i];
+
         console.log(itemUsed)
 
         itemUsed.func();
