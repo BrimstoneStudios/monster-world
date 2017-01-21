@@ -23,8 +23,8 @@ export class Maps {
     };
   }
 
-  set setRenderText(whatToRender) {
-    this.renderText = whatToRender;
+  set setRenderText(textToRender) {
+    this.renderText = textToRender;
   }
 
   set setSprite(sprite) {

@@ -1,25 +1,31 @@
 import allWhite from './../all-white';
 import controls from './controls';
 import renderText from './rendered-text';
+import {Maps} from './../maps';
 
-export default {
+var mainMenu = new Maps('mainMenu', allWhite);
+
+mainMenu.setMovement = {
   boundaries: {
-    left: 180,
-    top: 157,
-    right: 180,
     bottom: 247,
+    left: 180,
+    right: 180,
+    top: 157,
   },
-  initLocation: {
-    x: 180,
-    y: 157,
-  },
-  levelName: 'mainMenu',
-  movement: {
+  controls: controls,
+  distancePerMove: {
     x: 0,
     y: 90,
   },
-  tiles: allWhite,
-  sprite: 'images/characters/menuSelector.png',
-  controls: controls,
-  renderText: renderText,
-}
+};
+
+mainMenu.setInitLocation = {
+    x: 180,
+    y: 157,
+};
+
+mainMenu.setRenderText = renderText;
+mainMenu.setSprite = 'images/characters/menuSelector.png';
+
+
+export {mainMenu as default};
