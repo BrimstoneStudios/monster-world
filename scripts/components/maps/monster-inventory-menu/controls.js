@@ -1,7 +1,6 @@
 import allMaps from './../all-maps.js';
 
 export default function (key, player) {
-
   switch (key) {
     case 'shift':
       currentMap.displayStats = false;
@@ -9,9 +8,13 @@ export default function (key, player) {
       player.initLocation();
       break;
 
-    case 'space':
+    case 'space': {
+      const distance = currentMap.movement.distance;
+      const initYLoc = currentMap.initLocation.y;
+
       currentMap.displayStats = !currentMap.displayStats;
-      currentMap.displayMonsterIndex = (player.location.y - currentMap.initLocation.y) / currentMap.movement.distance.y;
+      currentMap.displayMonsterIndex = (player.location.y - initYLoc) / distance.y;
       break;
+    }
   }
 }
