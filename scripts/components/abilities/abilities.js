@@ -3,13 +3,9 @@ import dealDamage from './deal-damage';
 import modifyAbility from './modify-ability';
 import elementalTypes from './../elemental-types';
 
-// let allAbilities = {
-// };
-
-
 
 export class Abilities {
-    constructor (name, type, accuracy) {
+    constructor (name, accuracy, type) {
         this.name = name;
         this.type = type;
         this.accuracy = accuracy;
@@ -170,6 +166,3 @@ export class Abilities {
 // modifier: 0.1,
 // targetSelf: false,
 
-
-
-// export { allAbilities as default };

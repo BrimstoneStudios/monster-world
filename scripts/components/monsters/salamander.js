@@ -24,7 +24,7 @@ export class Salamander extends Monster {
 
     this.abilities = [
       abilities.bite,
-      abilities.stare,
+      // abilities.stare,
       abilities.fireBreath,
     ];
 

@@ -29,7 +29,8 @@ export default {
         changeBattleState(battleWon);
       } else {
         const abilityCast = determineAbilityCast();
-
+        console.log(abilityCast);
+        console.log(currentMap.battleSystem)
         abilityCast.useAbility(currentMap.battleSystem.enemy);
         checkFightWinCondition(currentMap.battleSystem.playerBattleMonster);
         changeBattleState(enemyTurn);
