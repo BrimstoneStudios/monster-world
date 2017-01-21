@@ -5,6 +5,7 @@ import {Maps} from './../maps';
 var battleMap = new Maps('battleMap', allWhite);
 
 battleMap.setBattleSystem = battleSystem;
+
 battleMap.setMovement = {
   boundaries: battleSystem.state.boundaries(),
   controls: battleSystem.state.controls,
@@ -23,6 +24,6 @@ battleMap.setRenderText = battleSystem.state.renderText;
 
 battleMap.setSprite = 'images/characters/menuSelector.png';
 
-
+console.log(battleSystem.state)
 export {battleMap as default};
   // multipleRenderTextCounter: battleSystem.state.multipleRenderTextCounter,
