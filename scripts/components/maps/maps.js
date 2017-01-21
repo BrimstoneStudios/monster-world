@@ -5,7 +5,7 @@ const defaultMovement = {
     right: 0,
     bottom: 0,
   },
-    movement: {
+  movement: {
     x: 0,
     y: 0,
   },
@@ -14,7 +14,7 @@ const defaultMovement = {
       window.alert('You have not mounted your controls!')
     }
   },
-}
+};
 
 export class Maps {
   constructor(levelName, tiles) {
