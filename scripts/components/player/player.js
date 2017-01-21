@@ -37,7 +37,8 @@ export class Player {
 
   handleInput(key) {
     this.render();
-    currentMap.controls(key, player)
+    console.log(currentMap)
+    currentMap.movement.controls(key, player)
     this.locationSetter(key);
   }
 
