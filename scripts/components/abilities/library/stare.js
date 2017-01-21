@@ -7,7 +7,11 @@ let stare = new Abilities(
     elementalTypes.normal
 );
 
-stare.category = 'physical';
+stare.category = 'status';
 stare.power = 0;
+stare.attribrute = 'defense';
+stare.effect = 'Decrease opponents physical defense';
+stare.modifier = 0.9;
+stare.targetSelf = false;
 
 export {stare as default};

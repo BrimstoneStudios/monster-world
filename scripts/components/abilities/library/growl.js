@@ -7,7 +7,11 @@ let growl = new Abilities(
     elementalTypes.normal
 );
 
-growl.category = 'physical';
+growl.category = 'status';
 growl.power = 0;
+growl.attribrute = 'attack';
+growl.effect = 'Decrease opponent attack damage';
+growl.modifier = 0.8;
+growl.targetSelf = false;
 
 export {growl as default};
