@@ -15,7 +15,6 @@ export default {
   },
   controls: function (key) {
     if (key === 'space') {
-      console.log('we made it')
       if (player.location.x === currentMap.movement.boundaries.left && player.location.y === currentMap.movement.boundaries.top) {
         changeBattleState(abilitiesMenu);
       } else if (player.location.x === currentMap.movement.boundaries.left && player.location.y === currentMap.movement.boundaries.bottom) {

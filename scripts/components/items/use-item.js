@@ -11,7 +11,7 @@ var useItems = function () {
         player.inventory.splice(i, 1);
       }
       if (currentMap === allMaps.battle) {
-        return itemUsed.battleState;
+        return battleState.itemUsed;
       }
     }
   }

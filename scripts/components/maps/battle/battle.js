@@ -24,6 +24,5 @@ battleMap.setRenderText = battleSystem.state.renderText;
 
 battleMap.setSprite = 'images/characters/menuSelector.png';
 
-console.log(battleSystem.state)
 export {battleMap as default};
   // multipleRenderTextCounter: battleSystem.state.multipleRenderTextCounter,
