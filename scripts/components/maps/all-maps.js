@@ -1,43 +1,46 @@
-import startScreen from './start-screen/start-screen';
+import battle from './battle/battle';
 import characterSelect from './character-select/character-select';
-import monsterSelect from './monster-select/monster-select';
-import monsterInventoryMenu from './monster-inventory-menu/monster-inventory-menu';
+import fireMap from './world/fire-map';
+import firstMap from './world/first-map';
+import gameOver from './game-over/game-over';
 import inventoryMenu from './inventory-menu/inventory-menu';
 import mainMenu from './main-menu/main-menu';
-import gameOver from './game-over/game-over';
-import battle from './battle/battle';
-import firstMap from './world/first-map';
-import fireMap from './world/fire-map';
+import monsterInventoryMenu from './monster-inventory-menu/monster-inventory-menu';
+import monsterSelect from './monster-select/monster-select';
+import startScreen from './start-screen/start-screen';
 import waterMap from './world/water-map';
 
-var borders = function () {
-  var setLeftBorder = function (mapToGoTo) {
-    if (player.location.x === currentMap.boundaries.left) {
-      currentMap = mapToGoTo;
-      player.location.x = currentMap.boundaries.right - currentMap.movement.x;
-    }
-  };
+function borders() {
+  const boundaries = currentMap.movement.boundaries;
+  const distance = currentMap.movement.distance;
 
-  var setTopBorder = function (mapToGoTo) {
-    if (player.location.y === currentMap.boundaries.top) {
+  function setLeftBorder(mapToGoTo) {
+    if (player.location.x === boundaries.left) {
       currentMap = mapToGoTo;
-      player.location.y = currentMap.boundaries.bottom - currentMap.movement.y;
+      player.location.x = boundaries.right - distance.x;
     }
-  };
+  }
 
-  var setRightBorder = function (mapToGoTo) {
-    if (player.location.x === currentMap.boundaries.right) {
+  function setTopBorder(mapToGoTo) {
+    if (player.location.y === boundaries.top) {
       currentMap = mapToGoTo;
-      player.location.x = currentMap.boundaries.left + currentMap.movement.x;
+      player.location.y = boundaries.bottom - distance.y;
     }
-  };
+  }
 
-  var setBottomBorder = function (mapToGoTo) {
-    if (player.location.y === currentMap.boundaries.bottom) {
+  function setRightBorder(mapToGoTo) {
+    if (player.location.x === boundaries.right) {
       currentMap = mapToGoTo;
-      player.location.y = currentMap.boundaries.top + currentMap.movement.y;
+      player.location.x = boundaries.left + distance.x;
     }
-  };
+  }
+
+  function setBottomBorder(mapToGoTo) {
+    if (player.location.y === boundaries.bottom) {
+      currentMap = mapToGoTo;
+      player.location.y = boundaries.top + distance.y;
+    }
+  }
 
   if (currentMap === firstMap) {
     setLeftBorder(waterMap);
@@ -47,19 +50,19 @@ var borders = function () {
   } else if (currentMap === waterMap) {
     setRightBorder(firstMap);
   }
-};
+}
 
 export default {
-  startScreen: startScreen,
-  characterSelect: characterSelect,
-  monsterSelect: monsterSelect,
-  mainMenu: mainMenu,
-  gameOver: gameOver,
-  monsterInventoryMenu: monsterInventoryMenu,
-  inventoryMenu: inventoryMenu,
   battle: battle,
-  firstMap: firstMap,
-  fireMap: fireMap,
-  waterMap: waterMap,
   borders: borders,
+  characterSelect: characterSelect,
+  fireMap: fireMap,
+  firstMap: firstMap,
+  gameOver: gameOver,
+  inventoryMenu: inventoryMenu,
+  mainMenu: mainMenu,
+  monsterInventoryMenu: monsterInventoryMenu,
+  monsterSelect: monsterSelect,
+  startScreen: startScreen,
+  waterMap: waterMap,
 }

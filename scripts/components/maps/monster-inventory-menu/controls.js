@@ -8,9 +8,13 @@ export default function (key, player) {
       player.initLocation();
       break;
 
-    case 'space':
+    case 'space': {
+      const distance = currentMap.movement.distance;
+      const initYLoc = currentMap.initLocation.y;
+
       currentMap.displayStats = !currentMap.displayStats;
-      currentMap.displayMonsterIndex = (player.location.y - currentMap.initLocation.y) / currentMap.movement.y;
+      currentMap.displayMonsterIndex = (player.location.y - initYLoc) / distance.y;
       break;
+    }
   }
 }

@@ -1,12 +1,12 @@
 export default function (newBattleState) {
   currentMap.battleSystem.state = newBattleState;
-  currentMap.movement.x = newBattleState.movement.x;
-  currentMap.movement.y = newBattleState.movement.y;
+  currentMap.movement.distance.x = newBattleState.movement.x;
+  currentMap.movement.distance.y = newBattleState.movement.y;
   currentMap.renderText = newBattleState.renderText;
-  currentMap.controls = newBattleState.controls;
+  currentMap.movement.controls = newBattleState.controls;
 
   if (typeof newBattleState.boundaries !== 'undefined') {
-    currentMap.boundaries = newBattleState.boundaries();
+    currentMap.movement.boundaries = newBattleState.boundaries();
   }
 
   player.initLocation();

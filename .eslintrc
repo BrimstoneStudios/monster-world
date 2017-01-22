@@ -7,6 +7,7 @@
     "ctx": true,
     "currentMap": true,
     "Image": true,
+    "location": true,
     "player": true,
     "Resources": true,
     "window": true
@@ -45,7 +46,7 @@
     "block-scoped-var": "error",
     "class-methods-use-this": "error",
     "curly": "error",
-    "default-case": "warn",
+    "default-case": 0,
     "dot-location": ["error", "property"],
     "dot-notation": "error",
     "eqeqeq": "error",
@@ -112,7 +113,7 @@
     "no-shadow": ["error", {
       "builtinGlobals": true,
       "hoist": "all",
-      "allow":["ctx"]
+      "allow":["ctx", "player"]
     }],
     "no-undef-init": "error",
     "no-undef": "error",

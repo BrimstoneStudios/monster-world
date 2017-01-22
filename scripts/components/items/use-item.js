@@ -2,7 +2,7 @@ import allMaps from './../maps/all-maps';
 
 var useItems = function () {
   for (let i = 0; i < player.inventory.length; i++) {
-    if (player.location.y === currentMap.boundaries.top + i * currentMap.movement.y) {
+    if (player.location.y === currentMap.movement.boundaries.top + i * currentMap.movement.distance.y) {
       var itemUsed = player.inventory[i];
 
       itemUsed.func();
@@ -11,7 +11,7 @@ var useItems = function () {
         player.inventory.splice(i, 1);
       }
       if (currentMap === allMaps.battle) {
-        return itemUsed.battleState;
+        return battleState.itemUsed;
       }
     }
   }

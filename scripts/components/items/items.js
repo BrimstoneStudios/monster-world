@@ -9,8 +9,10 @@ export default {
   potion: potion,
   useItem: function () {
     for (let i = 0; i <= player.inventory.length; i++) {
-      if (player.location.y === currentMap.boundaries.top + i * currentMap.movement.y) {
-        var itemUsed = player.inventory[i];
+      if (player.location.y === currentMap.movement.boundaries.top + i * currentMap.movement.distance.y) {
+        const itemUsed = player.inventory[i];
+
+        console.log(itemUsed)
 
         itemUsed.func();
         if (itemUsed.singleUse) {

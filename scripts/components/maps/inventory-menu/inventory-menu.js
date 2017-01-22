@@ -2,26 +2,33 @@ import allWhite from './../all-white';
 import setBoundaries from './set-boundaries';
 import renderText from './render-text';
 import controls from './controls';
+import {Maps} from './../maps';
 
-export default {
+
+var inventoryMenu = new Maps('inventoryMenu', allWhite);
+
+inventoryMenu.setMovement = {
   boundaries: {
-    left: 100,
-    top: 42,
-    right: 100,
     bottom: 42,
+    left: 100,
+    right: 100,
+    top: 42,
   },
-  initLocation: {
-    x: 100,
-    y: 42,
-  },
-  levelName: 'inventoryMenu',
-  movement: {
+  controls: controls,
+  distance: {
     x: 0,
     y: 50,
   },
-  tiles: allWhite,
-  sprite: 'images/characters/menuSelector.png',
-  setBoundaries: setBoundaries,
-  renderText: renderText,
-  controls: controls,
-}
+};
+
+inventoryMenu.setInitLocation = {
+  x: 100,
+  y: 42,
+};
+
+inventoryMenu.setRenderText = renderText;
+inventoryMenu.setSprite = 'images/characters/menuSelector.png';
+inventoryMenu.setBoundaries = setBoundaries;
+
+
+export {inventoryMenu as default};

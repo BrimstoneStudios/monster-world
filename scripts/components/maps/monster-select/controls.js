@@ -4,9 +4,9 @@ import {GiantAnt} from './../../monsters/giant-ant';
 import allMaps from './../all-maps';
 
 export default function (key, player) {
-  if (key === 'space') {
-    var monsterSelected;
+  let monsterSelected;
 
+  if (key === 'space') {
     if (player.location.x === 200) {
       monsterSelected = new Salamander(1);
     } else if (player.location.x === 300) {

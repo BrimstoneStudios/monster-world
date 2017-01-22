@@ -1,22 +1,32 @@
 import allWhite from './../all-white';
+import {Maps} from './../maps';
 
-export default {
+
+var gameOver = new Maps('gameOver', allWhite);
+
+gameOver.setMovement = {
   boundaries: {
-    left: 0,
-    top: 0,
-    right: 0,
     bottom: 0,
+    left: 0,
+    right: 0,
+    top: 0,
   },
-  initLocation: {
-    x: 0,
-    y: 0,
-  },
-  levelName: 'gameOver',
-  tiles: allWhite,
-  sprite: 'images/characters/gameOver.png',
   controls: function (key) {
     if (key === 'space') {
       location.reload();
     }
   },
-}
+  distance: {
+    x: 0,
+    y: 50,
+  },
+};
+
+gameOver.setInitLocation = {
+  x: 0,
+  y: 0,
+};
+
+gameOver.setSprite = 'images/characters/gameOver.png';
+
+export {gameOver as default};

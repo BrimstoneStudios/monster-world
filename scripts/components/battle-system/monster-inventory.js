@@ -31,7 +31,7 @@ export default {
       left: 30,
       top: 350,
       right: 210,
-      bottom: 350 + (player.monsterInventory.length - 1) * currentMap.movement.y,
+      bottom: 350 + (player.monsterInventory.length - 1) * currentMap.movement.distance.y,
     }
   },
 }

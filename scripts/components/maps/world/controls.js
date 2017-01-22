@@ -20,12 +20,7 @@ export default function (key, player) {
     case 'up':
     case 'right':
     case 'down':
-    // this.locationSetter( key );
       resolveBattleEvent();
       break;
-
-    // case 'space':
-      // npcControls( player );
-    // break;
   }
 }

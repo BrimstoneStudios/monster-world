@@ -14,7 +14,7 @@ export default function (key, player) {
       } else {
         currentMap = allMaps.inventoryMenu;
       }
-      currentMap.setBoundaries();
+      currentMap.dynamicBoundaries();
       player.initLocation();
       break;
   }
