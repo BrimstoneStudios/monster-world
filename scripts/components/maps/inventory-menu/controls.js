@@ -1,5 +1,5 @@
 import allMaps from './../all-maps';
-import items from './../../items/items';
+import items from './../../items/all-items';
 
 export default function (key, player) {
   switch (key) {

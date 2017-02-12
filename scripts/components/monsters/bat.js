@@ -1,5 +1,5 @@
 import {Monster} from './monster';
-import items from './../items/items';
+import items from './../items/all-items';
 import abilities from './../abilities/abilities';
 import elementalTypes from './../elemental-types';
 

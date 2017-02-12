@@ -1,7 +1,7 @@
 import changeBattleState from './change-battle-state';
 import battleMenuMain from './battle-menu-main';
 import itemUsed from './item-used';
-import items from './../items/items';
+import items from './../items/all-items';
 
 export default {
   renderText: function () {

@@ -1,6 +1,6 @@
 import {Player} from './components/player/player';
 import allMaps from './components/maps/all-maps';
-import allItems from './components/items/items';
+import allItems from './components/items/all-items';
 
 var player = window.player = new Player();
 var currentMap = window.currentMap = allMaps.startScreen;
