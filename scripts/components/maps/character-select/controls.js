@@ -1,5 +1,3 @@
-import allMaps from './../all-maps';
-
 export default function (key, player) {
   if (key === 'space') {
     if (player.location.x === monsterWorld.getCurrentMap().movement.boundaries.right) {

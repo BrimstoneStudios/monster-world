@@ -1,5 +1,4 @@
 import rng from './../../rng';
-import allMaps from './../all-maps';
 import changeBattleState from './../../battle-system/change-battle-state';
 import wildIntro from './../../battle-system/wild-intro';
 

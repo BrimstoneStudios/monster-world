@@ -1,7 +1,5 @@
-import allMaps from './../all-maps';
-
 export default function () {
-  const movement = allMaps.monsterInventoryMenu.movement;
+  const movement = monsterWorld.maps.monsterInventoryMenu.movement;
   const boundaries = movement.boundaries;
 
   boundaries.bottom = boundaries.top;

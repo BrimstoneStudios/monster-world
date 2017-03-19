@@ -6,22 +6,20 @@ export default {
   elixir: elixir,
   net: net,
   potion: potion,
-  determineItemUsed: function () {
+  useItem: function () {
     for (let i = 0; i <= player.inventory.length; i++) {
       if (player.location.y === monsterWorld.getCurrentMap().movement.boundaries.top + i * monsterWorld.getCurrentMap().movement.distance.y) {
-        return player.inventory[i];
-      }
-    }
-  },
-  useItem: function () {
-    const itemUsed = this.determineItemUsed();
-    itemUsed.useItem();
-    if (itemUsed.singleUse) {
-      player.inventory.splice(i, 1);
-    }
+        const itemUsed = player.inventory[i];
 
-    if (monsterWorld.getCurrentMap() === monsterWorld.maps.battle) {
-      monsterWorld.getCurrentMap().battleSystem.itemUsed = itemUsed;
+        itemUsed.useItem();
+        if (itemUsed.singleUse) {
+          player.inventory.splice(i, 1);
+        }
+
+        if (monsterWorld.getCurrentMap() === monsterWorld.maps.battle) {
+          monsterWorld.getCurrentMap().battleSystem.itemUsed = itemUsed;
+        }
+      }
     }
   },
 }

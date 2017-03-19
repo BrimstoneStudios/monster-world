@@ -1,5 +1,3 @@
-import allMaps from './../maps/all-maps';
-
 export class Player {
   constructor() {
     this.location = {
@@ -49,25 +47,25 @@ export class Player {
       this.location.x -= distance.x;
       if (this.location.x <= boundaries.left) {
         this.location.x = boundaries.left;
-        allMaps.borders();
+        monsterWorld.maps.borders();
       }
     } else if (key === 'up') {
       this.location.y -= distance.y;
       if (this.location.y <= boundaries.top) {
         this.location.y = boundaries.top;
-        allMaps.borders();
+        monsterWorld.maps.borders();
       }
     } else if (key === 'right') {
       this.location.x += distance.x;
       if (this.location.x >= boundaries.right) {
         this.location.x = boundaries.right;
-        allMaps.borders();
+        monsterWorld.maps.borders();
       }
     } else if (key === 'down') {
       this.location.y += distance.y;
       if (this.location.y >= boundaries.bottom) {
         this.location.y = boundaries.bottom;
-        allMaps.borders();
+        monsterWorld.maps.borders();
       }
     }
   }

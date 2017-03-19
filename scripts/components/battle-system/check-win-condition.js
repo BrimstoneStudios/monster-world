@@ -1,5 +1,4 @@
 import {PlayerMonster} from './../monsters/player-monster';
-import allMaps from './../maps/all-maps';
 
 export default function (defender) {
   if (defender.currentHp <= 0) {

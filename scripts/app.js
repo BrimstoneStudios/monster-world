@@ -4,12 +4,13 @@ import items from './components/items/all-items';
 import maps from './components/maps/all-maps';
 
 let monsterWorld = window.monsterWorld = new MonsterWorld();
-let player = window.player = new Player();
-
-
 monsterWorld.setCurrentMap(maps.startScreen);
 monsterWorld.items = items;
 monsterWorld.maps = maps;
+
+let player = window.player = new Player();
+
+
 
 // var allNPC = [healer];
 

@@ -3,7 +3,7 @@ import rng from './../rng';
 export default {
   name: 'Net',
   singleUse: false,
-  func: function () {
+  useItem: function () {
     if (monsterWorld.getCurrentMap() === monsterWorld.maps.battle) {
       var enemy = monsterWorld.getCurrentMap().battleSystem.enemy;
       var hpPercent = enemy.currentHp / enemy.hp;

@@ -1,5 +1,3 @@
-import allMaps from './../all-maps.js';
-
 export default function (key, player) {
   switch (key) {
     case 'shift':

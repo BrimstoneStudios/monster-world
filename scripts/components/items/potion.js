@@ -1,20 +1,16 @@
 export default {
   name: 'Potion',
-  initVariables: function () {
-    if (monsterWorld.getBattleState()) {
-      const playerMonster = monsterWorld.getCurrentMap().battleSystem.playerBattleMonster
-      const battleCoordinates = monsterWorld.getCurrentMap().battleSystem.coordinates;
-    }
-  },
   renderBattleText: function () {
+    const playerMonster = monsterWorld.getCurrentMap().battleSystem.playerBattleMonster
+    const battleCoordinates = monsterWorld.getCurrentMap().battleSystem.coordinates;
     ctx.fillText(playerMonster.name + ' healed for ' + 10 + ' hp.', battleCoordinates.leftColumn, battleCoordinates.topRow);
   },
   singleUse: true,
   useItem: function () {
     let monster;
 
-    if (monsterWorld.getCurrentMap() === monsterWorld.maps.battle) {
-      monster = playerMonster;
+    if (monsterWorld.getBattleState()) {
+      monster = monsterWorld.getCurrentMap().battleSystem.playerBattleMonster;
     } else {
       monster = player.monsterInventory[0];
     }
