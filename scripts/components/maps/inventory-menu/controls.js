@@ -1,5 +1,3 @@
-import items from './../../items/all-items';
-
 export default function (key, player) {
   switch (key) {
     case 'shift':

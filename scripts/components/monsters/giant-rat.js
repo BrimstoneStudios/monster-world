@@ -1,5 +1,4 @@
 import {Monster} from './monster';
-import items from './../items/all-items';
 import abilities from './../abilities/abilities';
 import elementalTypes from './../elemental-types';
 
@@ -28,10 +27,10 @@ export class GiantRat extends Monster {
     this.items = [
       {
         dropProbablity: 1,
-        item: items.net,
+        item: monsterWorld.items.net,
       }, {
         dropProbablity: 1,
-        item: items.potion,
+        item: monsterWorld.items.potion,
       },
     ];
     this.name = 'Giant Rat';

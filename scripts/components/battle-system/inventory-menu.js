@@ -1,7 +1,6 @@
 import changeBattleState from './change-battle-state';
 import battleMenuMain from './battle-menu-main';
 import itemUsed from './item-used';
-import items from './../items/all-items';
 
 export default {
   renderText: function () {
@@ -17,7 +16,7 @@ export default {
   controls: function (key) {
     if (key === 'space') {
       monsterWorld.getCurrentMap().battleSystem.caughtMonster = false;
-      items.useItem();
+      monsterWorld.items.useItem();
       changeBattleState(itemUsed);
     } else if (key === 'shift') {
       changeBattleState(battleMenuMain);
