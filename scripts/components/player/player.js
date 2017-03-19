@@ -17,8 +17,8 @@ export class Player {
   }
 
   update() {
-    if (typeof currentMap.sprite !== 'undefined') {
-      this.sprite = currentMap.sprite;
+    if (typeof monsterWorld.getCurrentMap().sprite !== 'undefined') {
+      this.sprite = monsterWorld.getCurrentMap().sprite;
     } else {
       this.sprite = this.savedAttributes.sprite;
     }
@@ -29,21 +29,21 @@ export class Player {
   }
 
   initLocation() {
-    if (typeof currentMap.initLocation !== 'undefined') {
-      this.location.x = currentMap.initLocation.x;
-      this.location.y = currentMap.initLocation.y;
+    if (typeof monsterWorld.getCurrentMap().initLocation !== 'undefined') {
+      this.location.x = monsterWorld.getCurrentMap().initLocation.x;
+      this.location.y = monsterWorld.getCurrentMap().initLocation.y;
     }
   }
 
   handleInput(key) {
     this.render();
-    currentMap.movement.controls(key, player)
+    monsterWorld.getCurrentMap().movement.controls(key, player)
     this.locationSetter(key);
   }
 
   locationSetter(key) {
-    const boundaries = currentMap.movement.boundaries;
-    const distance = currentMap.movement.distance;
+    const boundaries = monsterWorld.getCurrentMap().movement.boundaries;
+    const distance = monsterWorld.getCurrentMap().movement.distance;
 
     if (key === 'left') {
       this.location.x -= distance.x;

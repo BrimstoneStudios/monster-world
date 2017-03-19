@@ -1,8 +1,6 @@
-import characterSelect from './../character-select/character-select';
-
 export default function (key, player) {
   if (key === 'space') {
-    currentMap = characterSelect;
+    monsterWorld.setCurrentMap(monsterWorld.maps.characterSelect);
     player.initLocation();
   }
 }

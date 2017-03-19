@@ -4,15 +4,15 @@ import changeBattleState from './change-battle-state';
 let battleWon = {
   renderText: function () {
     ctx.font = '30px Arial';
-    ctx.fillText('You have defeated ' + currentMap.battleSystem.enemy.name + '!', currentMap.battleSystem.coordinates.leftColumn, currentMap.battleSystem.coordinates.topRow);
-    if (currentMap.battleSystem.levelUp) {
-      ctx.fillText(currentMap.battleSystem.playerBattleMonster.name + ' has gained a level!', currentMap.battleSystem.coordinates.leftColumn, currentMap.battleSystem.coordinates.middleRow);
+    ctx.fillText('You have defeated ' + monsterWorld.getCurrentMap().battleSystem.enemy.name + '!', monsterWorld.getCurrentMap().battleSystem.coordinates.leftColumn, monsterWorld.getCurrentMap().battleSystem.coordinates.topRow);
+    if (monsterWorld.getCurrentMap().battleSystem.levelUp) {
+      ctx.fillText(monsterWorld.getCurrentMap().battleSystem.playerBattleMonster.name + ' has gained a level!', monsterWorld.getCurrentMap().battleSystem.coordinates.leftColumn, monsterWorld.getCurrentMap().battleSystem.coordinates.middleRow);
     }
   },
   controls: function (key) {
     if (key === 'space') {
-      currentMap.battleSystem.levelUp = false;
-      currentMap = player.savedAttributes.lastLevel;
+      monsterWorld.getCurrentMap().battleSystem.levelUp = false;
+      monsterWorld.setCurrentMap(player.savedAttributes.lastLevel);
       player.location.x = player.savedAttributes.location.x;
       player.location.y = player.savedAttributes.location.y;
     }

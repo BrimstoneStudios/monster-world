@@ -5,8 +5,8 @@ import {Ignis} from './../../monsters/ignis';
 import {Phoenix} from './../../monsters/phoenix';
 import {Maps} from './../maps';
 
-var La = tiles.La
-var Ro = tiles.Ro
+const La = tiles.La
+const Ro = tiles.Ro
 var fireMap = new Maps('fireMap',
   [
     [La, La, La, La, Ro, Ro, La, Ro, Ro, Ro, Ro, Ro, Ro, Ro],

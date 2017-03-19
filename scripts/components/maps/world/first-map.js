@@ -6,10 +6,10 @@ import {Munchkin} from './../../monsters/munchkin';
 import HealerNPC from './../../npcs/healer';
 import {Maps} from './../maps';
 
-var Di = tiles.Di;
-var Gr = tiles.Gr;
-var wZ = tiles.wZ;
-var healer = new HealerNPC('Flo', wZ, 60, 60);
+const Di = tiles.Di;
+const Gr = tiles.Gr;
+const wZ = tiles.wZ;
+const healer = new HealerNPC('Flo', wZ, 60, 60);
 
 var firstMap = new Maps('firstMap',
   [

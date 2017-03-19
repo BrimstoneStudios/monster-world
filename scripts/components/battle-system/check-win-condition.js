@@ -7,7 +7,7 @@ export default function (defender) {
 
     if (defender.controller === player) {
       if (defender instanceof PlayerMonster) {
-        currentMap = allMaps.gameOver;
+        monsterWorld.setCurrentMap(monsterWorld.maps.gameOver);
         player.initLocation();
         return false;
       } else {
@@ -29,7 +29,7 @@ export default function (defender) {
           playerMonster.controller = player;
           player.monsterInventory.push(playerMonster);
         }
-        currentMap.battleSystem.playerBattleMonster = player.monsterInventory[0];
+        monsterWorld.getCurrentMap().battleSystem.playerBattleMonster = player.monsterInventory[0];
       }
     } else {
       // Gain exp

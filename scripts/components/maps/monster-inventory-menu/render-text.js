@@ -1,13 +1,13 @@
 export default function () {
   const inventory = player.monsterInventory;
 
-  for (let i = 0, j = 0; i < inventory.length; i++, j += currentMap.movement.distance.y) {
+  for (let i = 0, j = 0; i < inventory.length; i++, j += monsterWorld.getCurrentMap().movement.distance.y) {
     ctx.font = '30px Arial';
     ctx.drawImage(Resources.get(inventory[i].sprite), 85, 50 + j);
     ctx.fillText(inventory[i].name, 155, 85 + j);
 
-    if (currentMap.displayStats) {
-      const monsterIndex = currentMap.displayMonsterIndex;
+    if (monsterWorld.getCurrentMap().displayStats) {
+      const monsterIndex = monsterWorld.getCurrentMap().displayMonsterIndex;
       const monster = inventory[monsterIndex];
 
       ctx.font = '25px Arial';

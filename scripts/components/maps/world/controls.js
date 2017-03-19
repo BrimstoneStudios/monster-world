@@ -1,14 +1,13 @@
-import allMaps from './../all-maps';
 import resolveBattleEvent from './../battle/resolve-battle-event';
 import checkNPCActionable from './../check-npc-actionable';
 
 export default function (key, player) {
   switch (key) {
     case 'shift':
-      player.savedAttributes.lastLevel = currentMap;
+      player.savedAttributes.lastLevel = monsterWorld.getCurrentMap();
       player.savedAttributes.location.x = player.location.x;
       player.savedAttributes.location.y = player.location.y;
-      currentMap = allMaps.mainMenu;
+      monsterWorld.setCurrentMap(monsterWorld.maps.mainMenu);
       player.initLocation();
       break;
 

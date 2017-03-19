@@ -31,7 +31,7 @@ export default function (key, player) {
 
     case 'caughtMonster':
       if (key === 'space') {
-        currentMap = player.savedAttributes.lastLevel;
+        monsterWorld.setCurrentMap(player.savedAttributes.lastLevel);
         battleState = 0;
       }
       break;
@@ -46,7 +46,7 @@ export default function (key, player) {
 
     case 'itemDrop':
       if (key === 'space') {
-        currentMap = player.savedAttributes.lastLevel;
+        monsterWorld.setCurrentMap(player.savedAttributes.lastLevel);
         battleState = 0;
       }
       break;

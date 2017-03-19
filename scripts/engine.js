@@ -48,21 +48,21 @@
     /* Loop through all of the objects within the allNPC array and call
     * the render function you have defined.
     */
-    if (typeof currentMap.npcs !== 'undefined') {
-      currentMap.npcs.forEach(function renderNpc(npc) {
+    if (typeof monsterWorld.getCurrentMap().npcs !== 'undefined') {
+      monsterWorld.getCurrentMap().npcs.forEach(function renderNpc(npc) {
         npc.render();
       })
     }
 
-    if (typeof currentMap.renderText !== 'undefined') {
-      currentMap.renderText();
+    if (typeof monsterWorld.getCurrentMap().renderText !== 'undefined') {
+      monsterWorld.getCurrentMap().renderText();
     }
 
-    if (typeof currentMap.battleSystem !== 'undefined') {
-      currentMap.battleSystem.playerBattleMonster.render(50, 200);
-      currentMap.battleSystem.playerBattleMonster.renderBtlMonStats('player');
-      currentMap.battleSystem.enemy.render(550, 40);
-      currentMap.battleSystem.enemy.renderBtlMonStats('enemy');
+    if (typeof monsterWorld.getCurrentMap().battleSystem !== 'undefined') {
+      monsterWorld.getCurrentMap().battleSystem.playerBattleMonster.render(50, 200);
+      monsterWorld.getCurrentMap().battleSystem.playerBattleMonster.renderBtlMonStats('player');
+      monsterWorld.getCurrentMap().battleSystem.enemy.render(550, 40);
+      monsterWorld.getCurrentMap().battleSystem.enemy.renderBtlMonStats('enemy');
     }
 
     player.render();
@@ -90,7 +90,7 @@
         * so that we get the benefits of caching these images, since
         * we're using them over and over.
         */
-        ctx.drawImage(Resources.get(currentMap.tiles[row][col]), col * 50, row * 50);
+        ctx.drawImage(Resources.get(monsterWorld.getCurrentMap().tiles[row][col]), col * 50, row * 50);
       }
     }
 

@@ -3,18 +3,18 @@ import allMaps from './../all-maps';
 export default function (key, player) {
   switch (key) {
     case 'shift':
-      currentMap = player.savedAttributes.lastLevel;
+      monsterWorld.setCurrentMap(player.savedAttributes.lastLevel);
       player.location.x = player.savedAttributes.location.x;
       player.location.y = player.savedAttributes.location.y;
       break;
 
     case 'space':
       if (player.location.y === 247) {
-        currentMap = allMaps.monsterInventoryMenu;
+        monsterWorld.setCurrentMap(monsterWorld.maps.monsterInventoryMenu);
       } else {
-        currentMap = allMaps.inventoryMenu;
+        monsterWorld.setCurrentMap(monsterWorld.maps.inventoryMenu);
       }
-      currentMap.dynamicBoundaries();
+      monsterWorld.getCurrentMap().dynamicBoundaries();
       player.initLocation();
       break;
   }

@@ -5,10 +5,10 @@ import {GiantRat} from './../../monsters/giant-rat';
 import {Munchkin} from './../../monsters/munchkin';
 import {Maps} from './../maps';
 
-var Wa = tiles.Wa;
-var Sa = tiles.Sa;
+const Wa = tiles.Wa;
+const Sa = tiles.Sa;
 
-var waterMap = new Maps('waterMap',
+const waterMap = new Maps('waterMap',
   [
     [Wa, Wa, Wa, Wa, Wa, Wa, Wa, Wa, Wa, Sa, Sa, Sa, Sa, Sa],
     [Wa, Wa, Wa, Wa, Wa, Wa, Wa, Wa, Sa, Sa, Sa, Sa, Sa, Sa],

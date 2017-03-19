@@ -1,18 +1,20 @@
-import allMaps from './../maps/all-maps';
-
 export default {
-  useItem: function () {
+  determineItemUsed: function () {
     for (let i = 0; i <= player.inventory.length; i++) {
-      if (player.location.y === currentMap.movement.boundaries.top + i * currentMap.movement.distance.y) {
+      if (player.location.y === monsterWorld.getCurrentMap().movement.boundaries.top + i * monsterWorld.getCurrentMap().movement.distance.y) {
         const itemUsed = player.inventory[i];
-
+      }
+    }
+  }
+  useItem: function () {
+    this.determineItemUsed()
         itemUsed.func();
         if (itemUsed.singleUse) {
           player.inventory.splice(i, 1);
         }
 
-        if (currentMap === allMaps.battle) {
-          currentMap.battleSystem.itemUsed = itemUsed;
+        if (monsterWorld.getCurrentMap() === monsterWorld.maps.battle) {
+          monsterWorld.getCurrentMap().battleSystem.itemUsed = itemUsed;
         }
         break;
       }

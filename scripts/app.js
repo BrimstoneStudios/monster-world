@@ -1,15 +1,20 @@
+import {MonsterWorld} from './components/monster-world';
 import {Player} from './components/player/player';
-import allMaps from './components/maps/all-maps';
-import allItems from './components/items/all-items';
+import items from './components/items/all-items';
+import maps from './components/maps/all-maps';
 
-var player = window.player = new Player();
-var currentMap = window.currentMap = allMaps.startScreen;
-var items = window.items = allItems;
+let monsterWorld = window.monsterWorld = new MonsterWorld();
+let player = window.player = new Player();
+
+
+monsterWorld.setCurrentMap(maps.startScreen);
+monsterWorld.items = items;
+monsterWorld.maps = maps;
 
 // var allNPC = [healer];
 
-player.inventory.push(items.net);
-player.inventory.push(items.potion);
+player.inventory.push(monsterWorld.items.net);
+player.inventory.push(monsterWorld.items.potion);
 
 // Listens for key presses and sends the keys to
 // Player.handleInput() method.

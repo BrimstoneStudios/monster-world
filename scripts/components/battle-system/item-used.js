@@ -5,11 +5,11 @@ import changeBattleState from './change-battle-state';
 export default {
   renderText: function () {
     ctx.font = '30px Arial';
-    currentMap.battleSystem.itemUsed.renderBattleText();
+    monsterWorld.getCurrentMap().battleSystem.itemUsed.renderBattleText();
   },
   controls: function (key) {
     if (key === 'space') {
-      if (currentMap.battleSystem.caughtMonster) {
+      if (monsterWorld.getCurrentMap().battleSystem.caughtMonster) {
         changeBattleState(battleWon);
       } else {
         changeBattleState(battleMenuMain);
