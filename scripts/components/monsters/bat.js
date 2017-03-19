@@ -1,5 +1,4 @@
 import {Monster} from './monster';
-import items from './../items/items';
 import abilities from './../abilities/abilities';
 import elementalTypes from './../elemental-types';
 
@@ -30,10 +29,10 @@ export class Bat extends Monster {
     this.items = [
       {
         dropProbablity: 1,
-        item: items.net,
+        item: monsterWorld.items.net,
       }, {
         dropProbablity: 1,
-        item: items.potion,
+        item: monsterWorld.items.potion,
       },
     ];
 

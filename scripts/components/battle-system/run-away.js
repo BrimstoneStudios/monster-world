@@ -14,11 +14,11 @@ export default runAwayResult;
   if (rng() <= 1) {
     runAwayResult.renderText = function () {
       ctx.font = '30px Arial';
-      ctx.fillText('You ran away!? You wimp...', currentMap.battleSystem.coordinates.leftColumn, currentMap.battleSystem.coordinates.topRow);
+      ctx.fillText('You ran away!? You wimp...', monsterWorld.getCurrentMap().battleSystem.coordinates.leftColumn, monsterWorld.getCurrentMap().battleSystem.coordinates.topRow);
     };
     runAwayResult.controls = function (key) {
       if (key === 'space') {
-        currentMap = player.savedAttributes.lastLevel;
+        monsterWorld.setCurrentMap(player.savedAttributes.lastLevel);
         player.location.x = player.savedAttributes.location.x;
         player.location.y = player.savedAttributes.location.y;
       }
@@ -26,7 +26,7 @@ export default runAwayResult;
   } else {
     runAwayResult.renderText = function () {
       ctx.font = '30px Arial';
-      ctx.fillText('Escape failed. FIGHT!', currentMap.battleSystem.coordinates.leftColumn, currentMap.battleSystem.coordinates.topRow);
+      ctx.fillText('Escape failed. FIGHT!', monsterWorld.getCurrentMap().battleSystem.coordinates.leftColumn, monsterWorld.getCurrentMap().battleSystem.coordinates.topRow);
     };
     runAwayResult.controls = function (key) {
       if (key === 'space') {

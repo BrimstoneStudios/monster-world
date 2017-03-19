@@ -1,7 +1,6 @@
 import {Salamander} from './../../monsters/salamander';
 import {Hydra} from './../../monsters/hydra';
 import {GiantAnt} from './../../monsters/giant-ant';
-import allMaps from './../all-maps';
 
 export default function (key, player) {
   let monsterSelected;
@@ -16,7 +15,7 @@ export default function (key, player) {
     }
     monsterSelected.controller = player;
     player.monsterInventory.push(monsterSelected);
-    currentMap = allMaps.firstMap;
+    monsterWorld.setCurrentMap(monsterWorld.maps.firstMap);
     player.initLocation();
   }
 }

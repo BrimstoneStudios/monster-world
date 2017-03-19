@@ -24,14 +24,14 @@ export class Monster {
   }
 
   gainExp() {
-    this.currentExp += currentMap.battleSystem.enemy.expReward;
+    this.currentExp += monsterWorld.getCurrentMap().battleSystem.enemy.expReward;
     if (this.currentExp >= this.expToLevel) {
       this.levelUp();
     }
   }
 
   levelUp() {
-    currentMap.battleSystem.levelUp = true;
+    monsterWorld.getCurrentMap().battleSystem.levelUp = true;
     this.level++;
     this.hp = 10 * this.hpMult * this.level;
     this.currentHp = this.hp;

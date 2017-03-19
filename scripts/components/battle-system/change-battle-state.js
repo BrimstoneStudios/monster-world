@@ -1,12 +1,12 @@
 export default function (newBattleState) {
-  currentMap.battleSystem.state = newBattleState;
-  currentMap.movement.distance.x = newBattleState.movement.x;
-  currentMap.movement.distance.y = newBattleState.movement.y;
-  currentMap.renderText = newBattleState.renderText;
-  currentMap.movement.controls = newBattleState.controls;
+  monsterWorld.getCurrentMap().battleSystem.state = newBattleState;
+  monsterWorld.getCurrentMap().movement.distance.x = newBattleState.movement.x;
+  monsterWorld.getCurrentMap().movement.distance.y = newBattleState.movement.y;
+  monsterWorld.getCurrentMap().renderText = newBattleState.renderText;
+  monsterWorld.getCurrentMap().movement.controls = newBattleState.controls;
 
   if (typeof newBattleState.boundaries !== 'undefined') {
-    currentMap.movement.boundaries = newBattleState.boundaries();
+    monsterWorld.getCurrentMap().movement.boundaries = newBattleState.boundaries();
   }
 
   player.initLocation();

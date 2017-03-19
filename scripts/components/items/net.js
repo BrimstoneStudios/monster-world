@@ -1,24 +1,23 @@
-import allMaps from './../maps/all-maps';
 import rng from './../rng';
 
 export default {
   name: 'Net',
   singleUse: false,
-  func: function () {
-    if (currentMap === allMaps.battle) {
-      var enemy = currentMap.battleSystem.enemy;
+  useItem: function () {
+    if (monsterWorld.getCurrentMap() === monsterWorld.maps.battle) {
+      var enemy = monsterWorld.getCurrentMap().battleSystem.enemy;
       var hpPercent = enemy.currentHp / enemy.hp;
 
       var catchMonster = function (probability) {
         if (rng() <= probability) {
           if (player.monsterInventory[0].name === 'PlayerMon') {
-            currentMap.battleSystem.playerBattleMonster.player = 0;
+            monsterWorld.getCurrentMap().battleSystem.playerBattleMonster.player = 0;
             player.monsterInventory.pop();
           }
 
           enemy.controller = player;
           player.monsterInventory.push(enemy);
-          currentMap.battleSystem.caughtMonster = true;
+          monsterWorld.getCurrentMap().battleSystem.caughtMonster = true;
         }
       };
 
@@ -35,10 +34,10 @@ export default {
     }
   },
   renderBattleText: function () {
-    var enemy = currentMap.battleSystem.enemy;
-    var coordinates = currentMap.battleSystem.coordinates;
+    var enemy = monsterWorld.getCurrentMap().battleSystem.enemy;
+    var coordinates = monsterWorld.getCurrentMap().battleSystem.coordinates;
 
-    if (currentMap.battleSystem.caughtMonster) {
+    if (monsterWorld.getCurrentMap().battleSystem.caughtMonster) {
       ctx.fillText('You caught ' + enemy.name + '!', coordinates.leftColumn, coordinates.topRow);
     } else {
       ctx.fillText('You failed to catch ' + enemy.name + '!', coordinates.leftColumn, coordinates.topRow);

@@ -1,16 +1,13 @@
-import allMaps from './../all-maps';
-import items from './../../items/items';
-
 export default function (key, player) {
   switch (key) {
     case 'shift':
-      currentMap = allMaps.mainMenu;
+      monsterWorld.setCurrentMap(monsterWorld.maps.mainMenu);
       player.initLocation();
       break;
 
     case 'space':
-      items.useItem();
-      currentMap.dynamicBoundaries();
+      monsterWorld.items.useItem();
+      monsterWorld.getCurrentMap().dynamicBoundaries();
       player.initLocation();
       break;
   }

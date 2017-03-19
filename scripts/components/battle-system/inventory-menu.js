@@ -1,23 +1,22 @@
 import changeBattleState from './change-battle-state';
 import battleMenuMain from './battle-menu-main';
 import itemUsed from './item-used';
-import items from './../items/items';
 
 export default {
   renderText: function () {
     ctx.font = '30px Arial';
     if (player.inventory.length > 0) {
       for (let i = 0, j = 0; i < player.inventory.length; i++, j += 40) {
-        ctx.fillText(player.inventory[i].name, currentMap.battleSystem.coordinates.leftColumn, currentMap.battleSystem.coordinates.topRow + j);
+        ctx.fillText(player.inventory[i].name, monsterWorld.getCurrentMap().battleSystem.coordinates.leftColumn, monsterWorld.getCurrentMap().battleSystem.coordinates.topRow + j);
       }
     } else {
-      ctx.fillText('You have no items to use!', currentMap.battleSystem.coordinates.leftColumn, currentMap.battleSystem.coordinates.topRow);
+      ctx.fillText('You have no items to use!', monsterWorld.getCurrentMap().battleSystem.coordinates.leftColumn, monsterWorld.getCurrentMap().battleSystem.coordinates.topRow);
     }
   },
   controls: function (key) {
     if (key === 'space') {
-      currentMap.battleSystem.caughtMonster = false;
-      items.useItem();
+      monsterWorld.getCurrentMap().battleSystem.caughtMonster = false;
+      monsterWorld.items.useItem();
       changeBattleState(itemUsed);
     } else if (key === 'shift') {
       changeBattleState(battleMenuMain);
@@ -32,7 +31,7 @@ export default {
       left: 30,
       top: 350,
       right: 210,
-      bottom: 350 + (player.inventory.length - 1) * currentMap.movement.distance.y,
+      bottom: 350 + (player.inventory.length - 1) * monsterWorld.getCurrentMap().movement.distance.y,
     }
   },
 }

@@ -9,14 +9,14 @@ export default {
   renderText: function () {
     ctx.font = '30px Arial';
     for (let i = 0, j = 0; i < player.monsterInventory.length; i++, j += 40) {
-      ctx.fillText(player.monsterInventory[i].name, currentMap.battleSystem.coordinates.leftColumn, currentMap.battleSystem.coordinates.topRow + j);
+      ctx.fillText(player.monsterInventory[i].name, monsterWorld.getCurrentMap().battleSystem.coordinates.leftColumn, monsterWorld.getCurrentMap().battleSystem.coordinates.topRow + j);
     }
   },
   controls: function (key) {
     if (key === 'space') {
       swapMonsters();
-      abilities.useAbility(currentMap.battleSystem.enemy);
-      checkFightWinCondition(currentMap.battleSystem.playerBattleMonster);
+      abilities.useAbility(monsterWorld.getCurrentMap().battleSystem.enemy);
+      checkFightWinCondition(monsterWorld.getCurrentMap().battleSystem.playerBattleMonster);
       changeBattleState(enemyTurn);
     } else if (key === 'shift') {
       changeBattleState(battleMenuMain);
@@ -31,7 +31,7 @@ export default {
       left: 30,
       top: 350,
       right: 210,
-      bottom: 350 + (player.monsterInventory.length - 1) * currentMap.movement.distance.y,
+      bottom: 350 + (player.monsterInventory.length - 1) * monsterWorld.getCurrentMap().movement.distance.y,
     }
   },
 }

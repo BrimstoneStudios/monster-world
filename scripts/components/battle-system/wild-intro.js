@@ -4,7 +4,7 @@ import changeBattleState from './change-battle-state';
 export default {
   renderText: function () {
     ctx.font = '30px Arial';
-    ctx.fillText('A wild ' + currentMap.battleSystem.enemy.name + ' has appeared!', currentMap.battleSystem.coordinates.leftColumn, currentMap.battleSystem.coordinates.topRow);
+    ctx.fillText('A wild ' + monsterWorld.getCurrentMap().battleSystem.enemy.name + ' has appeared!', monsterWorld.getCurrentMap().battleSystem.coordinates.leftColumn, monsterWorld.getCurrentMap().battleSystem.coordinates.topRow);
   },
   controls: function (key) {
     if (key === 'space') {

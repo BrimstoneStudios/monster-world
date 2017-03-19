@@ -11,43 +11,43 @@ import startScreen from './start-screen/start-screen';
 import waterMap from './world/water-map';
 
 function borders() {
-  const boundaries = currentMap.movement.boundaries;
-  const distance = currentMap.movement.distance;
+  const boundaries = monsterWorld.getCurrentMap().movement.boundaries;
+  const distance = monsterWorld.getCurrentMap().movement.distance;
 
   function setLeftBorder(mapToGoTo) {
     if (player.location.x === boundaries.left) {
-      currentMap = mapToGoTo;
+      monsterWorld.setCurrentMap(mapToGoTo);
       player.location.x = boundaries.right - distance.x;
     }
   }
 
   function setTopBorder(mapToGoTo) {
     if (player.location.y === boundaries.top) {
-      currentMap = mapToGoTo;
+      monsterWorld.setCurrentMap(mapToGoTo);
       player.location.y = boundaries.bottom - distance.y;
     }
   }
 
   function setRightBorder(mapToGoTo) {
     if (player.location.x === boundaries.right) {
-      currentMap = mapToGoTo;
+      monsterWorld.setCurrentMap(mapToGoTo);
       player.location.x = boundaries.left + distance.x;
     }
   }
 
   function setBottomBorder(mapToGoTo) {
     if (player.location.y === boundaries.bottom) {
-      currentMap = mapToGoTo;
+      monsterWorld.setCurrentMap(mapToGoTo);
       player.location.y = boundaries.top + distance.y;
     }
   }
 
-  if (currentMap === firstMap) {
+  if (monsterWorld.getCurrentMap() === firstMap) {
     setLeftBorder(waterMap);
     setTopBorder(fireMap);
-  } else if (currentMap === fireMap) {
+  } else if (monsterWorld.getCurrentMap() === fireMap) {
     setBottomBorder(firstMap);
-  } else if (currentMap === waterMap) {
+  } else if (monsterWorld.getCurrentMap() === waterMap) {
     setRightBorder(firstMap);
   }
 }
