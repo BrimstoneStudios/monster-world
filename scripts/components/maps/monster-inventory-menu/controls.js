@@ -1,17 +1,19 @@
 export default function (key, player) {
+  const map = monsterWorld.getCurrentMap();
+
   switch (key) {
     case 'shift':
-      monsterWorld.getCurrentMap().displayStats = false;
+      map.displayStats = false;
       monsterWorld.setCurrentMap(monsterWorld.maps.mainMenu);
       player.initLocation();
       break;
 
     case 'space': {
-      const distance = monsterWorld.getCurrentMap().movement.distance;
-      const initYLoc = monsterWorld.getCurrentMap().initLocation.y;
+      const distance = map.movement.distance;
+      const initYLoc = map.initLocation.y;
 
-      monsterWorld.getCurrentMap().displayStats = !monsterWorld.getCurrentMap().displayStats;
-      monsterWorld.getCurrentMap().displayMonsterIndex = (player.location.y - initYLoc) / distance.y;
+      map.displayStats = !map.displayStats;
+      map.displayMonsterIndex = (player.location.y - initYLoc) / distance.y;
       break;
     }
   }
