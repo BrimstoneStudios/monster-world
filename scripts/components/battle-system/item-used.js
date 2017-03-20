@@ -3,9 +3,13 @@ import battleWon from './battle-won';
 import changeBattleState from './change-battle-state';
 
 export default {
-  renderText: function () {
-    ctx.font = '30px Arial';
-    monsterWorld.getCurrentMap().battleSystem.itemUsed.renderBattleText();
+  boundaries: function () {
+    return {
+      bottom: 390,
+      left: 30,
+      right: 210,
+      top: 350,
+    }
   },
   controls: function (key) {
     if (key === 'space') {
@@ -20,12 +24,8 @@ export default {
     x: 0,
     y: 0,
   },
-  boundaries: function () {
-    return {
-      left: 30,
-      top: 350,
-      right: 210,
-      bottom: 390,
-    }
+  renderText: function () {
+    ctx.font = '30px Arial';
+    monsterWorld.getCurrentMap().battleSystem.itemUsed.renderBattleText();
   },
 }
