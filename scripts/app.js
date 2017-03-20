@@ -3,7 +3,7 @@ import {Player} from './components/player/player';
 import items from './components/items/all-items';
 import maps from './components/maps/all-maps';
 
-let monsterWorld = window.monsterWorld = new MonsterWorld();
+monsterWorld = window.monsterWorld = new MonsterWorld();
 
 monsterWorld.setCurrentMap(maps.startScreen);
 monsterWorld.items = items;
@@ -16,7 +16,7 @@ player.inventory.push(monsterWorld.items.potion);
 
 // Listens for key presses and sends the keys to
 // Player.handleInput() method.
-document.addEventListener('keyup', function (e) {
+document.addEventListener('keyup', function controls(e) {
   var allowedKeys = {
     16: 'shift',
     32: 'space',
