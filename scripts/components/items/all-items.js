@@ -7,8 +7,10 @@ export default {
   net: net,
   potion: potion,
   useItem: function () {
+    const map = monsterWorld.getCurrentMap();
+
     for (let i = 0; i <= player.inventory.length; i++) {
-      if (player.location.y === monsterWorld.getCurrentMap().movement.boundaries.top + i * monsterWorld.getCurrentMap().movement.distance.y) {
+      if (player.location.y === map.movement.boundaries.top + i * map.movement.distance.y) {
         const itemUsed = player.inventory[i];
 
         itemUsed.useItem();
@@ -16,8 +18,8 @@ export default {
           player.inventory.splice(i, 1);
         }
 
-        if (monsterWorld.getCurrentMap() === monsterWorld.maps.battle) {
-          monsterWorld.getCurrentMap().battleSystem.itemUsed = itemUsed;
+        if (map === monsterWorld.maps.battle) {
+          map.battleSystem.itemUsed = itemUsed;
         }
       }
     }

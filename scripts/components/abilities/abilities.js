@@ -67,8 +67,28 @@ class SpecialAbilities extends Abilities {
 
 allAbilities.bite = new Abilities('Bite', 0.9, 'physical', 45, elementalTypes.normal);
 allAbilities.scratch = new Abilities('Scratch', 1, 'physical', 40, elementalTypes.normal);
-allAbilities.growl = new SpecialAbilities('Growl', 1, 'status', 0, elementalTypes.normal, 'attack', 'Decrease opponent attack damage', 0.8, false);
-allAbilities.stare = new SpecialAbilities('Stare', 1, 'status', 0, elementalTypes.normal, 'defense', 'Decrease opponent defense', 0.9, false);
+allAbilities.growl = new SpecialAbilities(
+  'Growl',
+  1,
+  'status',
+  0,
+  elementalTypes.normal,
+  'attack',
+  'Decrease opponent attack damage',
+  0.8,
+  false
+);
+allAbilities.stare = new SpecialAbilities(
+  'Stare',
+  1,
+  'status',
+  0,
+  elementalTypes.normal,
+  'defense',
+  'Decrease opponent defense',
+  0.9,
+  false
+);
 allAbilities.fireBreath = new Abilities('Fire Breath', 0.9, 'special', 50, elementalTypes.fire);
 
     // attribute: 'condition',
