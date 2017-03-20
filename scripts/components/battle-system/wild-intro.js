@@ -2,10 +2,15 @@ import battleMenuMain from './battle-menu-main';
 import changeBattleState from './change-battle-state';
 
 export default {
-  renderText: function () {
-    ctx.font = '30px Arial';
-    ctx.fillText('A wild ' + monsterWorld.getCurrentMap().battleSystem.enemy.name + ' has appeared!', monsterWorld.getCurrentMap().battleSystem.coordinates.leftColumn, monsterWorld.getCurrentMap().battleSystem.coordinates.topRow);
+  boundaries: function () {
+    return {
+      bottom: 390,
+      left: 30,
+      right: 210,
+      top: 350,
+    }
   },
+  caughtMonster: false,
   controls: function (key) {
     if (key === 'space') {
       changeBattleState(battleMenuMain);
@@ -15,13 +20,14 @@ export default {
     x: 0,
     y: 0,
   },
-  boundaries: function () {
-    return {
-      left: 30,
-      top: 350,
-      right: 210,
-      bottom: 390,
-    }
+  renderText: function () {
+    ctx.font = '30px Arial';
+    ctx.fillText(
+      'A wild ' +
+      monsterWorld.getCurrentMap().battleSystem.enemy.name +
+      ' has appeared!',
+      monsterWorld.getCurrentMap().battleSystem.coordinates.leftColumn,
+      monsterWorld.getCurrentMap().battleSystem.coordinates.topRow
+    );
   },
-  caughtMonster: false,
 }

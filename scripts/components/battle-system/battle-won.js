@@ -1,12 +1,10 @@
-import battleMenuMain from './battle-menu-main';
-import changeBattleState from './change-battle-state';
-
 let battleWon = {
-  renderText: function () {
-    ctx.font = '30px Arial';
-    ctx.fillText('You have defeated ' + monsterWorld.getCurrentMap().battleSystem.enemy.name + '!', monsterWorld.getCurrentMap().battleSystem.coordinates.leftColumn, monsterWorld.getCurrentMap().battleSystem.coordinates.topRow);
-    if (monsterWorld.getCurrentMap().battleSystem.levelUp) {
-      ctx.fillText(monsterWorld.getCurrentMap().battleSystem.playerBattleMonster.name + ' has gained a level!', monsterWorld.getCurrentMap().battleSystem.coordinates.leftColumn, monsterWorld.getCurrentMap().battleSystem.coordinates.middleRow);
+  boundaries: function () {
+    return {
+      bottom: 390,
+      left: 30,
+      right: 210,
+      top: 350,
     }
   },
   controls: function (key) {
@@ -21,12 +19,21 @@ let battleWon = {
     x: 0,
     y: 0,
   },
-  boundaries: function () {
-    return {
-      left: 30,
-      top: 350,
-      right: 210,
-      bottom: 390,
+  renderText: function () {
+    ctx.font = '30px Arial';
+    ctx.fillText(
+      'You have defeated ' +
+      monsterWorld.getCurrentMap().battleSystem.enemy.name + '!',
+      monsterWorld.getCurrentMap().battleSystem.coordinates.leftColumn,
+      monsterWorld.getCurrentMap().battleSystem.coordinates.topRow
+    );
+    if (monsterWorld.getCurrentMap().battleSystem.levelUp) {
+      ctx.fillText(
+        monsterWorld.getCurrentMap().battleSystem.playerBattleMonster.name +
+        ' has gained a level!',
+        monsterWorld.getCurrentMap().battleSystem.coordinates.leftColumn,
+        monsterWorld.getCurrentMap().battleSystem.coordinates.middleRow
+      );
     }
   },
 }

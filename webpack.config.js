@@ -2,59 +2,57 @@ var path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
-    entry: {
-        monsterWorld:
-        [
-            'webpack-dev-server/client?http://0.0.0.0:8080/',
-            './scripts/app.js',
-        ]
-    },
+    entry: './scripts/app.js',
     output: {
-        path: __dirname,
-        filename: 'public/bundle.js'
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'bundle.js',
+        publicPath:'temp' // for webpack-dev-server
 
+    },
+    module: {
+        rules: [
+            {
+                enforce: 'pre',
+                test: /\.js$/,
+                exclude: [
+                /node_modules/,
+                path.resolve(__dirname, 'tests/')
+                ],
+                use: [{
+                    loader: 'eslint-loader',
+                    options: {
+                        configFile: './.eslintrc',
+                        emitError: false,
+                        emitWarning: false
+                    }
+                }]
+            },
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: [{
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['es2015']
+                    }
+                }]
+            }
+        ]
     },
     devtool: 'source-map',
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
         new webpack.optimize.UglifyJsPlugin({
             compress: {
-               warnings: false
-            }
+               warnings: true
+            },
+            sourceMap: true
         })
     ],
     devServer: {
         contentBase: './',
         inline: true,
         hot: true,
-        progress: true,
-        colors: true,
-        quiet: true
-    },
-    eslint: {
-        configFile: './.eslintrc',
-        emitError: true,
-        emitWarning: true
-    },
-    module: {
-        preloaders: [
-            {
-                test: /\.js$/,
-                loader: 'eslint-loader',
-                path: __dirname,
-                filename: './scripts',
-                exclude: /node_modules/,
-            }
-        ],
-        loaders: [
-            {
-                test: /\.js$/,
-                loader: 'babel',
-                exclude: /node_modules/,
-                query: {
-                    presets: ['es2015']
-                }
-            }
-        ]
+        quiet: false
     }
 };

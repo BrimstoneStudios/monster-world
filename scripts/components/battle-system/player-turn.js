@@ -6,15 +6,12 @@ import battleWon from './battle-won';
 import checkFightWinCondition from './check-win-condition';
 
 export default {
-  renderText: function () {
-    ctx.font = '30px Arial';
-    ctx.fillText('You hit enemy ' + monsterWorld.getCurrentMap().battleSystem.enemy.name + ' with ' + monsterWorld.getCurrentMap().battleSystem.abilityUsed.name, monsterWorld.getCurrentMap().battleSystem.coordinates.leftColumn, monsterWorld.getCurrentMap().battleSystem.coordinates.topRow);
-
-    // Additional text if not very or super effective
-    if (monsterWorld.getCurrentMap().battleSystem.abilityUsed.damageMod === 'super') {
-      ctx.fillText('It was super effective!', monsterWorld.getCurrentMap().battleSystem.coordinates.leftColumn, monsterWorld.getCurrentMap().battleSystem.coordinates.middleRow);
-    } else if (monsterWorld.getCurrentMap().battleSystem.abilityUsed.damageMod === 'notVery') {
-      ctx.fillText('It was not very effective', monsterWorld.getCurrentMap().battleSystem.coordinates.leftColumn, monsterWorld.getCurrentMap().battleSystem.coordinates.middleRow);
+  boundaries: function () {
+    return {
+      bottom: 390,
+      left: 30,
+      right: 210,
+      top: 350,
     }
   },
   controls: function (key) {
@@ -33,12 +30,30 @@ export default {
     x: 0,
     y: 0,
   },
-  boundaries: function () {
-    return {
-      left: 30,
-      top: 350,
-      right: 210,
-      bottom: 390,
+  renderText: function () {
+    ctx.font = '30px Arial';
+    ctx.fillText(
+      'You hit enemy ' +
+      monsterWorld.getCurrentMap().battleSystem.enemy.name +
+      ' with ' +
+      monsterWorld.getCurrentMap().battleSystem.abilityUsed.name,
+      monsterWorld.getCurrentMap().battleSystem.coordinates.leftColumn,
+      monsterWorld.getCurrentMap().battleSystem.coordinates.topRow
+    );
+
+    // Additional text if not very or super effective
+    if (monsterWorld.getCurrentMap().battleSystem.abilityUsed.damageMod === 'super') {
+      ctx.fillText(
+        'It was super effective!',
+        monsterWorld.getCurrentMap().battleSystem.coordinates.leftColumn,
+        monsterWorld.getCurrentMap().battleSystem.coordinates.middleRow
+      );
+    } else if (monsterWorld.getCurrentMap().battleSystem.abilityUsed.damageMod === 'notVery') {
+      ctx.fillText(
+        'It was not very effective',
+        monsterWorld.getCurrentMap().battleSystem.coordinates.leftColumn,
+        monsterWorld.getCurrentMap().battleSystem.coordinates.middleRow
+      );
     }
   },
 }

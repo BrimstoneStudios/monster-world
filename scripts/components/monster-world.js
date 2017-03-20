@@ -1,25 +1,25 @@
 export class MonsterWorld {
-  constructor(currentMap) {
+  constructor() {
     this.state = {
-      inBattle: false,
       currentMap: {
         sprite: false,
-      }
+      },
+      inBattle: false,
     }
     this.items = []
     this.maps = []
   }
 
-  getBattleState(){
+  getBattleState() {
     return this.state.inBattle;
-  }
-
-  setBattleState(battleState) {
-    this.state.inBattle = battleState;
   }
 
   getCurrentMap() {
     return this.state.currentMap;
+  }
+
+  setBattleState(battleState) {
+    this.state.inBattle = battleState;
   }
 
   setCurrentMap(map) {

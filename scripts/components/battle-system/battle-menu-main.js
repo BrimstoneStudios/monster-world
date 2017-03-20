@@ -4,23 +4,32 @@ import changeBattleState from './change-battle-state';
 import runFromBattle from './run-away';
 import monsterInventory from './monster-inventory';
 
-
 export default {
-  renderText: function () {
-    ctx.font = '30px Arial';
-    ctx.fillText('Fight', monsterWorld.getCurrentMap().battleSystem.coordinates.leftColumn, monsterWorld.getCurrentMap().battleSystem.coordinates.topRow);
-    ctx.fillText('Bag', monsterWorld.getCurrentMap().battleSystem.coordinates.middleColumn, monsterWorld.getCurrentMap().battleSystem.coordinates.topRow);
-    ctx.fillText('Monsters', monsterWorld.getCurrentMap().battleSystem.coordinates.leftColumn, monsterWorld.getCurrentMap().battleSystem.coordinates.middleRow);
-    ctx.fillText('Run', monsterWorld.getCurrentMap().battleSystem.coordinates.middleColumn, monsterWorld.getCurrentMap().battleSystem.coordinates.middleRow);
+  boundaries: function () {
+    return {
+      bottom: 390,
+      left: 30,
+      right: 210,
+      top: 350,
+    }
   },
   controls: function (key) {
     if (key === 'space') {
-      if (player.location.x === monsterWorld.getCurrentMap().movement.boundaries.left && player.location.y === monsterWorld.getCurrentMap().movement.boundaries.top) {
+      if (
+        player.location.x === monsterWorld.getCurrentMap().movement.boundaries.left &&
+        player.location.y === monsterWorld.getCurrentMap().movement.boundaries.top
+      ) {
         changeBattleState(abilitiesMenu);
-      } else if (player.location.x === monsterWorld.getCurrentMap().movement.boundaries.left && player.location.y === monsterWorld.getCurrentMap().movement.boundaries.bottom) {
+      } else if (
+        player.location.x === monsterWorld.getCurrentMap().movement.boundaries.left &&
+        player.location.y === monsterWorld.getCurrentMap().movement.boundaries.bottom
+      ) {
         // Monsters inventory in battleMenuMain
         changeBattleState(monsterInventory);
-      } else if (player.location.x === monsterWorld.getCurrentMap().movement.boundaries.right && player.location.y === monsterWorld.getCurrentMap().movement.boundaries.bottom) {
+      } else if (
+        player.location.x === monsterWorld.getCurrentMap().movement.boundaries.right &&
+        player.location.y === monsterWorld.getCurrentMap().movement.boundaries.bottom
+      ) {
         // Run in battleMenuMain
         changeBattleState(runFromBattle);
       } else {
@@ -33,12 +42,27 @@ export default {
     x: 180,
     y: 40,
   },
-  boundaries: function () {
-    return {
-      left: 30,
-      top: 350,
-      right: 210,
-      bottom: 390,
-    }
+  renderText: function () {
+    ctx.font = '30px Arial';
+    ctx.fillText(
+      'Fight',
+      monsterWorld.getCurrentMap().battleSystem.coordinates.leftColumn,
+      monsterWorld.getCurrentMap().battleSystem.coordinates.topRow
+      );
+    ctx.fillText(
+      'Bag',
+      monsterWorld.getCurrentMap().battleSystem.coordinates.middleColumn,
+      monsterWorld.getCurrentMap().battleSystem.coordinates.topRow
+      );
+    ctx.fillText(
+      'Monsters',
+      monsterWorld.getCurrentMap().battleSystem.coordinates.leftColumn,
+      monsterWorld.getCurrentMap().battleSystem.coordinates.middleRow
+      );
+    ctx.fillText(
+      'Run',
+      monsterWorld.getCurrentMap().battleSystem.coordinates.middleColumn,
+      monsterWorld.getCurrentMap().battleSystem.coordinates.middleRow
+      );
   },
 }
