@@ -5,23 +5,26 @@ import elementalTypes from './../elemental-types';
 
 var allAbilities = {
   useAbility: function (attacker) {
-    var ability;
-    var battle = monsterWorld.getCurrentMap().battleSystem;
-    var defender;
+    const battle = monsterWorld.getCurrentMap().battleSystem;
+    let ability;
+    let defender;
 
     if (attacker.controller === player) {
-      defender = monsterWorld.getCurrentMap().battleSystem.enemy;
-      for (let i = 0; i < monsterWorld.getCurrentMap().battleSystem.playerBattleMonster.abilities.length; i++) {
-        if (player.location.y === monsterWorld.getCurrentMap().movement.boundaries.top + i * monsterWorld.getCurrentMap().movement.distance.y) {
-          ability = monsterWorld.getCurrentMap().battleSystem.abilityUsed = monsterWorld.getCurrentMap().battleSystem.playerBattleMonster.abilities[i];
+      defender = battle.enemy;
+      for (let i = 0; i < battle.playerBattleMonster.abilities.length; i++) {
+        if (
+          player.location.y === monsterWorld.getCurrentMap().movement.boundaries.top +
+          i * monsterWorld.getCurrentMap().movement.distance.y
+        ) {
+          ability = battle.abilityUsed = battle.playerBattleMonster.abilities[i];
           break;
         }
       }
     } else {
-      defender = monsterWorld.getCurrentMap().battleSystem.playerBattleMonster;
-      var randomAttack = Math.floor(Math.random() * monsterWorld.getCurrentMap().battleSystem.enemy.abilities.length);
+      defender = battle.playerBattleMonster;
+      const randomAttack = Math.floor(Math.random() * battle.enemy.abilities.length);
 
-      ability = monsterWorld.getCurrentMap().battleSystem.abilityUsed = monsterWorld.getCurrentMap().battleSystem.enemy.abilities[randomAttack];
+      ability = battle.abilityUsed = battle.enemy.abilities[randomAttack];
     }
 
     if (ability.category === 'status' || ability.category === 'special') {
