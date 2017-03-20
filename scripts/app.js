@@ -4,15 +4,12 @@ import items from './components/items/all-items';
 import maps from './components/maps/all-maps';
 
 let monsterWorld = window.monsterWorld = new MonsterWorld();
+
 monsterWorld.setCurrentMap(maps.startScreen);
 monsterWorld.items = items;
 monsterWorld.maps = maps;
 
 let player = window.player = new Player();
-
-
-
-// var allNPC = [healer];
 
 player.inventory.push(monsterWorld.items.net);
 player.inventory.push(monsterWorld.items.potion);

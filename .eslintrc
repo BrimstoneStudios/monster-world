@@ -10,7 +10,9 @@
     "location": true,
     "player": true,
     "Resources": true,
-    "window": true
+    "window": true,
+    "document": true,
+    "monsterWorld": true
   },
   settings: {
     "import/parser": "babel-eslint",
