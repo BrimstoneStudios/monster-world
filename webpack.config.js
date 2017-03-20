@@ -50,8 +50,6 @@ module.exports = {
         contentBase: './',
         inline: true,
         hot: true,
-        progress: true,
-        colors: true,
-        quiet: true
+        quiet: false
     }
 };
