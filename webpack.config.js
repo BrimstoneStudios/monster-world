@@ -14,7 +14,10 @@ module.exports = {
             {
                 enforce: 'pre',
                 test: /\.js$/,
-                exclude: /node_modules/,
+                exclude: [
+                /node_modules/,
+                path.resolve(__dirname, 'tests/')
+                ],
                 use: [{
                     loader: 'eslint-loader',
                     options: {
