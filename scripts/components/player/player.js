@@ -23,7 +23,11 @@ export default class {
   }
 
   render() {
-    monsterWorld.engine.ctx.drawImage(monsterWorld.engine.imageCache.get(this.sprite), this.location.x, this.location.y);
+    monsterWorld.engine.ctx.drawImage(
+      monsterWorld.engine.imageCache.get(this.sprite),
+      this.location.x,
+      this.location.y
+    );
   }
 
   initLocation() {

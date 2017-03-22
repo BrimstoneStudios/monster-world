@@ -7,7 +7,11 @@ export default function () {
     i++, j += monsterWorld.getCurrentMap().movement.distance.y
   ) {
     monsterWorld.engine.ctx.font = '30px Arial';
-    monsterWorld.engine.ctx.drawImage(monsterWorld.engine.imageCache.get(inventory[i].sprite), 85, 50 + j);
+    monsterWorld.engine.ctx.drawImage(
+      monsterWorld.engine.imageCache.get(inventory[i].sprite),
+      85,
+      50 + j
+    );
     monsterWorld.engine.ctx.fillText(inventory[i].name, 155, 85 + j);
 
     if (monsterWorld.getCurrentMap().displayStats) {

@@ -45,7 +45,11 @@ export class Monster {
   }
 
   render(x, y) {
-    monsterWorld.engine.ctx.drawImage(monsterWorld.engine.imageCache.get(this.sprite), x, y, 100, 100);
+    monsterWorld.engine.ctx.drawImage(
+      monsterWorld.engine.imageCache.get(this.sprite),
+      x, y,
+      100, 100
+    );
   }
 
   renderBtlMonStats(player) {

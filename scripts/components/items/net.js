@@ -21,7 +21,10 @@ export default {
     var coordinates = monsterWorld.getCurrentMap().battleSystem.coordinates;
 
     if (monsterWorld.getCurrentMap().battleSystem.caughtMonster) {
-      monsterWorld.engine.ctx.fillText('You caught ' + enemy.name + '!', coordinates.leftColumn, coordinates.topRow);
+      monsterWorld.engine.ctx.fillText(
+        'You caught ' + enemy.name + '!',
+        coordinates.leftColumn,
+        coordinates.topRow);
     } else {
       monsterWorld.engine.ctx.fillText(
         'You failed to catch ' + enemy.name + '!',

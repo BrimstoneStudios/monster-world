@@ -16,7 +16,6 @@ export default function () {
     monsterWorld.setCurrentMap(monsterWorld.maps.battle);
     changeBattleState(wildIntro);
     player.initLocation();
-    debugger;
     battle.enemy = battle.initEnemy();
     battle.playerBattleMonster = battle.initPlayerMonster();
   }

@@ -1,10 +1,12 @@
+import rng from '../rng';
+
 export default function () {
-  var possibleItems = battle.enemy.items;
+  var possibleItems = monsterWorld.getCurrentMap().battleSystem.enemy.items;
 
   for (let i = 0; i < possibleItems.length; i++) {
     if (rng() <= possibleItems[i].dropProbablity) {
       monsterWorld.player.inventory.push(possibleItems[i].item);
-      battle.itemsDropped.push(possibleItems[i].item.name);
+      monsterWorld.getCurrentMap().battleSystem.itemsDropped.push(possibleItems[i].item.name);
     }
   }
 }
