@@ -1,13 +1,8 @@
 import MonsterWorld from './components/monster-world';
-import {Player} from './components/player/player';
 
 monsterWorld = window.monsterWorld = new MonsterWorld();
 
-let player = window.player = new Player();
-
-// new player should come with default items
-player.inventory.push(monsterWorld.items.net);
-player.inventory.push(monsterWorld.items.potion);
+monsterWorld.engine.start()
 
 // Listens for key presses and sends the keys to
 // Player.handleInput() method.
@@ -21,5 +16,5 @@ document.addEventListener('keyup', function controls(e) {
     40: 'down',
   };
 
-  player.handleInput(allowedKeys[e.keyCode]);
+  monsterWorld.player.handleInput(allowedKeys[e.keyCode]);
 });

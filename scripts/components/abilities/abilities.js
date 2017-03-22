@@ -6,6 +6,7 @@ import elementalTypes from './../elemental-types';
 var allAbilities = {
   useAbility: function (attacker) {
     const battle = monsterWorld.getCurrentMap().battleSystem;
+    const player = monsterWorld.player;
     let ability;
     let defender;
 

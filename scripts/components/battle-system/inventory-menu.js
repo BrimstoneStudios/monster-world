@@ -6,7 +6,7 @@ export default {
   boundaries: function () {
     return {
       bottom: 350 +
-        (player.inventory.length - 1) *
+        (monsterWorld.player.inventory.length - 1) *
         monsterWorld.getCurrentMap().movement.distance.y,
       left: 30,
       right: 210,
@@ -27,17 +27,19 @@ export default {
     y: 40,
   },
   renderText: function () {
-    ctx.font = '30px Arial';
+    const player = monsterWorld.player;
+
+    monsterWorld.engine.ctx.font = '30px Arial';
     if (player.inventory.length > 0) {
       for (let i = 0, j = 0; i < player.inventory.length; i++, j += 40) {
-        ctx.fillText(
+        monsterWorld.engine.ctx.fillText(
           player.inventory[i].name,
           monsterWorld.getCurrentMap().battleSystem.coordinates.leftColumn,
           monsterWorld.getCurrentMap().battleSystem.coordinates.topRow + j
         );
       }
     } else {
-      ctx.fillText(
+      monsterWorld.engine.ctx.fillText(
         'You have no items to use!',
         monsterWorld.getCurrentMap().battleSystem.coordinates.leftColumn,
         monsterWorld.getCurrentMap().battleSystem.coordinates.topRow

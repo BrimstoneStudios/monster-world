@@ -1,4 +1,6 @@
 export default function () {
+  const player = monsterWorld.player;
+
   for (let i = 0; i < player.monsterInventory.length; i++) {
     if (
       player.location.y ===

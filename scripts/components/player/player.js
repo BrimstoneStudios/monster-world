@@ -1,5 +1,6 @@
-export class Player {
+export default class {
   constructor() {
+    this.inventory = []
     this.location = {
       x: 0,
       y: 0,
@@ -11,10 +12,9 @@ export class Player {
         y: 0,
       },
     }
-    this.inventory = []
   }
 
-  update() {
+  setSprite() {
     if (typeof monsterWorld.getCurrentMap().sprite !== 'undefined') {
       this.sprite = monsterWorld.getCurrentMap().sprite;
     } else {
@@ -23,7 +23,11 @@ export class Player {
   }
 
   render() {
-    ctx.drawImage(Resources.get(this.sprite), this.location.x, this.location.y);
+    monsterWorld.engine.ctx.drawImage(
+      monsterWorld.engine.imageCache.get(this.sprite),
+      this.location.x,
+      this.location.y
+    );
   }
 
   initLocation() {
@@ -35,7 +39,7 @@ export class Player {
 
   handleInput(key) {
     this.render();
-    monsterWorld.getCurrentMap().movement.controls(key, player)
+    monsterWorld.getCurrentMap().movement.controls(key, monsterWorld.player)
     this.locationSetter(key);
   }
 

@@ -3,5 +3,5 @@ export default function () {
   const boundaries = movement.boundaries;
 
   boundaries.bottom = boundaries.top;
-  boundaries.bottom += (player.monsterInventory.length - 1) * movement.distance.y;
+  boundaries.bottom += (monsterWorld.player.monsterInventory.length - 1) * movement.distance.y;
 }

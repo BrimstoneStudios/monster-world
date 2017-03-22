@@ -8,6 +8,7 @@ export default {
   potion: potion,
   useItem: function () {
     const map = monsterWorld.getCurrentMap();
+    const player = monsterWorld.player;
 
     for (let i = 0; i <= player.inventory.length; i++) {
       if (player.location.y === map.movement.boundaries.top + i * map.movement.distance.y) {

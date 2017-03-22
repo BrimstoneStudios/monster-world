@@ -31,8 +31,8 @@ export default {
     y: 0,
   },
   renderText: function () {
-    ctx.font = '30px Arial';
-    ctx.fillText(
+    monsterWorld.engine.ctx.font = '30px Arial';
+    monsterWorld.engine.ctx.fillText(
       'You hit enemy ' +
       monsterWorld.getCurrentMap().battleSystem.enemy.name +
       ' with ' +
@@ -43,13 +43,13 @@ export default {
 
     // Additional text if not very or super effective
     if (monsterWorld.getCurrentMap().battleSystem.abilityUsed.damageMod === 'super') {
-      ctx.fillText(
+      monsterWorld.engine.ctx.fillText(
         'It was super effective!',
         monsterWorld.getCurrentMap().battleSystem.coordinates.leftColumn,
         monsterWorld.getCurrentMap().battleSystem.coordinates.middleRow
       );
     } else if (monsterWorld.getCurrentMap().battleSystem.abilityUsed.damageMod === 'notVery') {
-      ctx.fillText(
+      monsterWorld.engine.ctx.fillText(
         'It was not very effective',
         monsterWorld.getCurrentMap().battleSystem.coordinates.leftColumn,
         monsterWorld.getCurrentMap().battleSystem.coordinates.middleRow

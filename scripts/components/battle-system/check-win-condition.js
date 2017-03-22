@@ -1,6 +1,8 @@
 import {PlayerMonster} from './../monsters/player-monster';
 
 export default function (defender) {
+  const player = monsterWorld.player;
+
   if (defender.currentHp <= 0) {
     defender.currentHp = 0;
 

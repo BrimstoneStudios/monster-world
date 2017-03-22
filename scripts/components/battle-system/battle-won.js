@@ -8,6 +8,8 @@ let battleWon = {
     }
   },
   controls: function (key) {
+    const player = monsterWorld.player;
+
     if (key === 'space') {
       monsterWorld.getCurrentMap().battleSystem.levelUp = false;
       monsterWorld.setCurrentMap(player.savedAttributes.lastLevel);
@@ -20,15 +22,15 @@ let battleWon = {
     y: 0,
   },
   renderText: function () {
-    ctx.font = '30px Arial';
-    ctx.fillText(
+    monsterWorld.engine.ctx.font = '30px Arial';
+    monsterWorld.engine.ctx.fillText(
       'You have defeated ' +
       monsterWorld.getCurrentMap().battleSystem.enemy.name + '!',
       monsterWorld.getCurrentMap().battleSystem.coordinates.leftColumn,
       monsterWorld.getCurrentMap().battleSystem.coordinates.topRow
     );
     if (monsterWorld.getCurrentMap().battleSystem.levelUp) {
-      ctx.fillText(
+      monsterWorld.engine.ctx.fillText(
         monsterWorld.getCurrentMap().battleSystem.playerBattleMonster.name +
         ' has gained a level!',
         monsterWorld.getCurrentMap().battleSystem.coordinates.leftColumn,

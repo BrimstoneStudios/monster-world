@@ -25,7 +25,7 @@ export default {
     y: 0,
   },
   renderText: function () {
-    ctx.font = '30px Arial';
+    monsterWorld.engine.ctx.font = '30px Arial';
     monsterWorld.getCurrentMap().battleSystem.itemUsed.renderBattleText();
   },
 }

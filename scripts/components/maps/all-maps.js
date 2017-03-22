@@ -13,6 +13,7 @@ import waterMap from './world/water-map';
 function borders() {
   const boundaries = monsterWorld.getCurrentMap().movement.boundaries;
   const distance = monsterWorld.getCurrentMap().movement.distance;
+  const player = monsterWorld.player;
 
   function setLeftBorder(mapToGoTo) {
     if (player.location.x === boundaries.left) {

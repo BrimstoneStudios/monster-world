@@ -184,7 +184,7 @@
       "capIsNew": true,
     }],
     "new-parens": "error",
-    "newline-after-var": ["error", "always"],
+    "newline-after-var": ["warn", "always"],
     "newline-per-chained-call": ["error", {"ignoreChainWithDepth": 3}],
     "no-array-constructor": "error",
     "no-bitwise": "error",
@@ -207,7 +207,7 @@
     "quote-props": ["error", "as-needed"],
     "quotes": ["error", "single"],
     "semi-spacing": "error",
-    "sort-keys": ["error", "asc", {
+    "sort-keys": ["warn", "asc", {
       "caseSensitive": false,
       "natural": true,
     }],

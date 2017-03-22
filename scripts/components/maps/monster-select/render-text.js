@@ -1,4 +1,4 @@
 export default function () {
-  ctx.font = '50px Arial';
-  ctx.fillText('Choose a starting monster', 50, 380);
+  monsterWorld.engine.ctx.font = '50px Arial';
+  monsterWorld.engine.ctx.fillText('Choose a starting monster', 50, 380);
 }

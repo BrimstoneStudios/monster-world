@@ -4,7 +4,7 @@ export default {
     const playerMonster = monsterWorld.getCurrentMap().battleSystem.playerBattleMonster
     const battleCoordinates = monsterWorld.getCurrentMap().battleSystem.coordinates;
 
-    ctx.fillText(
+    monsterWorld.engine.ctx.fillText(
       playerMonster.name + ' healed for ' + 10 + ' hp.',
       battleCoordinates.leftColumn,
       battleCoordinates.topRow
@@ -17,7 +17,7 @@ export default {
     if (monsterWorld.getBattleState()) {
       monster = monsterWorld.getCurrentMap().battleSystem.playerBattleMonster;
     } else {
-      monster = player.monsterInventory[0];
+      monster = monsterWorld.player.monsterInventory[0];
     }
 
     monster.currentHp += 10;

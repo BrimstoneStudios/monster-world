@@ -5,13 +5,13 @@ export default {
     const enemy = monsterWorld.getCurrentMap().battleSystem.enemy;
 
     if (rng() <= probability) {
-      if (player.monsterInventory[0].name === 'PlayerMon') {
+      if (monsterWorld.player.monsterInventory[0].name === 'PlayerMon') {
         monsterWorld.getCurrentMap().battleSystem.playerBattleMonster.player = 0;
-        player.monsterInventory.pop();
+        monsterWorld.player.monsterInventory.pop();
       }
 
-      enemy.controller = player;
-      player.monsterInventory.push(enemy);
+      enemy.controller = monsterWorld.player;
+      monsterWorld.player.monsterInventory.push(enemy);
       monsterWorld.getCurrentMap().battleSystem.caughtMonster = true;
     }
   },
@@ -21,14 +21,17 @@ export default {
     var coordinates = monsterWorld.getCurrentMap().battleSystem.coordinates;
 
     if (monsterWorld.getCurrentMap().battleSystem.caughtMonster) {
-      ctx.fillText('You caught ' + enemy.name + '!', coordinates.leftColumn, coordinates.topRow);
+      monsterWorld.engine.ctx.fillText(
+        'You caught ' + enemy.name + '!',
+        coordinates.leftColumn,
+        coordinates.topRow);
     } else {
-      ctx.fillText(
+      monsterWorld.engine.ctx.fillText(
         'You failed to catch ' + enemy.name + '!',
         coordinates.leftColumn,
         coordinates.topRow
       );
-      ctx.fillText(
+      monsterWorld.engine.ctx.fillText(
         'Try dealing more damage next time.',
         coordinates.leftColumn,
         coordinates.middleRow

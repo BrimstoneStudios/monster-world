@@ -2,6 +2,8 @@ import NPC from './npc';
 
 // NPC that heals all of your monsters
 function initNPCAction() {
+  const player = monsterWorld.player;
+
   for (let i = 0; i < player.monsterInventory.length; i++) {
     player.monsterInventory[i].currentHp = player.monsterInventory[i].hp;
   }

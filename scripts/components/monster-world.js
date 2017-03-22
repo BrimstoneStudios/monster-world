@@ -1,6 +1,7 @@
-import {Player} from './player/player';
+import Player from './player/player';
 import maps from './maps/all-maps';
 import items from './items/all-items';
+import engine from './engine/engine';
 
 export default class {
   constructor() {
@@ -11,6 +12,7 @@ export default class {
       currentMap: maps.startScreen,
       inBattle: false,
     }
+    this.engine = engine
   }
 
   getBattleState() {
