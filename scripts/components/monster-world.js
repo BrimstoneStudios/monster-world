@@ -4,13 +4,13 @@ import items from './items/all-items';
 
 export class MonsterWorld {
   constructor() {
+    this.items = items
+    this.maps = maps
+    this.player = new Player()
     this.state = {
       currentMap: maps.startScreen,
       inBattle: false,
     }
-    this.items = items
-    this.maps = maps
-    this.player = new Player()
   }
 
   getBattleState() {
