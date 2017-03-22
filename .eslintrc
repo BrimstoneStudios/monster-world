@@ -4,6 +4,7 @@
     "ecmaVersion": 6,
   },
   "globals": {
+    "console": true,
     "ctx": true,
     "currentMap": true,
     "Image": true,

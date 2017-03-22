@@ -11,6 +11,8 @@ monsterWorld.maps = maps;
 
 let player = window.player = new Player();
 
+monsterWorld.player = new Player();
+console.log('what')
 player.inventory.push(monsterWorld.items.net);
 player.inventory.push(monsterWorld.items.potion);
 
