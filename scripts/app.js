@@ -3,12 +3,7 @@ import MonsterWorld from './components/monster-world';
 
 monsterWorld = window.monsterWorld = new MonsterWorld();
 monsterWorld.engine.start()
-// MW = {
-//   game: monsterWorld,
-//   player: player,
-//   engine: engine
-// }
-// let player = window.player = new Player();
+
 const player = monsterWorld.player;
 
 // new player should come with default items
