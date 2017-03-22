@@ -16,7 +16,7 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'scripts/app.js',
+      'scripts/**/*.js',
       'tests/*-spec.js'
     ],
 
@@ -29,7 +29,7 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-        'scripts/app.js': ['webpack', 'coverage'],
+        'scripts/**/*.js': ['webpack', 'coverage'],
         'tests/*-spec.js': ['webpack']
     },
 
@@ -70,6 +70,9 @@ module.exports = function(config) {
     // how many browser should be started simultaneous
     concurrency: Infinity,
     webpack: webpackConfig,
+    webpackMiddleware: {
+        noInfo: true
+    },
     coverageReporter: {
       type : 'html',
       dir : 'coverage/'

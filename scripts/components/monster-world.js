@@ -1,13 +1,16 @@
+import {Player} from './player/player';
+import maps from './maps/all-maps';
+import items from './items/all-items';
+
 export class MonsterWorld {
   constructor() {
     this.state = {
-      currentMap: {
-        sprite: false,
-      },
+      currentMap: maps.startScreen,
       inBattle: false,
     }
-    this.items = []
-    this.maps = []
+    this.items = items
+    this.maps = maps
+    this.player = new Player()
   }
 
   getBattleState() {
