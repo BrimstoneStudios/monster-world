@@ -1,7 +1,7 @@
 import rng from './../rng';
 
 export default function () {
-  const monsters = player.savedAttributes.lastLevel.monsters;
+  const monsters = monsterWorld.player.savedAttributes.lastLevel.monsters;
   const randomNum = rng();
   let counter = 0;
 

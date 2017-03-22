@@ -1,4 +1,6 @@
 export default function () {
+  const player = monsterWorld.player;
+
   ctx.font = '50px Arial';
   if (player.inventory.length > 0) {
     for (let i = 0, j = 0; i < player.inventory.length; i++, j += 50) {

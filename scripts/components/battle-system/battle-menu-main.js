@@ -14,6 +14,8 @@ export default {
     }
   },
   controls: function (key) {
+    const player = monsterWorld.player;
+
     if (key === 'space') {
       if (
         player.location.x === monsterWorld.getCurrentMap().movement.boundaries.left &&

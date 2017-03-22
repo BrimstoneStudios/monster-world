@@ -1,4 +1,4 @@
-import {Player} from './player/player';
+import Player from './player/player';
 import maps from './maps/all-maps';
 import items from './items/all-items';
 

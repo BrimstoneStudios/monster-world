@@ -8,6 +8,8 @@ let battleWon = {
     }
   },
   controls: function (key) {
+    const player = monsterWorld.player;
+
     if (key === 'space') {
       monsterWorld.getCurrentMap().battleSystem.levelUp = false;
       monsterWorld.setCurrentMap(player.savedAttributes.lastLevel);

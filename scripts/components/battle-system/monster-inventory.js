@@ -9,7 +9,7 @@ export default {
   boundaries: function () {
     return {
       bottom: 350 +
-        (player.monsterInventory.length - 1) *
+        (monsterWorld.player.monsterInventory.length - 1) *
         monsterWorld.getCurrentMap().movement.distance.y,
       left: 30,
       right: 210,
@@ -31,6 +31,8 @@ export default {
     y: 40,
   },
   renderText: function () {
+    const player = monsterWorld.player;
+
     ctx.font = '30px Arial';
     for (let i = 0, j = 0; i < player.monsterInventory.length; i++, j += 40) {
       ctx.fillText(

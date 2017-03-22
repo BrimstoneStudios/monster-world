@@ -1,10 +1,19 @@
 import rng from './../rng';
 import changeBattleState from './change-battle-state';
 
+function runAwaySuccess() {
+  if (rng() <= 1) {
+    return true
+  }
+  return false
+}
+
 export default {
   controls: function (key) {
+    const player = monsterWorld.player;
+
     if (key === 'space') {
-      if (this.runAwaySuccess()) {
+      if (runAwaySuccess()) {
         monsterWorld.setCurrentMap(player.savedAttributes.lastLevel);
         player.location.x = player.savedAttributes.location.x;
         player.location.y = player.savedAttributes.location.y;
@@ -19,7 +28,7 @@ export default {
   },
   renderText: function () {
     ctx.font = '30px Arial';
-    if (this.runAwaySuccess()) {
+    if (runAwaySuccess()) {
       ctx.fillText(
         'You ran away!? You wimp...',
         monsterWorld.getCurrentMap().battleSystem.coordinates.leftColumn,
@@ -32,11 +41,5 @@ export default {
         monsterWorld.getCurrentMap().battleSystem.coordinates.topRow
       );
     }
-  },
-  runAwaySuccess: function () {
-    if (rng() <= 1) {
-      return true
-    }
-    return false
   },
 };

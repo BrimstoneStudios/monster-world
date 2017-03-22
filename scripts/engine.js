@@ -65,7 +65,7 @@
       monsterWorld.getCurrentMap().battleSystem.enemy.renderBtlMonStats('enemy');
     }
 
-    player.render();
+    monsterWorld.player.render();
   }
 
   /* This function initially draws the "game level", it will then call
@@ -111,7 +111,7 @@
     /* Call our update/render functions, pass along the time delta to
     * our update function since it may be used for smooth animation.
     */
-    player.update();
+    monsterWorld.player.update();
 
     // update();
     render();

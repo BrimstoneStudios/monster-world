@@ -4,7 +4,7 @@ import {Maps} from './../maps';
 
 var battleMap = new Maps('battleMap', allWhite);
 
-battleMap.setBattleSystem = battleSystem;
+battleMap.battleSystem = battleSystem;
 
 battleMap.setMovement = {
   boundaries: battleSystem.state.boundaries(),

@@ -3,5 +3,5 @@ export default function () {
   const menuBoundaries = movement.boundaries;
 
   menuBoundaries.bottom = menuBoundaries.top;
-  menuBoundaries.bottom += (player.inventory.length - 1) * movement.distance.y;
+  menuBoundaries.bottom += (monsterWorld.player.inventory.length - 1) * movement.distance.y;
 }

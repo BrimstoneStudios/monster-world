@@ -1,9 +1,10 @@
 import MonsterWorld from './components/monster-world';
-import {Player} from './components/player/player';
+// import Player from './components/player/player';
 
 monsterWorld = window.monsterWorld = new MonsterWorld();
 
-let player = window.player = new Player();
+// let player = window.player = new Player();
+const player = monsterWorld.player;
 
 // new player should come with default items
 player.inventory.push(monsterWorld.items.net);

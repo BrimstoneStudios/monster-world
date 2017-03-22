@@ -1,4 +1,4 @@
-export class Player {
+export default class {
   constructor() {
     this.location = {
       x: 0,
@@ -35,7 +35,7 @@ export class Player {
 
   handleInput(key) {
     this.render();
-    monsterWorld.getCurrentMap().movement.controls(key, player)
+    monsterWorld.getCurrentMap().movement.controls(key, monsterWorld.player)
     this.locationSetter(key);
   }
 

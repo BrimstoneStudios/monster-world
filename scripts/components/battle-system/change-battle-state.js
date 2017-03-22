@@ -9,5 +9,5 @@ export default function (newBattleState) {
     monsterWorld.getCurrentMap().movement.boundaries = newBattleState.boundaries();
   }
 
-  player.initLocation();
+  monsterWorld.player.initLocation();
 }

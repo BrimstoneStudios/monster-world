@@ -1,5 +1,8 @@
+
 export default {
   determineItemUsed: function () {
+    const player = monsterWorld.player;
+
     for (let i = 0; i <= player.inventory.length; i++) {
       if (player.location.y === monsterWorld.getCurrentMap().movement.boundaries.top + i * monsterWorld.getCurrentMap().movement.distance.y) {
         const itemUsed = player.inventory[i];
@@ -10,7 +13,7 @@ export default {
     this.determineItemUsed()
         itemUsed.func();
         if (itemUsed.singleUse) {
-          player.inventory.splice(i, 1);
+          monsterWorld.player.inventory.splice(i, 1);
         }
 
         if (monsterWorld.getCurrentMap() === monsterWorld.maps.battle) {

@@ -5,13 +5,13 @@ export default {
     const enemy = monsterWorld.getCurrentMap().battleSystem.enemy;
 
     if (rng() <= probability) {
-      if (player.monsterInventory[0].name === 'PlayerMon') {
+      if (monsterWorld.player.monsterInventory[0].name === 'PlayerMon') {
         monsterWorld.getCurrentMap().battleSystem.playerBattleMonster.player = 0;
-        player.monsterInventory.pop();
+        monsterWorld.player.monsterInventory.pop();
       }
 
-      enemy.controller = player;
-      player.monsterInventory.push(enemy);
+      enemy.controller = monsterWorld.player;
+      monsterWorld.player.monsterInventory.push(enemy);
       monsterWorld.getCurrentMap().battleSystem.caughtMonster = true;
     }
   },

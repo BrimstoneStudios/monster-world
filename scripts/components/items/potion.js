@@ -17,7 +17,7 @@ export default {
     if (monsterWorld.getBattleState()) {
       monster = monsterWorld.getCurrentMap().battleSystem.playerBattleMonster;
     } else {
-      monster = player.monsterInventory[0];
+      monster = monsterWorld.player.monsterInventory[0];
     }
 
     monster.currentHp += 10;

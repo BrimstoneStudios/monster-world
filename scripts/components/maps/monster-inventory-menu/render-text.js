@@ -1,5 +1,5 @@
 export default function () {
-  const inventory = player.monsterInventory;
+  const inventory = monsterWorld.player.monsterInventory;
 
   for (
     let i = 0, j = 0;
