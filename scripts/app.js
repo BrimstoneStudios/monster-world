@@ -1,16 +1,11 @@
 import {MonsterWorld} from './components/monster-world';
 import {Player} from './components/player/player';
-import items from './components/items/all-items';
-import maps from './components/maps/all-maps';
 
 monsterWorld = window.monsterWorld = new MonsterWorld();
 
-monsterWorld.setCurrentMap(maps.startScreen);
-monsterWorld.items = items;
-monsterWorld.maps = maps;
-
 let player = window.player = new Player();
 
+// new player should come with default items
 player.inventory.push(monsterWorld.items.net);
 player.inventory.push(monsterWorld.items.potion);
 

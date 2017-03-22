@@ -33,8 +33,10 @@
     "karma-cli": "^1.0.1",
     "karma-coverage": "^1.1.1",
     "karma-jasmine": "^1.1.0",
+    "karma-jasmine-diff-reporter": "^1.0.0",
     "karma-webpack": "^2.0.3",
     "webpack": "^2.2.1",
+    "webpack-dev-middleware": "^1.10.1",
     "webpack-dev-server": "^2.4.2",
     "webpack-uglify-js-plugin": "^1.1.9"
   },
