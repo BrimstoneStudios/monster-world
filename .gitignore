@@ -1,5 +1,5 @@
 .DS_Store
 node_modules/
-js/es6-example.js
 npm-debug.log
 .eslintcache
+coverage/*
