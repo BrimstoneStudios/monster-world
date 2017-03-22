@@ -1,3 +1,5 @@
+import imageCache from './image-cache';
+
 /* Engine.js
 * This file provides the game loop functionality (update entities and render),
 * draws the initial game board on the screen, and then calls the update and
@@ -8,16 +10,15 @@
 * Adapted from the Udacity frontend nanodegree arcade game
 * https://github.com/udacity/frontend-nanodegree-arcade-game
 */
-
-(function Engine(global) {
+export default function () {
   /* Predefine the variables we'll be using within this scope,
   * create the canvas element, grab the 2D context for that canvas
   * set the canvas elements height/width and add it to the DOM.
   */
-  var doc = global.document;
+  var doc = window.document;
   var canvas = doc.createElement('canvas');
   var ctx = canvas.getContext('2d');
-  var win = global.window;
+  var win = window.window;
 
   // var lastTime;
 
@@ -86,11 +87,17 @@
         /* The drawImage function of the canvas' context element
         * requires 3 parameters: the image to draw, the x coordinate
         * to start drawing and the y coordinate to start drawing.
-        * We're using our Resources helpers to refer to our images
+        * We're using our imageCache helpers to refer to our images
         * so that we get the benefits of caching these images, since
         * we're using them over and over.
         */
-        ctx.drawImage(Resources.get(monsterWorld.getCurrentMap().tiles[row][col]), col * 50, row * 50);
+        ctx.drawImage(
+          imageCache.get(
+            monsterWorld.getCurrentMap().tiles[row][col]
+          ),
+          col * 50,
+          row * 50
+        );
       }
     }
 
@@ -111,7 +118,7 @@
     /* Call our update/render functions, pass along the time delta to
     * our update function since it may be used for smooth animation.
     */
-    monsterWorld.player.update();
+    monsterWorld.player.setSprite();
 
     // update();
     render();
@@ -139,7 +146,7 @@
 
   /* Loads images to cache
   */
-  Resources.load([
+  imageCache.load([
 
     // Terrain
     'images/terrain/start-screen.png',
@@ -183,11 +190,11 @@
     'images/monsters/ignis.gif',
     'images/monsters/phoenix.gif',
   ]);
-  Resources.onReady(init);
+  imageCache.onReady(init);
 
   /* Assign the canvas' context object to the global variable (the window
   * object when run in a browser) so that developer's can use it more easily
   * from within their app.js files.
   */
-  global.ctx = ctx;
-})(window);
+  monsterWorld.engine.ctx = ctx;
+}

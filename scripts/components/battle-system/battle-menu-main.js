@@ -45,23 +45,23 @@ export default {
     y: 40,
   },
   renderText: function () {
-    ctx.font = '30px Arial';
-    ctx.fillText(
+    monsterWorld.engine.ctx.font = '30px Arial';
+    monsterWorld.engine.ctx.fillText(
       'Fight',
       monsterWorld.getCurrentMap().battleSystem.coordinates.leftColumn,
       monsterWorld.getCurrentMap().battleSystem.coordinates.topRow
       );
-    ctx.fillText(
+    monsterWorld.engine.ctx.fillText(
       'Bag',
       monsterWorld.getCurrentMap().battleSystem.coordinates.middleColumn,
       monsterWorld.getCurrentMap().battleSystem.coordinates.topRow
       );
-    ctx.fillText(
+    monsterWorld.engine.ctx.fillText(
       'Monsters',
       monsterWorld.getCurrentMap().battleSystem.coordinates.leftColumn,
       monsterWorld.getCurrentMap().battleSystem.coordinates.middleRow
       );
-    ctx.fillText(
+    monsterWorld.engine.ctx.fillText(
       'Run',
       monsterWorld.getCurrentMap().battleSystem.coordinates.middleColumn,
       monsterWorld.getCurrentMap().battleSystem.coordinates.middleRow

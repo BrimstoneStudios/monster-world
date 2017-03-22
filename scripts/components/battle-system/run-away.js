@@ -27,15 +27,15 @@ export default {
     y: 0,
   },
   renderText: function () {
-    ctx.font = '30px Arial';
+    monsterWorld.engine.ctx.font = '30px Arial';
     if (runAwaySuccess()) {
-      ctx.fillText(
+      monsterWorld.engine.ctx.fillText(
         'You ran away!? You wimp...',
         monsterWorld.getCurrentMap().battleSystem.coordinates.leftColumn,
         monsterWorld.getCurrentMap().battleSystem.coordinates.topRow
       );
     } else {
-      ctx.fillText(
+      monsterWorld.engine.ctx.fillText(
         'Escape failed. FIGHT!',
         monsterWorld.getCurrentMap().battleSystem.coordinates.leftColumn,
         monsterWorld.getCurrentMap().battleSystem.coordinates.topRow

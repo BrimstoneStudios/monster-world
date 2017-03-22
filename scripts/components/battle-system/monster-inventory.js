@@ -33,9 +33,9 @@ export default {
   renderText: function () {
     const player = monsterWorld.player;
 
-    ctx.font = '30px Arial';
+    monsterWorld.engine.ctx.font = '30px Arial';
     for (let i = 0, j = 0; i < player.monsterInventory.length; i++, j += 40) {
-      ctx.fillText(
+      monsterWorld.engine.ctx.fillText(
         player.monsterInventory[i].name,
         monsterWorld.getCurrentMap().battleSystem.coordinates.leftColumn,
         monsterWorld.getCurrentMap().battleSystem.coordinates.topRow + j

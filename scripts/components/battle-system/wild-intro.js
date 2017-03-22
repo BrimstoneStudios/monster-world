@@ -21,8 +21,8 @@ export default {
     y: 0,
   },
   renderText: function () {
-    ctx.font = '30px Arial';
-    ctx.fillText(
+    monsterWorld.engine.ctx.font = '30px Arial';
+    monsterWorld.engine.ctx.fillText(
       'A wild ' +
       monsterWorld.getCurrentMap().battleSystem.enemy.name +
       ' has appeared!',

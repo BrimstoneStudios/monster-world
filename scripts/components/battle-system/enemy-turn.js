@@ -18,8 +18,8 @@ export default {
     y: 0,
   },
   renderText: function () {
-    ctx.font = '30px Arial';
-    ctx.fillText(
+    monsterWorld.engine.ctx.font = '30px Arial';
+    monsterWorld.engine.ctx.fillText(
       monsterWorld.getCurrentMap().battleSystem.enemy.name +
       ' hit you with ' +
       monsterWorld.getCurrentMap().battleSystem.abilityUsed.name,
@@ -27,13 +27,13 @@ export default {
       monsterWorld.getCurrentMap().battleSystem.coordinates.topRow
     );
     if (monsterWorld.getCurrentMap().battleSystem.abilityUsed.damageMod === 'super') {
-      ctx.fillText(
+      monsterWorld.engine.ctx.fillText(
         'It was super effective!',
         monsterWorld.getCurrentMap().battleSystem.coordinates.leftColumn,
         monsterWorld.getCurrentMap().battleSystem.coordinates.middleRow
       );
     } else if (monsterWorld.getCurrentMap().battleSystem.abilityUsed.damageMod === 'notVery') {
-      ctx.fillText(
+      monsterWorld.engine.ctx.fillText(
         'It was not very effective',
         monsterWorld.getCurrentMap().battleSystem.coordinates.leftColumn,
         monsterWorld.getCurrentMap().battleSystem.coordinates.middleRow

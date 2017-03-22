@@ -29,17 +29,17 @@ export default {
   renderText: function () {
     const player = monsterWorld.player;
 
-    ctx.font = '30px Arial';
+    monsterWorld.engine.ctx.font = '30px Arial';
     if (player.inventory.length > 0) {
       for (let i = 0, j = 0; i < player.inventory.length; i++, j += 40) {
-        ctx.fillText(
+        monsterWorld.engine.ctx.fillText(
           player.inventory[i].name,
           monsterWorld.getCurrentMap().battleSystem.coordinates.leftColumn,
           monsterWorld.getCurrentMap().battleSystem.coordinates.topRow + j
         );
       }
     } else {
-      ctx.fillText(
+      monsterWorld.engine.ctx.fillText(
         'You have no items to use!',
         monsterWorld.getCurrentMap().battleSystem.coordinates.leftColumn,
         monsterWorld.getCurrentMap().battleSystem.coordinates.topRow

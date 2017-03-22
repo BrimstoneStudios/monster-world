@@ -2,7 +2,12 @@ import MonsterWorld from './components/monster-world';
 // import Player from './components/player/player';
 
 monsterWorld = window.monsterWorld = new MonsterWorld();
-
+monsterWorld.engine.start()
+// MW = {
+//   game: monsterWorld,
+//   player: player,
+//   engine: engine
+// }
 // let player = window.player = new Player();
 const player = monsterWorld.player;
 

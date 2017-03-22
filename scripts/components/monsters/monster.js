@@ -45,27 +45,27 @@ export class Monster {
   }
 
   render(x, y) {
-    ctx.drawImage(Resources.get(this.sprite), x, y, 100, 100);
+    monsterWorld.engine.ctx.drawImage(monsterWorld.engine.imageCache.get(this.sprite), x, y, 100, 100);
   }
 
   renderBtlMonStats(player) {
-    ctx.font = '35px Arial';
+    monsterWorld.engine.ctx.font = '35px Arial';
     if (player === 'player') {
-      ctx.fillText(this.name, 350, 260);
-      ctx.fillText('Lv', 610, 260);
-      ctx.fillText(this.level, 650, 260);
-      ctx.fillText('HP:', 350, 300);
-      ctx.fillText(this.currentHp, 450, 300);
-      ctx.fillText('/', 495, 300);
-      ctx.fillText(this.hp, 510, 300);
+      monsterWorld.engine.ctx.fillText(this.name, 350, 260);
+      monsterWorld.engine.ctx.fillText('Lv', 610, 260);
+      monsterWorld.engine.ctx.fillText(this.level, 650, 260);
+      monsterWorld.engine.ctx.fillText('HP:', 350, 300);
+      monsterWorld.engine.ctx.fillText(this.currentHp, 450, 300);
+      monsterWorld.engine.ctx.fillText('/', 495, 300);
+      monsterWorld.engine.ctx.fillText(this.hp, 510, 300);
     } else {
-      ctx.fillText(this.name, 50, 60);
-      ctx.fillText('Lv', 310, 60);
-      ctx.fillText(this.level, 350, 60);
-      ctx.fillText('HP:', 50, 100);
-      ctx.fillText(this.currentHp, 150, 100);
-      ctx.fillText('/', 195, 100);
-      ctx.fillText(this.hp, 210, 100);
+      monsterWorld.engine.ctx.fillText(this.name, 50, 60);
+      monsterWorld.engine.ctx.fillText('Lv', 310, 60);
+      monsterWorld.engine.ctx.fillText(this.level, 350, 60);
+      monsterWorld.engine.ctx.fillText('HP:', 50, 100);
+      monsterWorld.engine.ctx.fillText(this.currentHp, 150, 100);
+      monsterWorld.engine.ctx.fillText('/', 195, 100);
+      monsterWorld.engine.ctx.fillText(this.hp, 210, 100);
     }
   }
 }

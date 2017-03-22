@@ -29,13 +29,13 @@ export default {
     y: 40,
   },
   renderText: function () {
-    ctx.font = '30px Arial';
+    monsterWorld.engine.ctx.font = '30px Arial';
     for (
       let i = 0, j = 0;
       i < monsterWorld.getCurrentMap().battleSystem.playerBattleMonster.abilities.length;
       i++, j += 40
     ) {
-      ctx.fillText(
+      monsterWorld.engine.ctx.fillText(
         monsterWorld.getCurrentMap().battleSystem.playerBattleMonster.abilities[i].name,
         monsterWorld.getCurrentMap().battleSystem.coordinates.leftColumn,
         monsterWorld.getCurrentMap().battleSystem.coordinates.topRow + j

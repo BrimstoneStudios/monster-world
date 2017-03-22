@@ -4,7 +4,7 @@ export default {
     const playerMonster = monsterWorld.getCurrentMap().battleSystem.playerBattleMonster
     const battleCoordinates = monsterWorld.getCurrentMap().battleSystem.coordinates;
 
-    ctx.fillText(
+    monsterWorld.engine.ctx.fillText(
       playerMonster.name + ' healed for ' + 10 + ' hp.',
       battleCoordinates.leftColumn,
       battleCoordinates.topRow
