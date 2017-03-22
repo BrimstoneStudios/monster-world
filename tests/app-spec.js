@@ -1,4 +1,4 @@
-import {MonsterWorld} from '../scripts/components/monster-world';
+import MonsterWorld from '../scripts/components/monster-world';
 
 describe('Initiating Monster World', function () {
   beforeEach(function () {
