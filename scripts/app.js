@@ -1,4 +1,4 @@
-import {MonsterWorld} from './components/monster-world';
+import MonsterWorld from './components/monster-world';
 import {Player} from './components/player/player';
 
 monsterWorld = window.monsterWorld = new MonsterWorld();
