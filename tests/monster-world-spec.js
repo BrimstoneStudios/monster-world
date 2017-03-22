@@ -42,7 +42,7 @@ describe('monster-world: Every new monsterWorld instance', function () {
   })
   describe('setters:', function () {
     beforeEach(function () {
-      const foo = 'foo';
+      const foo = 'bar';
 
       this.mockMonsterWorld = new MonsterWorld();
       this.mockMonsterWorld.setBattleState(foo);
@@ -51,12 +51,12 @@ describe('monster-world: Every new monsterWorld instance', function () {
     it('setBattleState(foo) should set the current battle state to foo', function () {
       const actual = this.mockMonsterWorld.state.inBattle;
 
-      expect(actual).toBe('foo')
+      expect(actual).toBe('bar')
     })
     it('setCurrentMap(foo) should set the current map to foo', function () {
       const actual = this.mockMonsterWorld.state.currentMap;
 
-      expect(actual).toBe('foo')
+      expect(actual).toBe('bar')
     })
   })
 })
