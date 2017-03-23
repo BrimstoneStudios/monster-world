@@ -8,8 +8,7 @@
 * https://github.com/udacity/frontend-nanodegree-arcade-game
 */
 
-let resourceCache = {
-};
+let resourceCache = {};
 let readyCallbacks = [];
 
 /* This function determines if all of the images that have been requested
