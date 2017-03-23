@@ -16,10 +16,31 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'scripts/**/*.js',
-      'tests/*-spec.js'
+        'scripts/**/*.js',
+        'tests/*-spec.js',
+        {
+            pattern: 'images/**/*.png',
+            watched: false,
+            included: false,
+            served: true
+        },
+        {
+            pattern: 'images/**/*.jpg',
+            watched: false,
+            included: false,
+            served: true
+        },
+        {
+            pattern: 'images/**/*.gif',
+            watched: false,
+            included: false,
+            served: true
+        },
     ],
 
+    proxies: {
+        '/images': '/base/images'
+    },
 
     // list of files to exclude
     exclude: [
