@@ -30,7 +30,7 @@ function isReady() {
 * called by the public image loader function.
 */
 function _load(url) {
-  var img;
+  let img;
 
   if (resourceCache[url]) {
     /* If this URL has been previously loaded it will exist within
