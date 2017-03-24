@@ -15,9 +15,13 @@ export default {
   },
   controls: function (key) {
     if (key === 'space') {
-      monsterWorld.getCurrentMap().battleSystem.caughtMonster = false;
-      monsterWorld.items.useItem();
-      changeBattleState(itemUsed);
+      if (monsterWorld.player.inventory.length > 0) {
+        monsterWorld.getCurrentMap().battleSystem.caughtMonster = false;
+        monsterWorld.items.useItem();
+        changeBattleState(itemUsed);
+      } else {
+        changeBattleState(battleMenuMain);
+      }
     } else if (key === 'shift') {
       changeBattleState(battleMenuMain);
     }

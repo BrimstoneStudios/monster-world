@@ -4,9 +4,10 @@
   "description": "JS Browser Video Game",
   "main": "index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "karma start",
     "lint": "eslint ./scripts --fix --ext .js --cache",
-    "start": "node_modules/.bin/webpack-dev-server"
+    "start": "node_modules/.bin/webpack-dev-server",
+    "build": "webpack --progress --colors"
   },
   "repository": {
     "type": "git",
@@ -35,13 +36,13 @@
     "karma-jasmine": "^1.1.0",
     "karma-jasmine-diff-reporter": "^1.0.0",
     "karma-webpack": "^2.0.3",
-    "webpack": "^2.2.1",
+    "webpack": "^2.3.1",
     "webpack-dev-middleware": "^1.10.1",
     "webpack-dev-server": "^2.4.2",
     "webpack-uglify-js-plugin": "^1.1.9"
   },
   "dependencies": {
-    "webpack": "^2.2.1",
+    "webpack": "^2.3.1",
     "webpack-dev-server": "^2.4.2"
   }
 }
