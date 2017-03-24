@@ -6,8 +6,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js',
-        publicPath:'dist' // for webpack-dev-server
-
+        publicPath: '/dist/' // for webpack-dev-server
     },
     module: {
         rules: [
@@ -30,6 +29,7 @@ module.exports = {
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
+                include: path.resolve(__dirname, 'scripts'),
                 use: [{
                     loader: 'babel-loader',
                     options: {
@@ -50,7 +50,7 @@ module.exports = {
         })
     ],
     devServer: {
-        contentBase: './',
+        // contentBase: path.resolve(__dirname, 'dist'),
         inline: true,
         hot: true,
         quiet: false

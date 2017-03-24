@@ -1,7 +1,6 @@
 import allWhite from './../all-white';
 import battleSystem from './../../battle-system/battle-system';
 import {Maps} from './../maps';
-
 var battleMap = new Maps('battleMap', allWhite);
 
 battleMap.battleSystem = battleSystem;
