@@ -1,21 +1,22 @@
 import rng from './../rng';
 
 export default {
-  catchMonster: function (probability) {
+  catchMonster: function () {
     const enemy = monsterWorld.getCurrentMap().battleSystem.enemy;
 
-    if (rng() <= probability) {
-      if (monsterWorld.player.monsterInventory[0].name === 'PlayerMon') {
-        monsterWorld.getCurrentMap().battleSystem.playerBattleMonster.player = 0;
-        monsterWorld.player.monsterInventory.pop();
-      }
-
-      enemy.controller = monsterWorld.player;
-      monsterWorld.player.monsterInventory.push(enemy);
-      monsterWorld.getCurrentMap().battleSystem.caughtMonster = true;
+    if (monsterWorld.player.monsterInventory[0].name === 'PlayerMon') {
+      monsterWorld.getCurrentMap().battleSystem.playerBattleMonster.player = 0;
+      monsterWorld.player.monsterInventory.pop();
     }
+
+    enemy.controller = monsterWorld.player;
+    monsterWorld.player.monsterInventory.push(enemy);
+    monsterWorld.getCurrentMap().battleSystem.caughtMonster = true;
   },
   name: 'Net',
+  probabilityOfCatch: function (hp) {
+    return -2.8571 * hp + 1;
+  },
   renderBattleText: function () {
     var enemy = monsterWorld.getCurrentMap().battleSystem.enemy;
     var coordinates = monsterWorld.getCurrentMap().battleSystem.coordinates;
@@ -44,15 +45,8 @@ export default {
       const enemy = monsterWorld.getCurrentMap().battleSystem.enemy;
       const hpPercent = enemy.currentHp / enemy.hp;
 
-      // Probability of successfully catching a monster increases with decreasing monster health %
-      if (hpPercent >= 0.9) {
-        this.catchMonster(1);
-      } else if (hpPercent >= 0.6) {
-        this.catchMonster(0.5);
-      } else if (hpPercent >= 0.3) {
-        this.catchMonster(0.85);
-      } else {
-        this.catchMonster(1);
+      if (rng() <= this.probabilityOfCatch(hpPercent)) {
+        this.catchMonster();
       }
     }
   },
