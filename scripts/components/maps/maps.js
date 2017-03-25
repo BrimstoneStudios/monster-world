@@ -47,6 +47,10 @@ export default class {
     this.movement = boundaries;
   }
 
+  set setControls(userControls) {
+    this.movement.controls = userControls;
+  }
+
   set setNPCs(npcs) {
     this.npcs = npcs;
   }
