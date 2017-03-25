@@ -1,7 +1,7 @@
 import controls from './controls';
 import renderText from './render-text';
 import tiles from './../world-tiles.js';
-import {Maps} from './../maps';
+import Maps from './../maps';
 
 var Wh = tiles.Wh;
 var s1 = tiles.s1;

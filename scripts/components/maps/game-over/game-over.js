@@ -1,5 +1,5 @@
 import allWhite from './../all-white';
-import {Maps} from './../maps';
+import Maps from './../maps';
 
 
 var gameOver = new Maps('gameOver', allWhite);

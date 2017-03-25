@@ -4,7 +4,7 @@ import {Bat} from './../../monsters/bat';
 import {GiantRat} from './../../monsters/giant-rat';
 import {Munchkin} from './../../monsters/munchkin';
 import HealerNPC from './../../npcs/healer';
-import {Maps} from './../maps';
+import Maps from './../maps';
 
 const Di = tiles.Di;
 const Gr = tiles.Gr;

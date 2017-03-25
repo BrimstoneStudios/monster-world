@@ -14,7 +14,7 @@ const defaultMovement = {
   },
 };
 
-export class Maps {
+export default class {
   constructor(levelName, tiles) {
     this.levelName = levelName;
     this.tiles = tiles;
