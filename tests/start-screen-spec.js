@@ -1,4 +1,5 @@
 import startScreen from '../scripts/components/maps/start-screen/start-screen';
+import Maps from '../scripts/components/maps/maps';
 
 describe('start-screen.js', function () {
   it('should be a child of the Maps Class', function () {
