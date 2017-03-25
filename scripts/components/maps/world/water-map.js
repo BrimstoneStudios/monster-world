@@ -3,7 +3,7 @@ import controls from './controls';
 import {Bat} from './../../monsters/bat';
 import {GiantRat} from './../../monsters/giant-rat';
 import {Munchkin} from './../../monsters/munchkin';
-import {Maps} from './../maps';
+import Maps from './../maps';
 
 const Wa = tiles.Wa;
 const Sa = tiles.Sa;

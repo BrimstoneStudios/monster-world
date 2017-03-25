@@ -3,7 +3,7 @@ import controls from './controls';
 import {LavaOgre} from './../../monsters/lava-ogre';
 import {Ignis} from './../../monsters/ignis';
 import {Phoenix} from './../../monsters/phoenix';
-import {Maps} from './../maps';
+import Maps from './../maps';
 
 const La = tiles.La
 const Ro = tiles.Ro

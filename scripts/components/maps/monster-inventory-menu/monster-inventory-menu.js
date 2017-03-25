@@ -2,7 +2,7 @@ import allWhite from './../all-white';
 import setBoundaries from './set-boundaries';
 import renderText from './render-text';
 import controls from './controls';
-import {Maps} from './../maps';
+import Maps from './../maps';
 
 var monsterInventoryMenu = new Maps('monsterInventoryMenu', allWhite);
 

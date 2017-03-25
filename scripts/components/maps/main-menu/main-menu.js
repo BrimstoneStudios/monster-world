@@ -1,7 +1,7 @@
 import allWhite from './../all-white';
 import controls from './controls';
 import renderText from './rendered-text';
-import {Maps} from './../maps';
+import Maps from './../maps';
 
 var mainMenu = new Maps('mainMenu', allWhite);
 

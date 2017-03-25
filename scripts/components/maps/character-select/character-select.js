@@ -1,7 +1,7 @@
 import controls from './controls';
 import renderText from './render-text';
 import tiles from './../world-tiles.js';
-import {Maps} from './../maps';
+import Maps from './../maps';
 
 const dT = tiles.dT;
 const mT = tiles.mT;

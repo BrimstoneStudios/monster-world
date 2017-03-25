@@ -1,6 +1,6 @@
 import allWhite from './../all-white';
 import controls from './controls';
-import {Maps} from './../maps';
+import Maps from './../maps';
 
 var startScreen = new Maps('startScreen', allWhite);
 
