@@ -9,7 +9,7 @@ const spAttackMultiplier = 2;
 const spDefenseMultiplier = 2;
 const speedMultiplier = 3;
 
-export class Phoenix extends Monster {
+export default class extends Monster {
   constructor(lvl) {
     super(
       lvl,
