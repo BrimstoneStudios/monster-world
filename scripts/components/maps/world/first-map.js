@@ -2,7 +2,7 @@ import tiles from './../world-tiles.js';
 import controls from './controls';
 import Bat from './../../monsters/bat';
 import GiantRat from './../../monsters/giant-rat';
-import {Munchkin} from './../../monsters/munchkin';
+import Munchkin from './../../monsters/munchkin';
 import HealerNPC from './../../npcs/healer';
 import Maps from './../maps';
 
