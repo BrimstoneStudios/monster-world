@@ -1,6 +1,6 @@
 import tiles from './../world-tiles.js';
 import controls from './controls';
-import {Bat} from './../../monsters/bat';
+import Bat from './../../monsters/bat';
 import {GiantRat} from './../../monsters/giant-rat';
 import {Munchkin} from './../../monsters/munchkin';
 import HealerNPC from './../../npcs/healer';
@@ -11,7 +11,7 @@ const Gr = tiles.Gr;
 const wZ = tiles.wZ;
 const healer = new HealerNPC('Flo', wZ, 60, 60);
 
-var firstMap = new Maps('firstMap',
+let firstMap = new Maps('firstMap',
   [
     [Di, Di, Di, Gr, Gr, Gr, Di, Di, Di, Di, Di, Di, Di, Gr],
     [Di, Di, Di, Gr, Di, Gr, Di, Di, Di, Di, Di, Di, Di, Di],
