@@ -9,7 +9,7 @@ const spAttackMultiplier = 1;
 const spDefenseMultiplier = 1;
 const speedMultiplier = 3;
 
-export class Salamander extends Monster {
+export default class extends Monster {
   constructor(lvl) {
     super(
       lvl,
