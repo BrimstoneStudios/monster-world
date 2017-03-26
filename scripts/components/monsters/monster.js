@@ -1,6 +1,6 @@
 // Monster class determines the initial stats of the monster based on the level and the multiplier
 // Multipliers defined later on individual monsters.
-export class Monster {
+export default class {
   constructor(lvl, hpMult, attackMult, defenseMult, spAttackMult, spDefenseMult, speedMult) {
     this.level = lvl;
     this.hpMult = hpMult;
