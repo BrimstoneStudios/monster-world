@@ -1,4 +1,4 @@
-import {Salamander} from './../../monsters/salamander';
+import Salamander from './../../monsters/salamander';
 import {Hydra} from './../../monsters/hydra';
 import {GiantAnt} from './../../monsters/giant-ant';
 
