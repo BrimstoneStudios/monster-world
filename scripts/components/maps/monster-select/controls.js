@@ -3,15 +3,16 @@ import Hydra from './../../monsters/hydra';
 import GiantAnt from './../../monsters/giant-ant';
 
 export default function (key, player) {
+  const boundaries = monsterWorld.getCurrentMap().movement.boundaries;
   let monsterSelected;
 
   if (key === 'space') {
-    if (player.location.x === 200) {
+    if (player.location.x === boundaries.left) {
       monsterSelected = new Salamander(1);
-    } else if (player.location.x === 300) {
-      monsterSelected = new Hydra(1);
-    } else {
+    } else if (player.location.x === boundaries.right) {
       monsterSelected = new GiantAnt(1);
+    } else {
+      monsterSelected = new Hydra(1);
     }
     monsterSelected.controller = player;
     player.monsterInventory.push(monsterSelected);
