@@ -1,4 +1,4 @@
-import {Monster} from './monster';
+import Monster from './monster';
 import abilities from './../abilities/abilities';
 import elementalTypes from './../elemental-types';
 
