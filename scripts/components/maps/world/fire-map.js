@@ -1,8 +1,8 @@
 import tiles from './../world-tiles.js';
 import controls from './controls';
-import {LavaOgre} from './../../monsters/lava-ogre';
-import {Ignis} from './../../monsters/ignis';
-import {Phoenix} from './../../monsters/phoenix';
+import LavaOgre from './../../monsters/lava-ogre';
+import Ignis from './../../monsters/ignis';
+import Phoenix from './../../monsters/phoenix';
 import Maps from './../maps';
 
 const La = tiles.La
