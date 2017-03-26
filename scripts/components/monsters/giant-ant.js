@@ -9,7 +9,7 @@ const spAttackMultiplier = 2;
 const spDefenseMultiplier = 2;
 const speedMultiplier = 2;
 
-export class GiantAnt extends Monster {
+export default class extends Monster {
   constructor(lvl) {
     super(
       lvl,
