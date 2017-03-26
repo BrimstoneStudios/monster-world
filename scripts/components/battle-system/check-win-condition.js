@@ -1,4 +1,4 @@
-import {PlayerMonster} from './../monsters/player-monster';
+import PlayerMonster from './../monsters/player-monster';
 
 export default function (defender) {
   const player = monsterWorld.player;
