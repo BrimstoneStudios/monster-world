@@ -9,7 +9,7 @@ const spAttackMultiplier = 3;
 const spDefenseMultiplier = 1;
 const speedMultiplier = 3;
 
-export class Hydra extends Monster {
+export default class extends Monster {
   constructor(lvl) {
     super(lvl,
       hpMultiplier,
