@@ -14,9 +14,9 @@ export default function () {
     player.savedAttributes.location.x = player.location.x;
     player.savedAttributes.location.y = player.location.y;
     monsterWorld.setCurrentMap(monsterWorld.maps.battle);
+    battle.enemy = battle.initEnemy();
     changeBattleState(wildIntro);
     player.initLocation();
-    battle.enemy = battle.initEnemy();
     battle.playerBattleMonster = battle.initPlayerMonster();
   }
 }
