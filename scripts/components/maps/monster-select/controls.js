@@ -1,6 +1,6 @@
 import Salamander from './../../monsters/salamander';
 import Hydra from './../../monsters/hydra';
-import {GiantAnt} from './../../monsters/giant-ant';
+import GiantAnt from './../../monsters/giant-ant';
 
 export default function (key, player) {
   let monsterSelected;
