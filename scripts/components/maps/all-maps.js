@@ -9,6 +9,8 @@ import monsterInventoryMenu from './monster-inventory-menu/monster-inventory-men
 import monsterSelect from './monster-select/monster-select';
 import startScreen from './start-screen/start-screen';
 import waterMap from './world/water-map';
+import checkNPCActionable from './check-npc-actionable';
+import resolveBattleEvent from './battle/resolve-battle-event';
 
 function borders() {
   const boundaries = monsterWorld.getCurrentMap().movement.boundaries;
@@ -57,6 +59,7 @@ export default {
   battle: battle,
   borders: borders,
   characterSelect: characterSelect,
+  checkNPCActionable: checkNPCActionable,
   fireMap: fireMap,
   firstMap: firstMap,
   gameOver: gameOver,
@@ -64,6 +67,7 @@ export default {
   mainMenu: mainMenu,
   monsterInventoryMenu: monsterInventoryMenu,
   monsterSelect: monsterSelect,
+  resolveBattleEvent: resolveBattleEvent,
   startScreen: startScreen,
   waterMap: waterMap,
 }

@@ -1,6 +1,3 @@
-import resolveBattleEvent from './../battle/resolve-battle-event';
-import checkNPCActionable from './../check-npc-actionable';
-
 export default function (key, player) {
   switch (key) {
     case 'shift':
@@ -12,14 +9,14 @@ export default function (key, player) {
       break;
 
     case 'space':
-      checkNPCActionable();
+      monsterWorld.maps.checkNPCActionable();
       break;
 
     case 'left':
     case 'up':
     case 'right':
     case 'down':
-      resolveBattleEvent();
+      monsterWorld.maps.resolveBattleEvent();
       break;
   }
 }
