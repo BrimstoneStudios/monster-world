@@ -25,6 +25,18 @@ describe('first-map', function () {
   it('should have a NPC property', function () {
     expect(firstMap.npcs).toBeDefined();
   })
+  it('should have a boundary of {bottom: 510, left: -40, right: 710, top: -40}', function () {
+    const actual = firstMap.movement.boundaries;
+    const expected = {bottom: 510, left: -40, right: 710, top: -40};
+
+    expect(actual).toEqual(expected);
+  })
+  it('should have a movement distance of {x: 50, y: 50}', function () {
+    const actual = firstMap.movement.distance;
+    const expected = {x: 50, y: 50};
+
+    expect(actual).toEqual(expected);
+  })
   it('the controls should be the world map controls', function () {
     const actual = firstMap.movement.controls;
 
@@ -37,24 +49,100 @@ describe('first-map', function () {
         const newMonster = new firstMap.monsters[i].initMonster(1);
         this.mockMonsters.push(newMonster.name);
       }
-    })
-    it('should contain a Bat', function () {
-      const expectedMonster = new Bat(1);
-      const expected = expectedMonster.name;
+      this.mockMonsterEntry = function (monster) {
+        for(let i = 0; i < firstMap.monsters.length; i++) {
+          const newMonster = new firstMap.monsters[i].initMonster(1);
+          const lookingFor = new monster(1);
 
-      expect(this.mockMonsters).toContain(expected);
-    })
-    it('should contain a GiantRat', function () {
-      const expectedMonster = new GiantRat(1);
-      const expected = expectedMonster.name;
+          if(newMonster.name === lookingFor.name) {
+            const result = {
+              maxLevel: firstMap.monsters[i].maxLevel,
+              minLevel: firstMap.monsters[i].minLevel,
+              probability: firstMap.monsters[i].probability,
+            }
 
-      expect(this.mockMonsters).toContain(expected);
+            return result;
+          }
+        }
+      };
     })
-    it('should contain a Munchkin', function () {
-      const expectedMonster = new Munchkin(1);
-      const expected = expectedMonster.name;
+    describe('Bat', function () {
+      it('should be an available monster', function () {
+        const expectedMonster = new Bat(1);
+        const expected = expectedMonster.name;
 
-      expect(this.mockMonsters).toContain(expected);
+        expect(this.mockMonsters).toContain(expected);
+      })
+      it('should have a maxLevel of 3', function  () {
+        const actual = this.mockMonsterEntry(Bat).maxLevel;
+        const expected = 3;
+
+        expect(actual).toBe(expected);
+      })
+      it('should have a minLevel of 1', function  () {
+        const actual = this.mockMonsterEntry(Bat).minLevel;
+        const expected = 1;
+
+        expect(actual).toBe(expected);
+      })
+      it('should have a probability of 30%', function  () {
+        const actual = this.mockMonsterEntry(Bat).probability;
+        const expected = 0.3;
+
+        expect(actual).toBe(expected);
+      })
+    })
+    describe('GiantRat', function () {
+      it('should be an available monster', function () {
+        const expectedMonster = new GiantRat(1);
+        const expected = expectedMonster.name;
+
+        expect(this.mockMonsters).toContain(expected);
+      })
+      it('should have a maxLevel of 5', function  () {
+        const actual = this.mockMonsterEntry(GiantRat).maxLevel;
+        const expected = 5;
+
+        expect(actual).toBe(expected);
+      })
+      it('should have a minLevel of 2', function  () {
+        const actual = this.mockMonsterEntry(GiantRat).minLevel;
+        const expected = 2;
+
+        expect(actual).toBe(expected);
+      })
+      it('should have a probability of 50%', function  () {
+        const actual = this.mockMonsterEntry(GiantRat).probability;
+        const expected = 0.5;
+
+        expect(actual).toBe(expected);
+      })
+    })
+    describe('Munchkin', function () {
+      it('should be an available monster', function () {
+        const expectedMonster = new Munchkin(1);
+        const expected = expectedMonster.name;
+
+        expect(this.mockMonsters).toContain(expected);
+      })
+      it('should have a maxLevel of 8', function  () {
+        const actual = this.mockMonsterEntry(Munchkin).maxLevel;
+        const expected = 8;
+
+        expect(actual).toBe(expected);
+      })
+      it('should have a minLevel of 5', function  () {
+        const actual = this.mockMonsterEntry(Munchkin).minLevel;
+        const expected = 5;
+
+        expect(actual).toBe(expected);
+      })
+      it('should have a probability of 5%', function  () {
+        const actual = this.mockMonsterEntry(Munchkin).probability;
+        const expected = 0.2;
+
+        expect(actual).toBe(expected);
+      })
     })
   })
   describe('available npcs', function () {
