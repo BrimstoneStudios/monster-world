@@ -35,7 +35,7 @@ describe('first-map', function () {
       this.mockMonsters = [];
       for(let i = 0; i < firstMap.monsters.length; i++) {
         const newMonster = new firstMap.monsters[i].initMonster(1);
-        this.mockMonsters.push(newMonster.name)
+        this.mockMonsters.push(newMonster.name);
       }
     })
     it('should contain a Bat', function () {
