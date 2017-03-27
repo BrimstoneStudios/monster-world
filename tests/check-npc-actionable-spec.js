@@ -1,6 +1,6 @@
 import checkNPCActionable from '../scripts/components/maps/check-npc-actionable';
 
-fdescribe('check-npc-actionable', function () {
+describe('check-npc-actionable', function () {
   beforeEach(function () {
     monsterWorld.getCurrentMap().npcs = [];
     this.mockNPC = {
