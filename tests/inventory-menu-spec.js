@@ -1,7 +1,7 @@
 import inventoryMenu from '../scripts/components/maps/inventory-menu/inventory-menu';
 import Maps from '../scripts/components/maps/maps';
 
-fdescribe('inventory-menu', function () {
+describe('inventory-menu', function () {
   it('should be a child of the Maps Class', function () {
     expect(inventoryMenu instanceof Maps).toBe(true);
   })
