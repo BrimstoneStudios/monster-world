@@ -63,38 +63,3 @@ describe('main menu controls', function () {
     })
   })
 })
-
-//       controls('shift', monsterWorld.player);
-
-//       expect(monsterWorld.getCurrentMap()).toBe(monsterWorld.maps.mainMenu);
-//     })
-//     spyOn(monsterWorld.maps, 'checkNPCActionable');
-//     controls('space');
-
-//     expect(monsterWorld.maps.checkNPCActionable).toHaveBeenCalled();
-//   })
-//   it('if "left" is pressed it should check for an NPC action', function () {
-//     spyOn(monsterWorld.maps, 'resolveBattleEvent');
-//     controls('left');
-
-//     expect(monsterWorld.maps.resolveBattleEvent).toHaveBeenCalled();
-//   })
-//   it('if "right" is pressed it should check for an NPC action', function () {
-//     spyOn(monsterWorld.maps, 'resolveBattleEvent');
-//     controls('right');
-
-//     expect(monsterWorld.maps.resolveBattleEvent).toHaveBeenCalled();
-//   })
-//   it('if "up" is pressed it should check for an NPC action', function () {
-//     spyOn(monsterWorld.maps, 'resolveBattleEvent');
-//     controls('up');
-
-//     expect(monsterWorld.maps.resolveBattleEvent).toHaveBeenCalled();
-//   })
-//   it('if "down" is pressed it should check for an NPC action', function () {
-//     spyOn(monsterWorld.maps, 'resolveBattleEvent');
-//     controls('down');
-
-//     expect(monsterWorld.maps.resolveBattleEvent).toHaveBeenCalled();
-//   })
-// })

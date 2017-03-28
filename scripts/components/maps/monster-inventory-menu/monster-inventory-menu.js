@@ -29,8 +29,4 @@ monsterInventoryMenu.setRenderText = renderText;
 monsterInventoryMenu.setSprite = 'images/characters/menuSelector.png';
 monsterInventoryMenu.setBoundaries = setBoundaries;
 
-
 export {monsterInventoryMenu as default};
-
-  // displayStats: false,
-  // displayMonsterIndex: null,
