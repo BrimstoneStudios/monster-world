@@ -1,6 +1,6 @@
-import mainMenu from '../scripts/components/maps/main-menu/main-menu';
-import controls from '../scripts/components/maps/main-menu/controls';
-import Maps from '../scripts/components/maps/maps';
+import mainMenu from '../../../scripts/components/maps/main-menu/main-menu';
+import controls from '../../../scripts/components/maps/main-menu/controls';
+import Maps from '../../../scripts/components/maps/maps';
 
 describe('main-menu', function () {
   it('should be a child of the Maps Class', function () {

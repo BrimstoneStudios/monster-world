@@ -1,4 +1,4 @@
-import controls from '../scripts/components/maps/main-menu/controls';
+import controls from '../../../scripts/components/maps/main-menu/controls';
 
 describe('main menu controls', function () {
   it('should be a function', function () {

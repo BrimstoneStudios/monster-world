@@ -1,5 +1,5 @@
-import Player from '../scripts/components/player/player';
-import MonsterWorld from '../scripts/components/monster-world';
+import Player from '../../../scripts/components/player/player';
+import MonsterWorld from '../../../scripts/components/monster-world';
 
 describe('player: Every new Player instance', function () {
   beforeEach(function () {

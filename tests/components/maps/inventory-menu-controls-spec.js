@@ -1,4 +1,4 @@
-import controls from '../scripts/components/maps/inventory-menu/controls';
+import controls from '../../../scripts/components/maps/inventory-menu/controls';
 
 describe('inventory-menu controls', function () {
   beforeEach(function () {
@@ -23,6 +23,16 @@ describe('inventory-menu controls', function () {
     })
   })
   describe('if "space" is pressed', function () {
+    beforeEach(function () {
+      monsterWorld.player.inventory = [
+        {
+          useItem: function () {
+            return true;
+          },
+          singleUse: false
+        }
+      ]
+    })
     it('should call the item\'s useItem function', function () {
       spyOn(monsterWorld.items, 'useItem');
       controls('space', monsterWorld.player);

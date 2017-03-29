@@ -1,4 +1,4 @@
-import controls from '../scripts/components/maps/start-screen/controls';
+import controls from '../../../scripts/components/maps/start-screen/controls';
 
 describe('start-screen/controls', function () {
   beforeEach(function () {

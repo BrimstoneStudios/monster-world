@@ -1,5 +1,5 @@
-import monsterSelect from '../scripts/components/maps/monster-select/monster-select';
-import Maps from '../scripts/components/maps/maps';
+import monsterSelect from '../../../scripts/components/maps/monster-select/monster-select';
+import Maps from '../../../scripts/components/maps/maps';
 
 describe('monster-select', function () {
   it('should be a child of the Maps Class', function () {

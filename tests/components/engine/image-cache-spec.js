@@ -1,4 +1,4 @@
-import imageCache from '../scripts/components/engine/image-cache';
+import imageCache from '../../../scripts/components/engine/image-cache';
 
 describe('image-cache', function () {
   beforeEach(function () {

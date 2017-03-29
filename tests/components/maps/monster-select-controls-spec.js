@@ -1,7 +1,7 @@
-import controls from '../scripts/components/maps/monster-select/controls';
-import Salamander from '../scripts/components/monsters/salamander';
-import Hydra from '../scripts/components/monsters/hydra';
-import GiantAnt from '../scripts/components/monsters/giant-ant';
+import controls from '../../../scripts/components/maps/monster-select/controls';
+import Salamander from '../../../scripts/components/monsters/salamander';
+import Hydra from '../../../scripts/components/monsters/hydra';
+import GiantAnt from '../../../scripts/components/monsters/giant-ant';
 
 describe('monster-select/controls', function () {
   beforeEach(function () {

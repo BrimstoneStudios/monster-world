@@ -1,5 +1,5 @@
-import gameOver from '../scripts/components/maps/game-over/game-over';
-import Maps from '../scripts/components/maps/maps';
+import gameOver from '../../../scripts/components/maps/game-over/game-over';
+import Maps from '../../../scripts/components/maps/maps';
 
 describe('game-over', function () {
   it('should be a child of the Maps Class', function () {

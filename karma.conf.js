@@ -18,6 +18,7 @@ module.exports = function(config) {
     files: [
         'scripts/**/*.js',
         'tests/*-spec.js',
+        'tests/**/*-spec.js',
         {
             pattern: 'images/**/*.png',
             watched: false,
@@ -51,7 +52,8 @@ module.exports = function(config) {
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
         'scripts/**/*.js': ['webpack', 'coverage'],
-        'tests/*-spec.js': ['webpack']
+        'tests/*-spec.js': ['webpack'],
+        'tests/**/*-spec.js': ['webpack']
     },
 
 

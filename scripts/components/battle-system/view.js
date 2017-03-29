@@ -12,11 +12,13 @@
 //   monsterWorld.engine.ctx.font='30px Arial';
 //  if ( battleState === 'battleMonsterDie' ) {
 //     if ( battle.playerBattleMonster.currentHp === 0 ) {
-//       monsterWorld.engine.ctx.fillText( battle.playerBattleMonster.name + ' has died!', coordinates.leftColumn, coordinates.topRow );
+//       monsterWorld.engine.ctx.fillText( battle.playerBattleMonster.name +
+// ' has died!', coordinates.leftColumn, coordinates.topRow );
 //     }
 //   } else if ( battleState === 'itemDrop' ) {
 //     for ( let i = 0, j = 0; i < battle.itemsDropped.length; i++, j += 40 ) {
-//       monsterWorld.engine.ctx.fillText( enemy.name + ' dropped a ' + battle.itemsDropped[i] + '!', coordinates.leftColumn, coordinates.topRow + j );
+//       monsterWorld.engine.ctx.fillText( enemy.name
+// + ' dropped a ' + battle.itemsDropped[i] + '!', coordinates.leftColumn, coordinates.topRow + j );
 //     }
 //   }
 // };

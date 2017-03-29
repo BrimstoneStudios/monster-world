@@ -1,4 +1,4 @@
-import items from '../scripts/components/items/all-items';
+import items from '../../../scripts/components/items/all-items';
 
 describe('all-items', function() {
   it('should have a potion property', function() {
