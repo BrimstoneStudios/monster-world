@@ -1,5 +1,5 @@
-import characterSelect from '../scripts/components/maps/character-select/character-select';
-import Maps from '../scripts/components/maps/maps';
+import characterSelect from '../../../scripts/components/maps/character-select/character-select';
+import Maps from '../../../scripts/components/maps/maps';
 
 describe('character-select', function () {
   it('should be a child of the Maps Class', function () {

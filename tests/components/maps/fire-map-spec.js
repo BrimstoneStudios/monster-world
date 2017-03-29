@@ -1,9 +1,9 @@
-import fireMap from '../scripts/components/maps/world/fire-map';
-import controls from '../scripts/components/maps/world/controls';
-import Maps from '../scripts/components/maps/maps';
-import Ignis from '../scripts/components/monsters/ignis';
-import Phoenix from '../scripts/components/monsters/phoenix';
-import LavaOgre from '../scripts/components/monsters/lava-ogre';
+import fireMap from '../../../scripts/components/maps/world/fire-map';
+import controls from '../../../scripts/components/maps/world/controls';
+import Maps from '../../../scripts/components/maps/maps';
+import Ignis from '../../../scripts/components/monsters/ignis';
+import Phoenix from '../../../scripts/components/monsters/phoenix';
+import LavaOgre from '../../../scripts/components/monsters/lava-ogre';
 
 describe('fire-map', function () {
   it('should be a child of the Maps Class', function () {
@@ -44,12 +44,13 @@ describe('fire-map', function () {
   describe('available monsters', function () {
     beforeEach(function () {
       this.mockMonsters = [];
-      for(let i = 0; i < fireMap.monsters.length; i++) {
+
+      for(var i = 0; i < fireMap.monsters.length; i++) {
         const newMonster = new fireMap.monsters[i].initMonster(1);
         this.mockMonsters.push(newMonster);
       }
       this.mockMonsterEntry = function (monster) {
-        for(let i = 0; i < fireMap.monsters.length; i++) {
+        for(i = 0; i < fireMap.monsters.length; i++) {
           const newMonster = new fireMap.monsters[i].initMonster(1);
           const lookingFor = new monster(1);
 

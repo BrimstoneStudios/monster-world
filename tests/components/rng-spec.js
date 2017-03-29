@@ -1,4 +1,4 @@
-import rng from '../scripts/components/rng';
+import rng from '../../scripts/components/rng';
 
 describe('RNG to generate a number between 0 and 1', function() {
   var randomNum = rng();

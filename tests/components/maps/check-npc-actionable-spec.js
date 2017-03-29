@@ -1,4 +1,4 @@
-import checkNPCActionable from '../scripts/components/maps/check-npc-actionable';
+import checkNPCActionable from '../../../scripts/components/maps/check-npc-actionable';
 
 describe('check-npc-actionable', function () {
   beforeEach(function () {

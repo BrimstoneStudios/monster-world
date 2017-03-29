@@ -1,4 +1,4 @@
-import engine from '../scripts/components/engine/engine';
+import engine from '../../../scripts/components/engine/engine';
 
 describe('engine: Every new engine object', function () {
   beforeEach(function () {

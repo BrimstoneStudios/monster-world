@@ -1,4 +1,4 @@
-import net from '../scripts/components/items/net';
+import net from '../../../scripts/components/items/net';
 
 describe('net', function () {
   it('should be an object', function () {

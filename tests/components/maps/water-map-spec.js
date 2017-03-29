@@ -1,9 +1,9 @@
-import waterMap from '../scripts/components/maps/world/water-map';
-import controls from '../scripts/components/maps/world/controls';
-import Maps from '../scripts/components/maps/maps';
-import Munchkin from '../scripts/components/monsters/munchkin';
-import GiantRat from '../scripts/components/monsters/giant-rat';
-import Bat from '../scripts/components/monsters/bat';
+import waterMap from '../../../scripts/components/maps/world/water-map';
+import controls from '../../../scripts/components/maps/world/controls';
+import Maps from '../../../scripts/components/maps/maps';
+import Munchkin from '../../../scripts/components/monsters/munchkin';
+import GiantRat from '../../../scripts/components/monsters/giant-rat';
+import Bat from '../../../scripts/components/monsters/bat';
 
 describe('water-map', function () {
   it('should be a child of the Maps Class', function () {
@@ -44,12 +44,13 @@ describe('water-map', function () {
   describe('available monsters', function () {
     beforeEach(function () {
       this.mockMonsters = [];
-      for(let i = 0; i < waterMap.monsters.length; i++) {
+
+      for(var i = 0; i < waterMap.monsters.length; i++) {
         const newMonster = new waterMap.monsters[i].initMonster(1);
         this.mockMonsters.push(newMonster);
       }
       this.mockMonsterEntry = function (monster) {
-        for(let i = 0; i < waterMap.monsters.length; i++) {
+        for(i = 0; i < waterMap.monsters.length; i++) {
           const newMonster = new waterMap.monsters[i].initMonster(1);
           const lookingFor = new monster(1);
 

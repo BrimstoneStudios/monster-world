@@ -1,10 +1,10 @@
-import firstMap from '../scripts/components/maps/world/first-map';
-import controls from '../scripts/components/maps/world/controls';
-import Maps from '../scripts/components/maps/maps';
-import Bat from '../scripts/components/monsters/bat';
-import GiantRat from '../scripts/components/monsters/giant-rat';
-import Munchkin from '../scripts/components/monsters/munchkin';
-import HealerNPC from '../scripts/components/npcs/healer';
+import firstMap from '../../../scripts/components/maps/world/first-map';
+import controls from '../../../scripts/components/maps/world/controls';
+import Maps from '../../../scripts/components/maps/maps';
+import Bat from '../../../scripts/components/monsters/bat';
+import GiantRat from '../../../scripts/components/monsters/giant-rat';
+import Munchkin from '../../../scripts/components/monsters/munchkin';
+import HealerNPC from '../../../scripts/components/npcs/healer';
 
 describe('first-map', function () {
   it('should be a child of the Maps Class', function () {
@@ -45,12 +45,13 @@ describe('first-map', function () {
   describe('available monsters', function () {
     beforeEach(function () {
       this.mockMonsters = [];
-      for(let i = 0; i < firstMap.monsters.length; i++) {
+
+      for(var i = 0; i < firstMap.monsters.length; i++) {
         const newMonster = new firstMap.monsters[i].initMonster(1);
         this.mockMonsters.push(newMonster.name);
       }
       this.mockMonsterEntry = function (monster) {
-        for(let i = 0; i < firstMap.monsters.length; i++) {
+        for(i = 0; i < firstMap.monsters.length; i++) {
           const newMonster = new firstMap.monsters[i].initMonster(1);
           const lookingFor = new monster(1);
 
@@ -148,7 +149,8 @@ describe('first-map', function () {
   describe('available npcs', function () {
     beforeEach(function () {
       this.mockNpcs = [];
-      for(let i = 0; i < firstMap.npcs.length; i++) {
+
+      for(var i = 0; i < firstMap.npcs.length; i++) {
         this.mockNpcs.push(firstMap.npcs[i].initNPCAction);
       }
     })

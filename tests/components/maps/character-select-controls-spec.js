@@ -1,4 +1,4 @@
-import controls from '../scripts/components/maps/character-select/controls';
+import controls from '../../../scripts/components/maps/character-select/controls';
 
 describe('character-select/controls', function () {
   beforeEach(function () {

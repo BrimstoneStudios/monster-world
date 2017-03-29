@@ -1,5 +1,5 @@
-import monsterInventoryMenu from '../scripts/components/maps/monster-inventory-menu/monster-inventory-menu';
-import Maps from '../scripts/components/maps/maps';
+import monsterInventoryMenu from '../../../scripts/components/maps/monster-inventory-menu/monster-inventory-menu';
+import Maps from '../../../scripts/components/maps/maps';
 
 describe('monster-inventory-menu', function () {
   it('should be a child of the Maps Class', function () {

@@ -1,4 +1,4 @@
-import controls from '../scripts/components/maps/world/controls';
+import controls from '../../../scripts/components/maps/world/controls';
 
 describe('world controls', function () {
   it('should be a function', function () {

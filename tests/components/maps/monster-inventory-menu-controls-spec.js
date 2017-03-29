@@ -1,4 +1,4 @@
-import controls from '../scripts/components/maps/monster-inventory-menu/controls';
+import controls from '../../../scripts/components/maps/monster-inventory-menu/controls';
 
 describe('monster-inventory-menu controls', function () {
   beforeEach(function () {
