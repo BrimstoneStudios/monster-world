@@ -14,48 +14,24 @@ Use the Monster net to catch a wild monsters. Damaging monsters increases the ch
 ## Style Guide
 Javascript style guide used: http://javascript.crockford.com/code.html
 
-## Run Locally
-
-Run the local server `nmp start` OR `webpack-dev-server`
-Navigate to `localhost:8080`
+## Getting Started
+- `npm install`
+- `nmp start`
+- Navigate to `localhost:8080`
 
 ## Other Useful Commands
 - To lint your javascript: `npm run lint`
 - Running webpack `npm build`
 - Running specs `npm test`
 
-## Architecture
-We are running using ES6 modules. Each file is a single module that the app runs when necessary. When you create new functionality you can export that module using ES6 default export. When you need to use a module simply import it using ES6 imports. EX:
-
-```js
-/* rng.js */
-export default function () {...};
-```
-```js
-/* app.js */
-import rng from './rng'
-```
-
-### model.js:
-Init the compontent's object
-
-### controller.js:
-Defines any method that changes the state.
-Speaks to view.js through a `playerLocation()` method call.
-
-### view.js
-Defines the playerLocation method.
-Controls the text and location of cursor's on the player's monitor.
-The player's sprite is managed here.
-
 ## Abilities
 All abilities are built using the following scheme.
 
 ```js
-scratch: {
-  name: 'Scratch',
-  type: 'normal',
-  category: 'physical',
+mockAbility: {
+  name: 'mockAbility',
+  type: 'mockType',
+  category: 'mockCategory',
   power: 40,
   accuracy: 1,
   effect: '',

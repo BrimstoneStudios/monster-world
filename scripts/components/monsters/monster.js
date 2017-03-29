@@ -54,7 +54,7 @@ export default class {
 
   renderBtlMonStats(player) {
     monsterWorld.engine.ctx.font = '35px Arial';
-    if (player === 'player') {
+    if (player === monsterWorld.player) {
       monsterWorld.engine.ctx.fillText(this.name, 350, 260);
       monsterWorld.engine.ctx.fillText('Lv', 610, 260);
       monsterWorld.engine.ctx.fillText(this.level, 650, 260);
