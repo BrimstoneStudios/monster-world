@@ -1,23 +1,32 @@
-// Monster class determines the initial stats of the monster based on the level and the multiplier
-// Multipliers defined later on individual monsters.
+// Monster class determines the initial stats of the monster
+// based on the level and the multiplier
+// Multipliers are defined when individual monsters are instantiated
 export default class {
-  constructor(lvl, hpMult, attackMult, defenseMult, spAttackMult, spDefenseMult, speedMult) {
+  constructor(
+    lvl,
+    hpMultiplier,
+    attackMultiplier,
+    defenseMultiplier,
+    spAttackMultiplier,
+    spDefenseMultiplier,
+    speedMultiplier
+  ) {
     this.level = lvl;
-    this.hpMult = hpMult;
-    this.attackMult = attackMult;
-    this.defenseMult = defenseMult;
-    this.spAttackMult = spAttackMult;
-    this.spDefenseMult = spDefenseMult;
-    this.speedMult = speedMult;
+    this.hpMultiplier = hpMultiplier;
+    this.attackMultiplier = attackMultiplier;
+    this.defenseMultiplier = defenseMultiplier;
+    this.spAttackMultiplier = spAttackMultiplier;
+    this.spDefenseMultiplier = spDefenseMultiplier;
+    this.speedMultiplier = speedMultiplier;
 
-    this.hp = 10 * hpMult * this.level;
+    this.hp = 10 * hpMultiplier * this.level;
     this.currentHp = this.hp;
     this.condition = 'healthy';
-    this.attack = (5 + attackMult) * 11 * this.level / 100 + 2;
-    this.defense = (5 + defenseMult) * 11 * this.level / 100 + 2;
-    this.spAttack = (5 + spAttackMult) * 11 * this.level / 100 + 2;
-    this.spDefense = (5 + spDefenseMult) * 11 * this.level / 100 + 2;
-    this.speed = (5 + speedMult) * 11 * this.level / 100 + 2;
+    this.attack = (5 + attackMultiplier) * 11 * this.level / 100 + 2;
+    this.defense = (5 + defenseMultiplier) * 11 * this.level / 100 + 2;
+    this.spAttack = (5 + spAttackMultiplier) * 11 * this.level / 100 + 2;
+    this.spDefense = (5 + spDefenseMultiplier) * 11 * this.level / 100 + 2;
+    this.speed = (5 + speedMultiplier) * 11 * this.level / 100 + 2;
     this.currentExp = 0;
     this.expToLevel = 10 + 3 * this.level;
     this.expReward = 5 + 3 * this.level;
@@ -33,13 +42,13 @@ export default class {
   levelUp() {
     monsterWorld.getCurrentMap().battleSystem.levelUp = true;
     this.level++;
-    this.hp = 10 * this.hpMult * this.level;
+    this.hp = 10 * this.hpMultiplier * this.level;
     this.currentHp = this.hp;
-    this.attack = (5 + this.attackMult) * 11 * this.level / 100 + 2;
-    this.defense = (5 + this.defenseMult) * 11 * this.level / 100 + 2;
-    this.spAttack = (5 + this.spAttackMult) * 11 * this.level / 100 + 2;
-    this.spDefense = (5 + this.spDefenseMult) * 11 * this.level / 100 + 2;
-    this.speed = (5 + this.speedMult) * 11 * this.level / 100 + 2;
+    this.attack = (5 + this.attackMultiplier) * 11 * this.level / 100 + 2;
+    this.defense = (5 + this.defenseMultiplier) * 11 * this.level / 100 + 2;
+    this.spAttack = (5 + this.spAttackMultiplier) * 11 * this.level / 100 + 2;
+    this.spDefense = (5 + this.spDefenseMultiplier) * 11 * this.level / 100 + 2;
+    this.speed = (5 + this.speedMultiplier) * 11 * this.level / 100 + 2;
     this.currentExp = 0;
     this.expToLevel = 10 + 4 * this.level;
   }
