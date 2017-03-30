@@ -11,23 +11,23 @@ describe('Monster class', function () {
   it('should have a level property defined', function () {
     expect(this.mockMonster.level).toBeDefined();
   })
-  it('should have a hpMult property defined', function () {
-    expect(this.mockMonster.hpMult).toBeDefined();
+  it('should have a hpMultiplier property defined', function () {
+    expect(this.mockMonster.hpMultiplier).toBeDefined();
   })
-  it('should have a attackMult property defined', function () {
-    expect(this.mockMonster.attackMult).toBeDefined();
+  it('should have a attackMultiplier property defined', function () {
+    expect(this.mockMonster.attackMultiplier).toBeDefined();
   })
-  it('should have a defenseMult property defined', function () {
-    expect(this.mockMonster.defenseMult).toBeDefined();
+  it('should have a defenseMultiplier property defined', function () {
+    expect(this.mockMonster.defenseMultiplier).toBeDefined();
   })
-  it('should have a spAttackMult property defined', function () {
-    expect(this.mockMonster.spAttackMult).toBeDefined();
+  it('should have a spAttackMultiplier property defined', function () {
+    expect(this.mockMonster.spAttackMultiplier).toBeDefined();
   })
-  it('should have a defenseMult property defined', function () {
-    expect(this.mockMonster.defenseMult).toBeDefined();
+  it('should have a defenseMultiplier property defined', function () {
+    expect(this.mockMonster.defenseMultiplier).toBeDefined();
   })
-  it('should have a speedMult property defined', function () {
-    expect(this.mockMonster.speedMult).toBeDefined();
+  it('should have a speedMultiplier property defined', function () {
+    expect(this.mockMonster.speedMultiplier).toBeDefined();
   })
   it('should have a hp property defined', function () {
     expect(this.mockMonster.hp).toBeDefined();

@@ -60,10 +60,12 @@ export default function () {
     }
 
     if (typeof monsterWorld.getCurrentMap().battleSystem !== 'undefined') {
-      monsterWorld.getCurrentMap().battleSystem.playerBattleMonster.render(50, 200);
-      monsterWorld.getCurrentMap().battleSystem.playerBattleMonster.renderBtlMonStats(monsterWorld.player);
-      monsterWorld.getCurrentMap().battleSystem.enemy.render(550, 40);
-      monsterWorld.getCurrentMap().battleSystem.enemy.renderBtlMonStats(monsterWorld.getCurrentMap().battleSystem.enemy);
+      const battle = monsterWorld.getCurrentMap().battleSystem;
+
+      battle.playerBattleMonster.render(50, 200);
+      battle.playerBattleMonster.renderBtlMonStats(monsterWorld.player);
+      battle.enemy.render(550, 40);
+      battle.enemy.renderBtlMonStats(monsterWorld.getCurrentMap().battleSystem.enemy);
     }
 
     monsterWorld.player.render();
