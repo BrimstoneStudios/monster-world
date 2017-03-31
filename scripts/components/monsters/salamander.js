@@ -23,8 +23,8 @@ export default class extends Monster {
 
     this.abilities = [
       abilities.bite,
-      abilities.stare,
       abilities.fireBreath,
+      abilities.stare,
     ];
 
     this.name = 'Salamander';
