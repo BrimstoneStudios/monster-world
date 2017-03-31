@@ -27,10 +27,10 @@ export default class extends Monster {
 
     this.items = [
       {
-        dropProbability: 1,
+        dropProbability: 0.2,
         item: monsterWorld.items.net,
       }, {
-        dropProbability: 1,
+        dropProbability: 0.8,
         item: monsterWorld.items.potion,
       },
     ];
