@@ -43,7 +43,7 @@ describe('Ignis class', function () {
   it('should have a speedMultiplier of 2', function () {
     expect(this.mockIgnis.speedMultiplier).toBe(2);
   })
-  it('should have the waterBlast ability', function () {
+  it('should have the fireBreath ability', function () {
     const expected = abilities.fireBreath;
 
     expect(this.mockIgnis.abilities).toContain(expected);
@@ -70,7 +70,7 @@ describe('Ignis class', function () {
   it('should have the ignis sprite', function () {
     expect(this.mockIgnis.sprite).toBe('images/monsters/ignis.gif');
   })
-  it('should have a nomral elemental type', function () {
+  it('should have a fire elemental type', function () {
     expect(this.mockIgnis.type).toBe(elementalTypes.fire);
   })
 })
