@@ -2,7 +2,7 @@ import Monster from './monster';
 import abilities from './../abilities/abilities';
 import elementalTypes from './../elemental-types';
 
-const hpMultiplier = 0;
+const hpMultiplier = 1;
 const attackMultiplier = 3;
 const defenseMultiplier = 0;
 const spAttackMultiplier = 2;
@@ -26,7 +26,7 @@ export default class extends Monster {
       abilities.stare,
     ];
 
-    this.name = 'PlayerMonster';
+    this.name = 'Leaf';
     this.type = elementalTypes.normal;
   }
 }
