@@ -87,7 +87,21 @@ describe('Monster class', function () {
     beforeEach(function () {
       monsterWorld.getCurrentMap().battleSystem = {
         enemy: {
-          expReward: 10
+          expReward: 10,
+          render: function () {
+            return true;
+          },
+          renderBtlMonStats: function () {
+            return true;
+          }
+        },
+        playerBattleMonster: {
+          render: function () {
+            return true;
+          },
+          renderBtlMonStats: function () {
+            return true;
+          }
         }
       }
       this.mockMonster.currentExp = 0;
@@ -117,7 +131,23 @@ describe('Monster class', function () {
     })
     it('should set the battle system\'s levelUp flag to true', function () {
       monsterWorld.getCurrentMap().battleSystem = {
-        levelUp: false
+        levelUp: false,
+        playerBattleMonster: {
+          render: function () {
+            return true;
+          },
+          renderBtlMonStats: function () {
+            return true;
+          }
+        },
+        enemy: {
+          render: function () {
+            return true;
+          },
+          renderBtlMonStats: function () {
+            return true;
+          }
+        },
       };
       this.mockMonster.levelUp();
       const actual = monsterWorld.getCurrentMap().battleSystem.levelUp;

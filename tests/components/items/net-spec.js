@@ -30,24 +30,44 @@ describe('net', function () {
   })
   describe('catchMonster()', function () {
     beforeEach(function () {
+      monsterWorld.player.monsterInventory =
+      [
+        {
+          name: 'mockMonster',
+          render: function () {
+            return true;
+          }
+        }
+      ];
       monsterWorld.getCurrentMap().battleSystem = {
+        coordinates: {
+          leftColumn: 0,
+          topRow: 0,
+          middleRow: 0
+        },
         enemy: {
           name: 'mockEnemy',
           controller: false,
-          catchMonster: false
-        }
+          catchMonster: false,
+          render: function () {
+            return true;
+          },
+          renderBtlMonStats: function () {
+            return true;
+          }
+        },
+        playerBattleMonster: monsterWorld.player.monsterInventory[0]
       };
-      monsterWorld.player.monsterInventory = [
-        {
-          name: 'mockMonster'
-        }
-      ];
       net.catchMonster();
     })
     afterEach(function () {
-      monsterWorld.player.monsterInventory = [
+      monsterWorld.player.monsterInventory =
+      [
         {
-          name: 'mockMonster'
+          name: 'mockMonster',
+          render: function () {
+            return true;
+          }
         }
       ]
     })
@@ -77,12 +97,38 @@ describe('net', function () {
       beforeEach(function () {
         monsterWorld.player.monsterInventory = [
           {
-            name: 'PlayerMon'
+            name: 'PlayerMon',
+            render: function () {
+              return true;
+            }
           }
         ]
-        monsterWorld.getCurrentMap().battleSystem.playerBattleMonster = {
-          player: 1
-        };
+        monsterWorld.getCurrentMap().battleSystem = {
+          playerBattleMonster: {
+            player: 1
+          },
+          playerBattleMonster:  {
+            render: function () {
+              return true;
+            },
+            renderBtlMonStats: function () {
+              return true;
+            }
+          },
+          enemy: {
+            render: function () {
+              return true;
+            },
+            renderBtlMonStats: function () {
+              return true;
+            }
+          },
+          coordinates: {
+            leftColumn: 0,
+            topRow: 0,
+            middleRow: 0
+          }
+        }
         net.catchMonster(1);
       })
       it('should set the player is fighting flag to 0 in the battleSystem', function () {
@@ -109,19 +155,46 @@ describe('net', function () {
       monsterWorld.player.monsterInventory = [
         {
           name: 'mockMonster',
+          render: function () {
+            return true;
+          }
         }
       ];
-      monsterWorld.getCurrentMap().battleSystem.enemy = {
-        name: 'mockEnemy',
-        currentHp: 1,
-        hp: 100,
-        controller: false
+      monsterWorld.getCurrentMap().battleSystem = {
+        enemy: {
+          name: 'mockEnemy',
+          currentHp: 1,
+          hp: 100,
+          controller: false,
+          render: function () {
+            return true;
+          },
+          renderBtlMonStats: function () {
+            return true;
+          }
+        },
+        playerBattleMonster: {
+          render: function () {
+            return true;
+          },
+          renderBtlMonStats: function () {
+            return true;
+          }
+        },
+        coordinates: {
+          leftColumn: 0,
+          topRow: 0,
+          middleRow: 0
+        }
       }
     })
     afterEach(function () {
       monsterWorld.player.monsterInventory = [
         {
           name: 'mockMonster',
+          render: function () {
+            return true;
+          }
         }
       ];
     })
