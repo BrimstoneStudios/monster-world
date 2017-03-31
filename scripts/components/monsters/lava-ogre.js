@@ -22,17 +22,17 @@ export default class extends Monster {
     );
 
     this.abilities = [
+      abilities.fireBreath,
       abilities.scratch,
       abilities.stare,
-      abilities.fireBreath,
     ];
 
     this.items = [
       {
-        dropProbability: 1,
+        dropProbability: 0.2,
         item: monsterWorld.items.net,
       }, {
-        dropProbability: 1,
+        dropProbability: 0.43,
         item: monsterWorld.items.potion,
       },
     ];
